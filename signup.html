@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - REMO-TASK</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SIGNUP SCREEN -->
+    <div class="screen active">
+        <div class="container">
+            <div class="auth-header">
+                <div class="auth-icon">👤</div>
+                <h1>Create Account</h1>
+                <p>Join us and start earning today</p>
+            </div>
+
+            <div class="card auth-form">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="signupPhone" placeholder="+254 700 000 000">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="signupEmail" placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Country *</label>
+                    <select id="signupCountry">
+                        <option value="">Select Country</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Password * (minimum 4 characters)</label>
+                    <input type="password" id="signupPassword" placeholder="Create a secure password">
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password *</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Re-enter your password">
+                </div>
+
+                <div class="form-group">
+                    <label>Referral Code (Optional)</label>
+                    <input type="text" id="signupReferral" placeholder="Enter referral code if you have one" class="referral-input">
+                </div>
+
+                <button id="signupBtn" class="btn btn-primary">Create Account</button>
+
+                <p class="form-note">* All fields are required</p>
+            </div>
+
+            <div class="footer-terms">
+                <p>By signing up, you agree to our Terms of Service and Privacy Policy</p>
+                <p class="security-badge">🔒 Your data is secure</p>
+            </div>
+
+            <div class="signup-link" style="margin-top: 20px;">
+                <p>Already have an account?</p>
+                <button id="backToLoginBtn" class="link-btn">Sign In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROBOT VERIFICATION POPUP -->
+    <div id="robotVerifyOverlay" class="overlay">
+        <div id="robotVerifyPopup" class="robot-popup">
+            <h2>🔒 reCAPTCHA</h2>
+            <p class="popup-subtitle">Verify you're human</p>
+
+            <div class="recaptcha-box">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="notRobotCheck">
+                    <span class="checkmark"></span>
+                    I'm not a robot
+                </label>
+                <div class="recaptcha-logo">reCAPTCHA</div>
+            </div>
+
+            <div id="mathChallenge" class="math-challenge">
+                <p id="mathQuestion">5 + 3 = ?</p>
+                <div class="math-input-row">
+                    <input type="number" id="mathAnswer" placeholder="Enter answer">
+                    <button id="refreshMath" class="refresh-btn">↻</button>
+                </div>
+            </div>
+
+            <div class="popup-buttons">
+                <button id="cancelRobotBtn" class="btn btn-secondary">Cancel</button>
+                <button id="confirmRobotBtn" class="btn btn-primary" disabled>Verify</button>
+            </div>
+
+            <p class="popup-privacy">🔒 Privacy • Terms</p>
+        </div>
+    </div>
+
+    <!-- LOADING OVERLAY -->
+    <div id="loadingOverlay" class="overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
