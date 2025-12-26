@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Training Assessment - REMO-TASK</title>
+    <link rel="stylesheet" href="remo-task-styles.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active">
+        <div class="container">
+            <!-- Welcome icon with rounded background -->
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="width: 100px; height: 100px; margin: 0 auto; background: rgb(168, 85, 247); border-radius: 25px; display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: 50px;">🎯</span>
+                </div>
+            </div>
+
+            <!-- Welcome title -->
+            <div style="text-align: center; margin-top: 30px;">
+                <h1 style="font-size: 26px; font-weight: bold; line-height: 1.3;">Welcome to<br>AI Training Assessment</h1>
+            </div>
+
+            <!-- Info card -->
+            <div class="card" style="margin-top: 30px; padding: 20px;">
+                <p style="font-size: 15px; color: rgb(203, 213, 225); line-height: 1.8;">
+                    Complete this quick assessment to verify your skills in:<br><br>
+                    ✓ Text annotation & labeling<br>
+                    ✓ Sentence arrangement<br>
+                    ✓ Content classification<br>
+                    ✓ Data categorization<br>
+                    ✓ Pattern recognition<br><br>
+                    This will only take 2-3 minutes!
+                </p>
+            </div>
+
+            <!-- Start button -->
+            <button class="btn btn-primary" id="btnStartAssessment" style="margin-top: 20px;">
+                Start Assessment →
+            </button>
+
+            <!-- Info text -->
+            <p style="text-align: center; margin-top: 20px; font-size: 13px; color: rgb(148, 163, 184);">
+                Pass with 60% or higher to qualify
+            </p>
+        </div>
+    </div>
+
+    <!-- Question Screen -->
+    <div id="questionScreen" class="screen">
+        <div class="container" style="padding-top: 20px;">
+            <!-- Progress bar -->
+            <div id="progressBar" class="quiz-progress-bar">
+                <div id="progressFill" class="quiz-progress-fill"></div>
+                <div id="progressText" class="quiz-progress-text"></div>
+            </div>
+
+            <!-- Question card -->
+            <div class="card" id="questionCard" style="min-height: 500px;">
+                <!-- Question number badge -->
+                <div class="question-badge">
+                    <span id="questionNumber"></span>
+                </div>
+
+                <!-- Question title -->
+                <h2 id="questionTitle" style="font-size: 20px; font-weight: bold; margin-bottom: 10px;"></h2>
+
+                <!-- Question description -->
+                <p id="questionDescription" style="font-size: 14px; color: rgb(203, 213, 225); margin-bottom: 30px;"></p>
+
+                <!-- Question options container -->
+                <div id="questionOptions"></div>
+            </div>
+
+            <!-- Next button -->
+            <button class="btn btn-success" id="btnNextQuestion" style="margin-top: 20px; border-radius: 30px;">
+                Next Question →
+            </button>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+        <div class="container" style="padding-top: 40px;">
+            <!-- Result icon -->
+            <div id="resultIconContainer" class="result-icon-container">
+                <span id="resultIcon"></span>
+            </div>
+
+            <!-- Result title -->
+            <h1 id="resultTitle" style="text-align: center; font-size: 28px; font-weight: bold; margin: 30px 0; line-height: 1.3; white-space: pre-line;"></h1>
+
+            <!-- Score card -->
+            <div class="card" id="scoreCard" style="padding: 20px; text-align: center;">
+                <p style="font-size: 16px; color: rgb(203, 213, 225); margin-bottom: 10px;">Your Score</p>
+                <p id="scorePercentage" style="font-size: 48px; font-weight: bold; margin: 10px 0;"></p>
+                <p id="scoreDetails" style="font-size: 14px; color: rgb(203, 213, 225); margin-bottom: 10px;"></p>
+                <p id="qualificationStatus" style="font-size: 13px; font-weight: bold; margin-top: 10px;"></p>
+            </div>
+
+            <!-- Action button -->
+            <button class="btn" id="btnResultAction" style="margin-top: 20px; border-radius: 30px;"></button>
+        </div>
+    </div>
+
+    <!-- Bonus Panel Overlay -->
+    <div class="overlay" id="bonusOverlay">
+        <div class="bonus-card">
+            <!-- Decorative circles -->
+            <div class="bonus-decorative-circle" style="top: -20px; right: -20px; width: 80px; height: 80px;"></div>
+            <div class="bonus-decorative-circle" style="bottom: -20px; left: -30px; width: 80px; height: 80px;"></div>
+            <div class="bonus-decorative-circle" style="top: 50%; right: -20px; width: 60px; height: 60px; background: rgba(74, 222, 128, 0.15);"></div>
+
+            <div style="padding: 40px 30px;">
+                <!-- Trophy icon -->
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="width: 100px; height: 100px; margin: 0 auto; background: rgba(74, 222, 128, 0.3); border-radius: 50px; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 60px;">🏆</span>
+                    </div>
+                </div>
+
+                <!-- Congratulations badge -->
+                <div style="background: rgba(74, 222, 128, 0.3); border: 1px solid rgb(74, 222, 128); border-radius: 20px; padding: 8px 20px; display: inline-block; margin: 0 auto; margin-bottom: 20px; width: 100%; text-align: center;">
+                    <span style="font-size: 13px; color: rgb(74, 222, 128); font-weight: bold;">🎉 CONGRATULATIONS</span>
+                </div>
+
+                <!-- Welcome message -->
+                <h2 style="font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 20px;">Welcome Bonus</h2>
+
+                <!-- Bonus amount -->
+                <div style="background: rgb(51, 65, 85); border: 1px solid rgb(100, 116, 139); border-radius: 16px; padding: 20px; margin-bottom: 20px;">
+                    <p style="font-size: 16px; color: rgb(148, 163, 184); text-align: center; font-weight: bold; margin-bottom: 5px;">KES</p>
+                    <p id="bonusAmount" style="font-size: 52px; color: rgb(74, 222, 128); font-weight: bold; text-align: center; margin: 0;">$0.00</p>
+                </div>
+
+                <!-- Bonus details -->
+                <div style="text-align: center; font-size: 14px; color: rgb(148, 163, 184); line-height: 1.8; margin-bottom: 30px;">
+                    Credited to your account<br><br>
+                    ✓ Available for instant use<br>
+                    ✓ No withdrawal maximum<br>
+                    ✓ Start earning immediately
+                </div>
+
+                <!-- Claim button -->
+                <button class="btn btn-success" id="btnClaimBonus" style="border-radius: 30px;">
+                    Claim & Continue →
+                </button>
+            </div>
+
+            <!-- Security note -->
+            <p style="font-size: 11px; color: rgb(100, 116, 139); text-align: center; padding: 20px; margin: 0;">
+                🔒 Secure • Instant • Guaranteed • One-Time Offer
+            </p>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="remo-task-updated.js"></script>
+</body>
+</html>
