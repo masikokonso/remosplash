@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REMO-TASK: Online Jobs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen" class="screen active">
+        <div class="background">
+            <div class="circle circle1"></div>
+            <div class="circle circle2"></div>
+            <div class="circle circle3"></div>
+            <div class="particle particle1"></div>
+            <div class="particle particle2"></div>
+            <div class="particle particle3"></div>
+            <div class="particle particle4"></div>
+        </div>
+        
+        <div class="main-content">
+            <div class="app-name" id="appName"></div>
+            
+            <div class="icon-container">
+                <div class="icon-glow" id="iconGlow"></div>
+                <div class="icon-outer" id="iconOuter">
+                    <div class="icon-inner" id="iconInner">
+                        <div class="icon-emoji" id="iconEmoji">💰</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tagline" id="tagline">Earn Money by Training AI</div>
+            <div class="slogan" id="slogan"></div>
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            <div class="version-info" id="versionInfo">Version 1.0 • Powered by AI</div>
+        </div>
+        
+        <div class="flash-overlay" id="flashOverlay"></div>
+    </div>
+
+    <!-- BUY ACCOUNT POPUP (can appear from notification) -->
+    <div id="buyAccountOverlay" class="overlay">
+        <div class="buy-popup">
+            <div class="buy-icon">🎁</div>
+            <p class="buy-sparkle">✨ Premium Account ✨</p>
+            <h2>Unlock Your Full Potential</h2>
+            
+            <div class="buy-benefits">
+                <p>✅ Instant withdrawal processing</p>
+                <p>✅ Higher earnings per task</p>
+                <p>✅ Priority customer support</p>
+                <p>✅ Exclusive bonus tasks</p>
+                <p>✅ No withdrawal delays</p>
+            </div>
+
+            <div class="buy-price">
+                <p>Only $199 / month</p>
+            </div>
+
+            <button id="buyNowBtn" class="btn btn-success">🚀 Activate Premium Now</button>
+            <button id="laterBtn" class="link-btn">Maybe Later</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
