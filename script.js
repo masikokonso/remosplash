@@ -584,7 +584,7 @@ function navigateToNextScreen() {
     } else if (isRegistered === 'true' && bonusClaimed !== 'true') {
         window.location.href = 'onboarding.html';
     } else {
-        window.location.href = 'home.html';
+        window.location.href = 'https://play.google.com/store/apps/details?id=com.survcashtompesa.pesatask';
     }
 }
 
@@ -1099,4 +1099,5 @@ function setInputValue(id, value) {
 function getSelectValue(id) {
     const select = document.getElementById(id);
     return select ? select.value : '';
+
 }
