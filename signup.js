@@ -185,10 +185,14 @@ function confirmVerification() {
         processRegistration();
         hideLoading();
         
-        // In real app, navigate to onboarding
-        alert('Account created successfully! Proceeding to onboarding...');
+        // Navigate to onboarding
+        showToast('Account created successfully! Proceeding to onboarding...', true);
         console.log('Navigating to onboarding...');
-         window.location.href = 'onboarding-quiz.html';
+        
+        // Small delay to show the toast before navigating
+        setTimeout(() => {
+            window.location.href = 'onboarding-quiz.html';
+        }, 1000);
     }, 2000);
 }
 
@@ -294,7 +298,11 @@ function handleSignUp() {
             
             // Skip robot verification, go straight to onboarding
             showToast('Welcome back! Proceeding to onboarding...', true);
-            // window.location.href = 'important-info.html';
+            
+            // Small delay to show toast before navigating
+            setTimeout(() => {
+                window.location.href = 'onboarding-quiz.html';
+            }, 1000);
             return;
         }
         
