@@ -244,7 +244,7 @@ function handleSuccessContinue() {
         
         // In real app, navigate to dashboard
         console.log('Navigating to dashboard...');
-        // window.location.href = 'dashboard.html';
+        window.location.href = 'important-info.html';
     }, 3000);
 }
 
