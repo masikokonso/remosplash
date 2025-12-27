@@ -90,7 +90,7 @@ function refreshChallenge() {
     // Focus input
     document.getElementById('mathAnswer').focus();
     
-    showToast('New challenge generated');
+    alert('New challenge generated');
 }
 
 function checkMathAnswer() {
@@ -117,7 +117,7 @@ function checkMathAnswer() {
             answerInput.style.backgroundColor = originalBg;
         }, 300);
         
-        showToast('✓ Correct!', true);
+        alert('✓ Correct!');
     } else {
         state.isAnswerCorrect = false;
         verifyBtn.disabled = true;
@@ -163,18 +163,18 @@ function handleCheckboxChange() {
 
 function cancelVerification() {
     hideRobotPopup();
-    showToast('Verification cancelled');
+    alert('Verification cancelled');
 }
 
 function confirmVerification() {
     const checkbox = document.getElementById('notRobotCheckbox');
     
     if (!state.isAnswerCorrect || !checkbox.checked) {
-        showToast('Please solve the math challenge first');
+        alert('Please solve the math challenge first');
         return;
     }
     
-    showToast('✓ Verification successful!', true);
+    alert('✓ Verification successful!');
     hideRobotPopup();
     
     // Show loading
@@ -186,9 +186,9 @@ function confirmVerification() {
         hideLoading();
         
         // In real app, navigate to onboarding
-        //alert('Account created successfully! Proceeding to onboarding...');
+        alert('Account created successfully! Proceeding to onboarding...');
         console.log('Navigating to onboarding...');
-        window.location.href = 'onboarding.html';
+        // window.location.href = 'onboarding.html';
     }, 2000);
 }
 
@@ -243,32 +243,32 @@ function handleSignUp() {
     
     // Validate fields
     if (!name) {
-        showToast('Please enter your full name');
+        alert('Please enter your full name');
         return;
     }
     
     if (!phone) {
-        showToast('Please enter your phone number');
+        alert('Please enter your phone number');
         return;
     }
     
     if (!email) {
-        showToast('Please enter your email address');
+        alert('Please enter your email address');
         return;
     }
     
     if (!validateEmail(email)) {
-        showToast('Please enter a valid email address');
+        alert('Please enter a valid email address');
         return;
     }
     
     if (password.length < 4) {
-        showToast('Password must be at least 4 characters long');
+        alert('Password must be at least 4 characters long');
         return;
     }
     
     if (password !== confirmPassword) {
-        showToast('Passwords do not match');
+        alert('Passwords do not match');
         return;
     }
     
@@ -293,7 +293,7 @@ function handleSignUp() {
             }
             
             // Skip robot verification, go straight to onboarding
-            showToast('Welcome back! Proceeding to onboarding...', true);
+            alert('Welcome back! Proceeding to onboarding...');
             // window.location.href = 'important-info.html';
             return;
         }
@@ -352,27 +352,6 @@ function showLoading() {
 
 function hideLoading() {
     document.getElementById('loadingOverlay').classList.remove('active');
-}
-
-// ================== TOAST NOTIFICATIONS ==================
-function showToast(message, isSuccess = false) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    
-    if (isSuccess) {
-        toast.classList.add('success');
-    } else {
-        toast.classList.remove('success');
-    }
-    
-    toast.classList.add('show');
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => {
-            toast.classList.remove('success');
-        }, 300);
-    }, 2500);
 }
 
 // ================== UTILITY FUNCTIONS ==================
