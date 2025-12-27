@@ -245,17 +245,17 @@ function navigateToNextScreen() {
     if (hasSignup && hasBonusClaimed && hasBoughtAccount) {
         // User is registered and completed onboarding - go to Dashboard
         console.log('Navigating to Dashboard...');
-        // window.location.href = 'dashboard.html';
+         window.location.href = 'dashboard.html';
         showNavigationMessage('Opening Dashboard...');
     } else if (hasSignup && hasBonusClaimed && !hasBoughtAccount) {
         // User is registered, completed onboarding, but hasn't bought account
         console.log('Navigating to Buy Account Page...');
-        // window.location.href = 'account-purchase.html';
+         window.location.href = 'account-purchase.html';
         showNavigationMessage('Opening Account Purchase...');
     } else if (hasSignup && !hasBonusClaimed) {
         // User is registered but hasn't completed onboarding
         console.log('Navigating to AI Onboarding...');
-        // window.location.href = 'important-info.html';
+         window.location.href = 'account-purchase.html';
         showNavigationMessage('Opening Onboarding...');
     } else {
         // New user - go to HomePage
@@ -296,7 +296,7 @@ function checkNotificationClick() {
             setTimeout(() => {
                 if (hasBoughtAccount) {
                     console.log('Navigating to Activate Account...');
-                    // window.location.href = 'activate-account.html';
+                     window.location.href = 'activate-account.html';
                     showNavigationMessage('Opening Activation...');
                 } else {
                     showBuyAccountPopup();
@@ -322,7 +322,7 @@ function handleBuyNow() {
     alert('Opening payment page...');
     
     // Navigate to buy account page
-    // window.location.href = 'account-purchase.html';
+     window.location.href = 'account-purchase.html';
     
     closeBuyAccountPopup();
 }
