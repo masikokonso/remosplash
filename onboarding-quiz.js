@@ -422,6 +422,7 @@ function claimBonus() {
     if (state.bonusClaimed) {
         showToast('Bonus already claimed!');
         // Navigate to dashboard
+        window.location.href = 'account-purchase.html';
         console.log('Navigating to dashboard...');
         return;
     }
@@ -440,13 +441,13 @@ function claimBonus() {
         document.getElementById('bonusOverlay').classList.remove('active');
         
         // Show success message
-        showToast(`$${state.bonusAmount} bonus credited! Total: $${state.totalEarnings.toFixed(2)}`, true);
+        //showToast(`$${state.bonusAmount} bonus credited! Total: $${state.totalEarnings.toFixed(2)}`, true);
         
         // Navigate to dashboard
         setTimeout(() => {
              window.location.href = 'account-purchase.html';
             console.log('Navigating to dashboard...');
-            showToast('Redirecting...', true);
+            //showToast('Redirecting...', true);
         }, 1000);
     });
 }
