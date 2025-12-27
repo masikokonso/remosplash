@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-border: #475569;
+            --color-border-light: #64748b;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #64748b;
+            --color-beginner: #3b82f6;
+            --color-average: #0094ff;
+            --color-expert: #a855f7;
+            --color-success: #22c55e;
+            --color-danger: #ef4444;
+            --color-warning: #fbbf24;
+            --color-mpesa: #009933;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-text-primary);
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        /* Account Cards */
+        .account-card {
+            background-color: var(--color-bg-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 0.5px solid var(--color-border-light);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .account-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .account-card.beginner { border-color: var(--color-beginner); }
+        .account-card.average { border-color: var(--color-average); }
+        .account-card.expert { border-color: var(--color-expert); }
+
+        .popular-badge {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 20, 0, 1);
+            color: #ffd700;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .account-name {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .account-name.beginner { color: var(--color-beginner); }
+        .account-name.average { color: var(--color-average); }
+        .account-name.expert { color: var(--color-expert); }
+
+        .account-card.average .account-name {
+            margin-top: 20px;
+        }
+
+        .account-price {
+            text-align: center;
+            font-size: 42px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .account-description {
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--color-border);
+            margin: 20px 0 15px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .features-list li {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            padding: 6px 0;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .buy-btn:active {
+            transform: translateY(0);
+        }
+
+        .buy-btn.beginner { background-color: var(--color-beginner); }
+        .buy-btn.average { background-color: var(--color-average); }
+        .buy-btn.expert { background-color: var(--color-expert); }
+
+        /* Trust Indicators */
+        .trust-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .trust-item {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin: 8px 0;
+        }
+
+        .trust-item.highlight {
+            font-size: 11px;
+            color: var(--color-border);
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* Overlays */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Payment Popup */
+        .payment-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 15px;
+            border: 2px solid var(--color-average);
+            max-width: 380px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .popup-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .popup-plan-info {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        .payment-methods {
+            padding: 20px;
+        }
+
+        .payment-methods-title {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .payment-method-btn {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 12px;
+            background-color: #334155;
+            border: 1px solid var(--color-border-light);
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .payment-method-btn:hover:not(.disabled) {
+            background-color: #475569;
+        }
+
+        .payment-method-btn.mpesa {
+            background-color: var(--color-mpesa);
+            border-color: #00cc44;
+        }
+
+        .payment-method-btn.mpesa:hover {
+            background-color: #00b330;
+        }
+
+        .payment-method-btn.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .cancel-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            color: var(--color-text-muted);
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        /* Payment Details Popup */
+        .payment-details-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 15px;
+            border: 2px solid var(--color-average);
+            max-width: 400px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        .payment-form {
+            padding: 20px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-plan-info {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            background-color: #334155;
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-input::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        .notice-box {
+            background-color: var(--color-mpesa);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .notice-text {
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .instructions {
+            margin: 20px 0;
+        }
+
+        .instructions-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--color-text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .instruction-item {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .amount-display {
+            background-color: #334155;
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .amount-label {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .amount-value {
+            font-size: 18px;
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        .security-info {
+            text-align: center;
+            font-size: 11px;
+            color: var(--color-beginner);
+            margin-bottom: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .submit-btn.mpesa {
+            background-color: var(--color-success);
+        }
+
+        .submit-btn.disabled {
+            background-color: var(--color-border);
+            cursor: not-allowed;
+        }
+
+        .warning-text {
+            font-size: 11px;
+            color: var(--color-danger);
+            text-align: center;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* Success Popup */
+        .success-popup {
+            background-color: white;
+            border-radius: 20px;
+            max-width: 350px;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: center;
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background-color: var(--color-success);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+
+        .success-checkmark {
+            font-size: 60px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .success-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 25px;
+        }
+
+        .success-details {
+            background-color: #f0fdf4;
+            border: 1px solid var(--color-success);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .success-account-label {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .success-account-type {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .success-status {
+            font-size: 12px;
+            color: var(--color-success);
+        }
+
+        .success-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--color-success);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-container {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 280px;
+        }
+
+        .loading-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .loading-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #334155;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--color-beginner);
+            animation: progress 1.5s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 22px;
+            }
+            
+            .account-price {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">💎</div>
+            <h1 class="header-title">Choose Your Account Type</h1>
+            <p class="header-subtitle">Start earning today with flexible task-based income</p>
+        </div>
+
+        <!-- Beginner Account -->
+        <div class="account-card beginner" onclick="showPaymentPopup('BEGINNER')">
+            <div class="account-name beginner">BEGINNER ACCOUNT</div>
+            <div class="account-price" id="price-beginner">$2.40</div>
+            <div class="account-description">Perfect for those starting their journey</div>
+            <div class="divider"></div>
+            <ul class="features-list">
+                <li>📋 9 tasks per day</li>
+                <li>💰 $0.90 - 1.80 per task</li>
+                <li>📊 Expected daily: $16.50</li>
+                <li>💵 Expected monthly: $456.60</li>
+            </ul>
+            <button class="buy-btn beginner" onclick="event.stopPropagation(); showPaymentPopup('BEGINNER')">Buy Account</button>
+        </div>
+
+        <!-- Average Account -->
+        <div class="account-card average" onclick="showPaymentPopup('AVERAGE SKILLED')">
+            <div class="popular-badge">⭐ MOST POPULAR</div>
+            <div class="account-name average">AVERAGE SKILLED ACCOUNT</div>
+            <div class="account-price" id="price-average">$4.50</div>
+            <div class="account-description">Ideal for experienced task performers</div>
+            <div class="divider"></div>
+            <ul class="features-list">
+                <li>📋 17 tasks per day</li>
+                <li>💰 $1.83 - 2.30 per task</li>
+                <li>📊 Expected daily: $39.50</li>
+                <li>💵 Expected monthly: $904.80</li>
+            </ul>
+            <button class="buy-btn average" onclick="event.stopPropagation(); showPaymentPopup('AVERAGE SKILLED')">Buy Account</button>
+        </div>
+
+        <!-- Expert Account -->
+        <div class="account-card expert" onclick="showPaymentPopup('EXPERT')">
+            <div class="account-name expert">EXPERT ACCOUNT</div>
+            <div class="account-price" id="price-expert">$6.50</div>
+            <div class="account-description">Maximum earnings for skilled professionals</div>
+            <div class="divider"></div>
+            <ul class="features-list">
+                <li>📋 30 tasks per day</li>
+                <li>💰 $2.55 - 3.00 per task</li>
+                <li>📊 Expected daily: $89.50</li>
+                <li>💵 Expected monthly: $2,495.00</li>
+                <li>⭐ Highest task priority</li>
+            </ul>
+            <button class="buy-btn expert" onclick="event.stopPropagation(); showPaymentPopup('EXPERT')">Buy Account</button>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="trust-section">
+            <div class="trust-item">🔒 100% Secure Payment</div>
+            <div class="trust-item">💳 All major payment methods accepted</div>
+            <div class="trust-item">✓ Cancel anytime • 30-day money-back guarantee</div>
+            <div class="trust-item">⚡ Instant activation • Start earning today</div>
+            <div class="trust-item highlight">Join 50,000+ successful earners worldwide</div>
+        </div>
+    </div>
+
+    <!-- Payment Method Popup -->
+    <div class="overlay" id="paymentOverlay">
+        <div class="payment-popup">
+            <div class="popup-header">
+                <div class="popup-title">💳 Select Payment Method</div>
+                <div class="popup-plan-info" id="popupPlanInfo">Account: BEGINNER • $2.40</div>
+            </div>
+            <div class="payment-methods">
+                <div class="payment-methods-title">Choose how to pay:</div>
+                <button class="payment-method-btn disabled" onclick="alert('This payment method is currently unavailable. Please use M-Pesa Express.')">💳  Credit/Debit Card</button>
+                <button class="payment-method-btn disabled" onclick="alert('This payment method is currently unavailable. Please use M-Pesa Express.')">🅿️  PayPal</button>
+                <button class="payment-method-btn disabled" onclick="alert('This payment method is currently unavailable. Please use M-Pesa Express.')">◆  Stripe</button>
+                <button class="payment-method-btn disabled" onclick="alert('This payment method is currently unavailable. Please use M-Pesa Express.')">🔵  Google Pay</button>
+                <button class="payment-method-btn disabled" onclick="alert('This payment method is currently unavailable. Please use M-Pesa Express.')">💠  Paystack</button>
+                <button class="payment-method-btn mpesa" onclick="showPaymentDetails()">📱  M-Pesa Express</button>
+                <button class="cancel-btn" onclick="hidePaymentPopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Details Popup (M-Pesa) -->
+    <div class="overlay" id="paymentDetailsOverlay">
+        <div class="payment-details-popup">
+            <div class="payment-form">
+                <div class="form-header">
+                    <div class="form-title">📱 M-Pesa Express</div>
+                    <div class="form-plan-info" id="formPlanInfo">BEGINNER • $2.40 (Ksh 310.56)</div>
+                </div>
+
+                <div class="notice-box">
+                    <div class="notice-text">⚡ Instant Payment<br>Get STK push on your phone!</div>
+                </div>
+
+                <div class="instructions">
+                    <div class="instructions-title">How it works:</div>
+                    <div class="instruction-item">1. Enter your M-Pesa phone number</div>
+                    <div class="instruction-item">2. Click 'Pay Now'</div>
+                    <div class="instruction-item">3. Enter your M-Pesa PIN when prompted</div>
+                    <div class="instruction-item">4. Your account will be activated instantly!</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">M-Pesa Phone Number</label>
+                    <input type="tel" class="form-input" id="mpesaPhone" placeholder="e.g., 0712345678">
+                </div>
+
+                <div class="amount-display">
+                    <span class="amount-label">Amount to Pay:</span>
+                    <span class="amount-value" id="amountKsh">KES 310.56</span>
+                </div>
+
+                <div class="security-info">🔒 Secure payment powered by PayHero</div>
+
+                <button class="submit-btn mpesa" onclick="processMpesaPayment()">💳 Pay Now - <span id="payBtnAmount">Ksh 310.56</span></button>
+                <button class="cancel-btn" onclick="hidePaymentDetails()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="overlay" id="successOverlay">
+        <div class="success-popup">
+            <div class="success-icon">
+                <div class="success-checkmark">✓</div>
+            </div>
+            <h2 class="success-title">Payment Successful!</h2>
+            <p class="success-message">Your account has been activated successfully!</p>
+            <div class="success-details">
+                <div class="success-account-label">Account Type</div>
+                <div class="success-account-type" id="successAccountType">BEGINNER ACCOUNT</div>
+                <div class="success-status">✓ Active & Ready to Use</div>
+            </div>
+            <button class="success-btn" onclick="handleSuccessContinue()">Start Earning Now</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-icon">⏳</div>
+            <div class="loading-text" id="loadingText">Processing...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="account-purchase.js"></script>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Arrangement AI Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0c1c2b;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            border-radius: 58px 58px 0 0;
+            padding: 24px 20px;
+            text-align: center;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .header-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header-title {
+            font-size: 21px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: #192a3f;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 2px solid #37587d;
+        }
+
+        .card-accent {
+            border-color: #3b82f6;
+        }
+
+        .card-success {
+            border-color: #22c55e;
+        }
+
+        .card-completed {
+            background-color: rgba(6, 182, 212, 0.29);
+            border-color: #22c55e;
+        }
+
+        /* Stats Card */
+        .stats-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stats-title {
+            font-size: 14px;
+            color: #bfdbfe;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .stats-data {
+            font-size: 15px;
+            color: #3b82f6;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .earnings-display {
+            font-size: 17px;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 20px 0 15px 0;
+        }
+
+        /* Pack Card */
+        .pack-card {
+            display: flex;
+            align-items: center;
+            padding: 19px 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .pack-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .pack-icon {
+            font-size: 31px;
+            width: 53px;
+            height: 53px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            position: relative;
+        }
+
+        .pack-icon .checkmark {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background-color: #22c55e;
+            color: white;
+            width: 29px;
+            height: 29px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .pack-info {
+            flex: 1;
+        }
+
+        .pack-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .pack-desc {
+            font-size: 11px;
+            color: #bfdbfe;
+            margin-bottom: 5px;
+        }
+
+        .pack-status {
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .pack-status.completed {
+            color: #22c55e;
+        }
+
+        .pack-status.pending {
+            color: #bfdbfe;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #06b6d4;
+        }
+
+        .btn-success {
+            background-color: #22c55e;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #37587d;
+            color: #bfdbfe;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-small {
+            padding: 10px 15px;
+            font-size: 13px;
+            border-radius: 10px;
+            width: auto;
+            min-width: 79px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background-color: #2d465f;
+            border-radius: 19px;
+            height: 36px;
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background-color: #06b6d4;
+            height: 100%;
+            border-radius: 19px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            z-index: 1;
+        }
+
+        /* Countdown Timer */
+        .countdown-card {
+            background-color: rgba(6, 182, 212, 0.3);
+            border: 2px solid #06b6d4;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .countdown-text {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .countdown-warning {
+            color: #f59e0b;
+        }
+
+        .countdown-danger {
+            color: #ef4444;
+        }
+
+        .countdown-ready {
+            color: #22c55e;
+        }
+
+        /* Question Card */
+        .question-card {
+            padding: 19px;
+        }
+
+        .question-badge {
+            background-color: #06b6d4;
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 12px;
+            color: #bfdbfe;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Option Buttons */
+        .option-btn {
+            background-color: #37587d;
+            border: 2px solid #37587d;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 13px;
+            font-size: 13px;
+            color: white;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .option-btn:hover {
+            background-color: #4a6a8f;
+        }
+
+        .option-btn.selected {
+            background-color: #06b6d4;
+            border-color: #22eaee;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 28, 43, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #192a3f;
+            border-top-color: #06b6d4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Result Icon */
+        .result-icon {
+            width: 97px;
+            height: 97px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            margin: 0 auto 20px;
+        }
+
+        .result-icon.success {
+            background-color: #22c55e;
+        }
+
+        .result-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* Info Panel */
+        .info-panel {
+            background-color: #192a3f;
+            border: 2px solid #3b82f6;
+            border-radius: 17px;
+            padding: 19px 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #bfdbfe;
+            line-height: 1.6;
+        }
+
+        /* Hide screens by default */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Overall Stats */
+        .overall-header {
+            font-size: 27px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .overall-stats {
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .total-earned {
+            font-size: 38px;
+            color: #22c55e;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .completed-text {
+            font-size: 14px;
+            color: #bfdbfe;
+            line-height: 1.6;
+        }
+
+        .pack-stat-card {
+            display: flex;
+            align-items: center;
+            padding: 19px 15px;
+            margin-bottom: 12px;
+        }
+
+        .pack-stat-icon {
+            font-size: 33px;
+            width: 53px;
+            height: 53px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .pack-stat-info {
+            flex: 1;
+        }
+
+        .pack-stat-name {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .pack-stat-status {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .badge {
+            background-color: #22c55e;
+            padding: 10px 15px;
+            border-radius: 11px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Home Screen -->
+        <div class="screen active" id="homeScreen">
+            <div class="header">
+                <div class="header-icon">📝</div>
+                <div class="header-title">Sentence Arrangement<br>Training Center</div>
+            </div>
+
+            <div class="card card-accent stats-card">
+                <div class="stats-title">📈 Training Progress</div>
+                <div class="stats-data" id="progressText">0 / 50 Sequence Types Completed</div>
+                <div class="earnings-display" id="totalEarningsHome">Total Earned: $0.00</div>
+            </div>
+
+            <div class="section-title">📋 Arrangement Modules</div>
+            <div id="packsContainer"></div>
+
+            <button class="btn btn-primary card" onclick="showStats()">
+                📊 Performance Dashboard
+            </button>
+        </div>
+
+        <!-- Pack Intro Screen -->
+        <div class="screen" id="packIntroScreen">
+            <div style="margin-top: 39px;">
+                <div style="width: 87px; height: 87px; background-color: #06b6d4; border-radius: 23px; display: flex; align-items: center; justify-content: center; font-size: 41px; margin: 0 auto 20px;">
+                    <span id="packIntroIcon"></span>
+                </div>
+                
+                <h2 id="packIntroTitle" style="font-size: 22px; font-weight: bold; text-align: center; margin-bottom: 20px;"></h2>
+                
+                <div class="info-panel">
+                    <div class="info-text" id="packIntroInfo"></div>
+                </div>
+
+                <button class="btn btn-success" onclick="startQuiz()">Begin Sequencing →</button>
+                <button class="btn btn-secondary" style="margin-top: 10px;" onclick="showHome()">← Back to Modules</button>
+            </div>
+        </div>
+
+        <!-- Question Screen -->
+        <div class="screen" id="questionScreen">
+            <div style="margin-top: 18px;">
+                <div class="progress-container">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-text" id="progressText2">Sequence 1 of 6</div>
+                </div>
+
+                <div class="countdown-card" id="countdownCard">
+                    <div class="countdown-text" id="countdownText">⏱️ Next sequence in: 5s</div>
+                </div>
+
+                <div class="card question-card">
+                    <div class="question-badge" id="questionNumber">1</div>
+                    <div class="question-title" id="questionTitle"></div>
+                    <div class="question-text" id="questionText"></div>
+                    <div id="optionsContainer"></div>
+                </div>
+
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next Sequence →</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="screen" id="resultsScreen">
+            <div style="margin-top: 36px;">
+                <div class="result-icon success">
+                    <span>✓</span>
+                </div>
+
+                <div class="result-title">Module Completed!<br>Great Work!</div>
+
+                <div class="card card-success stats-card">
+                    <div class="stats-title" id="resultPackName"></div>
+                    <div style="font-size: 24px; color: #22c55e; font-weight: bold; margin: 15px 0;">
+                        All Questions Complete!
+                    </div>
+                    <div class="info-text" id="resultDetails"></div>
+                </div>
+
+                <button class="btn btn-primary" onclick="continueNext()">Next Module →</button>
+                <button class="btn btn-secondary" style="margin-top: 10px;" onclick="retakePack()">↻ Review Module</button>
+                <button class="btn btn-secondary" style="margin-top: 10px;" onclick="showHome()">← Back to Center</button>
+            </div>
+        </div>
+
+        <!-- Stats Screen -->
+        <div class="screen" id="statsScreen">
+            <div style="margin-top: 36px;">
+                <div class="overall-header">📊 Performance Dashboard</div>
+
+                <div class="card card-accent overall-stats">
+                    <div class="stats-title">Training Overview</div>
+                    <div class="total-earned" id="totalEarnedStats">$0.00</div>
+                    <div class="completed-text" id="completedStats">Total Earned<br>0 of 50 Modules</div>
+                </div>
+
+                <div class="section-title">Module Performance</div>
+                <div id="statsPacksContainer"></div>
+
+                <button class="btn btn-primary" onclick="showHome()">← Back to Center</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="sentence-arrangement-app.js"></script>
+</body>
+</html>

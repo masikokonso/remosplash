@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Funds - REMO-TASK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-input-bg: #334155;
+            --color-border: #475569;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #64748b;
+            --color-primary: #a855f7;
+            --color-blue: #3b82f6;
+            --color-green: #4ade80;
+            --color-green-dark: #22c55e;
+            --color-red: #ef4444;
+            --color-yellow: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            padding-bottom: 70px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px 20px 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            margin-bottom: 5px;
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        /* Notification Bell */
+        .notification-bell {
+            position: absolute;
+            top: 8px;
+            right: 0;
+            width: 44px;
+            height: 44px;
+            background-color: var(--color-red);
+            border-radius: 22px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .notification-bell.visible {
+            display: flex;
+        }
+
+        .notification-bell.green {
+            background-color: var(--color-green);
+        }
+
+        .notification-bell:hover {
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 20px;
+            height: 20px;
+            background-color: #dc2626;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .notification-badge.green {
+            background-color: var(--color-green-dark);
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--color-bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Balance Card */
+        .balance-card {
+            text-align: center;
+        }
+
+        .balance-title {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .balance-amount {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .balance-info {
+            font-size: 11px;
+            color: var(--color-text-dim);
+        }
+
+        /* Payment Schedule */
+        .schedule-card {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #7e22ce 100%);
+            border: 1px solid #7e22ce;
+            padding: 20px;
+        }
+
+        .schedule-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .schedule-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .schedule-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .schedule-info {
+            font-size: 13px;
+            color: #fef2f2;
+            text-align: center;
+            margin: 8px 0;
+        }
+
+        .schedule-divider {
+            height: 1px;
+            background-color: #fca5a5;
+            margin: 15px 0;
+        }
+
+        .schedule-details {
+            font-size: 12px;
+            color: #fef2f2;
+            text-align: center;
+        }
+
+        .schedule-details.green {
+            color: var(--color-green);
+        }
+
+        .schedule-details.yellow {
+            color: var(--color-yellow);
+        }
+
+        /* Form */
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        .form-select.selected {
+            color: white;
+        }
+
+        .form-select.placeholder {
+            color: var(--color-text-dim);
+        }
+
+        .form-info {
+            font-size: 10px;
+            color: var(--color-text-dim);
+            margin-top: 8px;
+        }
+
+        /* Account Details Container */
+        .account-details {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .account-details.visible {
+            display: block;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #9333ea;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-bg-card);
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background-color: #1e293b;
+        }
+
+        /* Info Card */
+        .info-card {
+            padding: 20px;
+        }
+
+        .info-title {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+
+        .footer-security {
+            font-size: 11px;
+            color: var(--color-text-dim);
+            margin-bottom: 10px;
+        }
+
+        .footer-privacy {
+            font-size: 10px;
+            color: var(--color-border);
+            line-height: 1.5;
+        }
+
+        /* Payment Method Popup */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            max-width: calc(100% - 40px);
+            width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .popup-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .popup-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .popup-subtitle {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .payment-method {
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .payment-method:hover {
+            background-color: #3f4e68;
+            border-color: var(--color-primary);
+        }
+
+        .payment-icon {
+            font-size: 32px;
+            width: 60px;
+            text-align: center;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .payment-desc {
+            font-size: 11px;
+            color: var(--color-text-muted);
+        }
+
+        /* Success Popup */
+        .success-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            max-width: calc(100% - 60px);
+            width: 400px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-blue);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            margin: 0 auto 30px;
+            color: white;
+        }
+
+        .success-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .success-message {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .success-account {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: 25px;
+        }
+
+        /* Notification Popup */
+        .notification-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            max-width: calc(100% - 60px);
+            width: 360px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid var(--color-red);
+        }
+
+        .notification-popup.green {
+            border-color: var(--color-green);
+        }
+
+        .notif-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .notif-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--color-red);
+        }
+
+        .notif-title.green {
+            color: var(--color-green);
+        }
+
+        .notif-message {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-bg-card);
+            border-top: 2px solid var(--color-primary);
+            height: 70px;
+            display: flex;
+            z-index: 100;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-icon-container {
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+            background-color: rgba(168, 85, 247, 0.25);
+        }
+
+        .nav-item.active .nav-icon-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: var(--color-green);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+        }
+
+        .nav-item.active .nav-icon {
+            font-size: 26px;
+        }
+
+        .nav-label {
+            font-size: 9px;
+            color: var(--color-text-muted);
+        }
+
+        .nav-item.active .nav-label {
+            color: var(--color-green);
+            font-weight: bold;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-container {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            width: 250px;
+        }
+
+        .loading-icon {
+            font-size: 50px;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .loading-text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background-color: var(--color-input-bg);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .loading-progress {
+            width: 60%;
+            height: 100%;
+            background-color: var(--color-primary);
+            animation: loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(150%); }
+        }
+
+        .loading-subtitle {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 41, 59, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 10000;
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">💰</div>
+            <h1 class="header-title">Withdraw Funds</h1>
+            <p class="header-subtitle">Request your earnings payout</p>
+            
+            <!-- Notification Bell -->
+            <div class="notification-bell" id="notificationBell" onclick="showNotificationPopup()">
+                🔔
+                <div class="notification-badge" id="notificationBadge">!</div>
+            </div>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="card balance-card">
+            <div class="balance-title">Available Balance</div>
+            <div class="balance-amount" id="balanceAmount">$ 0.00</div>
+            <div class="balance-info" id="balanceInfo">⚠️ Minimum $ 150 required</div>
+        </div>
+
+        <!-- Payment Schedule -->
+        <div class="card schedule-card">
+            <div class="schedule-header">
+                <span class="schedule-icon">⚠️</span>
+                <div class="schedule-title">IMPORTANT: Payment Schedule</div>
+            </div>
+            <div class="schedule-info" id="currentDay">Today: --/--/----</div>
+            <div class="schedule-info" id="nextPayment">Next Payment: 1st</div>
+            <div class="schedule-divider"></div>
+            <div class="schedule-details" id="scheduleDetails">⏳ Withdrawals are processed on the 1st & 15th of each month</div>
+        </div>
+
+        <!-- Withdrawal Form -->
+        <div class="card form-section">
+            <h2 class="form-header">Withdrawal Details</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Withdrawal Amount ($)</label>
+                <input type="number" class="form-input" id="amount" placeholder="Enter amount (Min: $ 150)" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Payment Method</label>
+                <div class="form-select placeholder" id="paymentMethodSelector" onclick="showPaymentMethodPopup()">
+                    Select payment method
+                </div>
+            </div>
+
+            <!-- Account Details Container -->
+            <div class="account-details" id="accountDetails">
+                <!-- Dynamically populated based on payment method -->
+            </div>
+        </div>
+
+        <!-- Withdraw Button -->
+        <button class="btn btn-primary" onclick="handleWithdraw()">Request Withdrawal</button>
+
+        <!-- Info Card -->
+        <div class="card info-card">
+            <h3 class="info-title">Withdrawal Information</h3>
+            <div class="info-item">📅 Payment Days: 1st & 15th of each month</div>
+            <div class="info-item" id="minWithdrawalInfo">💵 Minimum withdrawal: $ 150</div>
+            <div class="info-item">⚡ Instant on payment days if activated</div>
+            <div class="info-item">⏳ Pending status on other days</div>
+        </div>
+
+        <!-- Back Button -->
+        <button class="btn btn-secondary" onclick="goBack()">← Back to Dashboard</button>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-security">🔒 Secure & encrypted transactions</div>
+            <div class="footer-privacy">Your financial information is protected with bank-level security</div>
+        </div>
+    </div>
+
+    <!-- Payment Method Popup -->
+    <div class="popup-overlay" id="paymentPopup">
+        <div class="popup" onclick="event.stopPropagation()">
+            <div class="popup-header">
+                <h2 class="popup-title">Select Payment Method</h2>
+                <p class="popup-subtitle">Choose how you'd like to receive your funds</p>
+            </div>
+
+            <div class="payment-method" onclick="selectPaymentMethod('PayPal', '💳')">
+                <div class="payment-icon">💳</div>
+                <div class="payment-info">
+                    <div class="payment-name">PayPal</div>
+                    <div class="payment-desc">Fast & secure payments worldwide</div>
+                </div>
+            </div>
+
+            <div class="payment-method" onclick="selectPaymentMethod('Bank Transfer', '🏦')">
+                <div class="payment-icon">🏦</div>
+                <div class="payment-info">
+                    <div class="payment-name">Bank Transfer</div>
+                    <div class="payment-desc">Direct deposit to your bank account</div>
+                </div>
+            </div>
+
+            <div class="payment-method" onclick="selectPaymentMethod('M-Pesa', '📱')">
+                <div class="payment-icon">📱</div>
+                <div class="payment-info">
+                    <div class="payment-name">M-Pesa</div>
+                    <div class="payment-desc">Instant mobile money transfer</div>
+                </div>
+            </div>
+
+            <div class="payment-method" onclick="selectPaymentMethod('Skrill', '💰')">
+                <div class="payment-icon">💰</div>
+                <div class="payment-info">
+                    <div class="payment-name">Skrill</div>
+                    <div class="payment-desc">Digital wallet for easy withdrawals</div>
+                </div>
+            </div>
+
+            <button class="btn btn-secondary" style="margin-top: 10px;" onclick="closePaymentPopup()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="popup-overlay" id="notificationOverlay" onclick="closeNotificationPopup()">
+        <div class="notification-popup" id="notificationPopup" onclick="event.stopPropagation()">
+            <div class="notif-icon" id="notifIcon">⚠️</div>
+            <div class="notif-title" id="notifTitle">Account Not Activated</div>
+            <div class="notif-message" id="notifMessage">
+                Your withdrawal failed because your account is not activated.
+                <br><br>
+                The withdrawn amount has been refunded to your balance.
+                <br><br>
+                Please activate your account to enable withdrawals.
+            </div>
+            <button class="btn btn-primary" id="notifActionBtn" onclick="activateAccount()" style="margin-bottom: 10px;">Activate Account Now</button>
+            <button class="btn btn-secondary" onclick="closeNotificationPopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup-overlay" id="successOverlay" onclick="closeSuccessPopup()">
+        <div class="success-popup" onclick="event.stopPropagation()">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">Withdrawal Successful!</h2>
+            <p class="success-message" id="successMessage">
+                Your withdrawal request has been submitted.
+            </p>
+            <p class="success-account" id="successAccount">To: --</p>
+            <button class="btn btn-primary" onclick="proceedToDashboard()">Proceed to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-icon">⏳</div>
+            <div class="loading-text">Processing Withdrawal...</div>
+            <div class="loading-bar"><div class="loading-progress"></div></div>
+            <div class="loading-subtitle">Please wait...</div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="navigateHome()">
+            <div class="nav-icon-container"><div class="nav-icon">🏠</div></div>
+            <div class="nav-label">Home</div>
+        </div>
+        <div class="nav-item" onclick="navigateTransactions()">
+            <div class="nav-icon-container"><div class="nav-icon">📊</div></div>
+            <div class="nav-label">Transactions</div>
+        </div>
+        <div class="nav-item active">
+            <div class="nav-icon-container"><div class="nav-icon">💸</div></div>
+            <div class="nav-label">Withdraw</div>
+        </div>
+        <div class="nav-item" onclick="navigateProfile()">
+            <div class="nav-icon-container"><div class="nav-icon">👤</div></div>
+            <div class="nav-label">Profile</div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="withdraw.js"></script>
+</body>
+</html>

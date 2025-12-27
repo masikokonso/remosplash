@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Account - REMO-TASK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-input-bg: #334155;
+            --color-border: #475569;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #64748b;
+            --color-primary: #a855f7;
+            --color-green: #22c55e;
+            --color-green-light: #4ade80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 20px 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        /* Fee Card */
+        .fee-card {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 12px;
+            border: 1px solid #16a34a;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .fee-amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .fee-label {
+            font-size: 12px;
+            color: #dcfce7;
+            margin-bottom: 5px;
+        }
+
+        .fee-info {
+            font-size: 11px;
+            color: #bbf7d0;
+        }
+
+        /* Form Card */
+        .form-card {
+            background-color: var(--color-bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-green);
+        }
+
+        .instructions {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-green {
+            background-color: var(--color-green);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn-green:hover {
+            background-color: #16a34a;
+            transform: translateY(-1px);
+        }
+
+        .btn-back {
+            background-color: var(--color-bg-card);
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+            font-size: 14px;
+        }
+
+        .btn-back:hover {
+            background-color: #334155;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-container {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+        }
+
+        .loading-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .loading-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            min-height: 40px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #334155;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--color-green);
+            animation: progress 1.5s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Success Popup */
+        .success-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-overlay.active {
+            display: flex;
+        }
+
+        .success-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: calc(100% - 60px);
+            width: 380px;
+            text-align: center;
+        }
+
+        .success-check {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+
+        .success-check-icon {
+            font-size: 45px;
+            color: white;
+        }
+
+        .success-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .success-badge {
+            font-size: 12px;
+            color: var(--color-green);
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Error Dialog */
+        .error-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-overlay.active {
+            display: flex;
+        }
+
+        .error-dialog {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: calc(100% - 60px);
+            width: 350px;
+            text-align: center;
+        }
+
+        .error-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ef4444;
+        }
+
+        .error-message {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn-dialog {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .btn-retry {
+            background-color: var(--color-green);
+            color: white;
+        }
+
+        .btn-retry:hover {
+            background-color: #16a34a;
+        }
+
+        .btn-cancel {
+            background-color: var(--color-input-bg);
+            color: var(--color-text-muted);
+        }
+
+        .btn-cancel:hover {
+            background-color: #475569;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 41, 59, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 10002;
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        .toast.success {
+            background-color: rgba(34, 197, 94, 0.95);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 22px;
+            }
+            
+            .fee-amount {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">🔓</div>
+            <h1 class="header-title">Activate Your Account</h1>
+            <p class="header-subtitle">Pay $1 via M-Pesa</p>
+        </div>
+
+        <!-- Fee Card -->
+        <div class="fee-card">
+            <div class="fee-amount">$1</div>
+            <div class="fee-label">One-Time Activation Fee</div>
+            <div class="fee-info">💳 Instant • No hidden charges</div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <h2 class="form-title">M-Pesa Payment</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" id="phoneNumber" 
+                       placeholder="e.g., 0712345678">
+            </div>
+
+            <div class="instructions">
+                📱 Enter M-Pesa number<br>
+                💳 Click Pay $1<br>
+                🔐 Enter your PIN when prompted
+            </div>
+        </div>
+
+        <!-- Activate Button -->
+        <button class="btn btn-green" onclick="handleActivate()">Pay $1 via M-Pesa</button>
+
+        <!-- Back Button -->
+        <button class="btn btn-back" onclick="goBack()">← Back</button>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-icon">📱</div>
+            <div class="loading-text" id="loadingText">Connecting to PayHero...</div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-popup">
+            <div class="success-check">
+                <div class="success-check-icon">✓</div>
+            </div>
+            <h2 class="success-title">Account Activated!</h2>
+            <p class="success-message">Your account is now active! All premium features unlocked.</p>
+            <div class="success-badge">✓ All Premium Features Unlocked</div>
+            <button class="btn btn-green" onclick="proceedToDashboard()">Start Earning!</button>
+        </div>
+    </div>
+
+    <!-- Error Dialog -->
+    <div class="error-overlay" id="errorOverlay">
+        <div class="error-dialog">
+            <h3 class="error-title" id="errorTitle">Payment Failed</h3>
+            <p class="error-message" id="errorMessage">Payment was cancelled or timed out. Please try again.</p>
+            <button class="btn-dialog btn-retry" onclick="retryPayment()">Retry</button>
+            <button class="btn-dialog btn-cancel" onclick="closeErrorDialog()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="activate-account.js"></script>
+</body>
+</html>

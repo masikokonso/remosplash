@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Information</title>
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-primary: #3b82f6;
+            --color-success: #22c55e;
+            --color-danger: #ef4444;
+            --color-warning: #fbbf24;
+            --color-purple: #a855f7;
+            --color-pink: #ec4899;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-border: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 80px;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-bg-card);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .nav-bar-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-previous {
+            background-color: var(--color-border);
+            color: white;
+            border: 1px solid var(--color-text-muted);
+        }
+
+        .btn-previous:hover {
+            background-color: #64748b;
+        }
+
+        .btn-next {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-next:hover {
+            background-color: #2563eb;
+        }
+
+        .btn-start {
+            background-color: var(--color-success);
+            color: white;
+        }
+
+        .btn-start:hover {
+            background-color: #16a34a;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .dots-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--color-border);
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--color-primary);
+        }
+
+        /* Page Content Styles */
+        .icon {
+            font-size: 70px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--color-text-muted);
+            text-align: center;
+            margin: 0 20px 30px;
+            line-height: 1.5;
+        }
+
+        .card {
+            background-color: var(--color-bg-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .card-primary {
+            border-color: var(--color-primary);
+        }
+
+        .card-success {
+            border-color: var(--color-success);
+        }
+
+        .card-danger {
+            border-color: var(--color-danger);
+        }
+
+        .card-purple {
+            border-color: var(--color-purple);
+        }
+
+        .card-warning {
+            border-color: var(--color-warning);
+        }
+
+        .card-pink {
+            border-color: var(--color-pink);
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            padding: 10px 0;
+            color: var(--color-text-secondary);
+            font-size: 15px;
+        }
+
+        .threshold-display {
+            background-color: var(--color-success);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        .threshold-amount {
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .threshold-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .payment-card {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .payment-title {
+            font-size: 16px;
+            color: var(--color-text-muted);
+            margin-bottom: 10px;
+        }
+
+        .payment-date {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .payment-date.blue {
+            color: var(--color-primary);
+        }
+
+        .payment-date.purple {
+            color: var(--color-purple);
+        }
+
+        .payment-subtitle {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        .alert-box {
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .alert-danger {
+            background-color: var(--color-danger);
+        }
+
+        .alert-success {
+            background-color: var(--color-success);
+        }
+
+        .alert-warning {
+            background-color: var(--color-warning);
+            color: var(--color-bg-dark);
+        }
+
+        .section-header {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin: 15px 0 10px;
+        }
+
+        .task-card {
+            margin: 15px 0;
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .task-title.blue { color: var(--color-primary); }
+        .task-title.purple { color: var(--color-purple); }
+        .task-title.green { color: var(--color-success); }
+        .task-title.yellow { color: var(--color-warning); }
+        .task-title.pink { color: var(--color-pink); }
+
+        .task-description {
+            color: var(--color-text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .reason-card {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .reason-icon {
+            font-size: 30px;
+            min-width: 50px;
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .reason-content {
+            flex: 1;
+        }
+
+        .reason-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .reason-description {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .note-box {
+            background-color: var(--color-success);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 10px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .info-point {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(59, 130, 246, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .title {
+                font-size: 24px;
+            }
+            
+            .threshold-amount {
+                font-size: 28px;
+            }
+            
+            .payment-date {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1: Welcome -->
+        <div id="page0" class="page active">
+            <div class="icon">👋</div>
+            <h1 class="title">Welcome!</h1>
+            <p class="subtitle">Before you start earning, let's go through some important information</p>
+            
+            <div class="card">
+                <ul class="info-list">
+                    <li>💰 Withdrawal Guidelines</li>
+                    <li>📅 Payment Schedule</li>
+                    <li>⏰ Important Deadlines</li>
+                    <li>📋 Task Types & Instructions</li>
+                    <li>✓ Feedback Best Practices</li>
+                </ul>
+            </div>
+            
+            <p class="subtitle" style="margin-top: 30px;">Swipe through to learn everything you need to know</p>
+        </div>
+
+        <!-- Page 2: Withdrawal Threshold -->
+        <div id="page1" class="page">
+            <div class="icon">💵</div>
+            <h1 class="title">Minimum Withdrawal<br>Threshold</h1>
+            
+            <div class="threshold-display">
+                <div class="threshold-amount" id="minimumAmount">$5.00</div>
+                <div class="threshold-label">Minimum to Withdraw</div>
+            </div>
+            
+            <div class="card">
+                <div class="section-header">Important Points:</div>
+                <p class="info-point">✓ You must accumulate at least <span id="minThreshold1">$5.00</span> in your account balance before you can request a withdrawal</p>
+                <p class="info-point">✓ There is no maximum limit - withdraw as much as you've earned</p>
+                <p class="info-point">✓ Balances below <span id="minThreshold2">$5.00</span> will be carried forward to the next payment cycle</p>
+            </div>
+        </div>
+
+        <!-- Page 3: Payment Dates -->
+        <div id="page2" class="page">
+            <div class="icon">📅</div>
+            <h1 class="title">Payment Schedule</h1>
+            <p class="subtitle">We process payments twice every month</p>
+            
+            <div class="card card-primary payment-card">
+                <div class="payment-title">First Payment Cycle</div>
+                <div class="payment-date blue">1st</div>
+                <div class="payment-subtitle">of every month</div>
+            </div>
+            
+            <div class="card card-purple payment-card">
+                <div class="payment-title">Second Payment Cycle</div>
+                <div class="payment-date purple">14th</div>
+                <div class="payment-subtitle">of every month</div>
+            </div>
+            
+            <div class="note-box">
+                💡 Mark these dates on your calendar to plan your withdrawals accordingly!
+            </div>
+        </div>
+
+        <!-- Page 4: Withdrawal Deadline -->
+        <div id="page3" class="page">
+            <div class="icon">⏰</div>
+            <h1 class="title">Withdrawal Deadlines</h1>
+            
+            <div class="alert-box alert-danger">
+                ⚠️ CRITICAL DEADLINE<br><br>
+                Submit withdrawal requests<br>
+                5 business days before payment date
+            </div>
+            
+            <div class="card">
+                <div class="section-header">Deadline Examples:</div>
+                
+                <div style="margin: 15px 0;">
+                    <div style="font-weight: bold; color: var(--color-text-secondary); margin-bottom: 8px;">
+                        For 1st of the month payment:
+                    </div>
+                    <p class="info-point">✓ Request withdrawal by the 24th of previous month</p>
+                    <p class="info-point">✗ After 24th → Wait until 14th payment cycle</p>
+                </div>
+                
+                <div style="margin: 15px 0;">
+                    <div style="font-weight: bold; color: var(--color-text-secondary); margin-bottom: 8px;">
+                        For 14th of the month payment:
+                    </div>
+                    <p class="info-point">✓ Request withdrawal by the 7th of the month</p>
+                    <p class="info-point">✗ After 7th → Wait until 1st of next month</p>
+                </div>
+                
+                <div class="alert-box alert-warning" style="font-size: 12px; margin-top: 15px;">
+                    ⚡ Business days exclude weekends and public holidays
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 5: Task Types -->
+        <div id="page4" class="page">
+            <div class="icon">📋</div>
+            <h1 class="title">Task Types &<br>How to Answer</h1>
+            
+            <div class="card card-primary task-card">
+                <div class="task-title blue">📝 Text Annotation & Labeling</div>
+                <p class="task-description">Tag and label text data for AI training. Read carefully and mark entities, sentiments, or categories as instructed. Follow the labeling guidelines precisely.</p>
+            </div>
+            
+            <div class="card card-purple task-card">
+                <div class="task-title purple">🏷️ Content Classification</div>
+                <p class="task-description">Categorize content into predefined classes. Analyze the content thoroughly and select the most appropriate category based on the provided criteria.</p>
+            </div>
+            
+            <div class="card card-success task-card">
+                <div class="task-title green">📊 Data Categorization</div>
+                <p class="task-description">Organize data into logical groups. Review each item carefully and assign it to the correct category. Consistency and accuracy are crucial.</p>
+            </div>
+            
+            <div class="card card-warning task-card">
+                <div class="task-title yellow">🔍 Pattern Recognition</div>
+                <p class="task-description">Identify patterns and relationships in data. Look for similarities, differences, or trends. Your observations help train AI to recognize complex patterns.</p>
+            </div>
+            
+            <div class="card card-pink task-card">
+                <div class="task-title pink">🔤 Sentence Arrangement</div>
+                <p class="task-description">Arrange jumbled sentences into logical order. Ensure the text flows naturally and makes sense. Consider context, grammar, and meaning.</p>
+            </div>
+        </div>
+
+        <!-- Page 6: Feedback Importance -->
+        <div id="page5" class="page">
+            <div class="icon">✨</div>
+            <h1 class="title">Why Honest Feedback<br>Matters</h1>
+            <p class="subtitle">Your genuine feedback helps businesses improve their products and services</p>
+            
+            <div class="card reason-card">
+                <div class="reason-icon">🎯</div>
+                <div class="reason-content">
+                    <div class="reason-title">Quality Data</div>
+                    <p class="reason-description">Accurate responses help companies make better decisions and improve their offerings</p>
+                </div>
+            </div>
+            
+            <div class="card reason-card">
+                <div class="reason-icon">💼</div>
+                <div class="reason-content">
+                    <div class="reason-title">Maintain Trust</div>
+                    <p class="reason-description">Dishonest feedback undermines the system and may result in account suspension</p>
+                </div>
+            </div>
+            
+            <div class="card reason-card">
+                <div class="reason-icon">🚀</div>
+                <div class="reason-content">
+                    <div class="reason-title">More Opportunities</div>
+                    <p class="reason-description">Quality work leads to better tasks, higher earnings, and priority access to new features</p>
+                </div>
+            </div>
+            
+            <div class="alert-box alert-danger" style="font-size: 13px; margin: 20px 10px;">
+                ⚠️ WARNING<br><br>
+                Random answers or spam will be detected and may result in account termination
+            </div>
+            
+            <div class="alert-box alert-success" style="font-size: 13px; margin: 20px 10px;">
+                ✓ TIP FOR SUCCESS<br><br>
+                Take your time, read carefully, and provide thoughtful responses
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-bar-inner">
+            <button class="btn btn-previous" id="btnPrevious" style="display: none;" onclick="goToPrevious()">
+                &lt; Back
+            </button>
+            <div style="flex: 1; text-align: center;">
+                <div class="progress-text" id="progressText">1 / 6</div>
+                <div class="dots-container" id="dotsContainer"></div>
+            </div>
+            <button class="btn btn-next" id="btnNext" onclick="goToNext()">
+                Next &gt;
+            </button>
+            <button class="btn btn-start" id="btnStart" style="display: none;" onclick="getStarted()">
+                Get Started
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="important-info.js"></script>
+</body>
+</html>

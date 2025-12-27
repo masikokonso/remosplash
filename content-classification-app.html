@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Classification Training Hub</title>
+    <style>
+        :root {
+            --color-bg-dark: #111827;
+            --color-bg-card: #1f2937;
+            --color-primary: #3b82f6;
+            --color-success: #10b981;
+            --color-danger: #ef4444;
+            --color-warning: #f59e0b;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #d1d5db;
+            --color-border: #4b5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Header */
+        .app-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #2563eb 100%);
+            border-radius: 0 0 35px 35px;
+            padding: 22px 20px 35px;
+            text-align: center;
+            margin: -20px -20px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header-title {
+            font-size: 21px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--color-bg-card);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border: 2px solid var(--color-border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .stats-card {
+            border-color: var(--color-primary);
+        }
+
+        .stats-title {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .stats-data {
+            font-size: 15px;
+            color: var(--color-primary);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .stats-earnings {
+            font-size: 17px;
+            color: var(--color-success);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 15px 0 10px;
+        }
+
+        /* Pack Cards */
+        .pack-card {
+            display: flex;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            min-height: 110px;
+        }
+
+        .pack-card.completed {
+            background-color: rgba(16, 185, 129, 0.27);
+            border-color: var(--color-success);
+        }
+
+        .pack-icon {
+            font-size: 30px;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .pack-check {
+            position: absolute;
+            top: 50px;
+            left: 45px;
+            font-size: 18px;
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        .pack-info {
+            flex: 1;
+            margin-right: 88px;
+        }
+
+        .pack-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .pack-description {
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .pack-status {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--color-text-secondary);
+        }
+
+        .pack-status.completed {
+            color: var(--color-success);
+        }
+
+        .pack-button {
+            position: absolute;
+            right: 10px;
+            top: 48px;
+            padding: 9px 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.2s;
+        }
+
+        .pack-button:hover {
+            transform: scale(1.05);
+        }
+
+        .pack-button.start {
+            background-color: var(--color-primary);
+        }
+
+        .pack-button.review {
+            background-color: var(--color-success);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-success {
+            background-color: var(--color-success);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text-secondary);
+            border: 2px solid var(--color-border);
+        }
+
+        /* Pack Intro */
+        .intro-icon-wrapper {
+            width: 85px;
+            height: 85px;
+            background-color: var(--color-primary);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 38px auto 20px;
+            font-size: 40px;
+        }
+
+        .intro-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .intro-info {
+            text-align: center;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        /* Question Screen */
+        .progress-bar {
+            background-color: #374151;
+            border-radius: 18px;
+            height: 35px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            background-color: var(--color-primary);
+            height: 100%;
+            border-radius: 18px;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .countdown-panel {
+            background-color: rgba(59, 130, 246, 0.29);
+            border: 2px solid var(--color-primary);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .countdown-panel.warning {
+            background-color: rgba(245, 158, 11, 0.29);
+            border-color: var(--color-warning);
+        }
+
+        .countdown-panel.danger {
+            background-color: rgba(239, 68, 68, 0.29);
+            border-color: var(--color-danger);
+        }
+
+        .countdown-panel.ready {
+            background-color: rgba(16, 185, 129, 0.29);
+            border-color: var(--color-success);
+        }
+
+        .countdown-text {
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .countdown-text.warning {
+            color: var(--color-warning);
+        }
+
+        .countdown-text.danger {
+            color: var(--color-danger);
+        }
+
+        .countdown-text.ready {
+            color: var(--color-success);
+        }
+
+        .question-card {
+            background-color: var(--color-bg-card);
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .question-badge {
+            width: 45px;
+            height: 45px;
+            background-color: var(--color-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .option-button {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            background-color: #4b5563;
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option-button:hover {
+            background-color: #5a6574;
+        }
+
+        .option-button.selected {
+            background-color: var(--color-primary);
+            border-color: #60a5fa;
+        }
+
+        /* Results Screen */
+        .result-icon-wrapper {
+            width: 95px;
+            height: 95px;
+            background-color: var(--color-success);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 35px auto 20px;
+            font-size: 48px;
+        }
+
+        .result-title {
+            font-size: 21px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .result-score-card {
+            border-color: var(--color-success);
+        }
+
+        .result-score-title {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .result-completion {
+            font-size: 24px;
+            color: var(--color-success);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .result-details {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* Stats Dashboard */
+        .stats-header {
+            font-size: 27px;
+            font-weight: bold;
+            text-align: center;
+            margin: 35px 0 25px;
+        }
+
+        .overall-stats {
+            background-color: var(--color-bg-card);
+            border: 2px solid var(--color-primary);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .overall-title {
+            font-size: 17px;
+            color: var(--color-text-secondary);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .overall-earnings {
+            font-size: 38px;
+            color: var(--color-success);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .overall-text {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 19px;
+            font-weight: bold;
+            margin: 20px 0 15px;
+        }
+
+        .pack-stat-card {
+            display: flex;
+            align-items: center;
+            min-height: 105px;
+            margin-bottom: 15px;
+        }
+
+        .pack-stat-icon {
+            font-size: 32px;
+            width: 52px;
+            text-align: center;
+            margin: 0 18px;
+            flex-shrink: 0;
+        }
+
+        .pack-stat-info {
+            flex: 1;
+        }
+
+        .pack-stat-name {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .pack-stat-status {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .pack-stat-status.completed {
+            color: var(--color-success);
+        }
+
+        .pack-stat-status.incomplete {
+            color: var(--color-text-secondary);
+        }
+
+        .pack-stat-badge {
+            background-color: var(--color-success);
+            border-radius: 11px;
+            padding: 10px 18px;
+            margin-right: 20px;
+        }
+
+        .pack-stat-badge-text {
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(17, 24, 39, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.hidden {
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(59, 130, 246, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen active">
+            <div class="app-header">
+                <div class="header-icon">🎯</div>
+                <div class="header-title">Content Classification<br>Training Hub</div>
+            </div>
+
+            <div class="card stats-card">
+                <div class="stats-title">Training Progress</div>
+                <div class="stats-data" id="homeProgress">0 / 50 Categories Mastered</div>
+                <div class="stats-earnings" id="homeEarnings">Total Earned: $0.00</div>
+            </div>
+
+            <div class="section-header">Classification Categories</div>
+
+            <div id="packList"></div>
+
+            <button class="btn btn-primary" onclick="showStats()">📈 Performance Analytics</button>
+        </div>
+
+        <!-- Pack Intro Screen -->
+        <div id="packIntroScreen" class="screen">
+            <div class="intro-icon-wrapper" id="introIcon">🎯</div>
+            <div class="intro-title" id="introTitle">Pack Name</div>
+            <div class="card">
+                <div class="intro-info" id="introInfo"></div>
+            </div>
+            <button class="btn btn-success" onclick="startQuestions()">Begin Training →</button>
+            <button class="btn btn-secondary" onclick="showHome()">← Back to Categories</button>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="questionScreen" class="screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-text" id="progressText">Item 1 of 6</div>
+            </div>
+
+            <div class="countdown-panel" id="countdownPanel">
+                <div class="countdown-text" id="countdownText">Next item ready in: 5s</div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-badge" id="questionBadge">1</div>
+                <div class="question-title" id="questionTitle">Question Title</div>
+                <div class="question-text" id="questionText">Question text goes here</div>
+                <div id="optionsContainer"></div>
+            </div>
+
+            <button class="btn btn-success" id="nextButton" onclick="nextQuestion()" disabled>Next Item →</button>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="result-icon-wrapper">
+                <div>✓</div>
+            </div>
+            <div class="result-title">Category Complete!<br>Well Done!</div>
+
+            <div class="card result-score-card">
+                <div class="result-score-title" id="resultPackName">Pack Name</div>
+                <div class="result-completion">All Questions Complete!</div>
+                <div class="result-details" id="resultDetails"></div>
+            </div>
+
+            <button class="btn btn-primary" onclick="continueNext()">Next Category →</button>
+            <button class="btn btn-secondary" onclick="retakePack()">↻ Review This Category</button>
+            <button class="btn btn-secondary" onclick="showHome()">← Back to Hub</button>
+        </div>
+
+        <!-- Stats Screen -->
+        <div id="statsScreen" class="screen">
+            <div class="stats-header">📈 Performance Dashboard</div>
+
+            <div class="overall-stats">
+                <div class="overall-title">Training Overview</div>
+                <div class="overall-earnings" id="statsEarnings">$0.00</div>
+                <div class="overall-text" id="statsText">0 of 50 Categories</div>
+            </div>
+
+            <div class="section-title">Category Performance</div>
+            <div id="statsPackList"></div>
+
+            <button class="btn btn-primary" onclick="showHome()">← Back to Hub</button>
+        </div>
+    </div>
+
+    <script src="content-classification-app.js"></script>
+</body>
+</html>

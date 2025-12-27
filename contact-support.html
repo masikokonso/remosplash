@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Support - REMO-TASK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-input-bg: #334155;
+            --color-border: #475569;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #64748b;
+            --color-primary: #a855f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px 20px 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        /* Contact Info Card */
+        .contact-info-card {
+            background-color: var(--color-bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .contact-email {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .contact-response {
+            font-size: 11px;
+            color: var(--color-text-dim);
+        }
+
+        /* Form Card */
+        .form-card {
+            background-color: var(--color-bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #9333ea;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-input-bg);
+            color: var(--color-primary);
+            font-size: 14px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #3f4e68;
+        }
+
+        .btn-back {
+            background-color: var(--color-bg-card);
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .btn-back:hover {
+            background-color: #1e293b;
+        }
+
+        /* Alternative Contact */
+        .alt-contact-card {
+            background-color: var(--color-bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .alt-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .alt-info {
+            font-size: 11px;
+            color: var(--color-text-dim);
+            margin-top: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-security {
+            font-size: 11px;
+            color: var(--color-text-dim);
+            margin-bottom: 10px;
+        }
+
+        .footer-privacy {
+            font-size: 10px;
+            color: var(--color-border);
+            line-height: 1.5;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 41, 59, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .header-icon {
+                font-size: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">📧</div>
+            <h1 class="header-title">Get in Touch</h1>
+            <p class="header-subtitle">We're here to help you</p>
+        </div>
+
+        <!-- Contact Info Card -->
+        <div class="contact-info-card">
+            <div class="contact-title">Support Email</div>
+            <div class="contact-email">taskrewards.help@gmail.com</div>
+            <div class="contact-response">⏱️ We typically respond within 24 hours</div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="form-card">
+            <h2 class="form-header">Send us a message</h2>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-input" id="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Your Email</label>
+                    <input type="email" class="form-input" id="email" placeholder="usermail@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Subject</label>
+                    <input type="text" class="form-input" id="subject" placeholder="What can we help you with?" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-textarea" id="message" placeholder="Tell us more about your issue or question..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Alternative Contact Methods -->
+        <div class="alt-contact-card">
+            <h3 class="alt-title">Other Ways to Reach Us</h3>
+            <button class="btn btn-secondary" onclick="openEmailApp()">📧 Open Email App</button>
+            <div class="alt-info">or copy: taskrewards.help@gmail.com</div>
+        </div>
+
+        <!-- Back Button -->
+        <button class="btn btn-back" onclick="goBack()">← Back to Home</button>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-security">🔒 Your information is secure</div>
+            <div class="footer-privacy">We respect your privacy and will never share your information</div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="contact-support.js"></script>
+</body>
+</html>

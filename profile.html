@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - REMO-TASK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-input-bg: #334155;
+            --color-border: #475569;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #64748b;
+            --color-primary: #a855f7;
+            --color-green: #4ade80;
+            --color-green-dark: #22c55e;
+            --color-red: #ef4444;
+            --color-red-dark: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            padding-bottom: 70px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--color-bg-card);
+            padding: 25px 20px;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #9333ea 100%);
+            border-radius: 45px;
+            border: 2px solid var(--color-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+        }
+
+        .user-name {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .member-since {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            text-align: center;
+        }
+
+        /* Notification Bell */
+        .notification-bell {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background-color: var(--color-red);
+            border-radius: 22px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .notification-bell.visible {
+            display: flex;
+        }
+
+        .notification-bell.green {
+            background-color: var(--color-green);
+        }
+
+        .notification-bell:hover {
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-red-dark);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .notification-badge.green {
+            background-color: var(--color-green-dark);
+        }
+
+        /* Balance Card */
+        .balance-card {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-decoration {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 65px;
+            height: 65px;
+            background-color: rgba(74, 222, 128, 0.15);
+            border-radius: 50%;
+        }
+
+        .balance-title {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .balance-amount {
+            font-size: 34px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Account Info Card */
+        .info-card {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .info-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .info-field {
+            margin-bottom: 20px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: white;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 14px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 15px;
+        }
+
+        .form-input::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-bg-card);
+            color: white;
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-success {
+            background-color: var(--color-green);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--color-red);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        /* Actions Section */
+        .actions {
+            padding: 0 20px;
+        }
+
+        /* Version */
+        .version {
+            text-align: center;
+            font-size: 10px;
+            color: var(--color-border);
+            margin: 20px 0;
+        }
+
+        /* Hidden Elements */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        /* Popup */
+        .popup {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            max-width: calc(100% - 60px);
+            width: 360px;
+            padding: 30px;
+            border: 2px solid var(--color-red);
+        }
+
+        .popup.green {
+            border-color: var(--color-green);
+        }
+
+        .popup-icon {
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .popup-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--color-red);
+        }
+
+        .popup-title.green {
+            color: var(--color-green);
+        }
+
+        .popup-message {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Settings Popup */
+        .settings-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 15px;
+            max-width: calc(100% - 40px);
+            width: 360px;
+            padding: 20px;
+            border: 2px solid var(--color-primary);
+        }
+
+        .settings-header {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .settings-section {
+            background-color: var(--color-input-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--color-primary);
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-bg-card);
+            border-top: 2px solid var(--color-primary);
+            height: 70px;
+            display: flex;
+            z-index: 100;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-icon-container {
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+            background-color: rgba(168, 85, 247, 0.25);
+        }
+
+        .nav-item.active .nav-icon-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: var(--color-primary);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+        }
+
+        .nav-item.active .nav-icon {
+            font-size: 26px;
+        }
+
+        .nav-label {
+            font-size: 9px;
+            color: var(--color-text-muted);
+        }
+
+        .nav-item.active .nav-label {
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(168, 85, 247, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Profile -->
+        <div class="header">
+            <div class="profile-pic">👤</div>
+            <div class="user-name" id="headerName">Profile</div>
+            <div class="member-since" id="memberSince">Member since Dec 2024</div>
+            
+            <!-- Notification Bell -->
+            <div class="notification-bell" id="notificationBell" onclick="showNotificationPopup()">
+                🔔
+                <div class="notification-badge" id="notificationBadge">!</div>
+            </div>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="balance-card">
+            <div class="balance-decoration"></div>
+            <div class="balance-title">💰 Available Balance</div>
+            <div class="balance-amount" id="balanceAmount">$ 0.00</div>
+        </div>
+
+        <!-- Account Information -->
+        <div class="info-card">
+            <div class="info-header">📋 Account Information</div>
+            
+            <!-- Display Mode -->
+            <div id="displayMode">
+                <div class="info-field">
+                    <div class="info-label">Full Name</div>
+                    <div class="info-value" id="displayName">Profile</div>
+                </div>
+                
+                <div class="info-field">
+                    <div class="info-label">Email Address</div>
+                    <div class="info-value" id="displayEmail">loading@email.com</div>
+                </div>
+                
+                <div class="info-field">
+                    <div class="info-label">Phone Number</div>
+                    <div class="info-value" id="displayPhone">+254 700 000 000</div>
+                </div>
+                
+                <div class="info-field">
+                    <div class="info-label">Country</div>
+                    <div class="info-value" id="displayCountry">Kenya</div>
+                </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <div id="editMode" class="hidden">
+                <input type="text" class="form-input" id="editName" placeholder="Full Name">
+                <input type="email" class="form-input" id="editEmail" placeholder="Email Address">
+                <input type="tel" class="form-input" id="editPhone" placeholder="Phone Number">
+                <select class="form-select" id="editCountry">
+                    <!-- Populated by JavaScript -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <!-- Edit Profile Button -->
+            <button class="btn btn-primary" id="btnEdit" onclick="enterEditMode()">✏️ Edit Profile</button>
+            
+            <!-- Save/Cancel Buttons (hidden by default) -->
+            <div class="btn-group hidden" id="editButtons">
+                <button class="btn btn-success" onclick="saveProfile()">💾 Save</button>
+                <button class="btn btn-danger" onclick="cancelEdit()">❌ Cancel</button>
+            </div>
+
+            <!-- Other Actions -->
+            <div id="otherActions">
+                <button class="btn btn-secondary" onclick="openWithdrawHistory()">📜 Withdrawal History</button>
+                <button class="btn btn-secondary" onclick="openSettings()">⚙️ Settings</button>
+                <button class="btn btn-danger" onclick="logout()">🚪 Logout</button>
+            </div>
+        </div>
+
+        <!-- Version -->
+        <div class="version">REMO-TASK v1.0.0</div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="overlay" id="notificationOverlay" onclick="closeNotificationPopup()">
+        <div class="popup" id="notificationPopup" onclick="event.stopPropagation()">
+            <div class="popup-icon" id="notifIcon">⚠️</div>
+            <div class="popup-title" id="notifTitle">Account Not Activated</div>
+            <div class="popup-message" id="notifMessage">
+                Your withdrawal failed because your account is not activated.
+                <br><br>
+                The withdrawn amount has been refunded to your balance.
+                <br><br>
+                Please activate your account to enable withdrawals.
+            </div>
+            <button class="btn btn-danger" id="notifActionBtn" onclick="activateAccount()">Activate Account Now</button>
+            <button class="btn btn-secondary" onclick="closeNotificationPopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Settings Popup -->
+    <div class="overlay" id="settingsOverlay" onclick="closeSettings()">
+        <div class="settings-popup" onclick="event.stopPropagation()">
+            <div class="settings-header">⚙️ Settings</div>
+            
+            <div class="settings-section">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="checkbox-input" id="chkNotifications" onchange="saveNotificationsSetting()">
+                    <span class="checkbox-label">🔔 Enable Notifications</span>
+                </label>
+            </div>
+            
+            <div class="settings-section">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="checkbox-input" id="chkSound" onchange="saveSoundSetting()">
+                    <span class="checkbox-label">🔊 Sound Effects</span>
+                </label>
+            </div>
+            
+            <button class="btn btn-danger" onclick="clearCache()">🗑️ Clear Cache</button>
+            <button class="btn btn-secondary" onclick="showAbout()">ℹ️ About REMO-TASK</button>
+            <button class="btn btn-primary" onclick="closeSettings()">Close</button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="navigateHome()">
+            <div class="nav-icon-container"><div class="nav-icon">🏠</div></div>
+            <div class="nav-label">Home</div>
+        </div>
+        <div class="nav-item" onclick="navigateTransactions()">
+            <div class="nav-icon-container"><div class="nav-icon">📊</div></div>
+            <div class="nav-label">Transactions</div>
+        </div>
+        <div class="nav-item" onclick="navigateWithdraw()">
+            <div class="nav-icon-container"><div class="nav-icon">💸</div></div>
+            <div class="nav-label">Withdraw</div>
+        </div>
+        <div class="nav-item active">
+            <div class="nav-icon-container"><div class="nav-icon">👤</div></div>
+            <div class="nav-label">Profile</div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>

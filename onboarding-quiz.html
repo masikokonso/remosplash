@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Training Assessment</title>
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-primary: #a855f7;
+            --color-success: #22c55e;
+            --color-danger: #ef4444;
+            --color-border: #475569;
+            --color-border-light: #64748b;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-pink: #ec4899;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 50px;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Welcome Screen */
+        .welcome-icon {
+            width: 100px;
+            height: 100px;
+            background-color: var(--color-primary);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            margin: 40px auto 30px;
+        }
+
+        .welcome-title {
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            line-height: 1.3;
+        }
+
+        .info-card {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .info-text {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 10px 0;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #9333ea;
+        }
+
+        .btn-success {
+            background-color: var(--color-success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #16a34a;
+        }
+
+        .btn-danger {
+            background-color: var(--color-danger);
+            color: white;
+        }
+
+        .note-text {
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background-color: #334155;
+            height: 40px;
+            border-radius: 20px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background-color: var(--color-primary);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Question Card */
+        .question-card {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .question-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-primary);
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-description {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Multiple Choice Options */
+        .option-btn {
+            width: 100%;
+            padding: 16px;
+            margin: 8px 0;
+            background-color: #475569;
+            border: 1px solid var(--color-border-light);
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            background-color: #64748b;
+        }
+
+        .option-btn.selected {
+            background-color: var(--color-primary);
+            border-color: var(--color-pink);
+        }
+
+        /* Arrange Options */
+        .arrange-instruction {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-bottom: 15px;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .word-btn {
+            padding: 14px;
+            background-color: #475569;
+            border: 1px solid var(--color-border-light);
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .word-btn:hover:not(:disabled) {
+            background-color: #64748b;
+        }
+
+        .word-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .selected-words {
+            background-color: rgba(168, 85, 247, 0.2);
+            border: 1px solid var(--color-primary);
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        /* Results Screen */
+        .result-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            margin: 40px auto 30px;
+        }
+
+        .result-icon.pass {
+            background-color: var(--color-success);
+        }
+
+        .result-icon.fail {
+            background-color: var(--color-danger);
+        }
+
+        .result-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            line-height: 1.3;
+        }
+
+        .score-card {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .score-card.pass {
+            border: 1px solid var(--color-success);
+        }
+
+        .score-card.fail {
+            border: 1px solid var(--color-danger);
+        }
+
+        .score-label {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .score-percentage {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .score-percentage.pass {
+            color: var(--color-success);
+        }
+
+        .score-percentage.fail {
+            color: var(--color-danger);
+        }
+
+        .score-details {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin: 10px 0;
+        }
+
+        .qualified-badge {
+            font-size: 13px;
+            color: var(--color-success);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Bonus Panel */
+        .bonus-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-bg-dark);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .bonus-overlay.active {
+            display: block;
+        }
+
+        .bonus-card {
+            max-width: 380px;
+            margin: 50px auto;
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            padding: 0;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(74, 222, 128, 0.1);
+        }
+
+        .bonus-circle-1 {
+            width: 80px;
+            height: 80px;
+            top: -20px;
+            right: -20px;
+        }
+
+        .bonus-circle-2 {
+            width: 80px;
+            height: 80px;
+            bottom: 10px;
+            left: -30px;
+        }
+
+        .bonus-circle-3 {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            right: -20px;
+        }
+
+        .bonus-content {
+            position: relative;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .trophy-bg {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(74, 222, 128, 0.2);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+
+        .trophy-icon {
+            font-size: 60px;
+        }
+
+        .congrats-badge {
+            display: inline-block;
+            background-color: rgba(74, 222, 128, 0.2);
+            border: 1px solid #4ade80;
+            border-radius: 20px;
+            padding: 8px 20px;
+            margin-bottom: 20px;
+        }
+
+        .congrats-text {
+            font-size: 13px;
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .bonus-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .amount-panel {
+            background-color: #334155;
+            border: 1px solid var(--color-border-light);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 0 20px 30px;
+        }
+
+        .currency-label {
+            font-size: 16px;
+            color: var(--color-text-muted);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .bonus-amount {
+            font-size: 52px;
+            font-weight: bold;
+            color: #4ade80;
+        }
+
+        .bonus-details {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .claim-btn {
+            margin: 0 20px 20px;
+        }
+
+        .security-note {
+            text-align: center;
+            font-size: 11px;
+            color: var(--color-border-light);
+            padding: 15px;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(168, 85, 247, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 22px;
+            }
+            
+            .result-title {
+                font-size: 24px;
+            }
+            
+            .score-percentage {
+                font-size: 40px;
+            }
+            
+            .bonus-amount {
+                font-size: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="screen active">
+            <div class="welcome-icon">🎯</div>
+            <h1 class="welcome-title">Welcome to<br>AI Training Assessment</h1>
+            
+            <div class="info-card">
+                <p class="info-text">
+                    Complete this quick assessment to verify your skills in:<br><br>
+                    ✓ Text annotation & labeling<br>
+                    ✓ Sentence arrangement<br>
+                    ✓ Content classification<br>
+                    ✓ Data categorization<br>
+                    ✓ Pattern recognition<br><br>
+                    This will only take 2-3 minutes!
+                </p>
+            </div>
+            
+            <button class="btn btn-primary" onclick="startAssessment()">Start Assessment →</button>
+            <p class="note-text">Pass with 60% or higher to qualify</p>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="questionScreen" class="screen">
+            <div class="progress-container">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-text" id="progressText">Question 1 of 5</div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-number" id="questionNumber">1</div>
+                <h2 class="question-title" id="questionTitle">Question Title</h2>
+                <p class="question-description" id="questionDescription">Question description goes here.</p>
+                
+                <!-- Multiple Choice Container -->
+                <div id="multipleChoiceContainer" style="display: none;"></div>
+                
+                <!-- Arrange Container -->
+                <div id="arrangeContainer" style="display: none;">
+                    <p class="arrange-instruction">Tap the words in the correct order:</p>
+                    <div class="word-grid" id="wordGrid"></div>
+                    <div class="selected-words" id="selectedWords">Your answer: (tap words above)</div>
+                </div>
+            </div>
+            
+            <button class="btn btn-success" onclick="nextQuestion()">Next Question →</button>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="result-icon" id="resultIcon">✓</div>
+            <h1 class="result-title" id="resultTitle">Congratulations!<br>Screening Passed!</h1>
+            
+            <div class="score-card" id="scoreCard">
+                <p class="score-label">Your Score</p>
+                <div class="score-percentage" id="scorePercentage">80%</div>
+                <p class="score-details" id="scoreDetails">4 out of 5 questions correct</p>
+                <p class="qualified-badge" id="qualifiedBadge">✓ Qualified for AI Training Tasks</p>
+            </div>
+            
+            <button class="btn" id="actionButton" onclick="handleAction()">Continue to Dashboard →</button>
+        </div>
+    </div>
+
+    <!-- Bonus Panel -->
+    <div class="bonus-overlay" id="bonusOverlay">
+        <div class="bonus-card">
+            <div class="bonus-circle bonus-circle-1"></div>
+            <div class="bonus-circle bonus-circle-2"></div>
+            <div class="bonus-circle bonus-circle-3"></div>
+            
+            <div class="bonus-content">
+                <div class="trophy-bg">
+                    <div class="trophy-icon">🏆</div>
+                </div>
+                
+                <div class="congrats-badge">
+                    <span class="congrats-text">🎉 CONGRATULATIONS</span>
+                </div>
+                
+                <h2 class="bonus-title">Welcome Bonus</h2>
+                
+                <div class="amount-panel">
+                    <p class="currency-label">KES</p>
+                    <div class="bonus-amount" id="bonusAmount">$16.00</div>
+                </div>
+                
+                <p class="bonus-details">
+                    Credited to your account<br><br>
+                    ✓ Available for instant use<br>
+                    ✓ No withdrawal maximum<br>
+                    ✓ Start earning immediately
+                </p>
+                
+                <button class="btn btn-success claim-btn" onclick="claimBonus()">Claim & Continue →</button>
+            </div>
+            
+            <p class="security-note">🔒 Secure • Instant • Guaranteed • One-Time Offer</p>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="onboarding-quiz.js"></script>
+</body>
+</html>

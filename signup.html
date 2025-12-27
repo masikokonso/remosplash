@@ -3,111 +3,509 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account - REMO-TASK</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sign Up - Create Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-input-bg: #334155;
+            --color-border: #475569;
+            --color-border-light: #64748b;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #64748b;
+            --color-primary: #a855f7;
+            --color-blue: #0094ff;
+            --color-success: #22c55e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .header-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        /* Form Card */
+        .form-card {
+            background-color: var(--color-bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 14px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .referral-input {
+            border: 2px solid var(--color-success);
+        }
+
+        .referral-input::placeholder {
+            color: #4ade80;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #9333ea;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-text {
+            font-size: 10px;
+            color: var(--color-text-dim);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .required-text {
+            font-size: 10px;
+            color: var(--color-text-dim);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .security-text {
+            font-size: 10px;
+            color: var(--color-border);
+            text-align: center;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        /* Robot Verification Popup */
+        .robot-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 15px;
+            border: 2px solid var(--color-blue);
+            max-width: 360px;
+            width: calc(100% - 40px);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .popup-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .popup-subtitle {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .popup-content {
+            padding: 0 20px 20px;
+        }
+
+        /* Checkbox Panel */
+        .checkbox-panel {
+            background-color: white;
+            border: 2px solid #c8c8c8;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-input {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--color-blue);
+        }
+
+        .checkbox-label {
+            font-size: 15px;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .recaptcha-logo {
+            width: 40px;
+            height: 40px;
+            background-color: #e6e6e6;
+            border: 1px solid #c8c8c8;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Math Challenge */
+        .math-challenge {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .math-challenge.expanded {
+            max-height: 200px;
+        }
+
+        .math-question {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-bottom: 15px;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .math-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .math-input {
+            flex: 1;
+            padding: 14px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .refresh-btn {
+            padding: 14px 20px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            color: var(--color-text-muted);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .refresh-btn:hover {
+            background-color: #475569;
+        }
+
+        /* Popup Buttons */
+        .popup-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-cancel, .btn-verify {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel {
+            background-color: var(--color-input-bg);
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border-light);
+        }
+
+        .btn-verify {
+            background-color: var(--color-blue);
+            color: white;
+        }
+
+        .btn-verify:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .popup-footer {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .popup-privacy {
+            font-size: 9px;
+            color: var(--color-text-dim);
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(168, 85, 247, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .header-icon {
+                font-size: 40px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- SIGNUP SCREEN -->
-    <div class="screen active">
-        <div class="container">
-            <div class="auth-header">
-                <div class="auth-icon">👤</div>
-                <h1>Create Account</h1>
-                <p>Join us and start earning today</p>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">👤</div>
+            <h1 class="header-title">Create Account</h1>
+            <p class="header-subtitle">Join us and start earning today</p>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div class="form-card">
+            <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" class="form-input" id="name" placeholder="Enter your full name">
             </div>
 
-            <div class="card auth-form">
-                <div class="form-group">
-                    <label>Full Name *</label>
-                    <input type="text" id="signupName" placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label>Phone Number *</label>
-                    <input type="tel" id="signupPhone" placeholder="+254 700 000 000">
-                </div>
-
-                <div class="form-group">
-                    <label>Email Address *</label>
-                    <input type="email" id="signupEmail" placeholder="your.email@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label>Country *</label>
-                    <select id="signupCountry">
-                        <option value="">Select Country</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Password * (minimum 4 characters)</label>
-                    <input type="password" id="signupPassword" placeholder="Create a secure password">
-                </div>
-
-                <div class="form-group">
-                    <label>Confirm Password *</label>
-                    <input type="password" id="signupConfirmPassword" placeholder="Re-enter your password">
-                </div>
-
-                <div class="form-group">
-                    <label>Referral Code (Optional)</label>
-                    <input type="text" id="signupReferral" placeholder="Enter referral code if you have one" class="referral-input">
-                </div>
-
-                <button id="signupBtn" class="btn btn-primary">Create Account</button>
-
-                <p class="form-note">* All fields are required</p>
+            <div class="form-group">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-input" id="phone" placeholder="+254 700 000 000">
             </div>
 
-            <div class="footer-terms">
-                <p>By signing up, you agree to our Terms of Service and Privacy Policy</p>
-                <p class="security-badge">🔒 Your data is secure</p>
+            <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" class="form-input" id="email" placeholder="your.email@example.com">
             </div>
 
-            <div class="signup-link" style="margin-top: 20px;">
-                <p>Already have an account?</p>
-                <button id="backToLoginBtn" class="link-btn">Sign In</button>
+            <div class="form-group">
+                <label class="form-label">Country *</label>
+                <select class="form-select" id="country">
+                    <!-- Countries will be populated by JavaScript -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password * (minimum 4 characters)</label>
+                <input type="password" class="form-input" id="password" placeholder="Create a secure password">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirm Password *</label>
+                <input type="password" class="form-input" id="confirmPassword" placeholder="Re-enter your password">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Referral Code (Optional)</label>
+                <input type="text" class="form-input referral-input" id="referralCode" placeholder="Enter referral code if you have one">
+            </div>
+
+            <button class="btn btn-primary" onclick="handleSignUp()">Create Account</button>
+
+            <p class="required-text">* All fields are required</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">By signing up, you agree to our Terms of Service and Privacy Policy</p>
+            <p class="security-text">🔒 Your data is secure</p>
+        </div>
+    </div>
+
+    <!-- Robot Verification Popup -->
+    <div class="overlay" id="robotOverlay">
+        <div class="robot-popup" id="robotPopup">
+            <div class="popup-header">
+                <div class="popup-title">🔒 reCAPTCHA</div>
+                <div class="popup-subtitle">Verify you're human</div>
+            </div>
+
+            <div class="popup-content">
+                <div class="checkbox-panel">
+                    <div class="checkbox-container">
+                        <input type="checkbox" class="checkbox-input" id="notRobotCheckbox" onchange="handleCheckboxChange()">
+                        <label class="checkbox-label" for="notRobotCheckbox">I'm not a robot</label>
+                    </div>
+                    <div class="recaptcha-logo">reCAPTCHA</div>
+                </div>
+
+                <div class="math-challenge" id="mathChallenge">
+                    <div class="math-question" id="mathQuestion">5 + 3 = ?</div>
+                    <div class="math-input-group">
+                        <input type="number" class="math-input" id="mathAnswer" placeholder="Enter answer" oninput="checkMathAnswer()">
+                        <button class="refresh-btn" onclick="refreshChallenge()">↻</button>
+                    </div>
+                </div>
+
+                <div class="popup-buttons">
+                    <button class="btn-cancel" onclick="cancelVerification()">Cancel</button>
+                    <button class="btn-verify" id="verifyBtn" onclick="confirmVerification()" disabled>Verify</button>
+                </div>
+
+                <div class="popup-footer">
+                    <div class="popup-privacy">🔒 Privacy • Terms</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- ROBOT VERIFICATION POPUP -->
-    <div id="robotVerifyOverlay" class="overlay">
-        <div id="robotVerifyPopup" class="robot-popup">
-            <h2>🔒 reCAPTCHA</h2>
-            <p class="popup-subtitle">Verify you're human</p>
-
-            <div class="recaptcha-box">
-                <label class="checkbox-container">
-                    <input type="checkbox" id="notRobotCheck">
-                    <span class="checkmark"></span>
-                    I'm not a robot
-                </label>
-                <div class="recaptcha-logo">reCAPTCHA</div>
-            </div>
-
-            <div id="mathChallenge" class="math-challenge">
-                <p id="mathQuestion">5 + 3 = ?</p>
-                <div class="math-input-row">
-                    <input type="number" id="mathAnswer" placeholder="Enter answer">
-                    <button id="refreshMath" class="refresh-btn">↻</button>
-                </div>
-            </div>
-
-            <div class="popup-buttons">
-                <button id="cancelRobotBtn" class="btn btn-secondary">Cancel</button>
-                <button id="confirmRobotBtn" class="btn btn-primary" disabled>Verify</button>
-            </div>
-
-            <p class="popup-privacy">🔒 Privacy • Terms</p>
-        </div>
-    </div>
-
-    <!-- LOADING OVERLAY -->
-    <div id="loadingOverlay" class="overlay">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="signup.js"></script>
 </body>
 </html>

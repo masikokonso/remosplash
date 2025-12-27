@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - REMO-TASK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-input-bg: #334155;
+            --color-border: #475569;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-primary: #a855f7;
+            --color-success: #4ade80;
+            --color-danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+            padding-bottom: 70px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--color-bg-card);
+            padding: 20px;
+            position: relative;
+        }
+
+        .greeting {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            margin-bottom: 5px;
+        }
+
+        .user-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .date-time {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        .notification-bell {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #dc2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Balance Card */
+        .balance-card {
+            margin: -40px 20px 20px;
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-circles {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(74, 222, 128, 0.1);
+        }
+
+        .circle-1 {
+            top: -20px;
+            right: -10px;
+        }
+
+        .circle-2 {
+            bottom: -30px;
+            left: -30px;
+        }
+
+        .balance-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .balance-icon {
+            font-size: 32px;
+        }
+
+        .balance-title {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        .balance-amount {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-withdraw {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--color-success);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-withdraw:hover {
+            background-color: #22c55e;
+        }
+
+        /* Stats */
+        .stats-card {
+            margin: 20px;
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-title {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        /* Live Transactions */
+        .section-header {
+            padding: 0 20px;
+            margin: 30px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .live-indicator {
+            background-color: rgba(74, 222, 128, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--color-success);
+        }
+
+        .live-dot {
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .transactions-card {
+            margin: 0 20px 20px;
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 15px;
+            min-height: 95px;
+        }
+
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .transaction-flag {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-input-bg);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+
+        .transaction-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .transaction-phone {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .transaction-status {
+            font-size: 11px;
+            color: var(--color-success);
+        }
+
+        .transaction-right {
+            text-align: right;
+        }
+
+        .transaction-amount {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .transaction-time {
+            font-size: 11px;
+            color: var(--color-text-muted);
+        }
+
+        /* Task Cards */
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+
+        .task-card {
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .task-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .task-description {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .task-earning {
+            font-size: 10px;
+            color: var(--color-success);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .task-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--color-success);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Bottom Toolbar */
+        .bottom-toolbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-bg-card);
+            border-top: 2px solid var(--color-primary);
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nav-circle {
+            width: 44px;
+            height: 44px;
+            margin: 0 auto 4px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .nav-withdraw .nav-circle {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-success);
+            border-radius: 25px;
+            font-size: 26px;
+        }
+
+        .nav-text {
+            font-size: 9px;
+            color: var(--color-text-muted);
+        }
+
+        .nav-withdraw .nav-text {
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        /* Notification Popup */
+        .notification-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-overlay.active {
+            display: flex;
+        }
+
+        .notification-popup {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: calc(100% - 60px);
+            text-align: center;
+        }
+
+        .notification-popup.success {
+            border: 2px solid var(--color-success);
+        }
+
+        .notification-popup.error {
+            border: 2px solid var(--color-danger);
+        }
+
+        .notification-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .notification-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .notification-title.success {
+            color: var(--color-success);
+        }
+
+        .notification-title.error {
+            color: var(--color-danger);
+        }
+
+        .notification-message {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .notification-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .notification-btn.primary {
+            background-color: var(--color-success);
+            color: white;
+        }
+
+        .notification-btn.danger {
+            background-color: var(--color-danger);
+            color: white;
+        }
+
+        .notification-btn.secondary {
+            background-color: var(--color-input-bg);
+            color: var(--color-text-muted);
+        }
+
+        /* Loading */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(168, 85, 247, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="greeting">Welcome back,</div>
+            <div class="user-name" id="userName">User</div>
+            <div class="date-time" id="dateTime">Saturday, Nov 29</div>
+            
+            <div class="notification-bell" id="notificationBell" onclick="showNotificationPopup()" style="display: none;">
+                🔔
+                <div class="notification-badge" id="notificationBadge" style="display: none;">!</div>
+            </div>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="balance-card">
+            <div class="balance-circles circle-1"></div>
+            <div class="balance-circles circle-2"></div>
+            
+            <div class="balance-header">
+                <div class="balance-icon">💰</div>
+                <div class="balance-title">Available Balance</div>
+            </div>
+            
+            <div class="balance-amount" id="balanceAmount">$0.00</div>
+            
+            <button class="btn-withdraw" onclick="navigateToWithdraw()">💸 Withdraw</button>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-card">
+            <div class="stat-item">
+                <div class="stat-title">Available Tasks</div>
+                <div class="stat-value" id="statTasks">750+</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-title">Total Installs</div>
+                <div class="stat-value">1M+</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-title">Active Users</div>
+                <div class="stat-value" id="statActiveUsers">1,234</div>
+            </div>
+        </div>
+
+        <!-- Live Transactions -->
+        <div class="section-header">
+            <div class="section-title">🌍 Live Withdrawals</div>
+            <div class="live-indicator">
+                <span class="live-dot">●</span> LIVE
+            </div>
+        </div>
+
+        <div class="transactions-card">
+            <div class="transaction-item" id="transaction1">
+                <div class="transaction-flag" id="transFlag">🌍</div>
+                <div class="transaction-info">
+                    <div class="transaction-phone" id="transPhone">+254 70***123</div>
+                    <div class="transaction-status">✓ Withdrawal Successful</div>
+                </div>
+                <div class="transaction-right">
+                    <div class="transaction-amount" id="transAmount">$150.00</div>
+                    <div class="transaction-time" id="transTime">🕐 15 mins ago</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Cards -->
+        <div class="section-header">
+            <div class="section-title">💼 Start Earning</div>
+        </div>
+
+        <div class="tasks-grid">
+            <div class="task-card" onclick="startTask('annotation')">
+                <div class="task-title">📝 Text Annotation</div>
+                <div class="task-description">Tag and label text data</div>
+                <div class="task-earning">$1.50 - 2.00 per task</div>
+                <button class="task-btn">Start Earning →</button>
+            </div>
+
+            <div class="task-card" onclick="startTask('classification')">
+                <div class="task-title">🏷️ Content Classification</div>
+                <div class="task-description">Categorize content items</div>
+                <div class="task-earning">$1.70 - 2.20 per task</div>
+                <button class="task-btn">Start Earning →</button>
+            </div>
+
+            <div class="task-card" onclick="startTask('categorization')">
+                <div class="task-title">📊 Data Categorization</div>
+                <div class="task-description">Organize data efficiently</div>
+                <div class="task-earning">$1.85 - 2.75 per task</div>
+                <button class="task-btn">Start Earning →</button>
+            </div>
+
+            <div class="task-card" onclick="startTask('pattern')">
+                <div class="task-title">🔍 Pattern Recognition</div>
+                <div class="task-description">Identify data patterns</div>
+                <div class="task-earning">$2.70 - 3.60 per task</div>
+                <button class="task-btn">Start Earning →</button>
+            </div>
+
+            <div class="task-card" onclick="startTask('sentence')">
+                <div class="task-title">🔤 Sentence Arrangement</div>
+                <div class="task-description">Arrange text sequences</div>
+                <div class="task-earning">$0.80 - 1.55 per task</div>
+                <button class="task-btn">Start Earning →</button>
+            </div>
+
+            <div class="task-card" onclick="startTask('referral')">
+                <div class="task-title">🎁 Refer & Earn</div>
+                <div class="task-description">Invite friends to earn</div>
+                <div class="task-earning">$5.00 per user</div>
+                <button class="task-btn">Start Earning →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Toolbar -->
+    <div class="bottom-toolbar">
+        <div class="nav-item" onclick="navigateTo('transactions')">
+            <div class="nav-circle" style="background-color: rgba(168, 85, 247, 0.2);">📊</div>
+            <div class="nav-text">Transactions</div>
+        </div>
+        <div class="nav-item" onclick="navigateTo('help')">
+            <div class="nav-circle" style="background-color: rgba(74, 222, 128, 0.2);">❓</div>
+            <div class="nav-text">Help</div>
+        </div>
+        <div class="nav-item nav-withdraw" onclick="navigateToWithdraw()">
+            <div class="nav-circle">💸</div>
+            <div class="nav-text">Withdraw</div>
+        </div>
+        <div class="nav-item" onclick="navigateTo('profile')">
+            <div class="nav-circle" style="background-color: rgba(59, 130, 246, 0.2);">👤</div>
+            <div class="nav-text">Profile</div>
+        </div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div class="notification-overlay" id="notificationOverlay" onclick="closeNotification()">
+        <div class="notification-popup" id="notificationPopup" onclick="event.stopPropagation()">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer & Earn - REMO-TASK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-bg-card: #1e293b;
+            --color-input-bg: #334155;
+            --color-border: #475569;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #64748b;
+            --color-primary: #a855f7;
+            --color-green: #4ade80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-primary);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px 20px 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 10px 0 20px;
+        }
+
+        .header-icon {
+            font-size: 50px;
+            margin-bottom: 5px;
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Balance Card */
+        .balance-card {
+            padding: 20px;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(139, 92, 246, 0.1);
+        }
+
+        .circle-1 {
+            top: -20px;
+            right: -20px;
+        }
+
+        .circle-2 {
+            bottom: -20px;
+            left: -30px;
+        }
+
+        .balance-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .balance-icon {
+            font-size: 32px;
+            margin-right: 15px;
+        }
+
+        .balance-title {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        .balance-amount {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .balance-status {
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Referral Code Card */
+        .code-card {
+            background-color: var(--color-bg-card);
+        }
+
+        .code-header {
+            background-color: var(--color-input-bg);
+            border-radius: 16px 16px 0 0;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            margin: -20px -20px 0;
+        }
+
+        .code-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .code-title {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            font-weight: bold;
+        }
+
+        .code-display {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            letter-spacing: 4px;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-green {
+            background-color: var(--color-green);
+            color: white;
+        }
+
+        .btn-green:hover {
+            background-color: #22c55e;
+            transform: translateY(-1px);
+        }
+
+        .btn-share {
+            font-size: 18px;
+            padding: 16px;
+        }
+
+        /* Statistics Cards */
+        .stats-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background-color: var(--color-bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            padding: 15px 8px;
+            text-align: center;
+        }
+
+        .stat-icon-container {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-input-bg);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+
+        .stat-icon {
+            font-size: 26px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--color-text-muted);
+            line-height: 1.3;
+        }
+
+        /* Info Sections */
+        .info-section {
+            padding: 20px;
+        }
+
+        .info-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-title.small {
+            font-size: 16px;
+        }
+
+        .step-item, .benefit-item {
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .step-detail {
+            font-size: 12px;
+            color: var(--color-text-dim);
+            padding-left: 15px;
+        }
+
+        .benefit-item {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .step-title.highlight {
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 11px;
+            color: var(--color-text-dim);
+        }
+
+        /* Popup Overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup {
+            background-color: var(--color-bg-card);
+            border-radius: 20px;
+            max-width: calc(100% - 60px);
+            width: 350px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .popup-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .popup-message {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-input-bg);
+            color: var(--color-text-muted);
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #3f4e68;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 100px;
+            height: 100px;
+            border: 8px solid rgba(168, 85, 247, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(30, 41, 59, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 10000;
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 24px;
+            }
+            
+            .balance-amount {
+                font-size: 32px;
+            }
+            
+            .code-display {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">🎁</div>
+            <h1 class="header-title">Refer & Earn</h1>
+            <p class="header-subtitle">Invite friends and earn $ 5 per activation</p>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="card balance-card">
+            <div class="decorative-circle circle-1"></div>
+            <div class="decorative-circle circle-2"></div>
+            <div class="balance-header">
+                <div class="balance-icon">💰</div>
+                <div class="balance-title">Total Referral Balance</div>
+            </div>
+            <div class="balance-amount" id="totalBalance">$0.00</div>
+            <div class="balance-status">✓ Available for Withdrawal</div>
+        </div>
+
+        <!-- Referral Code Card -->
+        <div class="card code-card">
+            <div class="code-header">
+                <span class="code-icon">🎟️</span>
+                <span class="code-title">Your Referral Code</span>
+            </div>
+            <div class="code-display" id="referralCode">LOADING...</div>
+            <button class="btn btn-green" onclick="copyReferralCode()">📋  COPY CODE</button>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon-container">
+                    <div class="stat-icon">👥</div>
+                </div>
+                <div class="stat-value" id="totalReferrals">0</div>
+                <div class="stat-label">Total<br>Referrals</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon-container">
+                    <div class="stat-icon">✓</div>
+                </div>
+                <div class="stat-value" id="activatedReferrals">0</div>
+                <div class="stat-label">Activated<br>Accounts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon-container">
+                    <div class="stat-icon">💵</div>
+                </div>
+                <div class="stat-value" id="totalEarned">0</div>
+                <div class="stat-label">Total<br>Earned</div>
+            </div>
+        </div>
+
+        <!-- Share Button -->
+        <button class="btn btn-green btn-share" onclick="handleShare()">📱 Share & Earn $5</button>
+
+        <!-- How It Works Section -->
+        <div class="card info-section">
+            <h2 class="info-title">How It Works</h2>
+            <div class="step-item">
+                <div class="step-title">1️⃣ Share your referral code</div>
+                <div class="step-detail">Share via WhatsApp, SMS, or social media</div>
+            </div>
+            <div class="step-item">
+                <div class="step-title">2️⃣ Friends download & activate</div>
+                <div class="step-detail">They sign up using your referral code</div>
+            </div>
+            <div class="step-item">
+                <div class="step-title highlight">3️⃣ You earn $5</div>
+                <div class="step-detail">Get paid for every activated referral!</div>
+            </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="card info-section">
+            <h2 class="info-title small">💎 Why Refer?</h2>
+            <div class="benefit-item">✓ Unlimited earning potential</div>
+            <div class="benefit-item">✓ Fast payment processing</div>
+            <div class="benefit-item">✓ Track all your referrals</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">🔒 Earnings updated within 2 hours</div>
+    </div>
+
+    <!-- Activation Popup -->
+    <div class="popup-overlay" id="activationPopup">
+        <div class="popup" onclick="event.stopPropagation()">
+            <div class="popup-icon">⚠️</div>
+            <div class="popup-message" id="popupMessage">
+                Activate Account<br><br>
+                Your account needs to be activated to continue earning from referrals.
+            </div>
+            <button class="btn btn-green" id="popupActionBtn" onclick="handlePopupAction()">Activate Now</button>
+            <button class="btn btn-secondary" onclick="closePopup()">Maybe Later</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="refer-earn.js"></script>
+</body>
+</html>
