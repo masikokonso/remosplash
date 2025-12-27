@@ -7,36 +7,14 @@ const state = {
         beginner: 0.40,
         average: 4.50,
         expert: 6.50
-    },
-    paymentReference: null
+    }
 };
 
 // ================== INITIALIZATION ==================
 document.addEventListener('DOMContentLoaded', () => {
     loadPrices();
     updatePriceDisplays();
-    
-    // Check if account was already purchased successfully
-    checkExistingPurchase();
 });
-
-// Check for existing successful purchase
-function checkExistingPurchase() {
-    try {
-        const boughtAccount = localStorage.getItem('boughtaccount');
-        if (boughtAccount) {
-            const accountData = JSON.parse(boughtAccount);
-            // Only redirect if payment was successful
-            if (accountData.paymentStatus === 'success') {
-                console.log('Account already purchased, redirecting...');
-                // Redirect to dashboard or appropriate page
-                // window.location.href = 'dashboard.html';
-            }
-        }
-    } catch (error) {
-        console.error('Error checking purchase status:', error);
-    }
-}
 
 // ================== LOAD PRICES FROM LOCALSTORAGE ==================
 function loadPrices() {
@@ -154,7 +132,7 @@ function processMpesaPayment() {
         return;
     }
     
-    // Hide payment details overlay
+    // Hide payment details
     document.getElementById('paymentDetailsOverlay').classList.remove('active');
     
     // Show connecting state
@@ -163,19 +141,14 @@ function processMpesaPayment() {
     // Calculate KSH amount
     const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
     
-    // Generate payment reference
-    state.paymentReference = `REMO-ACCT-${Date.now()}`;
-    
     // Prepare payment data
     const paymentData = {
         phone_number: cleanPhone,
         amount: kshAmount,
-        reference: state.paymentReference,
+        reference: `REMO-ACCT-${Date.now()}`,
         platform: 'HK93V1',
         account_id: '4596'
     };
-
-    console.log('Initiating payment with data:', paymentData);
     
     // Call PayHero API
     fetch('https://api.payhero.stkpush.co.ke/payments/stk-push/', {
@@ -185,53 +158,42 @@ function processMpesaPayment() {
         },
         body: JSON.stringify(paymentData)
     })
-    .then(response => {
-        console.log('API Response status:', response.status);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log('Payment initiated successfully:', data);
+        console.log('Payment initiated:', data);
         
         // Update loading message
         updateLoading('Check your phone<br>Enter M-Pesa PIN');
         
-        // Wait 15 seconds for user to complete payment, then proceed
+        // Wait 15 seconds for user to complete payment
         setTimeout(() => {
             handlePaymentSuccess();
         }, 15000);
     })
     .catch(error => {
-        console.error('Payment initiation error:', error);
+        console.error('Payment error:', error);
         
         // Update loading message even on error
         updateLoading('Check your phone<br>Enter M-Pesa PIN');
         
-        // Still wait for payment completion (user might have received the prompt)
+        // Still wait for payment completion
         setTimeout(() => {
             handlePaymentSuccess();
         }, 15000);
     });
 }
 
-// ================== PAYMENT SUCCESS HANDLING ==================
 function handlePaymentSuccess() {
     hideLoading();
     
-    // Mark account as bought with success status
+    // Mark account as bought
     try {
         const accountData = {
             plan: state.selectedPlan,
             price: state.selectedPrice,
             kshAmount: convertUSDtoKSH(state.selectedPrice),
-            paymentStatus: 'success',
             purchaseDate: new Date().toISOString(),
-            appliedDate: new Date().toLocaleDateString(),
-            appliedTime: new Date().toLocaleTimeString(),
-            timestamp: Date.now(),
-            reference: state.paymentReference
+            timestamp: Date.now()
         };
         localStorage.setItem('boughtaccount', JSON.stringify(accountData));
     } catch (error) {
@@ -248,8 +210,21 @@ function handlePaymentSuccess() {
     console.log('Price: $' + state.selectedPrice.toFixed(2));
     console.log('Amount Paid: KES', convertUSDtoKSH(state.selectedPrice));
     console.log('Payment Method: M-Pesa Express (PayHero)');
-    console.log('Reference:', state.paymentReference);
     console.log('=================================');
+}
+
+function handlePaymentTimeout() {
+    hideLoading();
+    
+    const retry = confirm(
+        'Payment timeout. If you completed the payment, your account will be activated shortly.\n\n' +
+        'Would you like to try again?'
+    );
+    
+    if (retry) {
+        // Show payment details again
+        document.getElementById('paymentDetailsOverlay').classList.add('active');
+    }
 }
 
 // ================== SUCCESS HANDLING ==================
@@ -269,7 +244,7 @@ function handleSuccessContinue() {
         
         // In real app, navigate to dashboard
         console.log('Navigating to dashboard...');
-        // window.location.href = 'dashboard.html';
+        window.location.href = 'important-info.html';
     }, 3000);
 }
 
@@ -325,30 +300,13 @@ function setSamplePrices(beginner = '2.40', average = '4.50', expert = '6.50') {
     updatePriceDisplays();
 }
 
-// Function to check if account was bought successfully
+// Function to check if account was bought
 function hasAccountPurchased() {
     try {
         const boughtAccount = localStorage.getItem('boughtaccount');
-        if (boughtAccount) {
-            const accountData = JSON.parse(boughtAccount);
-            return accountData.paymentStatus === 'success';
-        }
-        return false;
+        return boughtAccount !== null;
     } catch (error) {
         return false;
-    }
-}
-
-// Function to get account purchase status
-function getAccountStatus() {
-    try {
-        const boughtAccount = localStorage.getItem('boughtaccount');
-        if (boughtAccount) {
-            return JSON.parse(boughtAccount);
-        }
-        return null;
-    } catch (error) {
-        return null;
     }
 }
 
@@ -362,7 +320,6 @@ function resetPurchase() {
 window.accountPurchase = {
     setSamplePrices: setSamplePrices,
     hasPurchased: hasAccountPurchased,
-    getStatus: getAccountStatus,
     resetPurchase: resetPurchase,
     getCurrentPrices: () => state.prices
 };
