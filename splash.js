@@ -264,9 +264,9 @@ function navigateToNextScreen() {
         showNavigationMessage('Opening Welcome Page...');
         
         // Initialize earnings if not exists
-        if (!localStorage.getItem('earnings')) {
-            localStorage.setItem('earnings', JSON.stringify([200]));
-        }
+       // if (!localStorage.getItem('earnings')) {
+       //   localStorage.setItem('earnings', JSON.stringify([200]));
+       // }
     }
 }
 
