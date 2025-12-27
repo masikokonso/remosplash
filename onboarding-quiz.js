@@ -444,9 +444,9 @@ function claimBonus() {
         
         // Navigate to dashboard
         setTimeout(() => {
-            // In real app: window.location.href = 'dashboard.html';
+             window.location.href = 'important-info.html';
             console.log('Navigating to dashboard...');
-            showToast('Redirecting to dashboard...', true);
+            showToast('Redirecting...', true);
         }, 1000);
     });
 }
