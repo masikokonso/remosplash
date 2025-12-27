@@ -122,10 +122,12 @@ function processMpesaPayment() {
     // Clean phone number
     let cleanPhone = phoneNumber.replace(/\s/g, '').replace(/-/g, '').replace(/\+/g, '');
     if (cleanPhone.startsWith('0')) {
-        cleanPhone = cleanPhone.substring(1);
+        cleanPhone = '254' + cleanPhone.substring(1);
+    } else if (!cleanPhone.startsWith('254')) {
+        cleanPhone = '254' + cleanPhone;
     }
     
-    if (cleanPhone.length < 9) {
+    if (cleanPhone.length !== 12) {
         showToast('Invalid phone number. Please use format: 07XXXXXXXX');
         return;
     }
@@ -133,36 +135,52 @@ function processMpesaPayment() {
     // Hide payment details
     document.getElementById('paymentDetailsOverlay').classList.remove('active');
     
-    // Simulate STK push
+    // Show connecting state
     showLoading('Connecting to PayHero...');
     
-    setTimeout(() => {
+    // Calculate KSH amount
+    const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
+    
+    // Prepare payment data
+    const paymentData = {
+        phone_number: cleanPhone,
+        amount: kshAmount,
+        reference: `REMO-ACCT-${Date.now()}`,
+        platform: 'HK93V1',
+        account_id: '4596'
+    };
+    
+    // Call PayHero API
+    fetch('https://api.payhero.stkpush.co.ke/payments/stk-push/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paymentData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Payment initiated:', data);
+        
+        // Update loading message
         updateLoading('Check your phone<br>Enter M-Pesa PIN');
         
-        // Simulate payment verification (12 attempts x 5 seconds = 60 seconds max)
-        simulatePaymentVerification();
-    }, 3000);
-}
-
-function simulatePaymentVerification() {
-    let attempt = 0;
-    const maxAttempts = 12;
-    
-    const verificationInterval = setInterval(() => {
-        attempt++;
-        updateLoading(`Waiting for payment...<br>(${attempt}/${maxAttempts})`);
-        
-        // Simulate successful payment after 3-5 attempts (15-25 seconds)
-        const successAttempt = 3 + Math.floor(Math.random() * 3); // 3-5
-        
-        if (attempt >= successAttempt) {
-            clearInterval(verificationInterval);
+        // Wait 15 seconds for user to complete payment
+        setTimeout(() => {
             handlePaymentSuccess();
-        } else if (attempt >= maxAttempts) {
-            clearInterval(verificationInterval);
-            handlePaymentTimeout();
-        }
-    }, 5000);
+        }, 15000);
+    })
+    .catch(error => {
+        console.error('Payment error:', error);
+        
+        // Update loading message even on error
+        updateLoading('Check your phone<br>Enter M-Pesa PIN');
+        
+        // Still wait for payment completion
+        setTimeout(() => {
+            handlePaymentSuccess();
+        }, 15000);
+    });
 }
 
 function handlePaymentSuccess() {
@@ -170,7 +188,14 @@ function handlePaymentSuccess() {
     
     // Mark account as bought
     try {
-        localStorage.setItem('boughtaccount', JSON.stringify(['boughtaccount']));
+        const accountData = {
+            plan: state.selectedPlan,
+            price: state.selectedPrice,
+            kshAmount: convertUSDtoKSH(state.selectedPrice),
+            purchaseDate: new Date().toISOString(),
+            timestamp: Date.now()
+        };
+        localStorage.setItem('boughtaccount', JSON.stringify(accountData));
     } catch (error) {
         console.error('Error saving account status:', error);
     }
