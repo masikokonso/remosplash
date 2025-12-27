@@ -188,7 +188,7 @@ function confirmVerification() {
         // In real app, navigate to onboarding
        // alert('Account created successfully! Proceeding to onboarding...');
         console.log('Navigating to onboarding...');
-        window.location.href = 'onboarding-quiz.html';
+         window.location.href = 'onboarding-quiz.html';
     }, 2000);
 }
 
