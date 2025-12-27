@@ -262,6 +262,8 @@ function navigateToNextScreen() {
         console.log('Navigating to Home...');
         window.location.href = 'welcome.html';
         showNavigationMessage('Opening Welcome Page...');
+        
+
     }
 }
 
