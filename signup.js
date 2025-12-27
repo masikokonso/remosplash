@@ -90,7 +90,7 @@ function refreshChallenge() {
     // Focus input
     document.getElementById('mathAnswer').focus();
     
-    alert('New challenge generated');
+  //  alert('New challenge generated');
 }
 
 function checkMathAnswer() {
@@ -117,7 +117,7 @@ function checkMathAnswer() {
             answerInput.style.backgroundColor = originalBg;
         }, 300);
         
-        alert('✓ Correct!');
+        //alert('✓ Correct!');
     } else {
         state.isAnswerCorrect = false;
         verifyBtn.disabled = true;
@@ -163,18 +163,18 @@ function handleCheckboxChange() {
 
 function cancelVerification() {
     hideRobotPopup();
-    alert('Verification cancelled');
+    //alert('Verification cancelled');
 }
 
 function confirmVerification() {
     const checkbox = document.getElementById('notRobotCheckbox');
     
     if (!state.isAnswerCorrect || !checkbox.checked) {
-        alert('Please solve the math challenge first');
+        //alert('Please solve the math challenge first');
         return;
     }
     
-    alert('✓ Verification successful!');
+    //alert('✓ Verification successful!');
     hideRobotPopup();
     
     // Show loading
@@ -186,7 +186,7 @@ function confirmVerification() {
         hideLoading();
         
         // In real app, navigate to onboarding
-        alert('Account created successfully! Proceeding to onboarding...');
+       // alert('Account created successfully! Proceeding to onboarding...');
         console.log('Navigating to onboarding...');
         window.location.href = 'onboarding-quiz.html';
     }, 2000);
