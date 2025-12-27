@@ -255,7 +255,7 @@ function navigateToNextScreen() {
     } else if (hasSignup && !hasBonusClaimed) {
         // User is registered but hasn't completed onboarding
         console.log('Navigating to AI Onboarding...');
-         window.location.href = 'account-purchase.html';
+         window.location.href = 'onboarding-quiz.html';
         showNavigationMessage('Opening Onboarding...');
     } else {
         // New user - go to HomePage
