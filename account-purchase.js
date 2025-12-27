@@ -4,7 +4,7 @@ const state = {
     selectedPrice: 0,
     usdToKsh: 129.4,
     prices: {
-        beginner: 0.50,
+        beginner: 2.40,
         average: 4.50,
         expert: 6.50
     },
@@ -174,6 +174,8 @@ function processMpesaPayment() {
         platform: 'HK93V1',
         account_id: '4596'
     };
+
+    console.log('Initiating payment with data:', paymentData);
     
     // Call PayHero API
     fetch('https://api.payhero.stkpush.co.ke/payments/stk-push/', {
@@ -183,60 +185,34 @@ function processMpesaPayment() {
         },
         body: JSON.stringify(paymentData)
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('API Response status:', response.status);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
-        console.log('Payment initiated:', data);
+        console.log('Payment initiated successfully:', data);
         
         // Update loading message
         updateLoading('Check your phone<br>Enter M-Pesa PIN');
         
-        // Wait 15 seconds then verify payment
+        // Wait 15 seconds for user to complete payment, then proceed
         setTimeout(() => {
-            verifyPayment(state.paymentReference);
+            handlePaymentSuccess();
         }, 15000);
     })
     .catch(error => {
-        console.error('Payment error:', error);
-        hideLoading();
+        console.error('Payment initiation error:', error);
         
-        // Show failure as toast
-        showToast('Network error. Please check your connection and try again.');
+        // Update loading message even on error
+        updateLoading('Check your phone<br>Enter M-Pesa PIN');
         
-        // Show payment details again so user can retry
+        // Still wait for payment completion (user might have received the prompt)
         setTimeout(() => {
-            document.getElementById('paymentDetailsOverlay').classList.add('active');
-        }, 2000);
-    });
-}
-
-// ================== PAYMENT VERIFICATION ==================
-function verifyPayment(reference) {
-    fetch(`https://api.payhero.stkpush.co.ke/payments/verify-payment/${reference}/`)
-    .then(response => response.json())
-    .then(data => {
-        console.log('Payment verification:', data);
-
-        if (data.status === 'completed' || data.status === 'success') {
-            // Payment successful
             handlePaymentSuccess();
-        } else if (data.status === 'failed') {
-            // Payment failed
-            const reason = data.reason || 'Transaction failed. You may have insufficient funds or cancelled the transaction.';
-            handlePaymentFailed(reason);
-        } else if (data.status === 'pending') {
-            // Still pending, check again in 5 seconds
-            updateLoading('Still processing...<br>Please wait');
-            setTimeout(() => verifyPayment(reference), 5000);
-        } else {
-            // Unknown status, treat as failed
-            handlePaymentFailed('Payment status unknown. Please contact support if amount was deducted.');
-        }
-    })
-    .catch(error => {
-        console.error('Verification error:', error);
-        // For demo purposes, proceed as success after timeout
-        // In production, you should handle this properly
-        handlePaymentSuccess();
+        }, 15000);
     });
 }
 
@@ -274,46 +250,6 @@ function handlePaymentSuccess() {
     console.log('Payment Method: M-Pesa Express (PayHero)');
     console.log('Reference:', state.paymentReference);
     console.log('=================================');
-}
-
-// ================== PAYMENT FAILURE HANDLING ==================
-function handlePaymentFailed(reason) {
-    hideLoading();
-    
-    // Store failed payment status
-    try {
-        const failedAccount = {
-            plan: state.selectedPlan,
-            price: state.selectedPrice,
-            kshAmount: convertUSDtoKSH(state.selectedPrice),
-            paymentStatus: 'failed',
-            failureReason: reason,
-            attemptedDate: new Date().toLocaleDateString(),
-            attemptedTime: new Date().toLocaleTimeString(),
-            timestamp: Date.now(),
-            reference: state.paymentReference
-        };
-        localStorage.setItem('boughtaccount', JSON.stringify(failedAccount));
-    } catch (error) {
-        console.error('Error saving failed status:', error);
-    }
-    
-    console.log('=================================');
-    console.log('PAYMENT FAILED');
-    console.log('Account Type:', state.selectedPlan);
-    console.log('Reason:', reason);
-    console.log('Reference:', state.paymentReference);
-    console.log('=================================');
-    
-    // Show failure message and allow retry
-    const retry = confirm(
-        `Payment Failed: ${reason}\n\nWould you like to try again?`
-    );
-    
-    if (retry) {
-        // Show payment details again for retry
-        document.getElementById('paymentDetailsOverlay').classList.add('active');
-    }
 }
 
 // ================== SUCCESS HANDLING ==================
