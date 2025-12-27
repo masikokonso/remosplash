@@ -532,6 +532,33 @@
                 font-size: 44px;
             }
         }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #334155;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: bottom 0.3s ease;
+            z-index: 10001;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .toast.show {
+            bottom: 30px;
+        }
+
+        .toast.success {
+            background-color: #22c55e;
+        }
     </style>
 </head>
 <body>
@@ -640,6 +667,9 @@
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
     </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <script src="onboarding-quiz.js"></script>
 </body>
