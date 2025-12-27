@@ -4,7 +4,7 @@ const state = {
     selectedPrice: 0,
     usdToKsh: 129.4,
     prices: {
-        beginner: 0.40,
+        beginner: 0.50,
         average: 4.50,
         expert: 6.50
     }
