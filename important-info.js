@@ -167,11 +167,11 @@ function getStarted() {
     
     showLoading(() => {
         // Show success message
-        alert("You're all set! Let's get started.");
+       // alert("You're all set! Let's get started.");
         
         // In a real app, this would navigate to the dashboard
         // For now, we'll just reload or redirect
-        // window.location.href = 'dashboard.html';
+        window.location.href = 'dashboard.html';
         
         // For demo purposes, just show a message
         console.log('Navigating to dashboard...');

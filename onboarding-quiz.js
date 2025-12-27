@@ -169,6 +169,27 @@ function showLoading(duration, callback) {
     }, duration);
 }
 
+// ================== TOAST NOTIFICATIONS ==================
+function showToast(message, isSuccess = false) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    
+    if (isSuccess) {
+        toast.classList.add('success');
+    } else {
+        toast.classList.remove('success');
+    }
+    
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.classList.remove('success');
+        }, 300);
+    }, 2500);
+}
+
 // ================== START ASSESSMENT ==================
 function startAssessment() {
     showLoading(1500, () => {
@@ -293,7 +314,7 @@ function nextQuestion() {
     
     // Validate answer
     if (!question.userAnswer || question.userAnswer === '') {
-        alert('Please select an answer before continuing');
+        showToast('Please select an answer before continuing');
         return;
     }
     
@@ -373,8 +394,8 @@ function handleAction() {
         showLoading(2000, () => {
             if (state.bonusClaimed) {
                 // Skip bonus panel, go to dashboard
-                alert("Welcome back! Proceeding to dashboard...");
-                window.location.href =  'dashboard.html';
+                showToast("Welcome back! Proceeding to dashboard...", true);
+                // In real app: window.location.href = 'dashboard.html';
                 console.log('Navigating to dashboard...');
             } else {
                 // Show bonus panel for first-time passers
@@ -399,7 +420,7 @@ function showBonusPanel() {
 function claimBonus() {
     // Double-check bonus hasn't been claimed
     if (state.bonusClaimed) {
-        alert('Bonus already claimed!');
+        showToast('Bonus already claimed!');
         // Navigate to dashboard
         console.log('Navigating to dashboard...');
         return;
@@ -419,13 +440,13 @@ function claimBonus() {
         document.getElementById('bonusOverlay').classList.remove('active');
         
         // Show success message
-        alert(`$${state.bonusAmount} bonus credited! Total: $${state.totalEarnings.toFixed(2)}`);
+        showToast(`$${state.bonusAmount} bonus credited! Total: $${state.totalEarnings.toFixed(2)}`, true);
         
         // Navigate to dashboard
         setTimeout(() => {
-            window.location.href = 'dashboard.html';
+            // In real app: window.location.href = 'dashboard.html';
             console.log('Navigating to dashboard...');
-            alert('In a real app, you would be redirected to the dashboard now.');
+            showToast('Redirecting to dashboard...', true);
         }, 1000);
     });
 }

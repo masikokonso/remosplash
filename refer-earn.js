@@ -479,13 +479,13 @@ function handlePopupAction() {
         closePopup();
         
         if (state.popupType === 'activation') {
-            alert('Opening account activation...');
+          //  alert('Opening account activation...');
             console.log('Navigate to activation page');
-            // In real app: window.location.href = 'activate-account.html';
+             window.location.href = 'activate-account.html';
         } else if (state.popupType === 'upgrade') {
-            alert('Opening account upgrade...');
+            //alert('Opening account upgrade...');
             console.log('Navigate to upgrade page');
-            // In real app: window.location.href = 'activate-account.html';
+             window.location.href = 'activate-account.html';
         }
     }, 1500);
 }

@@ -264,9 +264,9 @@ function navigateToNextScreen() {
         showNavigationMessage('Opening Welcome Page...');
         
         // Initialize earnings if not exists
-       // if (!localStorage.getItem('earnings')) {
-       //   localStorage.setItem('earnings', JSON.stringify([200]));
-       // }
+        if (!localStorage.getItem('earnings')) {
+            localStorage.setItem('earnings', JSON.stringify([200]));
+        }
     }
 }
 
@@ -319,7 +319,7 @@ function closeBuyAccountPopup() {
 
 function handleBuyNow() {
     console.log('Opening payment page...');
-    alert('Opening payment page...');
+    //alert('Opening payment page...');
     
     // Navigate to buy account page
      window.location.href = 'account-purchase.html';
@@ -328,7 +328,7 @@ function handleBuyNow() {
 }
 
 function handleLater() {
-    alert('You can activate anytime from Profile');
+    //alert('You can activate anytime from Profile');
     closeBuyAccountPopup();
 }
 

@@ -115,7 +115,7 @@ function processMpesaPayment() {
     
     // Validate phone number
     if (!phoneNumber) {
-        alert('Please enter your M-Pesa phone number');
+        showToast('Please enter your M-Pesa phone number');
         return;
     }
     
@@ -126,7 +126,7 @@ function processMpesaPayment() {
     }
     
     if (cleanPhone.length < 9) {
-        alert('Invalid phone number. Please use format: 07XXXXXXXX');
+        showToast('Invalid phone number. Please use format: 07XXXXXXXX');
         return;
     }
     
@@ -215,11 +215,11 @@ function handleSuccessContinue() {
     setTimeout(() => {
         hideLoading();
         
-        alert(`Welcome to your ${state.selectedPlan} Account!`);
+        showToast(`Welcome to your ${state.selectedPlan} Account!`, true);
         
         // In real app, navigate to dashboard
         console.log('Navigating to dashboard...');
-        window.location.href = 'important-info.html';
+        // window.location.href = 'dashboard.html';
     }, 3000);
 }
 
@@ -235,6 +235,27 @@ function updateLoading(message) {
 
 function hideLoading() {
     document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+// ================== TOAST NOTIFICATIONS ==================
+function showToast(message, isSuccess = false) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    
+    if (isSuccess) {
+        toast.classList.add('success');
+    } else {
+        toast.classList.remove('success');
+    }
+    
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.classList.remove('success');
+        }, 300);
+    }, 2500);
 }
 
 // ================== UTILITY FUNCTIONS ==================

@@ -288,7 +288,7 @@ function activateAccount() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening account activation...');
+        //alert('Opening account activation...');
         console.log('Navigating to account activation page...');
          window.location.href = 'activate-account.html';
     }, 1500);
@@ -616,7 +616,7 @@ function navigateTransactions() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening transactions history...');
+       // alert('Opening transactions history...');
         console.log('Navigating to transactions...');
          window.location.href = 'transactions.html';
     }, 1000);
@@ -627,7 +627,7 @@ function navigateProfile() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening profile...');
+       // alert('Opening profile...');
         console.log('Navigating to profile...');
          window.location.href = 'profile.html';
     }, 1000);

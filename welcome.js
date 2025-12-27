@@ -37,7 +37,7 @@ function updateSignUpButton() {
 // ================== NAVIGATION HANDLERS ==================
 function handleSignUp() {
     if (!state.termsAccepted) {
-        alert('Please accept Terms & Conditions first');
+       // alert('Please accept Terms & Conditions first');
         return;
     }
     
@@ -87,7 +87,7 @@ function handleSignIn() {
 }
 
 function showPrivacyInfo() {
-    alert('Privacy Policy & Terms coming soon');
+    //alert('Privacy Policy & Terms coming soon');
 }
 
 // ================== TEST DATA HANDLING ==================

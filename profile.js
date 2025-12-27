@@ -236,9 +236,9 @@ function activateAccount() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening account activation...');
+        showToast('Opening account activation...', true);
         console.log('Navigating to account activation page...');
-         window.location.href = 'activate-account.html';
+        // In real app: window.location.href = 'activate-account.html';
     }, 1500);
 }
 
@@ -339,7 +339,7 @@ function enterEditMode() {
         select.selectedIndex = index;
     }
     
-    alert('Edit mode enabled');
+    showToast('Edit mode enabled', true);
 }
 
 function saveProfile() {
@@ -350,17 +350,17 @@ function saveProfile() {
     
     // Validate
     if (!name) {
-        alert('Please enter your name');
+        showToast('Please enter your name');
         return;
     }
     
     if (!email) {
-        alert('Please enter your email');
+        showToast('Please enter your email');
         return;
     }
     
     if (!phone) {
-        alert('Please enter your phone number');
+        showToast('Please enter your phone number');
         return;
     }
     
@@ -382,13 +382,13 @@ function saveProfile() {
         exitEditMode();
         updateUI();
         
-        alert('Profile updated successfully!');
+        showToast('Profile updated successfully!', true);
     }, 1000);
 }
 
 function cancelEdit() {
     exitEditMode();
-    alert('Edit cancelled');
+    showToast('Edit cancelled');
 }
 
 function exitEditMode() {
@@ -420,13 +420,13 @@ function loadSettings() {
 function saveNotificationsSetting() {
     const checked = document.getElementById('chkNotifications').checked;
     saveSetting('notifications', checked);
-    alert(checked ? 'Notifications enabled' : 'Notifications disabled');
+    showToast(checked ? 'Notifications enabled' : 'Notifications disabled', true);
 }
 
 function saveSoundSetting() {
     const checked = document.getElementById('chkSound').checked;
     saveSetting('sound_effects', checked);
-    alert(checked ? 'Sound effects enabled' : 'Sound effects disabled');
+    showToast(checked ? 'Sound effects enabled' : 'Sound effects disabled', true);
 }
 
 function saveSetting(key, value) {
@@ -456,19 +456,13 @@ function clearCache() {
             // Example: localStorage.removeItem('cache');
             
             hideLoading();
-            alert('Cache cleared successfully!');
+            showToast('Cache cleared successfully!', true);
         }, 1500);
     }
 }
 
 function showAbout() {
-    alert(
-        'REMO-TASK v1.0.0\n\n' +
-        'AI Training & Task Platform\n\n' +
-        'Complete tasks and earn money!\n\n' +
-        '© 2024 REMO-TASK\n' +
-        'All rights reserved.'
-    );
+    showToast('REMO-TASK v1.0.0 - AI Training & Task Platform', true);
 }
 
 // ================== ACTIONS ==================
@@ -477,9 +471,9 @@ function openWithdrawHistory() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening transaction history...');
+        showToast('Opening transaction history...', true);
         console.log('Navigating to transactions page...');
-        window.location.href = 'transactions.html';
+        // In real app: window.location.href = 'transactions.html';
     }, 1500);
 }
 
@@ -489,9 +483,9 @@ function logout() {
         
         setTimeout(() => {
             hideLoading();
-            alert('Logged out successfully');
+            showToast('Logged out successfully', true);
             console.log('Navigating to login...');
-             window.location.href = 'login.html';
+            // In real app: window.location.href = 'login.html';
         }, 1000);
     }
 }
@@ -503,7 +497,7 @@ function navigateHome() {
     setTimeout(() => {
         hideLoading();
         console.log('Navigating to dashboard...');
-         window.location.href = 'dashboard.html';
+        // In real app: window.location.href = 'dashboard.html';
     }, 1000);
 }
 
@@ -512,9 +506,9 @@ function navigateTransactions() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening transactions history...');
+        showToast('Opening transactions history...', true);
         console.log('Navigating to transactions...');
-         window.location.href = 'transactions.html';
+        // In real app: window.location.href = 'transactions.html';
     }, 1000);
 }
 
@@ -523,9 +517,9 @@ function navigateWithdraw() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening withdraw page...');
+        showToast('Opening withdraw page...', true);
         console.log('Navigating to withdraw...');
-         window.location.href = 'withdraw.html';
+        // In real app: window.location.href = 'withdraw.html';
     }, 1000);
 }
 
@@ -536,6 +530,27 @@ function showLoading() {
 
 function hideLoading() {
     document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+// ================== TOAST NOTIFICATIONS ==================
+function showToast(message, isSuccess = false) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    
+    if (isSuccess) {
+        toast.classList.add('success');
+    } else {
+        toast.classList.remove('success');
+    }
+    
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.classList.remove('success');
+        }, 300);
+    }, 2500);
 }
 
 // ================== UTILITY FUNCTIONS ==================
@@ -578,7 +593,7 @@ function triggerPaymentDay() {
     processPaymentDay();
     updateNotificationBell();
     updateUI();
-    alert('Payment day processed. Check console for details.');
+    showToast('Payment day processed. Check console for details.', true);
 }
 
 // Function to get profile data

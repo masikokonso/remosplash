@@ -200,7 +200,7 @@ function activateAccount() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening account activation...');
+        //alert('Opening account activation...');
         console.log('Navigating to account activation page...');
         window.location.href = 'activate-account.html';
     }, 1500);
@@ -406,7 +406,7 @@ function navigateWithdraw() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening withdraw page...');
+      //  alert('Opening withdraw page...');
         console.log('Navigating to withdraw...');
         window.location.href = 'withdraw.html';
     }, 1000);
@@ -417,7 +417,7 @@ function navigateProfile() {
     
     setTimeout(() => {
         hideLoading();
-        alert('Opening profile...');
+      //  alert('Opening profile...');
         console.log('Navigating to profile...');
          window.location.href = 'profile.html';
     }, 1000);
@@ -494,7 +494,7 @@ function simulatePaymentDay() {
     loadTransactions();
     displayTransactions(state.currentFilter);
     updateNotificationBell();
-    alert('Payment day processed. Check console for details.');
+    //alert('Payment day processed. Check console for details.');
 }
 
 // Function to activate account for testing
