@@ -395,7 +395,7 @@ function handleAction() {
             if (state.bonusClaimed) {
                 // Skip bonus panel, go to dashboard
                 showToast("Welcome back! Proceeding to dashboard...", true);
-                // In real app: window.location.href = 'dashboard.html';
+                 window.location.href = 'account-purchase.html';
                 console.log('Navigating to dashboard...');
             } else {
                 // Show bonus panel for first-time passers
@@ -444,7 +444,7 @@ function claimBonus() {
         
         // Navigate to dashboard
         setTimeout(() => {
-            // In real app: window.location.href = 'dashboard.html';
+             window.location.href = 'account-purchase.html';
             console.log('Navigating to dashboard...');
             showToast('Redirecting to dashboard...', true);
         }, 1000);
