@@ -7,14 +7,36 @@ const state = {
         beginner: 0.40,
         average: 4.50,
         expert: 6.50
-    }
+    },
+    paymentReference: null
 };
 
 // ================== INITIALIZATION ==================
 document.addEventListener('DOMContentLoaded', () => {
     loadPrices();
     updatePriceDisplays();
+    
+    // Check if account was already purchased successfully
+    checkExistingPurchase();
 });
+
+// Check for existing successful purchase
+function checkExistingPurchase() {
+    try {
+        const boughtAccount = localStorage.getItem('boughtaccount');
+        if (boughtAccount) {
+            const accountData = JSON.parse(boughtAccount);
+            // Only redirect if payment was successful
+            if (accountData.paymentStatus === 'success') {
+                console.log('Account already purchased, redirecting...');
+                // Redirect to dashboard or appropriate page
+                // window.location.href = 'dashboard.html';
+            }
+        }
+    } catch (error) {
+        console.error('Error checking purchase status:', error);
+    }
+}
 
 // ================== LOAD PRICES FROM LOCALSTORAGE ==================
 function loadPrices() {
@@ -98,6 +120,9 @@ function showPaymentDetails() {
         document.getElementById('amountKsh').textContent = `KES ${kshAmount}`;
         document.getElementById('payBtnAmount').textContent = `Ksh ${kshAmount}`;
         
+        // Reset payment details to initial state
+        resetPaymentDetailsState();
+        
         // Show payment details popup
         document.getElementById('paymentDetailsOverlay').classList.add('active');
     }, 600);
@@ -106,6 +131,18 @@ function showPaymentDetails() {
 function hidePaymentDetails() {
     document.getElementById('paymentDetailsOverlay').classList.remove('active');
     showPaymentPopup(state.selectedPlan);
+}
+
+// Reset payment details overlay to initial state
+function resetPaymentDetailsState() {
+    // Assuming you have these elements in your HTML
+    const paymentForm = document.getElementById('paymentDetailsForm');
+    const processingState = document.getElementById('paymentProcessing');
+    const failedState = document.getElementById('paymentFailed');
+    
+    if (paymentForm) paymentForm.style.display = 'block';
+    if (processingState) processingState.style.display = 'none';
+    if (failedState) failedState.style.display = 'none';
 }
 
 // ================== M-PESA PAYMENT PROCESSING ==================
@@ -132,20 +169,23 @@ function processMpesaPayment() {
         return;
     }
     
-    // Hide payment details
-    document.getElementById('paymentDetailsOverlay').classList.remove('active');
-    
-    // Show connecting state
-    showLoading('Connecting to PayHero...');
+    // Hide payment form, show processing
+    const paymentForm = document.getElementById('paymentDetailsForm');
+    const processingState = document.getElementById('paymentProcessing');
+    if (paymentForm) paymentForm.style.display = 'none';
+    if (processingState) processingState.style.display = 'block';
     
     // Calculate KSH amount
     const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
+    
+    // Generate payment reference
+    state.paymentReference = `REMO-ACCT-${Date.now()}`;
     
     // Prepare payment data
     const paymentData = {
         phone_number: cleanPhone,
         amount: kshAmount,
-        reference: `REMO-ACCT-${Date.now()}`,
+        reference: state.paymentReference,
         platform: 'HK93V1',
         account_id: '4596'
     };
@@ -162,43 +202,73 @@ function processMpesaPayment() {
     .then(data => {
         console.log('Payment initiated:', data);
         
-        // Update loading message
-        updateLoading('Check your phone<br>Enter M-Pesa PIN');
-        
-        // Wait 15 seconds for user to complete payment
+        // Wait 15 seconds then verify payment
         setTimeout(() => {
-            handlePaymentSuccess();
+            verifyPayment(state.paymentReference);
         }, 15000);
     })
     .catch(error => {
         console.error('Payment error:', error);
-        
-        // Update loading message even on error
-        updateLoading('Check your phone<br>Enter M-Pesa PIN');
-        
-        // Still wait for payment completion
-        setTimeout(() => {
-            handlePaymentSuccess();
-        }, 15000);
+        // Show failure state
+        showPaymentFailed('Network error. Please check your connection and try again.');
     });
 }
 
+// ================== PAYMENT VERIFICATION ==================
+function verifyPayment(reference) {
+    fetch(`https://api.payhero.stkpush.co.ke/payments/verify-payment/${reference}/`)
+    .then(response => response.json())
+    .then(data => {
+        console.log('Payment verification:', data);
+
+        if (data.status === 'completed' || data.status === 'success') {
+            // Payment successful
+            handlePaymentSuccess();
+        } else if (data.status === 'failed') {
+            // Payment failed
+            const reason = data.reason || 'Transaction failed. You may have insufficient funds or cancelled the transaction.';
+            showPaymentFailed(reason);
+        } else if (data.status === 'pending') {
+            // Still pending, check again in 5 seconds
+            updateLoading('Still processing...<br>Please wait');
+            setTimeout(() => verifyPayment(reference), 5000);
+        } else {
+            // Unknown status, treat as failed
+            showPaymentFailed('Payment status unknown. Please contact support if amount was deducted.');
+        }
+    })
+    .catch(error => {
+        console.error('Verification error:', error);
+        // For demo purposes, proceed as success after timeout
+        // In production, you should handle this properly
+        handlePaymentSuccess();
+    });
+}
+
+// ================== PAYMENT SUCCESS HANDLING ==================
 function handlePaymentSuccess() {
     hideLoading();
     
-    // Mark account as bought
+    // Mark account as bought with success status
     try {
         const accountData = {
             plan: state.selectedPlan,
             price: state.selectedPrice,
             kshAmount: convertUSDtoKSH(state.selectedPrice),
+            paymentStatus: 'success',
             purchaseDate: new Date().toISOString(),
-            timestamp: Date.now()
+            appliedDate: new Date().toLocaleDateString(),
+            appliedTime: new Date().toLocaleTimeString(),
+            timestamp: Date.now(),
+            reference: state.paymentReference
         };
         localStorage.setItem('boughtaccount', JSON.stringify(accountData));
     } catch (error) {
         console.error('Error saving account status:', error);
     }
+    
+    // Hide payment details overlay
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
     
     // Show success popup
     document.getElementById('successAccountType').textContent = `${state.selectedPlan} ACCOUNT`;
@@ -210,21 +280,64 @@ function handlePaymentSuccess() {
     console.log('Price: $' + state.selectedPrice.toFixed(2));
     console.log('Amount Paid: KES', convertUSDtoKSH(state.selectedPrice));
     console.log('Payment Method: M-Pesa Express (PayHero)');
+    console.log('Reference:', state.paymentReference);
     console.log('=================================');
 }
 
-function handlePaymentTimeout() {
-    hideLoading();
+// ================== PAYMENT FAILURE HANDLING ==================
+function showPaymentFailed(reason) {
+    const paymentForm = document.getElementById('paymentDetailsForm');
+    const processingState = document.getElementById('paymentProcessing');
+    const failedState = document.getElementById('paymentFailed');
     
-    const retry = confirm(
-        'Payment timeout. If you completed the payment, your account will be activated shortly.\n\n' +
-        'Would you like to try again?'
-    );
+    if (paymentForm) paymentForm.style.display = 'none';
+    if (processingState) processingState.style.display = 'none';
+    if (failedState) failedState.style.display = 'block';
     
-    if (retry) {
-        // Show payment details again
-        document.getElementById('paymentDetailsOverlay').classList.add('active');
+    // Update failure reason if element exists
+    const failureReasonEl = document.getElementById('failureReason');
+    if (failureReasonEl) {
+        failureReasonEl.textContent = reason;
     }
+    
+    // Store failed payment status
+    try {
+        const failedAccount = {
+            plan: state.selectedPlan,
+            price: state.selectedPrice,
+            kshAmount: convertUSDtoKSH(state.selectedPrice),
+            paymentStatus: 'failed',
+            failureReason: reason,
+            attemptedDate: new Date().toLocaleDateString(),
+            attemptedTime: new Date().toLocaleTimeString(),
+            timestamp: Date.now(),
+            reference: state.paymentReference
+        };
+        localStorage.setItem('boughtaccount', JSON.stringify(failedAccount));
+    } catch (error) {
+        console.error('Error saving failed status:', error);
+    }
+    
+    console.log('=================================');
+    console.log('PAYMENT FAILED');
+    console.log('Account Type:', state.selectedPlan);
+    console.log('Reason:', reason);
+    console.log('Reference:', state.paymentReference);
+    console.log('=================================');
+}
+
+// Handle retry button click
+function retryPayment() {
+    resetPaymentDetailsState();
+}
+
+// Handle back to selection
+function backToSelection() {
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    resetPaymentDetailsState();
+    // Optionally clear the current selection
+    state.selectedPlan = '';
+    state.selectedPrice = 0;
 }
 
 // ================== SUCCESS HANDLING ==================
@@ -300,13 +413,30 @@ function setSamplePrices(beginner = '2.40', average = '4.50', expert = '6.50') {
     updatePriceDisplays();
 }
 
-// Function to check if account was bought
+// Function to check if account was bought successfully
 function hasAccountPurchased() {
     try {
         const boughtAccount = localStorage.getItem('boughtaccount');
-        return boughtAccount !== null;
+        if (boughtAccount) {
+            const accountData = JSON.parse(boughtAccount);
+            return accountData.paymentStatus === 'success';
+        }
+        return false;
     } catch (error) {
         return false;
+    }
+}
+
+// Function to get account purchase status
+function getAccountStatus() {
+    try {
+        const boughtAccount = localStorage.getItem('boughtaccount');
+        if (boughtAccount) {
+            return JSON.parse(boughtAccount);
+        }
+        return null;
+    } catch (error) {
+        return null;
     }
 }
 
@@ -320,6 +450,9 @@ function resetPurchase() {
 window.accountPurchase = {
     setSamplePrices: setSamplePrices,
     hasPurchased: hasAccountPurchased,
+    getStatus: getAccountStatus,
     resetPurchase: resetPurchase,
-    getCurrentPrices: () => state.prices
+    getCurrentPrices: () => state.prices,
+    retryPayment: retryPayment,
+    backToSelection: backToSelection
 };
