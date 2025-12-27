@@ -4,7 +4,7 @@ const state = {
     selectedPrice: 0,
     usdToKsh: 129.4,
     prices: {
-        beginner: 0.40,
+        beginner: 0.50,
         average: 4.50,
         expert: 6.50
     },
@@ -120,9 +120,6 @@ function showPaymentDetails() {
         document.getElementById('amountKsh').textContent = `KES ${kshAmount}`;
         document.getElementById('payBtnAmount').textContent = `Ksh ${kshAmount}`;
         
-        // Reset payment details to initial state
-        resetPaymentDetailsState();
-        
         // Show payment details popup
         document.getElementById('paymentDetailsOverlay').classList.add('active');
     }, 600);
@@ -131,18 +128,6 @@ function showPaymentDetails() {
 function hidePaymentDetails() {
     document.getElementById('paymentDetailsOverlay').classList.remove('active');
     showPaymentPopup(state.selectedPlan);
-}
-
-// Reset payment details overlay to initial state
-function resetPaymentDetailsState() {
-    // Assuming you have these elements in your HTML
-    const paymentForm = document.getElementById('paymentDetailsForm');
-    const processingState = document.getElementById('paymentProcessing');
-    const failedState = document.getElementById('paymentFailed');
-    
-    if (paymentForm) paymentForm.style.display = 'block';
-    if (processingState) processingState.style.display = 'none';
-    if (failedState) failedState.style.display = 'none';
 }
 
 // ================== M-PESA PAYMENT PROCESSING ==================
@@ -169,11 +154,11 @@ function processMpesaPayment() {
         return;
     }
     
-    // Hide payment form, show processing
-    const paymentForm = document.getElementById('paymentDetailsForm');
-    const processingState = document.getElementById('paymentProcessing');
-    if (paymentForm) paymentForm.style.display = 'none';
-    if (processingState) processingState.style.display = 'block';
+    // Hide payment details overlay
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    
+    // Show connecting state
+    showLoading('Connecting to PayHero...');
     
     // Calculate KSH amount
     const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
@@ -202,6 +187,9 @@ function processMpesaPayment() {
     .then(data => {
         console.log('Payment initiated:', data);
         
+        // Update loading message
+        updateLoading('Check your phone<br>Enter M-Pesa PIN');
+        
         // Wait 15 seconds then verify payment
         setTimeout(() => {
             verifyPayment(state.paymentReference);
@@ -209,8 +197,15 @@ function processMpesaPayment() {
     })
     .catch(error => {
         console.error('Payment error:', error);
-        // Show failure state
-        showPaymentFailed('Network error. Please check your connection and try again.');
+        hideLoading();
+        
+        // Show failure as toast
+        showToast('Network error. Please check your connection and try again.');
+        
+        // Show payment details again so user can retry
+        setTimeout(() => {
+            document.getElementById('paymentDetailsOverlay').classList.add('active');
+        }, 2000);
     });
 }
 
@@ -227,14 +222,14 @@ function verifyPayment(reference) {
         } else if (data.status === 'failed') {
             // Payment failed
             const reason = data.reason || 'Transaction failed. You may have insufficient funds or cancelled the transaction.';
-            showPaymentFailed(reason);
+            handlePaymentFailed(reason);
         } else if (data.status === 'pending') {
             // Still pending, check again in 5 seconds
             updateLoading('Still processing...<br>Please wait');
             setTimeout(() => verifyPayment(reference), 5000);
         } else {
             // Unknown status, treat as failed
-            showPaymentFailed('Payment status unknown. Please contact support if amount was deducted.');
+            handlePaymentFailed('Payment status unknown. Please contact support if amount was deducted.');
         }
     })
     .catch(error => {
@@ -267,9 +262,6 @@ function handlePaymentSuccess() {
         console.error('Error saving account status:', error);
     }
     
-    // Hide payment details overlay
-    document.getElementById('paymentDetailsOverlay').classList.remove('active');
-    
     // Show success popup
     document.getElementById('successAccountType').textContent = `${state.selectedPlan} ACCOUNT`;
     document.getElementById('successOverlay').classList.add('active');
@@ -285,20 +277,8 @@ function handlePaymentSuccess() {
 }
 
 // ================== PAYMENT FAILURE HANDLING ==================
-function showPaymentFailed(reason) {
-    const paymentForm = document.getElementById('paymentDetailsForm');
-    const processingState = document.getElementById('paymentProcessing');
-    const failedState = document.getElementById('paymentFailed');
-    
-    if (paymentForm) paymentForm.style.display = 'none';
-    if (processingState) processingState.style.display = 'none';
-    if (failedState) failedState.style.display = 'block';
-    
-    // Update failure reason if element exists
-    const failureReasonEl = document.getElementById('failureReason');
-    if (failureReasonEl) {
-        failureReasonEl.textContent = reason;
-    }
+function handlePaymentFailed(reason) {
+    hideLoading();
     
     // Store failed payment status
     try {
@@ -324,20 +304,16 @@ function showPaymentFailed(reason) {
     console.log('Reason:', reason);
     console.log('Reference:', state.paymentReference);
     console.log('=================================');
-}
-
-// Handle retry button click
-function retryPayment() {
-    resetPaymentDetailsState();
-}
-
-// Handle back to selection
-function backToSelection() {
-    document.getElementById('paymentDetailsOverlay').classList.remove('active');
-    resetPaymentDetailsState();
-    // Optionally clear the current selection
-    state.selectedPlan = '';
-    state.selectedPrice = 0;
+    
+    // Show failure message and allow retry
+    const retry = confirm(
+        `Payment Failed: ${reason}\n\nWould you like to try again?`
+    );
+    
+    if (retry) {
+        // Show payment details again for retry
+        document.getElementById('paymentDetailsOverlay').classList.add('active');
+    }
 }
 
 // ================== SUCCESS HANDLING ==================
@@ -357,7 +333,7 @@ function handleSuccessContinue() {
         
         // In real app, navigate to dashboard
         console.log('Navigating to dashboard...');
-        window.location.href = 'important-info.html';
+        // window.location.href = 'dashboard.html';
     }, 3000);
 }
 
@@ -452,7 +428,5 @@ window.accountPurchase = {
     hasPurchased: hasAccountPurchased,
     getStatus: getAccountStatus,
     resetPurchase: resetPurchase,
-    getCurrentPrices: () => state.prices,
-    retryPayment: retryPayment,
-    backToSelection: backToSelection
+    getCurrentPrices: () => state.prices
 };
