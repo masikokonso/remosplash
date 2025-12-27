@@ -4,7 +4,7 @@ const state = {
     selectedPrice: 0,
     usdToKsh: 129.4,
     prices: {
-        beginner: 2.40,
+        beginner: 1.40,
         average: 4.50,
         expert: 6.50
     }
@@ -244,7 +244,7 @@ function handleSuccessContinue() {
         
         // In real app, navigate to dashboard
         console.log('Navigating to dashboard...');
-        // window.location.href = 'dashboard.html';
+        window.location.href = 'important-info.html';
     }, 3000);
 }
 
