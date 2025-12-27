@@ -175,7 +175,7 @@ function goBack() {
     } else {
         // If no history, navigate to dashboard/home
         console.log('Navigating to home...');
-        // In real app: window.location.href = 'dashboard.html';
+         window.location.href = 'dashboard.html';
         showToast('Returning to home...');
     }
 }

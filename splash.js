@@ -260,7 +260,7 @@ function navigateToNextScreen() {
     } else {
         // New user - go to HomePage
         console.log('Navigating to Home...');
-        // window.location.href = 'welcome.html';
+        window.location.href = 'welcome.html';
         showNavigationMessage('Opening Welcome Page...');
         
         // Initialize earnings if not exists

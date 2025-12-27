@@ -238,7 +238,7 @@ function activateAccount() {
         hideLoading();
         alert('Opening account activation...');
         console.log('Navigating to account activation page...');
-        // In real app: window.location.href = 'activate-account.html';
+         window.location.href = 'activate-account.html';
     }, 1500);
 }
 
@@ -479,7 +479,7 @@ function openWithdrawHistory() {
         hideLoading();
         alert('Opening transaction history...');
         console.log('Navigating to transactions page...');
-        // In real app: window.location.href = 'transactions.html';
+        window.location.href = 'transactions.html';
     }, 1500);
 }
 
@@ -491,7 +491,7 @@ function logout() {
             hideLoading();
             alert('Logged out successfully');
             console.log('Navigating to login...');
-            // In real app: window.location.href = 'login.html';
+             window.location.href = 'login.html';
         }, 1000);
     }
 }
@@ -503,7 +503,7 @@ function navigateHome() {
     setTimeout(() => {
         hideLoading();
         console.log('Navigating to dashboard...');
-        // In real app: window.location.href = 'dashboard.html';
+         window.location.href = 'dashboard.html';
     }, 1000);
 }
 
@@ -514,7 +514,7 @@ function navigateTransactions() {
         hideLoading();
         alert('Opening transactions history...');
         console.log('Navigating to transactions...');
-        // In real app: window.location.href = 'transactions.html';
+         window.location.href = 'transactions.html';
     }, 1000);
 }
 
@@ -525,7 +525,7 @@ function navigateWithdraw() {
         hideLoading();
         alert('Opening withdraw page...');
         console.log('Navigating to withdraw...');
-        // In real app: window.location.href = 'withdraw.html';
+         window.location.href = 'withdraw.html';
     }, 1000);
 }
 

@@ -191,7 +191,7 @@ function activateAccount() {
     setTimeout(() => {
         hideLoading();
         console.log('Navigating to account activation...');
-        // In real app: window.location.href = 'activate-account.html';
+            window.location.href = 'activate-account.html';
     }, 1500);
 }
 
@@ -265,11 +265,11 @@ function navigateTo(page) {
         console.log(`Navigating to ${page}...`);
         
         // In real app, uncomment:
-        // switch(page) {
-        //     case 'transactions': window.location.href = 'transactions.html'; break;
-        //     case 'help': window.location.href = 'support.html'; break;
-        //     case 'profile': window.location.href = 'profile.html'; break;
-        // }
+         switch(page) {
+             case 'transactions': window.location.href = 'transactions.html'; break;
+             case 'help': window.location.href = 'contact-support.html'; break;
+             case 'profile': window.location.href = 'profile.html'; break;
+         }
     }, 1000);
 }
 
@@ -279,7 +279,7 @@ function navigateToWithdraw() {
     setTimeout(() => {
         hideLoading();
         console.log('Navigating to withdraw page...');
-        // In real app: window.location.href = 'withdraw.html';
+         window.location.href = 'withdraw.html';
     }, 1500);
 }
 
@@ -291,14 +291,14 @@ function startTask(taskType) {
         console.log(`Starting task: ${taskType}`);
         
         // In real app, uncomment:
-        // switch(taskType) {
-        //     case 'annotation': window.location.href = 'annotation-task.html'; break;
-        //     case 'classification': window.location.href = 'classification-task.html'; break;
-        //     case 'categorization': window.location.href = 'categorization-task.html'; break;
-        //     case 'pattern': window.location.href = 'pattern-task.html'; break;
-        //     case 'sentence': window.location.href = 'sentence-task.html'; break;
-        //     case 'referral': window.location.href = 'referral.html'; break;
-        // }
+         switch(taskType) {
+             case 'annotation': window.location.href = 'text-annotation-app.html'; break;
+             case 'classification': window.location.href = 'content-classification-app.html'; break;
+             case 'categorization': window.location.href = 'data-categorization-app.html'; break;
+             case 'pattern': window.location.href = 'pattern-recognition-app.html'; break;
+             case 'sentence': window.location.href = 'sentence-arrangement-app.html'; break;
+             case 'referral': window.location.href = 'refer-earn.html'; break;
+         }
     }, 1500);
 }
 

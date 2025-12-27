@@ -99,7 +99,7 @@ function handleTestModeAuth() {
     showToast('Logging in (Test Mode)...');
     
     setTimeout(() => {
-        // In real app: window.location.href = 'important-info.html';
+         window.location.href = 'important-info.html';
         console.log('Redirect to: important-info.html');
     }, 1000);
 }
@@ -120,7 +120,7 @@ function routeUserBasedOnStatus() {
         console.log('Navigating to Dashboard...');
         showToast('Welcome back! Loading dashboard...');
         setTimeout(() => {
-            // In real app: window.location.href = 'dashboard.html';
+             window.location.href = 'dashboard.html';
             console.log('Redirect to: dashboard.html');
         }, 1000);
         
@@ -129,7 +129,7 @@ function routeUserBasedOnStatus() {
         console.log('Navigating to Account Purchase Page...');
         showToast('Please complete account purchase...');
         setTimeout(() => {
-            // In real app: window.location.href = 'account-purchase.html';
+             window.location.href = 'account-purchase.html';
             console.log('Redirect to: account-purchase.html');
         }, 1000);
         
@@ -138,7 +138,7 @@ function routeUserBasedOnStatus() {
         console.log('Navigating to AI Onboarding (Quiz)...');
         showToast('Please complete onboarding quiz...');
         setTimeout(() => {
-            // In real app: window.location.href = 'onboarding-quiz.html';
+             window.location.href = 'onboarding-quiz.html';
             console.log('Redirect to: onboarding-quiz.html');
         }, 1000);
         
@@ -161,7 +161,7 @@ function handleForgotPassword() {
         console.log('Navigating to password reset...');
         showToast('Redirecting to password reset...');
         
-        // In real app: window.location.href = 'password-reset.html';
+         window.location.href = 'reset-password.html';
         setTimeout(() => {
             console.log('Redirect to: password-reset.html');
         }, 1000);
@@ -177,7 +177,7 @@ function handleSignUp() {
         console.log('Navigating to signup...');
         showToast('Redirecting to signup page...');
         
-        // In real app: window.location.href = 'signup.html';
+         window.location.href = 'signup.html';
         setTimeout(() => {
             console.log('Redirect to: signup.html');
         }, 1000);

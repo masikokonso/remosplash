@@ -58,7 +58,7 @@ function handleSignUp() {
         showToast('Redirecting to Sign Up...');
         setTimeout(() => {
             // Uncomment in real app:
-            // window.location.href = 'signup.html';
+            window.location.href = 'signup.html';
         }, 1000);
     }, 1000);
 }

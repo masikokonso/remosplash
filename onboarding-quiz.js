@@ -374,7 +374,7 @@ function handleAction() {
             if (state.bonusClaimed) {
                 // Skip bonus panel, go to dashboard
                 alert("Welcome back! Proceeding to dashboard...");
-                // In real app: window.location.href = 'dashboard.html';
+                window.location.href =  'dashboard.html';
                 console.log('Navigating to dashboard...');
             } else {
                 // Show bonus panel for first-time passers
@@ -423,7 +423,7 @@ function claimBonus() {
         
         // Navigate to dashboard
         setTimeout(() => {
-            // In real app: window.location.href = 'dashboard.html';
+            window.location.href = 'dashboard.html';
             console.log('Navigating to dashboard...');
             alert('In a real app, you would be redirected to the dashboard now.');
         }, 1000);

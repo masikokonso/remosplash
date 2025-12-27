@@ -202,7 +202,7 @@ function activateAccount() {
         hideLoading();
         alert('Opening account activation...');
         console.log('Navigating to account activation page...');
-        // In real app: window.location.href = 'activate-account.html';
+        window.location.href = 'activate-account.html';
     }, 1500);
 }
 
@@ -397,7 +397,7 @@ function navigateHome() {
     setTimeout(() => {
         hideLoading();
         console.log('Navigating to dashboard...');
-        // In real app: window.location.href = 'dashboard.html';
+         window.location.href = 'dashboard.html';
     }, 1000);
 }
 
@@ -408,7 +408,7 @@ function navigateWithdraw() {
         hideLoading();
         alert('Opening withdraw page...');
         console.log('Navigating to withdraw...');
-        // In real app: window.location.href = 'withdraw.html';
+        window.location.href = 'withdraw.html';
     }, 1000);
 }
 
@@ -419,7 +419,7 @@ function navigateProfile() {
         hideLoading();
         alert('Opening profile...');
         console.log('Navigating to profile...');
-        // In real app: window.location.href = 'profile.html';
+         window.location.href = 'profile.html';
     }, 1000);
 }
 
