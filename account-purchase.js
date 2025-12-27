@@ -12,21 +12,6 @@ const state = {
 
 // ================== INITIALIZATION ==================
 document.addEventListener('DOMContentLoaded', () => {
-    // Hide any modals that might be visible from previous session
-    const paymentOverlay = document.getElementById('paymentOverlay');
-    const paymentDetailsOverlay = document.getElementById('paymentDetailsOverlay');
-    const successOverlay = document.getElementById('successOverlay');
-    
-    if (paymentOverlay) paymentOverlay.classList.remove('active');
-    if (paymentDetailsOverlay) paymentDetailsOverlay.classList.remove('active');
-    if (successOverlay) successOverlay.classList.remove('active');
-    
-    // Reset payment form state
-    const paymentForm = document.getElementById('paymentForm');
-    const processingState = document.getElementById('processingState');
-    if (paymentForm) paymentForm.style.display = 'block';
-    if (processingState) processingState.style.display = 'none';
-    
     loadPrices();
     updatePriceDisplays();
 });
@@ -63,25 +48,32 @@ function convertUSDtoKSH(usdAmount) {
 
 // ================== PAYMENT POPUP ==================
 function showPaymentPopup(planName) {
-    // Get price based on plan
-    let price;
-    if (planName === 'BEGINNER') {
-        price = state.prices.beginner;
-    } else if (planName === 'AVERAGE SKILLED') {
-        price = state.prices.average;
-    } else if (planName === 'EXPERT') {
-        price = state.prices.expert;
-    }
+    // Show loading
+    showLoading('Loading payment options...');
     
-    state.selectedPlan = planName;
-    state.selectedPrice = price;
-    
-    // Update popup info
-    document.getElementById('popupPlanInfo').textContent = 
-        `Account: ${planName} • $${price.toFixed(2)}`;
-    
-    // Show popup
-    document.getElementById('paymentOverlay').classList.add('active');
+    setTimeout(() => {
+        hideLoading();
+        
+        // Get price based on plan
+        let price;
+        if (planName === 'BEGINNER') {
+            price = state.prices.beginner;
+        } else if (planName === 'AVERAGE SKILLED') {
+            price = state.prices.average;
+        } else if (planName === 'EXPERT') {
+            price = state.prices.expert;
+        }
+        
+        state.selectedPlan = planName;
+        state.selectedPrice = price;
+        
+        // Update popup info
+        document.getElementById('popupPlanInfo').textContent = 
+            `Account: ${planName} • $${price.toFixed(2)}`;
+        
+        // Show popup
+        document.getElementById('paymentOverlay').classList.add('active');
+    }, 800);
 }
 
 function hidePaymentPopup() {
@@ -90,32 +82,29 @@ function hidePaymentPopup() {
 
 // ================== PAYMENT DETAILS ==================
 function showPaymentDetails() {
-    hidePaymentPopup();
+    // Show loading
+    showLoading('Loading M-Pesa Express...');
     
-    const kshAmount = convertUSDtoKSH(state.selectedPrice);
-    
-    // Update form info
-    document.getElementById('formPlanInfo').textContent = 
-        `${state.selectedPlan} • $${state.selectedPrice.toFixed(2)} (Ksh ${kshAmount})`;
-    
-    document.getElementById('amountKsh').textContent = `KES ${kshAmount}`;
-    document.getElementById('payBtnAmount').textContent = `Ksh ${kshAmount}`;
-    
-    // Reset payment form state
-    document.getElementById('paymentForm').style.display = 'block';
-    document.getElementById('processingState').style.display = 'none';
-    
-    // Show payment details popup
-    document.getElementById('paymentDetailsOverlay').classList.add('active');
+    setTimeout(() => {
+        hideLoading();
+        hidePaymentPopup();
+        
+        const kshAmount = convertUSDtoKSH(state.selectedPrice);
+        
+        // Update form info
+        document.getElementById('formPlanInfo').textContent = 
+            `${state.selectedPlan} • $${state.selectedPrice.toFixed(2)} (Ksh ${kshAmount})`;
+        
+        document.getElementById('amountKsh').textContent = `KES ${kshAmount}`;
+        document.getElementById('payBtnAmount').textContent = `Ksh ${kshAmount}`;
+        
+        // Show payment details popup
+        document.getElementById('paymentDetailsOverlay').classList.add('active');
+    }, 600);
 }
 
 function hidePaymentDetails() {
     document.getElementById('paymentDetailsOverlay').classList.remove('active');
-    
-    // Reset payment form state
-    document.getElementById('paymentForm').style.display = 'block';
-    document.getElementById('processingState').style.display = 'none';
-    
     showPaymentPopup(state.selectedPlan);
 }
 
@@ -125,24 +114,38 @@ function processMpesaPayment() {
     const phoneNumber = phoneInput.value.trim();
     
     // Validate phone number
-    const phoneRegex = /^(07|01)\d{8}$/;
-    if (!phoneRegex.test(phoneNumber)) {
-        showToast('Please enter a valid phone number (07XX or 01XX)');
+    if (!phoneNumber) {
+        showToast('Please enter your M-Pesa phone number');
         return;
     }
     
-    // Show processing state
-    document.getElementById('paymentForm').style.display = 'none';
-    document.getElementById('processingState').style.display = 'block';
+    // Clean phone number
+    let cleanPhone = phoneNumber.replace(/\s/g, '').replace(/-/g, '').replace(/\+/g, '');
+    if (cleanPhone.startsWith('0')) {
+        cleanPhone = '254' + cleanPhone.substring(1);
+    } else if (!cleanPhone.startsWith('254')) {
+        cleanPhone = '254' + cleanPhone;
+    }
+    
+    if (cleanPhone.length !== 12) {
+        showToast('Invalid phone number. Please use format: 07XXXXXXXX');
+        return;
+    }
+    
+    // Hide payment details
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    
+    // Show connecting state
+    showLoading('Connecting to PayHero...');
     
     // Calculate KSH amount
     const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
     
     // Prepare payment data
     const paymentData = {
-        phone_number: phoneNumber.replace(/^0/, '254'), // Convert to 254 format
+        phone_number: cleanPhone,
         amount: kshAmount,
-        reference: `REMO-${Date.now()}`,
+        reference: `REMO-ACCT-${Date.now()}`,
         platform: 'HK93V1',
         account_id: '4596'
     };
@@ -159,6 +162,9 @@ function processMpesaPayment() {
     .then(data => {
         console.log('Payment initiated:', data);
         
+        // Update loading message
+        updateLoading('Check your phone<br>Enter M-Pesa PIN');
+        
         // Wait 15 seconds for user to complete payment
         setTimeout(() => {
             handlePaymentSuccess();
@@ -167,7 +173,10 @@ function processMpesaPayment() {
     .catch(error => {
         console.error('Payment error:', error);
         
-        // Even on error, proceed after timeout
+        // Update loading message even on error
+        updateLoading('Check your phone<br>Enter M-Pesa PIN');
+        
+        // Still wait for payment completion
         setTimeout(() => {
             handlePaymentSuccess();
         }, 15000);
@@ -175,6 +184,8 @@ function processMpesaPayment() {
 }
 
 function handlePaymentSuccess() {
+    hideLoading();
+    
     // Mark account as bought
     try {
         const accountData = {
@@ -185,40 +196,70 @@ function handlePaymentSuccess() {
             timestamp: Date.now()
         };
         localStorage.setItem('boughtaccount', JSON.stringify(accountData));
-        
-        console.log('=================================');
-        console.log('PAYMENT SUCCESSFUL!');
-        console.log('Account Type:', state.selectedPlan);
-        console.log('Price: $' + state.selectedPrice.toFixed(2));
-        console.log('Amount Paid: KES', convertUSDtoKSH(state.selectedPrice));
-        console.log('Payment Method: M-Pesa Express (PayHero)');
-        console.log('=================================');
     } catch (error) {
         console.error('Error saving account status:', error);
     }
     
-    // Hide all modals
-    document.getElementById('paymentDetailsOverlay').classList.remove('active');
-    document.getElementById('paymentOverlay').classList.remove('active');
-    
-    // Reset payment form state
-    document.getElementById('paymentForm').style.display = 'block';
-    document.getElementById('processingState').style.display = 'none';
-    
     // Show success popup
     document.getElementById('successAccountType').textContent = `${state.selectedPlan} ACCOUNT`;
     document.getElementById('successOverlay').classList.add('active');
+    
+    console.log('=================================');
+    console.log('PAYMENT SUCCESSFUL!');
+    console.log('Account Type:', state.selectedPlan);
+    console.log('Price: $' + state.selectedPrice.toFixed(2));
+    console.log('Amount Paid: KES', convertUSDtoKSH(state.selectedPrice));
+    console.log('Payment Method: M-Pesa Express (PayHero)');
+    console.log('=================================');
+}
+
+function handlePaymentTimeout() {
+    hideLoading();
+    
+    const retry = confirm(
+        'Payment timeout. If you completed the payment, your account will be activated shortly.\n\n' +
+        'Would you like to try again?'
+    );
+    
+    if (retry) {
+        // Show payment details again
+        document.getElementById('paymentDetailsOverlay').classList.add('active');
+    }
 }
 
 // ================== SUCCESS HANDLING ==================
 function handleSuccessContinue() {
     document.getElementById('successOverlay').classList.remove('active');
     
-    showToast(`Welcome to your ${state.selectedPlan} Account!`, true);
+    showLoading('Verifying payment...');
     
-    // In real app, navigate to dashboard
-    console.log('Navigating to dashboard...');
-    // window.location.href = 'dashboard.html';
+    setTimeout(() => {
+        updateLoading('Payment verified. Loading...');
+    }, 1500);
+    
+    setTimeout(() => {
+        hideLoading();
+        
+        showToast(`Welcome to your ${state.selectedPlan} Account!`, true);
+        
+        // In real app, navigate to dashboard
+        console.log('Navigating to dashboard...');
+        // window.location.href = 'dashboard.html';
+    }, 3000);
+}
+
+// ================== LOADING OVERLAY ==================
+function showLoading(message) {
+    document.getElementById('loadingText').innerHTML = message;
+    document.getElementById('loadingOverlay').classList.add('active');
+}
+
+function updateLoading(message) {
+    document.getElementById('loadingText').innerHTML = message;
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').classList.remove('active');
 }
 
 // ================== TOAST NOTIFICATIONS ==================
