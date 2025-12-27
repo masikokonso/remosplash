@@ -1,289 +1,188 @@
 /**
- * Mobile-Only Website Protection Script
- * Only activates on mobile devices, bypasses PCs completely
+ * Mobile-Only Protection - FIXED PC Detection
  */
 
 (function() {
     'use strict';
     
-    // ==================== MOBILE DEVICE DETECTION ====================
+    // ==================== DEBUG MODE ====================
+    const DEBUG = true; // Set to false after testing
+    
+    function debugLog(message) {
+        if (DEBUG) {
+            console.log('🔒 Protection: ' + message);
+        }
+    }
+    
+    // ==================== STRICT DEVICE DETECTION ====================
     function isMobileDevice() {
-        // Method 1: User Agent Detection
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|tablet/i;
-        const isMobileUA = mobileRegex.test(userAgent.toLowerCase());
+        debugLog('Starting device detection...');
         
-        // Method 2: Touch Detection
-        const hasTouch = ('ontouchstart' in window) || 
-                        (navigator.maxTouchPoints > 0) || 
-                        (navigator.msMaxTouchPoints > 0);
+        const userAgent = navigator.userAgent.toLowerCase();
+        const platform = navigator.platform.toLowerCase();
         
-        // Method 3: Screen Size Detection (mobile typically < 768px)
-        const isMobileScreen = window.innerWidth <= 768;
+        debugLog('User Agent: ' + userAgent);
+        debugLog('Platform: ' + platform);
         
-        // Method 4: Check for mobile-specific features
-        const isMobileFeatures = /Mobi|Android/i.test(navigator.userAgent);
+        // FIRST: Explicitly check for DESKTOP/PC platforms
+        const desktopPlatforms = ['win32', 'win64', 'windows', 'macintel', 'linux x86_64', 'linux i686'];
+        const isDesktopPlatform = desktopPlatforms.some(p => platform.includes(p));
         
-        // Return true if ANY mobile indicator is present
-        return isMobileUA || (hasTouch && isMobileScreen) || isMobileFeatures;
+        if (isDesktopPlatform) {
+            debugLog('❌ Desktop platform detected: ' + platform);
+            return false; // Definitely NOT mobile
+        }
+        
+        // SECOND: Check for desktop-specific keywords in User Agent
+        const desktopKeywords = ['windows nt', 'macintosh', 'linux x86', 'x11'];
+        const hasDesktopKeyword = desktopKeywords.some(keyword => userAgent.includes(keyword));
+        
+        if (hasDesktopKeyword) {
+            debugLog('❌ Desktop keyword found in UA');
+            return false; // Definitely NOT mobile
+        }
+        
+        // THIRD: Now check for MOBILE keywords
+        const mobileKeywords = ['android', 'webos', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone', 'mobile', 'tablet'];
+        const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
+        
+        debugLog('Mobile keywords in UA: ' + isMobileUA);
+        
+        // FOURTH: Check device characteristics (only if no desktop detected)
+        const maxTouchPoints = navigator.maxTouchPoints || 0;
+        const hasTouch = 'ontouchstart' in window;
+        const screenWidth = window.screen.width;
+        
+        debugLog('Max touch points: ' + maxTouchPoints);
+        debugLog('Has touch events: ' + hasTouch);
+        debugLog('Screen width: ' + screenWidth);
+        
+        // For mobile, we want:
+        // - Mobile UA keyword OR
+        // - Mobile platform (not desktop) AND touch support AND small screen
+        const isMobile = isMobileUA || 
+                        (!isDesktopPlatform && !hasDesktopKeyword && hasTouch && maxTouchPoints > 1 && screenWidth < 768);
+        
+        debugLog('Final decision - Is Mobile: ' + isMobile);
+        
+        return isMobile;
     }
     
-    // ==================== EXIT IF NOT MOBILE ====================
+    // ==================== CHECK DEVICE TYPE ====================
     if (!isMobileDevice()) {
-        console.log('Desktop detected - protection script disabled');
-        return; // Exit the script completely for PC users
+        debugLog('❌ DESKTOP/PC DETECTED - Protection script will NOT run');
+        if (DEBUG) {
+            alert('Desktop/PC detected - Protection DISABLED\n\nThis script only runs on mobile devices.');
+        }
+        return; // EXIT COMPLETELY - No protection on PC
     }
     
-    // ==================== MOBILE PROTECTION STARTS HERE ====================
-    console.log('Mobile device detected - protection active');
+    debugLog('✅ MOBILE DEVICE DETECTED - Protection ENABLED');
+    if (DEBUG) {
+        alert('Mobile device detected - Protection is now ACTIVE!');
+    }
     
-    // Configuration
+    // ==================== CONFIGURATION ====================
     const config = {
-        redirectUrl: 'https://www.google.com',
-        useBlur: true, // true = blur, false = redirect
-        showWarning: true,
-        blockPrintScreen: true,
+        blockRightClick: true,
         blockSelection: true,
         blockCopy: true,
-        detectionSensitivity: 'medium' // 'low', 'medium', 'high'
+        showWarnings: true
     };
-
-    let devtoolsOpen = false;
-    let warningShown = false;
-
-    // ==================== DISABLE RIGHT CLICK (Long Press on Mobile) ====================
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        showWarning('Long press is disabled');
-        return false;
-    });
     
-    // Prevent long-press context menu on mobile
-    let pressTimer;
-    document.addEventListener('touchstart', function(e) {
-        pressTimer = setTimeout(function() {
+    // ==================== DISABLE RIGHT CLICK / LONG PRESS ====================
+    if (config.blockRightClick) {
+        // Method 1: Context Menu
+        document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
-            showWarning('Long press is disabled');
-        }, 500);
-    });
+            e.stopPropagation();
+            debugLog('Context menu blocked');
+            showWarning('Long press disabled');
+            return false;
+        }, false);
+        
+        // Method 2: Long Press Detection
+        let longPressTimer;
+        
+        document.addEventListener('touchstart', function(e) {
+            longPressTimer = setTimeout(function() {
+                e.preventDefault();
+                e.stopPropagation();
+                debugLog('Long press blocked');
+                showWarning('Long press disabled');
+            }, 500);
+        }, false);
+        
+        document.addEventListener('touchend', function() {
+            clearTimeout(longPressTimer);
+        }, false);
+        
+        document.addEventListener('touchmove', function() {
+            clearTimeout(longPressTimer);
+        }, false);
+        
+        debugLog('Right-click/Long-press protection enabled');
+    }
     
-    document.addEventListener('touchend', function() {
-        clearTimeout(pressTimer);
-    });
-    
-    document.addEventListener('touchmove', function() {
-        clearTimeout(pressTimer);
-    });
-
-    // ==================== DISABLE KEYBOARD SHORTCUTS (for external keyboards) ====================
-    document.addEventListener('keydown', function(e) {
-        // F12 - Developer Tools
-        if (e.keyCode === 123) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Ctrl+Shift+I - Inspect Element
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Ctrl+Shift+J - Console
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Ctrl+Shift+C - Inspect Element (alternative)
-        if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Ctrl+U - View Source
-        if (e.ctrlKey && e.keyCode === 85) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Ctrl+S - Save Page
-        if (e.ctrlKey && e.keyCode === 83) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Ctrl+P - Print
-        if (e.ctrlKey && e.keyCode === 80) {
-            e.preventDefault();
-            return false;
-        }
-    });
-
     // ==================== DISABLE TEXT SELECTION ====================
     if (config.blockSelection) {
+        // Prevent selection start
         document.addEventListener('selectstart', function(e) {
             e.preventDefault();
+            debugLog('Text selection blocked');
             return false;
-        });
+        }, false);
         
-        // Prevent text selection on tap-hold
-        document.addEventListener('touchstart', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
+        // CSS-based blocking
+        const style = document.createElement('style');
+        style.textContent = `
+            * {
+                -webkit-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+                -webkit-touch-callout: none !important;
             }
-        });
+        `;
+        document.head.appendChild(style);
         
-        document.addEventListener('mousedown', function(e) {
-            if (e.detail > 1) {
-                e.preventDefault();
-                return false;
-            }
-        });
-        
-        document.body.style.userSelect = 'none';
-        document.body.style.webkitUserSelect = 'none';
-        document.body.style.webkitTouchCallout = 'none'; // iOS Safari
-        document.body.style.mozUserSelect = 'none';
-        document.body.style.msUserSelect = 'none';
+        debugLog('Text selection protection enabled');
     }
-
-    // ==================== DISABLE COPY ====================
+    
+    // ==================== DISABLE COPY/PASTE ====================
     if (config.blockCopy) {
         document.addEventListener('copy', function(e) {
             e.preventDefault();
-            showWarning('Copying content is disabled');
+            e.clipboardData.setData('text/plain', '');
+            debugLog('Copy blocked');
+            showWarning('Copying is disabled');
             return false;
-        });
+        }, false);
         
         document.addEventListener('cut', function(e) {
             e.preventDefault();
+            debugLog('Cut blocked');
             return false;
-        });
+        }, false);
+        
+        debugLog('Copy/Cut protection enabled');
     }
-
-    // ==================== MOBILE DEVTOOLS DETECTION ====================
     
-    // Get threshold based on sensitivity
-    const getThreshold = () => {
-        const thresholds = {
-            low: 200,
-            medium: 100,
-            high: 50
-        };
-        return thresholds[config.detectionSensitivity] || 100;
-    };
-
-    // Method 1: Debugger timing detection
-    const detectDevTools1 = () => {
-        const threshold = getThreshold();
-        const start = performance.now();
-        debugger;
-        const end = performance.now();
-        
-        if (end - start > threshold) {
-            return true;
-        }
-        return false;
-    };
-
-    // Method 2: Mobile browser console detection (Chrome mobile, Firefox mobile)
-    const detectMobileConsole = () => {
-        // Check for mobile browser console
-        const element = document.createElement('div');
-        Object.defineProperty(element, 'id', {
-            get: function() {
-                // Console is open
-                return true;
-            }
-        });
-        
-        // This will trigger if console is open
-        requestAnimationFrame(() => {
-            console.profile(element);
-            console.profileEnd(element);
-        });
-        
-        return false;
-    };
-
-    // Method 3: Detect USB debugging (Android)
-    const detectUSBDebugging = () => {
-        // Check if USB debugging might be enabled
-        if (window.chrome && window.chrome.webstore) {
-            return false; // Desktop Chrome
-        }
-        
-        // Mobile-specific checks
-        const isAndroid = /Android/i.test(navigator.userAgent);
-        if (isAndroid) {
-            // Additional Android-specific detection can be added here
-            return false;
-        }
-        
-        return false;
-    };
-
-    // Handle DevTools Detection
-    function handleDevToolsOpen() {
-        if (devtoolsOpen || warningShown) return;
-        
-        devtoolsOpen = true;
-        warningShown = true;
-        
-        if (config.useBlur) {
-            document.body.style.filter = 'blur(10px)';
-            document.body.style.pointerEvents = 'none';
-            
-            if (config.showWarning) {
-                showDevToolsWarning();
-            }
-        } else {
-            window.location.href = config.redirectUrl;
-        }
-    }
-
-    // Show DevTools warning overlay
-    function showDevToolsWarning() {
-        if (document.getElementById('devtools-warning-overlay')) return;
-        
-        const overlay = document.createElement('div');
-        overlay.id = 'devtools-warning-overlay';
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 999999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ff4444;
-            font-family: Arial, sans-serif;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-        `;
-        overlay.innerHTML = `
-            <div style="max-width: 90%;">
-                <h1 style="font-size: 36px; margin-bottom: 20px;">⚠️ WARNING ⚠️</h1>
-                <p style="font-size: 18px;">Developer Tools Detected!</p>
-                <p style="font-size: 14px; margin-top: 20px;">This action has been logged.</p>
-                <p style="font-size: 12px; margin-top: 10px;">Close DevTools to continue.</p>
-            </div>
-        `;
-        document.body.appendChild(overlay);
-    }
-
-    // Show custom warning messages
+    // ==================== SHOW WARNING FUNCTION ====================
     function showWarning(message) {
-        if (!config.showWarning) return;
+        if (!config.showWarnings) return;
+        
+        debugLog('Showing warning: ' + message);
+        
+        // Remove existing warning if any
+        const existingWarning = document.getElementById('mobile-protection-warning');
+        if (existingWarning) {
+            existingWarning.remove();
+        }
         
         const warning = document.createElement('div');
+        warning.id = 'mobile-protection-warning';
+        warning.textContent = message;
         warning.style.cssText = `
             position: fixed;
             top: 20px;
@@ -291,132 +190,123 @@
             transform: translateX(-50%);
             background: #ff4444;
             color: white;
-            padding: 12px 20px;
-            border-radius: 5px;
+            padding: 15px 25px;
+            border-radius: 8px;
             z-index: 999999;
             font-family: Arial, sans-serif;
-            font-size: 13px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            animation: slideDown 0.3s ease-out;
-            max-width: 90%;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             text-align: center;
+            max-width: 80%;
+            animation: slideIn 0.3s ease-out;
         `;
-        warning.textContent = message;
-        
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideDown {
-                from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-                to { transform: translateX(-50%) translateY(0); opacity: 1; }
-            }
-        `;
-        if (!document.getElementById('warning-animation-style')) {
-            style.id = 'warning-animation-style';
-            document.head.appendChild(style);
-        }
         
         document.body.appendChild(warning);
         
         setTimeout(() => {
-            warning.style.animation = 'slideDown 0.3s ease-out reverse';
-            setTimeout(() => warning.remove(), 300);
+            if (warning && warning.parentNode) {
+                warning.style.opacity = '0';
+                warning.style.transition = 'opacity 0.3s';
+                setTimeout(() => warning.remove(), 300);
+            }
         }, 2500);
     }
-
-    // ==================== DISABLE DRAG AND DROP ====================
-    document.addEventListener('dragstart', function(e) {
-        e.preventDefault();
-        return false;
-    });
-
-    // ==================== PREVENT SCREENSHOT ON ANDROID ====================
-    // Note: This is limited on mobile, but we can make it harder
-    document.addEventListener('keyup', function(e) {
-        // Power + Volume Down (screenshot combo detection - limited)
-        if (e.key === 'PrintScreen' || e.keyCode === 44) {
-            navigator.clipboard.writeText('');
-            showWarning('Screenshots are disabled');
+    
+    // ==================== KEYBOARD SHORTCUTS (for external keyboards) ====================
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode === 123 ||
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
+            e.preventDefault();
+            debugLog('Keyboard shortcut blocked: ' + e.keyCode);
+            showWarning('Keyboard shortcuts disabled');
+            return false;
         }
-    });
-
-    // ==================== DETECT SCREEN RECORDING (LIMITED) ====================
-    // Detect if user might be screen recording
-    if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-        const originalGetDisplayMedia = navigator.mediaDevices.getDisplayMedia;
-        navigator.mediaDevices.getDisplayMedia = function() {
-            showWarning('Screen recording detected');
-            return Promise.reject(new Error('Screen recording blocked'));
-        };
-    }
-
-    // ==================== ANTI-IFRAME PROTECTION ====================
-    if (window.top !== window.self) {
-        window.top.location = window.self.location;
-    }
-
-    // ==================== PREVENT PINCH ZOOM ====================
+    }, false);
+    
+    // ==================== PREVENT ZOOM ====================
     document.addEventListener('touchmove', function(e) {
-        if (e.touches.length > 1) {
+        if (e.scale !== 1) {
             e.preventDefault();
         }
     }, { passive: false });
     
     document.addEventListener('gesturestart', function(e) {
         e.preventDefault();
-    });
-
-    // ==================== RUN DETECTION LOOPS (Mobile-Optimized) ====================
-    let detectionStarted = false;
+    }, false);
     
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            detectionStarted = true;
-            
-            // Run detection every 3 seconds (less battery intensive on mobile)
-            setInterval(() => {
-                if (!devtoolsOpen) {
-                    const detected = detectDevTools1();
-                    if (detected) {
-                        handleDevToolsOpen();
-                    }
-                }
-            }, 3000);
-            
-        }, 2000);
-    });
-
-    // ==================== DETECT WHEN APP GOES TO BACKGROUND ====================
-    // This might indicate USB debugging or remote debugging
-    let wasHidden = false;
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            wasHidden = true;
-        } else if (wasHidden) {
-            // App came back from background - check for debugging
-            setTimeout(() => {
-                if (!devtoolsOpen) {
-                    const detected = detectDevTools1();
-                    if (detected) {
-                        handleDevToolsOpen();
-                    }
-                }
-            }, 500);
+    // Add viewport meta tag if not exists
+    let viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (!viewportMeta) {
+        viewportMeta = document.createElement('meta');
+        viewportMeta.name = 'viewport';
+        document.head.appendChild(viewportMeta);
+    }
+    viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    
+    // ==================== ANTI-IFRAME ====================
+    if (window.top !== window.self) {
+        debugLog('Iframe detected - redirecting');
+        window.top.location = window.self.location;
+    }
+    
+    // ==================== DEVTOOLS DETECTION ====================
+    let devtoolsDetected = false;
+    
+    function checkDevTools() {
+        const threshold = 100;
+        const start = performance.now();
+        debugger;
+        const end = performance.now();
+        
+        if (end - start > threshold && !devtoolsDetected) {
+            devtoolsDetected = true;
+            debugLog('⚠️ DevTools detected!');
+            handleDevTools();
         }
-    });
-
-    // ==================== ORIENTATION CHANGE DETECTION ====================
-    window.addEventListener('orientationchange', () => {
-        setTimeout(() => {
-            if (detectionStarted && !devtoolsOpen) {
-                const detected = detectDevTools1();
-                if (detected) {
-                    handleDevToolsOpen();
-                }
-            }
-        }, 500);
-    });
-
-    // ==================== MOBILE-SPECIFIC PROTECTION INDICATOR ====================
-    console.log('%c🔒 Mobile Protection Active', 'color: #00ff00; font-size: 16px; font-weight: bold;');
-
+    }
+    
+    function handleDevTools() {
+        document.body.style.filter = 'blur(10px)';
+        document.body.style.pointerEvents = 'none';
+        
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ff4444;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        `;
+        overlay.innerHTML = `
+            <div>
+                <h1 style="font-size: 32px; margin-bottom: 15px;">⚠️ WARNING ⚠️</h1>
+                <p style="font-size: 18px;">Developer Tools Detected!</p>
+                <p style="font-size: 14px; margin-top: 15px;">Close DevTools to continue</p>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+    
+    // Run detection every 2 seconds
+    setInterval(checkDevTools, 2000);
+    
+    // ==================== INITIALIZATION COMPLETE ====================
+    debugLog('✅ All protections initialized successfully!');
+    
+    // Show confirmation
+    setTimeout(() => {
+        showWarning('🔒 Protection Active');
+    }, 1000);
+    
 })();
