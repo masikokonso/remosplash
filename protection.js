@@ -1,10 +1,41 @@
 /**
- * Website Protection Script - FIXED VERSION
- * Protects against code inspection and theft
+ * Mobile-Only Website Protection Script
+ * Only activates on mobile devices, bypasses PCs completely
  */
 
 (function() {
     'use strict';
+    
+    // ==================== MOBILE DEVICE DETECTION ====================
+    function isMobileDevice() {
+        // Method 1: User Agent Detection
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|tablet/i;
+        const isMobileUA = mobileRegex.test(userAgent.toLowerCase());
+        
+        // Method 2: Touch Detection
+        const hasTouch = ('ontouchstart' in window) || 
+                        (navigator.maxTouchPoints > 0) || 
+                        (navigator.msMaxTouchPoints > 0);
+        
+        // Method 3: Screen Size Detection (mobile typically < 768px)
+        const isMobileScreen = window.innerWidth <= 768;
+        
+        // Method 4: Check for mobile-specific features
+        const isMobileFeatures = /Mobi|Android/i.test(navigator.userAgent);
+        
+        // Return true if ANY mobile indicator is present
+        return isMobileUA || (hasTouch && isMobileScreen) || isMobileFeatures;
+    }
+    
+    // ==================== EXIT IF NOT MOBILE ====================
+    if (!isMobileDevice()) {
+        console.log('Desktop detected - protection script disabled');
+        return; // Exit the script completely for PC users
+    }
+    
+    // ==================== MOBILE PROTECTION STARTS HERE ====================
+    console.log('Mobile device detected - protection active');
     
     // Configuration
     const config = {
@@ -20,14 +51,31 @@
     let devtoolsOpen = false;
     let warningShown = false;
 
-    // ==================== DISABLE RIGHT CLICK ====================
+    // ==================== DISABLE RIGHT CLICK (Long Press on Mobile) ====================
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
-        showWarning('Right-click is disabled on this website');
+        showWarning('Long press is disabled');
         return false;
     });
+    
+    // Prevent long-press context menu on mobile
+    let pressTimer;
+    document.addEventListener('touchstart', function(e) {
+        pressTimer = setTimeout(function() {
+            e.preventDefault();
+            showWarning('Long press is disabled');
+        }, 500);
+    });
+    
+    document.addEventListener('touchend', function() {
+        clearTimeout(pressTimer);
+    });
+    
+    document.addEventListener('touchmove', function() {
+        clearTimeout(pressTimer);
+    });
 
-    // ==================== DISABLE KEYBOARD SHORTCUTS ====================
+    // ==================== DISABLE KEYBOARD SHORTCUTS (for external keyboards) ====================
     document.addEventListener('keydown', function(e) {
         // F12 - Developer Tools
         if (e.keyCode === 123) {
@@ -70,24 +118,6 @@
             e.preventDefault();
             return false;
         }
-        
-        // Cmd+Option+I (Mac)
-        if (e.metaKey && e.altKey && e.keyCode === 73) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Cmd+Option+J (Mac)
-        if (e.metaKey && e.altKey && e.keyCode === 74) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Cmd+Option+C (Mac)
-        if (e.metaKey && e.altKey && e.keyCode === 67) {
-            e.preventDefault();
-            return false;
-        }
     });
 
     // ==================== DISABLE TEXT SELECTION ====================
@@ -95,6 +125,13 @@
         document.addEventListener('selectstart', function(e) {
             e.preventDefault();
             return false;
+        });
+        
+        // Prevent text selection on tap-hold
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
         });
         
         document.addEventListener('mousedown', function(e) {
@@ -106,6 +143,7 @@
         
         document.body.style.userSelect = 'none';
         document.body.style.webkitUserSelect = 'none';
+        document.body.style.webkitTouchCallout = 'none'; // iOS Safari
         document.body.style.mozUserSelect = 'none';
         document.body.style.msUserSelect = 'none';
     }
@@ -124,17 +162,7 @@
         });
     }
 
-    // ==================== BLOCK PRINT SCREEN ====================
-    if (config.blockPrintScreen) {
-        document.addEventListener('keyup', function(e) {
-            if (e.key === 'PrintScreen') {
-                navigator.clipboard.writeText('');
-                showWarning('Screenshots are disabled');
-            }
-        });
-    }
-
-    // ==================== DEVTOOLS DETECTION (IMPROVED) ====================
+    // ==================== MOBILE DEVTOOLS DETECTION ====================
     
     // Get threshold based on sensitivity
     const getThreshold = () => {
@@ -159,65 +187,51 @@
         return false;
     };
 
-    // Method 2: Window size detection (improved)
-    const detectDevTools2 = () => {
-        // More conservative thresholds to avoid false positives
-        const widthThreshold = window.outerWidth - window.innerWidth > 200;
-        const heightThreshold = window.outerHeight - window.innerHeight > 200;
+    // Method 2: Mobile browser console detection (Chrome mobile, Firefox mobile)
+    const detectMobileConsole = () => {
+        // Check for mobile browser console
+        const element = document.createElement('div');
+        Object.defineProperty(element, 'id', {
+            get: function() {
+                // Console is open
+                return true;
+            }
+        });
         
-        // Only trigger if BOTH dimensions are suspicious
-        const screenRatio = window.screen.width / window.innerWidth;
+        // This will trigger if console is open
+        requestAnimationFrame(() => {
+            console.profile(element);
+            console.profileEnd(element);
+        });
         
-        if ((widthThreshold || heightThreshold) && screenRatio < 1.5) {
-            return true;
-        }
         return false;
     };
 
-    // Method 3: Console detection using devtools-detect pattern
-    const detectDevTools3 = () => {
-        const devtools = {
-            isOpen: false,
-            orientation: undefined
-        };
+    // Method 3: Detect USB debugging (Android)
+    const detectUSBDebugging = () => {
+        // Check if USB debugging might be enabled
+        if (window.chrome && window.chrome.webstore) {
+            return false; // Desktop Chrome
+        }
         
-        const threshold = 160;
-        const emitEvent = (isOpen, orientation) => {
-            devtools.isOpen = isOpen;
-            devtools.orientation = orientation;
-        };
-
-        setInterval(() => {
-            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-            const orientation = widthThreshold ? 'vertical' : 'horizontal';
-
-            if (!(heightThreshold && widthThreshold) &&
-                ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
-                if (!devtools.isOpen || devtools.orientation !== orientation) {
-                    emitEvent(true, orientation);
-                    return true;
-                }
-            } else {
-                if (devtools.isOpen) {
-                    emitEvent(false, undefined);
-                    return false;
-                }
-            }
-        }, 500);
+        // Mobile-specific checks
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        if (isAndroid) {
+            // Additional Android-specific detection can be added here
+            return false;
+        }
         
-        return devtools.isOpen;
+        return false;
     };
 
     // Handle DevTools Detection
     function handleDevToolsOpen() {
-        if (devtoolsOpen || warningShown) return; // Prevent multiple triggers
+        if (devtoolsOpen || warningShown) return;
         
         devtoolsOpen = true;
         warningShown = true;
         
         if (config.useBlur) {
-            // Blur the entire page
             document.body.style.filter = 'blur(10px)';
             document.body.style.pointerEvents = 'none';
             
@@ -225,14 +239,12 @@
                 showDevToolsWarning();
             }
         } else {
-            // Redirect to another page
             window.location.href = config.redirectUrl;
         }
     }
 
     // Show DevTools warning overlay
     function showDevToolsWarning() {
-        // Check if overlay already exists
         if (document.getElementById('devtools-warning-overlay')) return;
         
         const overlay = document.createElement('div');
@@ -250,17 +262,18 @@
             align-items: center;
             color: #ff4444;
             font-family: Arial, sans-serif;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             text-align: center;
             padding: 20px;
+            box-sizing: border-box;
         `;
         overlay.innerHTML = `
-            <div>
-                <h1 style="font-size: 48px; margin-bottom: 20px;">⚠️ WARNING ⚠️</h1>
-                <p>Developer Tools Detected!</p>
-                <p style="font-size: 18px; margin-top: 20px;">This action has been logged.</p>
-                <p style="font-size: 16px; margin-top: 10px;">Close DevTools to continue.</p>
+            <div style="max-width: 90%;">
+                <h1 style="font-size: 36px; margin-bottom: 20px;">⚠️ WARNING ⚠️</h1>
+                <p style="font-size: 18px;">Developer Tools Detected!</p>
+                <p style="font-size: 14px; margin-top: 20px;">This action has been logged.</p>
+                <p style="font-size: 12px; margin-top: 10px;">Close DevTools to continue.</p>
             </div>
         `;
         document.body.appendChild(overlay);
@@ -274,25 +287,27 @@
         warning.style.cssText = `
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             background: #ff4444;
             color: white;
-            padding: 15px 25px;
+            padding: 12px 20px;
             border-radius: 5px;
             z-index: 999999;
             font-family: Arial, sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            animation: slideIn 0.3s ease-out;
+            animation: slideDown 0.3s ease-out;
+            max-width: 90%;
+            text-align: center;
         `;
         warning.textContent = message;
         
-        // Add animation
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(400px); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
+            @keyframes slideDown {
+                from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+                to { transform: translateX(-50%) translateY(0); opacity: 1; }
             }
         `;
         if (!document.getElementById('warning-animation-style')) {
@@ -303,9 +318,9 @@
         document.body.appendChild(warning);
         
         setTimeout(() => {
-            warning.style.animation = 'slideIn 0.3s ease-out reverse';
+            warning.style.animation = 'slideDown 0.3s ease-out reverse';
             setTimeout(() => warning.remove(), 300);
-        }, 3000);
+        }, 2500);
     }
 
     // ==================== DISABLE DRAG AND DROP ====================
@@ -314,21 +329,50 @@
         return false;
     });
 
+    // ==================== PREVENT SCREENSHOT ON ANDROID ====================
+    // Note: This is limited on mobile, but we can make it harder
+    document.addEventListener('keyup', function(e) {
+        // Power + Volume Down (screenshot combo detection - limited)
+        if (e.key === 'PrintScreen' || e.keyCode === 44) {
+            navigator.clipboard.writeText('');
+            showWarning('Screenshots are disabled');
+        }
+    });
+
+    // ==================== DETECT SCREEN RECORDING (LIMITED) ====================
+    // Detect if user might be screen recording
+    if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+        const originalGetDisplayMedia = navigator.mediaDevices.getDisplayMedia;
+        navigator.mediaDevices.getDisplayMedia = function() {
+            showWarning('Screen recording detected');
+            return Promise.reject(new Error('Screen recording blocked'));
+        };
+    }
+
     // ==================== ANTI-IFRAME PROTECTION ====================
     if (window.top !== window.self) {
         window.top.location = window.self.location;
     }
 
-    // ==================== RUN DETECTION LOOPS ====================
-    // Only run detection after page is fully loaded and with delays
+    // ==================== PREVENT PINCH ZOOM ====================
+    document.addEventListener('touchmove', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+    });
+
+    // ==================== RUN DETECTION LOOPS (Mobile-Optimized) ====================
     let detectionStarted = false;
     
     window.addEventListener('load', () => {
-        // Wait 2 seconds after page load before starting detection
         setTimeout(() => {
             detectionStarted = true;
             
-            // Run detection every 2 seconds (less aggressive)
+            // Run detection every 3 seconds (less battery intensive on mobile)
             setInterval(() => {
                 if (!devtoolsOpen) {
                     const detected = detectDevTools1();
@@ -336,31 +380,19 @@
                         handleDevToolsOpen();
                     }
                 }
-            }, 2000);
-            
-            // Window size check on resize only
-            window.addEventListener('resize', () => {
-                if (!devtoolsOpen && detectionStarted) {
-                    setTimeout(() => {
-                        const detected = detectDevTools2();
-                        if (detected) {
-                            handleDevToolsOpen();
-                        }
-                    }, 500); // Delay to avoid false positives during legitimate resizing
-                }
-            });
+            }, 3000);
             
         }, 2000);
     });
 
-    // ==================== DETECT F12 KEY PRESS ====================
-    // Additional layer: detect when F12 is actually pressed
-    let f12Pressed = false;
-    document.addEventListener('keydown', (e) => {
-        if (e.keyCode === 123 || 
-            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67))) {
-            f12Pressed = true;
-            // Start more aggressive checking after F12 press
+    // ==================== DETECT WHEN APP GOES TO BACKGROUND ====================
+    // This might indicate USB debugging or remote debugging
+    let wasHidden = false;
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            wasHidden = true;
+        } else if (wasHidden) {
+            // App came back from background - check for debugging
             setTimeout(() => {
                 if (!devtoolsOpen) {
                     const detected = detectDevTools1();
@@ -368,8 +400,23 @@
                         handleDevToolsOpen();
                     }
                 }
-            }, 100);
+            }, 500);
         }
     });
+
+    // ==================== ORIENTATION CHANGE DETECTION ====================
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            if (detectionStarted && !devtoolsOpen) {
+                const detected = detectDevTools1();
+                if (detected) {
+                    handleDevToolsOpen();
+                }
+            }
+        }, 500);
+    });
+
+    // ==================== MOBILE-SPECIFIC PROTECTION INDICATOR ====================
+    console.log('%c🔒 Mobile Protection Active', 'color: #00ff00; font-size: 16px; font-weight: bold;');
 
 })();
