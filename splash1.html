@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REMO-TASK - Earn Money by Training AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-dark: #0f172a;
+            --color-primary: #a855f7;
+            --color-primary-light: #8b5cf6;
+            --color-green: #4ade80;
+            --color-green-dark: #16a34a;
+            --color-text-muted: #94a3b8;
+            --color-text-dim: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Background Layer */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-bg-dark);
+            z-index: 1;
+        }
+
+        /* Animated Gradient Circles */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+            top: 100px;
+            left: -50px;
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+            bottom: 200px;
+            right: 150px;
+            animation: float2 8.5s ease-in-out infinite;
+        }
+
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float3 9s ease-in-out infinite;
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+        }
+
+        .particle-1 {
+            width: 8px;
+            height: 8px;
+            top: 150px;
+            left: 50px;
+            animation: particle1 7s ease-in-out infinite;
+        }
+
+        .particle-2 {
+            width: 6px;
+            height: 6px;
+            top: 250px;
+            right: 60px;
+            animation: particle2 7.5s ease-in-out infinite;
+        }
+
+        .particle-3 {
+            width: 10px;
+            height: 10px;
+            bottom: 200px;
+            left: 80px;
+            animation: particle3 7.2s ease-in-out infinite;
+        }
+
+        .particle-4 {
+            width: 7px;
+            height: 7px;
+            bottom: 300px;
+            right: 90px;
+            animation: particle4 7.8s ease-in-out infinite;
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* App Name at Top */
+        .app-name {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        /* Icon Container */
+        .icon-container {
+            position: relative;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .icon-glow {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+            filter: blur(20px);
+        }
+
+        .icon-outer {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+            border-radius: 45px;
+            border: 4px solid #8b5cf6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.5);
+            opacity: 0;
+        }
+
+        .icon-inner {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s ease;
+        }
+
+        .icon-emoji {
+            font-size: 18px;
+            transition: font-size 0.1s ease;
+        }
+
+        /* Labels */
+        .tagline {
+            margin-top: 120px;
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--color-primary);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slogan {
+            margin-top: 15px;
+            font-size: 15px;
+            color: var(--color-text-muted);
+            text-align: center;
+            opacity: 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+        }
+
+        /* Loading */
+        .loading-spinner {
+            margin-top: 20px;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(168, 85, 247, 0.3);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            opacity: 0;
+        }
+
+        /* Version */
+        .version {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: var(--color-text-dim);
+            opacity: 0;
+        }
+
+        /* Flash Effect */
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Buy Popup Overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup {
+            background-color: #1e293b;
+            border-radius: 20px;
+            border: 3px solid var(--color-green);
+            max-width: calc(100% - 40px);
+            width: 520px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .popup-icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        .popup-sparkle {
+            font-size: 20px;
+            color: #fbbf24;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .popup-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .popup-benefits {
+            text-align: left;
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            line-height: 2;
+        }
+
+        .popup-price {
+            background-color: rgba(74, 222, 128, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .popup-price-text {
+            font-size: 18px;
+            color: var(--color-green);
+            font-weight: bold;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--color-green);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--color-green-dark);
+        }
+
+        .btn-later {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: var(--color-text-muted);
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -20px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -20px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-30%, -30%); }
+        }
+
+        @keyframes particle1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes particle2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes particle3 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes particle4 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .app-name {
+                font-size: 28px;
+                top: 12%;
+            }
+            
+            .tagline {
+                font-size: 15px;
+                margin-top: 100px;
+            }
+            
+            .slogan {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Layer -->
+    <div class="background">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+    </div>
+
+    <!-- Flash Effect -->
+    <div class="flash" id="flash"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="app-name" id="appName"></div>
+        
+        <div class="icon-container">
+            <div class="icon-glow" id="iconGlow"></div>
+            <div class="icon-outer" id="iconOuter">
+                <div class="icon-inner" id="iconInner">
+                    <div class="icon-emoji" id="iconEmoji">💰</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tagline" id="tagline">Earn Money by Training AI</div>
+        <div class="slogan" id="slogan"></div>
+        <div class="loading-spinner" id="loading"></div>
+        <div class="version" id="version">Version 4.0 • Powered by AI</div>
+    </div>
+
+    <!-- Buy Account Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-icon">🎁</div>
+            <div class="popup-sparkle">✨ Premium Account ✨</div>
+            <h2 class="popup-title">Unlock Your Full Potential</h2>
+            <div class="popup-benefits">
+                ✅ Instant withdrawal processing<br>
+                ✅ Higher earnings per task<br>
+                ✅ Priority customer support<br>
+                ✅ Exclusive bonus tasks<br>
+                ✅ No withdrawal delays
+            </div>
+            <div class="popup-price">
+                <div class="popup-price-text">Only $ 199 / month</div>
+            </div>
+            <button class="btn-buy" onclick="handleBuyNow()">🚀 Activate Premium Now</button>
+            <button class="btn-later" onclick="handleLater()">Maybe Later</button>
+        </div>
+    </div>
+
+    <script>
+        // Protection code (basic version)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode == 123 || // F12
+                (e.ctrlKey && e.shiftKey && e.keyCode == 73) || // Ctrl+Shift+I
+                (e.ctrlKey && e.shiftKey && e.keyCode == 74) || // Ctrl+Shift+J
+                (e.ctrlKey && e.keyCode == 85)) { // Ctrl+U
+                e.preventDefault();
+            }
+        });
+
+        // Splash Screen Animation with REDUCED DELAYS (50%)
+        const appName = document.getElementById('appName');
+        const iconGlow = document.getElementById('iconGlow');
+        const iconOuter = document.getElementById('iconOuter');
+        const iconEmoji = document.getElementById('iconEmoji');
+        const tagline = document.getElementById('tagline');
+        const slogan = document.getElementById('slogan');
+        const loading = document.getElementById('loading');
+        const version = document.getElementById('version');
+        const flash = document.getElementById('flash');
+        const popupOverlay = document.getElementById('popupOverlay');
+
+        const slogans = [
+            "Complete simple tasks, earn real money",
+            "Join thousands earning daily",
+            "Your AI training partner",
+            "Turn your time into income"
+        ];
+
+        let currentSloganIndex = 0;
+
+        function typeText(element, text, speed = 25) {
+            return new Promise((resolve) => {
+                let index = 0;
+                element.textContent = '';
+                const interval = setInterval(() => {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                    } else {
+                        clearInterval(interval);
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+
+        function fadeIn(element, duration = 300) {
+            return new Promise((resolve) => {
+                element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+                setTimeout(resolve, duration);
+            });
+        }
+
+        function scaleIn(element, duration = 300) {
+            return new Promise((resolve) => {
+                element.style.transition = `all ${duration}ms cubic-bezier(0.34, 1.56, 0.64, 1)`;
+                element.style.transform = 'scale(1)';
+                element.style.opacity = '1';
+                setTimeout(resolve, duration);
+            });
+        }
+
+        async function rotateSlogans() {
+            while (currentSloganIndex < slogans.length) {
+                await typeText(slogan, slogans[currentSloganIndex]);
+                await new Promise(resolve => setTimeout(resolve, 500)); // Reduced from 1000ms to 500ms
+                
+                slogan.style.transition = 'opacity 200ms ease';
+                slogan.style.opacity = '0';
+                await new Promise(resolve => setTimeout(resolve, 200));
+                
+                currentSloganIndex++;
+                
+                if (currentSloganIndex < slogans.length) {
+                    slogan.style.opacity = '1';
+                }
+            }
+        }
+
+        async function animateSplash() {
+            // Initial flash - Reduced from 100ms to 50ms
+            flash.style.transition = 'opacity 50ms ease';
+            flash.style.opacity = '0.6';
+            await new Promise(resolve => setTimeout(resolve, 50));
+            flash.style.opacity = '0';
+
+            // Reduced from 200ms to 100ms
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // App name typing - Reduced from 400ms to 200ms
+            await typeText(appName, 'REMO-TASK', 15);
+            await fadeIn(appName, 150);
+
+            // Reduced from 200ms to 100ms
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Icon glow - Reduced from 300ms to 150ms
+            await scaleIn(iconGlow, 150);
+
+            // Icon appear - Reduced from 400ms to 200ms
+            await scaleIn(iconOuter, 200);
+
+            // Icon pulse - Reduced from 150ms to 75ms
+            iconEmoji.style.fontSize = '22px';
+            await new Promise(resolve => setTimeout(resolve, 75));
+            iconEmoji.style.fontSize = '18px';
+
+            // Reduced from 200ms to 100ms
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Tagline - Reduced from 300ms to 150ms
+            await fadeIn(tagline, 150);
+
+            // Reduced from 100ms to 50ms
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            // Slogan rotation
+            rotateSlogans();
+
+            // Reduced from 300ms to 150ms
+            await new Promise(resolve => setTimeout(resolve, 150));
+
+            // Loading spinner - Reduced from 300ms to 150ms
+            await fadeIn(loading, 150);
+
+            // Reduced from 200ms to 100ms
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Version - Reduced from 300ms to 150ms
+            await fadeIn(version, 150);
+
+            // Wait for slogans to complete - Reduced from 3000ms to 1500ms
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Final flash before redirect - Reduced from 200ms to 100ms
+            flash.style.transition = 'opacity 100ms ease';
+            flash.style.opacity = '1';
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Redirect to Google Play Store
+            window.location.href = 'https://play.google.com/store/apps/details?id=com.remopesa.remopesatask';
+        }
+
+        function handleBuyNow() {
+            // Handle premium purchase
+            alert('Premium purchase feature - integrate with payment gateway');
+        }
+
+        function handleLater() {
+            popupOverlay.classList.remove('active');
+            // Continue to app
+            window.location.href = 'https://play.google.com/store/apps/details?id=com.remopesa.remopesatask';
+        }
+
+        // Start animation on page load
+        window.addEventListener('load', animateSplash);
+    </script>
+</body>
+</html>
