@@ -418,34 +418,22 @@ function showBonusPanel() {
 }
 
 function claimBonus() {
-    // Double-check bonus hasn't been claimed
     if (state.bonusClaimed) {
         showToast('Bonus already claimed!');
         window.location.href = 'account-purchase.html';
-        console.log('Navigating to dashboard...');
         return;
     }
 
     showLoading(2000, () => {
-        // Add bonus to total earnings
         state.totalEarnings += state.bonusAmount;
-
-        // Save earnings
         saveEarnings();
-
-        // Mark bonus as claimed
         markBonusAsClaimed();
 
-        // Hide bonus overlay
         document.getElementById('bonusOverlay').classList.remove('active');
-
-        // Show success message
         showToast(`$${state.bonusAmount} bonus credited! Total: $${state.totalEarnings.toFixed(2)}`, true);
 
-        // Navigate to dashboard
         setTimeout(() => {
-            console.log('Navigating to dashboard...');
-            showToast('Redirecting to dashboard...', true);
+            window.location.href = 'account-purchase.html'; // ← was missing
         }, 1000);
     });
 }
