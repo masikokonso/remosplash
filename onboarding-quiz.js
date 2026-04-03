@@ -421,7 +421,8 @@ function showBonusPanel() {
 function claimBonus() {
     if (state.bonusClaimed) {
         showToast('Bonus already claimed!');
-        window.location.href = 'account-purchase.html';
+                //window.location.href = 'account-purchase.html';
+                window.location.href = 'dashboard.html';
         return;
     }
 
@@ -434,7 +435,8 @@ function claimBonus() {
         showToast(`$${state.bonusAmount} bonus credited! Total: $${state.totalEarnings.toFixed(2)}`, true);
 
         setTimeout(() => {
-            window.location.href = 'account-purchase.html'; // ← was missing
+                //window.location.href = 'account-purchase.html';
+                window.location.href = 'dashboard.html';
         }, 1000);
     });
 }
