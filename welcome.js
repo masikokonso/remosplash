@@ -1,6 +1,6 @@
 // ================== STATE MANAGEMENT ==================
 const state = {
-    termsAccepted: false
+    termsAccepted: true
 };
 
 // ================== INITIALIZATION ==================
