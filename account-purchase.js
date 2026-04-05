@@ -4,6 +4,7 @@ const state = {
     selectedPlan: '',
     selectedPrice: 0,
     usdToKsh: 100.0,
+    currentAmount: 0,
     prices: {
         beginner: 3.00,
         average: 4.50,
@@ -21,7 +22,7 @@ const PAYHERO = {
 document.addEventListener('DOMContentLoaded', () => {
     loadPrices();
     updatePriceDisplays();
-    injectManualVerifyUI();
+    injectManualVerifyPopup();
 });
 
 // ================== LOAD PRICES FROM LOCALSTORAGE ==================
@@ -36,8 +37,8 @@ function loadPrices() {
                 state.prices.expert   = parseFloat(data[4]) || 6.50;
             }
         }
-    } catch (error) {
-        console.error('Error loading prices:', error);
+    } catch (e) {
+        console.error('Error loading prices:', e);
     }
 }
 
@@ -52,41 +53,79 @@ function convertUSDtoKSH(usdAmount) {
     return (usdAmount * state.usdToKsh).toFixed(2);
 }
 
-// ================== INJECT MANUAL VERIFY UI ==================
-// Appended inside the payment-details-popup form, below the pay button
-function injectManualVerifyUI() {
-    const form = document.querySelector('.payment-form');
-    if (!form) return;
-
+// ================== INJECT STANDALONE MANUAL VERIFY POPUP ==================
+// Mirrors B4A ShowManualVerificationPopup — separate overlay, appears after loading hides
+function injectManualVerifyPopup() {
     const html = `
-    <div class="already-paid-wrap" id="alreadyPaidWrap" style="margin-top:16px;">
-        <button class="cancel-btn" onclick="toggleManualVerify()"
-            style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-size:14px;font-weight:700;color:#cbd5e1;">
-            <span>📱 Already Paid? Verify Manually</span>
-            <span id="aptArrow" style="font-size:12px;transition:transform .2s;">▼</span>
-        </button>
-        <div id="manualVerifyBox" style="display:none;margin-top:10px;background:#1e293b;border:1.5px solid #475569;border-radius:12px;padding:14px;">
-            <div style="font-size:12px;color:#94a3b8;line-height:1.8;margin-bottom:12px;">
-                <span style="display:block;">1. Open your M-Pesa messages</span>
-                <span style="display:block;">2. Find the payment confirmation SMS</span>
-                <span style="display:block;">3. Long-press → Copy the <strong style="color:#cbd5e1;">entire</strong> message</span>
-                <span style="display:block;">4. Paste below and tap Verify</span>
-            </div>
-            <div id="mvAmountHint" style="background:rgba(0,153,51,0.2);border:1px solid #009933;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;font-weight:700;color:#22c55e;text-align:center;">
+    <div id="manualVerifyOverlay"
+        style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);
+               z-index:9000;align-items:center;justify-content:center;padding:20px;">
+        <div style="background:#1e293b;border-radius:15px;border:2px solid #22c55e;
+                    max-width:400px;width:100%;max-height:90vh;overflow-y:auto;
+                    padding:30px 20px;">
+
+            <div style="text-align:center;font-size:50px;margin-bottom:12px;">📱</div>
+
+            <h2 style="text-align:center;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;">
+                Manual Verification
+            </h2>
+
+            <p style="font-size:13px;color:#cbd5e1;line-height:1.8;margin-bottom:14px;">
+                If you already paid via M-Pesa:<br>
+                1. Check your M-Pesa messages<br>
+                2. Copy the <strong style="color:#fff;">entire</strong> confirmation message<br>
+                3. Paste it below and click Verify
+            </p>
+
+            <div id="mvAmountHint"
+                style="background:rgba(34,197,94,0.15);border:1px solid #22c55e;border-radius:8px;
+                       padding:10px;margin-bottom:14px;font-size:14px;font-weight:700;
+                       color:#22c55e;text-align:center;">
                 Expected Amount: KES —
             </div>
+
+            <label style="display:block;font-size:13px;font-weight:700;color:#cbd5e1;margin-bottom:6px;">
+                Paste M-Pesa message here:
+            </label>
             <textarea id="mpesaPasteBox"
-                style="width:100%;min-height:100px;padding:12px;border:1.5px solid #475569;border-radius:10px;font-size:13px;font-family:inherit;color:#ffffff;background:#334155;outline:none;resize:vertical;line-height:1.5;transition:border-color .15s;"
-                placeholder="Paste your M-Pesa confirmation message here&#10;&#10;Example: RZS1234567 Confirmed. Ksh300.00 sent to FLEX BS SOLUTIONS..."></textarea>
+                style="width:100%;min-height:110px;padding:12px;border:1.5px solid #475569;
+                       border-radius:10px;font-size:13px;font-family:inherit;color:#fff;
+                       background:#334155;outline:none;resize:vertical;line-height:1.5;"
+                placeholder="Example: RZS1234567 Confirmed. Ksh300.00 sent to FLEX BS SOLUTIONS..."></textarea>
+
             <div id="mvErr" style="font-size:12px;color:#ef4444;margin-top:6px;display:none;text-align:center;"></div>
+
             <button onclick="verifyManually()"
-                style="width:100%;margin-top:10px;padding:13px;background:#3b82f6;color:white;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">
+                style="width:100%;margin-top:12px;padding:14px;background:#22c55e;color:#fff;
+                       border:none;border-radius:10px;font-size:15px;font-weight:700;
+                       cursor:pointer;font-family:inherit;">
                 ✓ Verify Payment
+            </button>
+
+            <button onclick="closeManualVerify()"
+                style="width:100%;margin-top:10px;padding:12px;background:#1e293b;color:#94a3b8;
+                       border:1.5px solid #475569;border-radius:10px;font-size:14px;
+                       cursor:pointer;font-family:inherit;">
+                Cancel
             </button>
         </div>
     </div>`;
 
-    form.insertAdjacentHTML('beforeend', html);
+    document.body.insertAdjacentHTML('beforeend', html);
+}
+
+function showManualVerifyPopup() {
+    document.getElementById('mvAmountHint').textContent =
+        'Expected Amount: KES ' + state.currentAmount;
+    document.getElementById('mpesaPasteBox').value = '';
+    document.getElementById('mvErr').style.display  = 'none';
+
+    const overlay = document.getElementById('manualVerifyOverlay');
+    overlay.style.display = 'flex';
+}
+
+function closeManualVerify() {
+    document.getElementById('manualVerifyOverlay').style.display = 'none';
 }
 
 // ================== PAYMENT POPUP ==================
@@ -97,9 +136,9 @@ function showPaymentPopup(planName) {
         hideLoading();
 
         let price;
-        if      (planName === 'BEGINNER')       price = state.prices.beginner;
-        else if (planName === 'AVERAGE SKILLED') price = state.prices.average;
-        else if (planName === 'EXPERT')          price = state.prices.expert;
+        if      (planName === 'BEGINNER')        price = state.prices.beginner;
+        else if (planName === 'AVERAGE SKILLED')  price = state.prices.average;
+        else if (planName === 'EXPERT')           price = state.prices.expert;
 
         state.selectedPlan  = planName;
         state.selectedPrice = price;
@@ -130,13 +169,6 @@ function showPaymentDetails() {
         document.getElementById('amountKsh').textContent    = `KES ${kshAmount}`;
         document.getElementById('payBtnAmount').textContent = `Ksh ${kshAmount}`;
 
-        // Update hint in manual verify section
-        const hint = document.getElementById('mvAmountHint');
-        if (hint) hint.textContent = `Expected Amount: KES ${kshAmount}`;
-
-        // Reset manual verify state
-        resetManualVerify();
-
         document.getElementById('paymentDetailsOverlay').classList.add('active');
     }, 600);
 }
@@ -156,9 +188,9 @@ async function processMpesaPayment() {
         return;
     }
 
-    // Format phone → 254XXXXXXXXX
+    // Format phone → 254XXXXXXXXX (same as B4A)
     let cleanPhone = phoneNumber.replace(/[\s\-\+]/g, '');
-    if (cleanPhone.startsWith('0'))   cleanPhone = '254' + cleanPhone.substring(1);
+    if (cleanPhone.startsWith('0'))    cleanPhone = '254' + cleanPhone.substring(1);
     if (!cleanPhone.startsWith('254')) cleanPhone = '254' + cleanPhone;
 
     if (cleanPhone.length !== 12) {
@@ -166,10 +198,11 @@ async function processMpesaPayment() {
         return;
     }
 
-    document.getElementById('paymentDetailsOverlay').classList.remove('active');
-
     const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
+    state.currentAmount = kshAmount;
 
+    // ── 1. Hide payment details, show loading — mirrors B4A ShowLoadingOverlay ──
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
     showLoading('Connecting to PayHero...');
 
     try {
@@ -188,21 +221,14 @@ async function processMpesaPayment() {
         if (data.status === 'success') {
             console.log('STK Push initiated:', data);
 
+            // ── 2. Update loading message — mirrors B4A UpdateLoadingMessage ──
             updateLoading('Check your phone<br>Enter M-Pesa PIN ✅');
 
-            // After 15s show manual verify fallback
+            // ── 3. After 15s: hide loading, show manual verify popup
+            //       Mirrors B4A: Sleep(15000) → ShowManualVerificationPopup ──
             setTimeout(() => {
                 hideLoading();
-                document.getElementById('paymentDetailsOverlay').classList.add('active');
-                updateLoading('Check your phone<br>Enter M-Pesa PIN ✅');
-
-                // Auto-open manual verify box
-                const box   = document.getElementById('manualVerifyBox');
-                const arrow = document.getElementById('aptArrow');
-                if (box && box.style.display === 'none') {
-                    box.style.display  = 'block';
-                    arrow.style.transform = 'rotate(180deg)';
-                }
+                showManualVerifyPopup();
             }, 15000);
 
         } else {
@@ -212,59 +238,31 @@ async function processMpesaPayment() {
     } catch (error) {
         console.error('Payment error:', error);
 
+        // ── On error: hide loading, show error popup — mirrors B4A ShowPaymentErrorPopup ──
         hideLoading();
-        document.getElementById('paymentDetailsOverlay').classList.add('active');
-
-        // Auto-open manual verify on error
-        const box   = document.getElementById('manualVerifyBox');
-        const arrow = document.getElementById('aptArrow');
-        if (box && box.style.display === 'none') {
-            box.style.display     = 'block';
-            arrow.style.transform = 'rotate(180deg)';
-        }
-
-        showToast('Could not reach server. Use "Already Paid?" if you completed payment.');
+        showPaymentErrorPopup('Failed to initiate payment:\n\n' + error.message);
     }
 }
 
 // ================== MANUAL VERIFICATION ==================
-function toggleManualVerify() {
-    const box   = document.getElementById('manualVerifyBox');
-    const arrow = document.getElementById('aptArrow');
-    const open  = box.style.display !== 'none';
-    box.style.display     = open ? 'none' : 'block';
-    arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
-}
-
-function resetManualVerify() {
-    const box   = document.getElementById('manualVerifyBox');
-    const arrow = document.getElementById('aptArrow');
-    const paste = document.getElementById('mpesaPasteBox');
-    const err   = document.getElementById('mvErr');
-    if (box)   box.style.display     = 'none';
-    if (arrow) arrow.style.transform = 'rotate(0deg)';
-    if (paste) paste.value           = '';
-    if (err)   err.style.display     = 'none';
-}
-
+// Mirrors B4A VerifyMpesaMessage — same 3-check logic
 function verifyManually() {
-    const message  = document.getElementById('mpesaPasteBox').value.trim();
-    const errEl    = document.getElementById('mvErr');
+    const message = document.getElementById('mpesaPasteBox').value.trim();
+    const errEl   = document.getElementById('mvErr');
     errEl.style.display = 'none';
 
     if (!message) {
-        showMvErr('Please paste your M-Pesa confirmation message first.');
+        showMvErr('Please paste your M-Pesa message first.');
         return;
     }
 
-    const msgLower   = message.toLowerCase();
-    const tillLower  = PAYHERO.tillName.toLowerCase();
-    const kshAmount  = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
-    const amountStr  = String(kshAmount);
+    const msgLower  = message.toLowerCase();
+    const tillLower = PAYHERO.tillName.toLowerCase();
+    const amountStr = String(state.currentAmount);
 
     // Check 1: till name
     if (!msgLower.includes(tillLower)) {
-        showMvErr('This message is not for our till. Please use the correct M-Pesa SMS.');
+        showMvErr('This payment was not made to us.');
         return;
     }
 
@@ -283,20 +281,78 @@ function verifyManually() {
 
     // Check 3: confirmation keywords
     if (!msgLower.includes('confirmed') && !msgLower.includes('sent')) {
-        showMvErr("This doesn't look like a valid M-Pesa confirmation message.");
+        showMvErr("This doesn't appear to be a valid M-Pesa confirmation message.");
         return;
     }
 
-    // All checks passed
-    console.log('MANUAL VERIFICATION OK — Till:', PAYHERO.tillName, '| Amount: KES', amountStr);
-    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    console.log('=================================');
+    console.log('MANUAL VERIFICATION SUCCESSFUL!');
+    console.log('Till Name:', PAYHERO.tillName);
+    console.log('Amount: KES', amountStr);
+    console.log('=================================');
+
+    closeManualVerify();
+    showToast('Payment verified successfully!', true);
     handlePaymentSuccess();
 }
 
 function showMvErr(msg) {
     const el = document.getElementById('mvErr');
-    el.textContent     = msg;
-    el.style.display   = 'block';
+    el.textContent   = msg;
+    el.style.display = 'block';
+}
+
+// ================== PAYMENT ERROR POPUP ==================
+// Mirrors B4A ShowPaymentErrorPopup with Manual Verify + Retry + Cancel buttons
+function showPaymentErrorPopup(errorMessage) {
+    const existing = document.getElementById('paymentErrorOverlay');
+    if (existing) existing.remove();
+
+    const html = `
+    <div id="paymentErrorOverlay"
+        style="display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.85);
+               z-index:9500;align-items:center;justify-content:center;padding:20px;">
+        <div style="background:#1e293b;border-radius:15px;border:2px solid #ef4444;
+                    max-width:380px;width:100%;padding:30px 20px;text-align:center;">
+
+            <div style="font-size:50px;margin-bottom:12px;">⚠️</div>
+            <h2 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;">Payment Failed</h2>
+            <p style="font-size:13px;color:#cbd5e1;margin-bottom:10px;line-height:1.5;white-space:pre-line;">
+                ${errorMessage}
+            </p>
+            <p style="font-size:12px;color:#94a3b8;margin-bottom:20px;">
+                If money was deducted from your M-Pesa, you can verify manually.
+            </p>
+
+            <button onclick="closeErrorPopup(); showManualVerifyPopup();"
+                style="width:100%;padding:13px;background:#3b82f6;color:#fff;border:none;
+                       border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;
+                       font-family:inherit;margin-bottom:10px;">
+                📱 Manual Verify
+            </button>
+
+            <button onclick="closeErrorPopup(); document.getElementById('paymentDetailsOverlay').classList.add('active');"
+                style="width:100%;padding:12px;background:#22c55e;color:#fff;border:none;
+                       border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
+                       font-family:inherit;margin-bottom:10px;">
+                🔄 Retry Payment
+            </button>
+
+            <button onclick="closeErrorPopup();"
+                style="width:100%;padding:12px;background:#1e293b;color:#94a3b8;
+                       border:1.5px solid #475569;border-radius:10px;font-size:14px;
+                       cursor:pointer;font-family:inherit;">
+                Cancel
+            </button>
+        </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('beforeend', html);
+}
+
+function closeErrorPopup() {
+    const el = document.getElementById('paymentErrorOverlay');
+    if (el) el.remove();
 }
 
 // ================== PAYMENT SUCCESS ==================
@@ -304,38 +360,26 @@ function handlePaymentSuccess() {
     hideLoading();
 
     try {
-        const accountData = {
+        localStorage.setItem('boughtaccount', JSON.stringify({
             plan:         state.selectedPlan,
             price:        state.selectedPrice,
             kshAmount:    convertUSDtoKSH(state.selectedPrice),
             purchaseDate: new Date().toISOString(),
             timestamp:    Date.now()
-        };
-        localStorage.setItem('boughtaccount', JSON.stringify(accountData));
-    } catch (error) {
-        console.error('Error saving account status:', error);
+        }));
+    } catch (e) {
+        console.error('Error saving account:', e);
     }
 
     document.getElementById('successAccountType').textContent = `${state.selectedPlan} ACCOUNT`;
     document.getElementById('successOverlay').classList.add('active');
-
-    console.log('=================================');
-    console.log('PAYMENT VERIFIED & SUCCESSFUL!');
-    console.log('Account Type:', state.selectedPlan);
-    console.log('Price: $' + state.selectedPrice.toFixed(2));
-    console.log('Amount Paid: KES', convertUSDtoKSH(state.selectedPrice));
-    console.log('Payment Method: M-Pesa (PayHero)');
-    console.log('=================================');
 }
 
 // ================== SUCCESS CONTINUE ==================
 function handleSuccessContinue() {
     document.getElementById('successOverlay').classList.remove('active');
-
     showLoading('Verifying payment...');
-
     setTimeout(() => updateLoading('Payment verified. Loading...'), 1500);
-
     setTimeout(() => {
         hideLoading();
         showToast(`Welcome to your ${state.selectedPlan} Account!`, true);
@@ -371,8 +415,9 @@ function showToast(message, isSuccess = false) {
 
 // ================== UTILITY FUNCTIONS ==================
 function setSamplePrices(beginner = '2.40', average = '4.50', expert = '6.50') {
-    const sampleData = ['value0','value1', beginner, average, expert, 'value5','value6','value7'];
-    localStorage.setItem('tillfetch', JSON.stringify(sampleData));
+    localStorage.setItem('tillfetch', JSON.stringify(
+        ['value0', 'value1', beginner, average, expert, 'value5', 'value6', 'value7']
+    ));
     loadPrices();
     updatePriceDisplays();
 }
@@ -389,7 +434,7 @@ function resetPurchase() {
 
 window.accountPurchase = {
     setSamplePrices,
-    hasPurchased:    hasAccountPurchased,
+    hasPurchased:     hasAccountPurchased,
     resetPurchase,
     getCurrentPrices: () => state.prices
 };
