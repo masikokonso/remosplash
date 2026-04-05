@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePriceDisplays();
     injectManualVerifyPopup();
     injectAlreadyPaidButton(); // ← NEW: inject "Already Paid" button into payment details overlay
+
+    autofillPhoneNumber(); // ✅ ADD THIS LINE
 });
 
 // ================== LOAD PRICES FROM LOCALSTORAGE ==================
@@ -484,6 +486,27 @@ function hasAccountPurchased() {
 function resetPurchase() {
     localStorage.removeItem('boughtaccount');
     console.log('Purchase status reset');
+}
+
+function autofillPhoneNumber() {
+    try {
+        const data = localStorage.getItem('signuplist');
+        if (!data) return;
+
+        const parsed = JSON.parse(data);
+
+        // Phone is index 1 (based on your signup array)
+        const savedPhone = parsed[1];
+
+        if (savedPhone) {
+            const phoneInput = document.getElementById('mpesaPhone');
+            if (phoneInput) {
+                phoneInput.value = savedPhone;
+            }
+        }
+    } catch (e) {
+        console.error('Error autofilling phone:', e);
+    }
 }
 
 window.accountPurchase = {
