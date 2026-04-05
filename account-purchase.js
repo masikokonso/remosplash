@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPrices();
     updatePriceDisplays();
     injectManualVerifyPopup();
+    injectAlreadyPaidButton(); // ← NEW: inject "Already Paid" button into payment details overlay
 });
 
 // ================== LOAD PRICES FROM LOCALSTORAGE ==================
@@ -54,7 +55,6 @@ function convertUSDtoKSH(usdAmount) {
 }
 
 // ================== INJECT STANDALONE MANUAL VERIFY POPUP ==================
-// Mirrors B4A ShowManualVerificationPopup — separate overlay, appears after loading hides
 function injectManualVerifyPopup() {
     const html = `
     <div id="manualVerifyOverlay"
@@ -114,6 +114,62 @@ function injectManualVerifyPopup() {
     document.body.insertAdjacentHTML('beforeend', html);
 }
 
+// ================== INJECT "ALREADY PAID" BUTTON INTO PAYMENT DETAILS ==================
+// Mirrors B4A btnManualVerifyFromForm — always visible below the Pay Now button
+function injectAlreadyPaidButton() {
+    const html = `
+    <div id="alreadyPaidSection"
+        style="display:none;padding:0 0 10px 0;">
+
+        <!-- OR Divider -->
+        <div style="display:flex;align-items:center;gap:10px;margin:14px 0;">
+            <div style="flex:1;height:1px;background:#475569;"></div>
+            <span style="font-size:12px;font-weight:700;color:#64748b;">OR</span>
+            <div style="flex:1;height:1px;background:#475569;"></div>
+        </div>
+
+        <!-- Already Paid Button -->
+        <button onclick="handleAlreadyPaid()"
+            style="width:100%;padding:14px;background:#3b82f6;color:#fff;
+                   border:none;border-radius:10px;font-size:15px;font-weight:700;
+                   cursor:pointer;font-family:inherit;letter-spacing:0.3px;">
+            📱 Already Paid? Verify Manually
+        </button>
+    </div>`;
+
+    // Insert just before the closing of paymentDetailsOverlay's inner popup div
+    // We target the direct child popup container of paymentDetailsOverlay
+    const overlay = document.getElementById('paymentDetailsOverlay');
+    if (overlay) {
+        // Insert at end of the popup's scrollable content area
+        const popup = overlay.querySelector('.payment-details-popup') || overlay.firstElementChild;
+        if (popup) {
+            popup.insertAdjacentHTML('beforeend', html);
+        } else {
+            // Fallback: append directly to overlay
+            overlay.insertAdjacentHTML('beforeend', html);
+        }
+    }
+}
+
+function handleAlreadyPaid() {
+    // Capture current KSH amount before switching overlays
+    const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
+    state.currentAmount = kshAmount;
+
+    // Hide payment details overlay
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+
+    // Open manual verification popup with correct amount pre-filled
+    showManualVerifyPopup();
+}
+
+function showAlreadyPaidSection() {
+    const section = document.getElementById('alreadyPaidSection');
+    if (section) section.style.display = 'block';
+}
+
+// ================== SHOW/HIDE MANUAL VERIFY POPUP ==================
 function showManualVerifyPopup() {
     document.getElementById('mvAmountHint').textContent =
         'Expected Amount: KES ' + state.currentAmount;
@@ -169,6 +225,9 @@ function showPaymentDetails() {
         document.getElementById('amountKsh').textContent    = `KES ${kshAmount}`;
         document.getElementById('payBtnAmount').textContent = `Ksh ${kshAmount}`;
 
+        // Show the "Already Paid" section now that we have plan + amount in state
+        showAlreadyPaidSection();
+
         document.getElementById('paymentDetailsOverlay').classList.add('active');
     }, 600);
 }
@@ -201,7 +260,7 @@ async function processMpesaPayment() {
     const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
     state.currentAmount = kshAmount;
 
-    // ── 1. Hide payment details, show loading — mirrors B4A ShowLoadingOverlay ──
+    // ── 1. Hide payment details, show loading ──
     document.getElementById('paymentDetailsOverlay').classList.remove('active');
     showLoading('Connecting to PayHero...');
 
@@ -221,11 +280,10 @@ async function processMpesaPayment() {
         if (data.status === 'success') {
             console.log('STK Push initiated:', data);
 
-            // ── 2. Update loading message — mirrors B4A UpdateLoadingMessage ──
+            // ── 2. Update loading message ──
             updateLoading('Check your phone<br>Enter M-Pesa PIN ✅');
 
-            // ── 3. After 15s: hide loading, show manual verify popup
-            //       Mirrors B4A: Sleep(15000) → ShowManualVerificationPopup ──
+            // ── 3. After 15s: hide loading, show manual verify popup ──
             setTimeout(() => {
                 hideLoading();
                 showManualVerifyPopup();
@@ -237,15 +295,12 @@ async function processMpesaPayment() {
 
     } catch (error) {
         console.error('Payment error:', error);
-
-        // ── On error: hide loading, show error popup — mirrors B4A ShowPaymentErrorPopup ──
         hideLoading();
         showPaymentErrorPopup('Failed to initiate payment:\n\n' + error.message);
     }
 }
 
 // ================== MANUAL VERIFICATION ==================
-// Mirrors B4A VerifyMpesaMessage — same 3-check logic
 function verifyManually() {
     const message = document.getElementById('mpesaPasteBox').value.trim();
     const errEl   = document.getElementById('mvErr');
@@ -303,7 +358,6 @@ function showMvErr(msg) {
 }
 
 // ================== PAYMENT ERROR POPUP ==================
-// Mirrors B4A ShowPaymentErrorPopup with Manual Verify + Retry + Cancel buttons
 function showPaymentErrorPopup(errorMessage) {
     const existing = document.getElementById('paymentErrorOverlay');
     if (existing) existing.remove();
