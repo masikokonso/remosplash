@@ -1,1 +1,1270 @@
-const _0x37261c=_0x5801;(function(_0x3b52d9,_0x65bf80){const _0x4f0109=_0x5801,_0x3ba701=_0x3b52d9();while(!![]){try{const _0x3fe55f=-parseInt(_0x4f0109(0x5c2))/(-0x3b7*0x2+0x23*-0x96+0x1bf1)*(parseInt(_0x4f0109(0x1b9))/(0xc2e*0x2+-0x6ae+-0x4*0x46b))+-parseInt(_0x4f0109(0x4d4))/(0x10f*0x21+-0x578+0x1*-0x1d74)*(parseInt(_0x4f0109(0x3af))/(-0x6*0x293+-0x16b3+0x2629))+parseInt(_0x4f0109(0x23c))/(0x1*-0xf55+-0xa8b*-0x1+0x4cf)*(-parseInt(_0x4f0109(0x636))/(-0x1425+0x13*-0x12+-0x1581*-0x1))+-parseInt(_0x4f0109(0x61d))/(0xb49*0x2+0xadc+-0x2167)+parseInt(_0x4f0109(0x35b))/(-0x2f9*0x4+0x12d4*-0x1+0x520*0x6)+parseInt(_0x4f0109(0x451))/(0x1e54+0xa7c+-0x3b5*0xb)+parseInt(_0x4f0109(0x1df))/(0xb55*0x2+-0xf49*-0x2+-0x3532);if(_0x3fe55f===_0x65bf80)break;else _0x3ba701['push'](_0x3ba701['shift']());}catch(_0x554e05){_0x3ba701['push'](_0x3ba701['shift']());}}}(_0x2eaa,-0x1ac7b+0x142e4+0x1*0x5b9fa));const state={'currentScreen':_0x37261c(0x485),'currentPack':0x0,'currentQuestion':0x0,'packScore':0x0,'totalEarnings':0x0,'packs':[],'countdownSeconds':0x5,'countdownInterval':null};document[_0x37261c(0x4f7)+_0x37261c(0x5c9)](_0x37261c(0x580)+_0x37261c(0x47d),()=>{const _0x2963a8=_0x37261c,_0x408f9a={'UHtQi':function(_0x1abdc1){return _0x1abdc1();},'FWmJG':function(_0x3c60de){return _0x3c60de();},'IGHyb':function(_0x200e29){return _0x200e29();}};_0x408f9a[_0x2963a8(0x5b3)](loadAllPacks),_0x408f9a[_0x2963a8(0x5a3)](loadEarningsProgress),_0x408f9a[_0x2963a8(0x5a3)](loadPackProgress),_0x408f9a[_0x2963a8(0x2d8)](renderHome);});function loadEarningsProgress(){const _0x118346=_0x37261c,_0x21d544={'ChmxT':_0x118346(0x482),'ooHUO':function(_0x17810e,_0x466fe6){return _0x17810e!==_0x466fe6;},'boqqK':function(_0xb819ce,_0x1470fc){return _0xb819ce(_0x1470fc);},'SWMPs':function(_0x51e638,_0x95a049){return _0x51e638(_0x95a049);},'iYksK':function(_0x5239df,_0x451c92){return _0x5239df>_0x451c92;},'UlMIF':function(_0x379ef5,_0x25ccee){return _0x379ef5(_0x25ccee);},'iVutI':function(_0x15a974,_0x3d35a7){return _0x15a974>_0x3d35a7;}},_0x94f59=localStorage[_0x118346(0x210)](_0x21d544[_0x118346(0x379)]);if(_0x21d544[_0x118346(0x5e8)](_0x94f59,null)&&_0x21d544[_0x118346(0x5e8)](_0x94f59,''))try{const _0x471092=JSON[_0x118346(0x310)](_0x94f59),_0x186556=Array[_0x118346(0x3c3)](_0x471092)?_0x21d544[_0x118346(0x1c7)](parseFloat,_0x471092[0x351*0x2+-0x1ba4+0x1502]):_0x21d544[_0x118346(0x601)](parseFloat,_0x471092);if(!_0x21d544[_0x118346(0x601)](isNaN,_0x186556)&&_0x21d544[_0x118346(0x2f4)](_0x186556,0x5*0x221+-0x732*0x4+-0x1*-0x1223))state[_0x118346(0x461)+_0x118346(0x63f)]=_0x186556;}catch(_0x3c0522){const _0x217f7f=_0x21d544[_0x118346(0x601)](parseFloat,_0x94f59);if(!_0x21d544[_0x118346(0x45b)](isNaN,_0x217f7f)&&_0x21d544[_0x118346(0x236)](_0x217f7f,0xb*-0x2a6+-0x11*0xf4+-0x1*-0x2d56))state[_0x118346(0x461)+_0x118346(0x63f)]=_0x217f7f;}}function saveEarningsProgress(){const _0x512531=_0x37261c,_0x42b6ea={'itFkN':_0x512531(0x482)};localStorage[_0x512531(0x58d)](_0x42b6ea[_0x512531(0x5a2)],JSON[_0x512531(0x28c)]([state[_0x512531(0x461)+_0x512531(0x63f)]]));}function loadPackProgress(){const _0x2e1228=_0x37261c,_0x58c6df={'enDgf':function(_0x29ab7d,_0x3fd39e,_0x578862,_0x577e19){return _0x29ab7d(_0x3fd39e,_0x578862,_0x577e19);},'uGjXL':_0x2e1228(0x666)+_0x2e1228(0x497)+_0x2e1228(0x5e4)+_0x2e1228(0x40c)},_0x2c729d=localStorage[_0x2e1228(0x210)](_0x58c6df[_0x2e1228(0x26f)]);if(_0x2c729d){const _0x5b73d7=JSON[_0x2e1228(0x310)](_0x2c729d);_0x5b73d7[_0x2e1228(0x56e)](_0x1c5a7c=>{const _0x30938f=_0x2e1228;_0x58c6df[_0x30938f(0x3cb)](updatePackStatus,_0x1c5a7c[_0x30938f(0x274)],_0x1c5a7c[_0x30938f(0x357)],_0x1c5a7c[_0x30938f(0x482)]);});}}function savePackProgress(){const _0x569d40=_0x37261c,_0x37e884={'IRXGp':_0x569d40(0x666)+_0x569d40(0x497)+_0x569d40(0x5e4)+_0x569d40(0x40c)},_0x4a65d8=[];state[_0x569d40(0x634)][_0x569d40(0x56e)](_0xd7f119=>{const _0x26b4e5=_0x569d40;_0xd7f119[_0x26b4e5(0x357)]&&_0x4a65d8[_0x26b4e5(0x563)]({'packID':_0xd7f119['id'],'completed':_0xd7f119[_0x26b4e5(0x357)],'earnings':_0xd7f119[_0x26b4e5(0x482)]});}),localStorage[_0x569d40(0x58d)](_0x37e884[_0x569d40(0x1f2)],JSON[_0x569d40(0x28c)](_0x4a65d8));}function updatePackStatus(_0xcd70ac,_0x3431a9,_0x521fdc){const _0x42c356=_0x37261c,_0x43dfcb=state[_0x42c356(0x634)][_0x42c356(0x364)](_0x3bb991=>_0x3bb991['id']===_0xcd70ac);_0x43dfcb&&(_0x43dfcb[_0x42c356(0x357)]=_0x3431a9,_0x43dfcb[_0x42c356(0x482)]=_0x521fdc);}function generatePackEarnings(){const _0x33dcda=_0x37261c,_0x5e9e45={'PiixV':function(_0x2c534a,_0x25a0c8){return _0x2c534a/_0x25a0c8;},'bhbye':function(_0x4c15ba,_0xb6f699){return _0x4c15ba+_0xb6f699;},'vADKe':function(_0x162439,_0x2030df){return _0x162439*_0x2030df;},'bmGmD':function(_0x28f56f,_0x54be1a){return _0x28f56f-_0x54be1a;}};return _0x5e9e45[_0x33dcda(0x3a6)](_0x5e9e45[_0x33dcda(0x5ca)](Math[_0x33dcda(0x1a9)](_0x5e9e45[_0x33dcda(0x3b8)](Math[_0x33dcda(0x5aa)](),_0x5e9e45[_0x33dcda(0x5ca)](_0x5e9e45[_0x33dcda(0x2fe)](0x68c+0x19d9+0x1f52*-0x1,-0x1c85+0x1ac+0x1b92),-0x1592+-0x156+-0xf*-0x187))),0x195f+0x7*-0x1fd+-0xabb),-0xad4+0xa*0x28e+-0xe54);}function formatEarnings(_0xa669d9){const _0x4f34cc=_0x37261c;return _0xa669d9[_0x4f34cc(0x318)](0x82b*0x1+-0xd0f*0x1+0x4e6);}function showLoading(){const _0x80202b=_0x37261c,_0x191983={'hnifF':_0x80202b(0x2c8)+_0x80202b(0x1ef),'zRsGe':_0x80202b(0x1f6)};document[_0x80202b(0x470)+_0x80202b(0x2a4)](_0x191983[_0x80202b(0x2b9)])[_0x80202b(0x4f4)][_0x80202b(0x4c3)](_0x191983[_0x80202b(0x669)]);}function hideLoading(){const _0x2decb0=_0x37261c,_0x5f22e9={'Auttk':_0x2decb0(0x2c8)+_0x2decb0(0x1ef),'MfocZ':_0x2decb0(0x1f6)};document[_0x2decb0(0x470)+_0x2decb0(0x2a4)](_0x5f22e9[_0x2decb0(0x25d)])[_0x2decb0(0x4f4)][_0x2decb0(0x58e)](_0x5f22e9[_0x2decb0(0x575)]);}function showScreen(_0x5dd555){const _0x2539e6=_0x37261c,_0x370382={'osmoq':_0x2539e6(0x4b0),'Xxwhb':_0x2539e6(0x42f),'CccGq':_0x2539e6(0x3f2)};document[_0x2539e6(0x280)+_0x2539e6(0x3da)](_0x370382[_0x2539e6(0x2e0)])[_0x2539e6(0x56e)](_0x18e8c3=>_0x18e8c3[_0x2539e6(0x4f4)][_0x2539e6(0x4c3)](_0x2539e6(0x42f))),document[_0x2539e6(0x470)+_0x2539e6(0x2a4)](_0x5dd555)[_0x2539e6(0x4f4)][_0x2539e6(0x58e)](_0x370382[_0x2539e6(0x556)]),state[_0x2539e6(0x515)+_0x2539e6(0x411)]=_0x5dd555[_0x2539e6(0x1f8)](_0x370382[_0x2539e6(0x253)],'');}function showScreenWithLoading(_0x159e11,_0x299a7d){const _0x16b6cd=_0x37261c,_0x110278={'atTPR':function(_0x14d9c8){return _0x14d9c8();},'XQCOZ':function(_0x4922fe,_0x494706){return _0x4922fe(_0x494706);},'XgNla':function(_0x29924d){return _0x29924d();},'ynsXU':function(_0x60d70,_0x29e22e,_0x2bd6a5){return _0x60d70(_0x29e22e,_0x2bd6a5);}};_0x110278[_0x16b6cd(0x468)](showLoading),_0x110278[_0x16b6cd(0x478)](setTimeout,()=>{const _0xa656ef=_0x16b6cd;_0x110278[_0xa656ef(0x232)](hideLoading),_0x110278[_0xa656ef(0x1d1)](showScreen,_0x159e11);if(_0x299a7d)_0x110278[_0xa656ef(0x232)](_0x299a7d);},-0xa81*0x1+0x1715+-0x2*0x262);}function showHome(){const _0x3d97fc=_0x37261c,_0x21e871={'kayZW':function(_0x262ada,_0x37f77c){return _0x262ada(_0x37f77c);},'YVMXo':function(_0xe12c11,_0x29937a,_0x5a8c7f){return _0xe12c11(_0x29937a,_0x5a8c7f);},'bPiGy':_0x3d97fc(0x1c0)};state[_0x3d97fc(0x508)+_0x3d97fc(0x4d5)]&&(_0x21e871[_0x3d97fc(0x344)](clearInterval,state[_0x3d97fc(0x508)+_0x3d97fc(0x4d5)]),state[_0x3d97fc(0x508)+_0x3d97fc(0x4d5)]=null),_0x21e871[_0x3d97fc(0x441)](showScreenWithLoading,_0x21e871[_0x3d97fc(0x571)],renderHome);}function showPackIntro(){const _0x23ef47=_0x37261c,_0x4ced9b={'lqJVP':function(_0x3c06e2){return _0x3c06e2();},'qNBQb':function(_0x1bc8d2,_0x1dd581){return _0x1bc8d2(_0x1dd581);},'UmGcs':_0x23ef47(0x521)+_0x23ef47(0x5e2)};_0x4ced9b[_0x23ef47(0x4df)](renderPackIntro),_0x4ced9b[_0x23ef47(0x443)](showScreen,_0x4ced9b[_0x23ef47(0x2ad)]);}function startQuestions(){const _0x4c5f12=_0x37261c,_0x1694e5={'qAVlT':function(_0xacd717,_0x287cfe,_0x13ae34){return _0xacd717(_0x287cfe,_0x13ae34);},'QKzBq':_0x4c5f12(0x1dc)+_0x4c5f12(0x3b9)};state[_0x4c5f12(0x475)+_0x4c5f12(0x4a6)]=0x1*0x25ba+-0x1*-0x509+-0x59*0x7b,state[_0x4c5f12(0x4e2)]=0x1*0xac1+0x1d02+-0x27c3;const _0x263e13=state[_0x4c5f12(0x634)][state[_0x4c5f12(0x4f2)+'k']];_0x263e13[_0x4c5f12(0x289)][_0x4c5f12(0x56e)](_0x498202=>_0x498202[_0x4c5f12(0x4e9)]=''),_0x1694e5[_0x4c5f12(0x62c)](showScreenWithLoading,_0x1694e5[_0x4c5f12(0x465)],renderQuestion);}function showPackResults(){const _0x376598=_0x37261c,_0x102a01={'HzNoM':function(_0x560361){return _0x560361();},'qYXHH':function(_0x53ea53,_0x48ab32){return _0x53ea53(_0x48ab32);},'NCnIc':_0x376598(0x5d9)+_0x376598(0x411)};_0x102a01[_0x376598(0x4a5)](renderResults),_0x102a01[_0x376598(0x3c1)](showScreen,_0x102a01[_0x376598(0x3d6)]);}function showOverallStats(){const _0x259bc9=_0x37261c,_0x2f7400={'rGOBa':function(_0x580954){return _0x580954();},'TPwvs':function(_0x4429df,_0x3cdffa){return _0x4429df(_0x3cdffa);},'LjIaL':_0x259bc9(0x3f4)+'n'};_0x2f7400[_0x259bc9(0x653)](renderStats),_0x2f7400[_0x259bc9(0x2f7)](showScreenWithLoading,_0x2f7400[_0x259bc9(0x351)]);}function continueNext(){const _0x3d1d50=_0x37261c,_0x5b8b69={'ekLfR':function(_0x12ee45,_0x1d24d0){return _0x12ee45<_0x1d24d0;},'wmRiT':function(_0x47cffd,_0x1c8099){return _0x47cffd-_0x1c8099;},'BwKEd':function(_0x7de2b9,_0x76ff68,_0xd368ad){return _0x7de2b9(_0x76ff68,_0xd368ad);},'gdbLo':_0x3d1d50(0x521)+_0x3d1d50(0x5e2),'hTism':function(_0x415fb2){return _0x415fb2();}};_0x5b8b69[_0x3d1d50(0x554)](state[_0x3d1d50(0x4f2)+'k'],_0x5b8b69[_0x3d1d50(0x4f6)](state[_0x3d1d50(0x634)][_0x3d1d50(0x568)],-0x242b+-0x1c6+-0x2*-0x12f9))?(state[_0x3d1d50(0x4f2)+'k']++,_0x5b8b69[_0x3d1d50(0x4a8)](showScreenWithLoading,_0x5b8b69[_0x3d1d50(0x648)],showPackIntro)):_0x5b8b69[_0x3d1d50(0x2ce)](showHome);}function retakePack(){const _0x290775=_0x37261c,_0x4c564f={'aAUeQ':function(_0x15cf17,_0x23cdb1,_0x1a10a2){return _0x15cf17(_0x23cdb1,_0x1a10a2);},'FxCsB':_0x290775(0x521)+_0x290775(0x5e2)};_0x4c564f[_0x290775(0x26c)](showScreenWithLoading,_0x4c564f[_0x290775(0x24c)],showPackIntro);}function renderHome(){const _0x2fb038=_0x37261c,_0x1ca386={'OmIRm':_0x2fb038(0x505),'HeDiF':function(_0x5d0071,_0x29b1cd){return _0x5d0071+_0x29b1cd;},'MsVlL':_0x2fb038(0x455),'OTXDD':_0x2fb038(0x5ad),'iKwPT':_0x2fb038(0x1bc)+_0x2fb038(0x228)+_0x2fb038(0x4d2)+'>','prdsV':_0x2fb038(0x357),'jaxgA':_0x2fb038(0x572),'gGBcS':function(_0x464e2b,_0x5ecaa2){return _0x464e2b(_0x5ecaa2);},'wQFrp':_0x2fb038(0x264),'SJOtB':_0x2fb038(0x2b4),'Fakgv':_0x2fb038(0x536)+'ss','mhols':_0x2fb038(0x2ed)+'gs','SlPcN':function(_0x4967c8,_0x4fae34){return _0x4967c8(_0x4fae34);},'ggNIQ':_0x2fb038(0x5e9)},_0x3467c9=state[_0x2fb038(0x634)][_0x2fb038(0x40b)](_0x5662b3=>_0x5662b3[_0x2fb038(0x357)])[_0x2fb038(0x568)];document[_0x2fb038(0x470)+_0x2fb038(0x2a4)](_0x1ca386[_0x2fb038(0x1f0)])[_0x2fb038(0x604)+'t']=_0x3467c9+_0x2fb038(0x2ee)+state[_0x2fb038(0x634)][_0x2fb038(0x568)]+(_0x2fb038(0x5d6)+_0x2fb038(0x203)+_0x2fb038(0x239)),document[_0x2fb038(0x470)+_0x2fb038(0x2a4)](_0x1ca386[_0x2fb038(0x5d2)])[_0x2fb038(0x604)+'t']=_0x2fb038(0x4d1)+_0x2fb038(0x270)+_0x1ca386[_0x2fb038(0x560)](formatEarnings,state[_0x2fb038(0x461)+_0x2fb038(0x63f)]);const _0x37b349=document[_0x2fb038(0x470)+_0x2fb038(0x2a4)](_0x1ca386[_0x2fb038(0x374)]);_0x37b349[_0x2fb038(0x5d0)]='',state[_0x2fb038(0x634)][_0x2fb038(0x56e)]((_0x34ba93,_0x2f5396)=>{const _0x1d3367=_0x2fb038,_0x50b3c4=document[_0x1d3367(0x659)+_0x1d3367(0x627)](_0x1ca386[_0x1d3367(0x2e8)]);_0x50b3c4[_0x1d3367(0x64f)]=_0x1ca386[_0x1d3367(0x371)](_0x1ca386[_0x1d3367(0x4b7)],_0x34ba93[_0x1d3367(0x357)]?_0x1ca386[_0x1d3367(0x5f8)]:''),_0x50b3c4[_0x1d3367(0x4d3)]=()=>selectPack(_0x2f5396),_0x50b3c4[_0x1d3367(0x5d0)]=_0x1d3367(0x315)+_0x1d3367(0x460)+_0x1d3367(0x462)+_0x1d3367(0x5c0)+_0x34ba93[_0x1d3367(0x1ea)]+(_0x1d3367(0x401)+_0x1d3367(0x5f7))+(_0x34ba93[_0x1d3367(0x357)]?_0x1ca386[_0x1d3367(0x1fd)]:'')+(_0x1d3367(0x315)+_0x1d3367(0x460)+_0x1d3367(0x462)+_0x1d3367(0x333)+_0x1d3367(0x4dc)+_0x1d3367(0x460)+_0x1d3367(0x462)+_0x1d3367(0x247))+_0x34ba93[_0x1d3367(0x408)]+(_0x1d3367(0x401)+_0x1d3367(0x4dc)+_0x1d3367(0x460)+_0x1d3367(0x462)+_0x1d3367(0x3dc))+_0x34ba93[_0x1d3367(0x1b1)+'n']+(_0x1d3367(0x401)+_0x1d3367(0x4dc)+_0x1d3367(0x460)+_0x1d3367(0x462)+_0x1d3367(0x226))+(_0x34ba93[_0x1d3367(0x357)]?_0x1ca386[_0x1d3367(0x320)]:_0x1ca386[_0x1d3367(0x4a2)])+(_0x1d3367(0x25c)+_0x1d3367(0x4dc)+_0x1d3367(0x2bd))+(_0x34ba93[_0x1d3367(0x357)]?_0x1d3367(0x3e6)+_0x1d3367(0x1b6)+_0x1d3367(0x49d)+_0x1ca386[_0x1d3367(0x47b)](formatEarnings,_0x34ba93[_0x1d3367(0x482)]):_0x34ba93[_0x1d3367(0x41e)+_0x1d3367(0x2db)]+(_0x1d3367(0x4b3)+_0x1d3367(0x40a)+_0x1d3367(0x610)))+(_0x1d3367(0x315)+_0x1d3367(0x577)+_0x1d3367(0x1aa)+_0x1d3367(0x5d8)+_0x1d3367(0x33d)+_0x1d3367(0x2ea)+_0x1d3367(0x1ce)+_0x1d3367(0x597)+'n\x20')+(_0x34ba93[_0x1d3367(0x357)]?_0x1ca386[_0x1d3367(0x320)]:'')+(_0x1d3367(0x399)+_0x1d3367(0x321)+_0x1d3367(0x651)+_0x1d3367(0x3dd)+_0x1d3367(0x4c8))+_0x2f5396+(_0x1d3367(0x403)+_0x1d3367(0x4dc))+(_0x34ba93[_0x1d3367(0x357)]?_0x1ca386[_0x1d3367(0x28a)]:_0x1ca386[_0x1d3367(0x488)])+(_0x1d3367(0x315)+_0x1d3367(0x48e)+_0x1d3367(0x281)+'\x20'),_0x37b349[_0x1d3367(0x439)+'d'](_0x50b3c4);});}function selectPack(_0x3cf791){const _0x33c70e=_0x37261c,_0x24285c={'mskjR':function(_0x932861,_0x10af77,_0x7350fd){return _0x932861(_0x10af77,_0x7350fd);},'zYrst':_0x33c70e(0x521)+_0x33c70e(0x5e2)};state[_0x33c70e(0x4f2)+'k']=_0x3cf791,_0x24285c[_0x33c70e(0x1e9)](showScreenWithLoading,_0x24285c[_0x33c70e(0x2f8)],showPackIntro);}function renderPackIntro(){const _0xd25d1a=_0x37261c,_0x64eaf9={'PeqUm':_0xd25d1a(0x2dd),'tjWRb':_0xd25d1a(0x1d2),'Txoux':_0xd25d1a(0x566),'YvxJR':function(_0x57d8d7,_0x1bf006){return _0x57d8d7*_0x1bf006;}},_0x446821=state[_0xd25d1a(0x634)][state[_0xd25d1a(0x4f2)+'k']];document[_0xd25d1a(0x470)+_0xd25d1a(0x2a4)](_0x64eaf9[_0xd25d1a(0x3c7)])[_0xd25d1a(0x604)+'t']=_0x446821[_0xd25d1a(0x1ea)],document[_0xd25d1a(0x470)+_0xd25d1a(0x2a4)](_0x64eaf9[_0xd25d1a(0x254)])[_0xd25d1a(0x604)+'t']=_0x446821[_0xd25d1a(0x408)],document[_0xd25d1a(0x470)+_0xd25d1a(0x2a4)](_0x64eaf9[_0xd25d1a(0x466)])[_0xd25d1a(0x5d0)]=_0xd25d1a(0x4c6)+_0x446821[_0xd25d1a(0x1b1)+'n']+(_0xd25d1a(0x38d)+_0xd25d1a(0x327)+_0xd25d1a(0x50c)+_0xd25d1a(0x46c))+_0x446821[_0xd25d1a(0x41e)+_0xd25d1a(0x2db)]+(_0xd25d1a(0x2c4)+_0xd25d1a(0x1f3)+_0xd25d1a(0x569)+_0xd25d1a(0x2a6))+_0x64eaf9[_0xd25d1a(0x598)](_0x446821[_0xd25d1a(0x41e)+_0xd25d1a(0x2db)],-0xc8+0x1a4f+-0x1986)+(_0xd25d1a(0x200)+_0xd25d1a(0x426)+_0xd25d1a(0x2f6)+_0xd25d1a(0x26b)+_0xd25d1a(0x39e)+_0xd25d1a(0x405)+_0xd25d1a(0x1c9)+_0xd25d1a(0x33f)+_0xd25d1a(0x410)+_0xd25d1a(0x590)+_0xd25d1a(0x48c));}function renderQuestion(){const _0x2927a2=_0x37261c,_0x426311={'jhUQr':function(_0x1bdb9b,_0x4c06da){return _0x1bdb9b*_0x4c06da;},'sfbft':function(_0x3d3c10,_0x5ee937){return _0x3d3c10/_0x5ee937;},'aJpaK':_0x2927a2(0x30b)+'ll','RMqNd':function(_0x45706a,_0xf288c9){return _0x45706a+_0xf288c9;},'JqMDu':_0x2927a2(0x588)+'xt','oKtmp':function(_0x3c185e){return _0x3c185e();},'untEL':function(_0x44a50b,_0x497a9d){return _0x44a50b(_0x497a9d);},'lfOeS':function(_0x3d514f,_0x5f1317,_0x36ec24){return _0x3d514f(_0x5f1317,_0x36ec24);},'lgulw':_0x2927a2(0x548)+'rd','LrGkg':function(_0x5b92e7,_0x11afad){return _0x5b92e7+_0x11afad;},'HJvXQ':_0x2927a2(0x3bc),'kLgrA':_0x2927a2(0x40f)+_0x2927a2(0x241),'FxQIo':function(_0x5a0d57,_0x46a535){return _0x5a0d57>=_0x46a535;},'euBNO':function(_0x33a336,_0x312ed){return _0x33a336-_0x312ed;},'kUZCA':_0x2927a2(0x35d)+_0x2927a2(0x216),'eIzdI':_0x2927a2(0x335)+_0x2927a2(0x212)},_0x435a6e=state[_0x2927a2(0x634)][state[_0x2927a2(0x4f2)+'k']],_0x13f459=_0x435a6e[_0x2927a2(0x289)][state[_0x2927a2(0x475)+_0x2927a2(0x4a6)]],_0x51b66c=_0x426311[_0x2927a2(0x53a)](_0x426311[_0x2927a2(0x4ae)](state[_0x2927a2(0x475)+_0x2927a2(0x4a6)],_0x435a6e[_0x2927a2(0x41e)+_0x2927a2(0x2db)]),-0x16b*-0x8+0x1b11+-0x1*0x2605);document[_0x2927a2(0x470)+_0x2927a2(0x2a4)](_0x426311[_0x2927a2(0x55f)])[_0x2927a2(0x392)][_0x2927a2(0x3a1)]=_0x426311[_0x2927a2(0x3a0)](_0x51b66c,'%'),document[_0x2927a2(0x470)+_0x2927a2(0x2a4)](_0x426311[_0x2927a2(0x370)])[_0x2927a2(0x604)+'t']=_0x2927a2(0x430)+_0x426311[_0x2927a2(0x3a0)](state[_0x2927a2(0x475)+_0x2927a2(0x4a6)],0x49a*0x6+-0xa34+-0x1167)+_0x2927a2(0x49c)+_0x435a6e[_0x2927a2(0x41e)+_0x2927a2(0x2db)],state[_0x2927a2(0x41b)+_0x2927a2(0x4e4)]=0xbff+0x2*0xce0+-0x1b7*0x16,_0x426311[_0x2927a2(0x420)](updateCountdown);if(state[_0x2927a2(0x508)+_0x2927a2(0x4d5)])_0x426311[_0x2927a2(0x211)](clearInterval,state[_0x2927a2(0x508)+_0x2927a2(0x4d5)]);state[_0x2927a2(0x508)+_0x2927a2(0x4d5)]=_0x426311[_0x2927a2(0x1da)](setInterval,updateCountdown,0xe1*0x5+-0x1812+0x1*0x1795);const _0x20e497=document[_0x2927a2(0x470)+_0x2927a2(0x2a4)](_0x426311[_0x2927a2(0x623)]);_0x20e497[_0x2927a2(0x5d0)]=_0x2927a2(0x2fa)+_0x2927a2(0x467)+_0x2927a2(0x31c)+_0x2927a2(0x47e)+_0x426311[_0x2927a2(0x1ba)](state[_0x2927a2(0x475)+_0x2927a2(0x4a6)],-0x2118+0xc*0x2d2+-0xbf)+(_0x2927a2(0x401)+_0x2927a2(0x63b)+_0x2927a2(0x36b)+_0x2927a2(0x2d5)+_0x2927a2(0x224))+_0x13f459[_0x2927a2(0x325)]+(_0x2927a2(0x401)+_0x2927a2(0x63b)+_0x2927a2(0x36b)+_0x2927a2(0x217)+'\x22>')+_0x13f459[_0x2927a2(0x324)]+(_0x2927a2(0x401)+_0x2927a2(0x667))+_0x13f459[_0x2927a2(0x5e0)][_0x2927a2(0x38f)](_0x447cbf=>_0x2927a2(0x315)+_0x2927a2(0x3d2)+_0x2927a2(0x20d)+_0x2927a2(0x3d7)+(_0x13f459[_0x2927a2(0x4e9)]===_0x447cbf?_0x2927a2(0x305):'')+(_0x2927a2(0x621)+_0x2927a2(0x4dc)+_0x2927a2(0x49a)+_0x2927a2(0x2a1)+_0x2927a2(0x55c))+_0x447cbf[_0x2927a2(0x1f8)](/'/g,'\x5c\x27')+_0x2927a2(0x3b7)+_0x447cbf+(_0x2927a2(0x1bf)+_0x2927a2(0x3a2)))[_0x2927a2(0x61e)]('')+_0x2927a2(0x456);const _0x4b357c=document[_0x2927a2(0x470)+_0x2927a2(0x2a4)](_0x426311[_0x2927a2(0x471)]);_0x4b357c[_0x2927a2(0x32c)]=!![],_0x4b357c[_0x2927a2(0x392)][_0x2927a2(0x2d6)+_0x2927a2(0x432)]=_0x426311[_0x2927a2(0x633)],_0x4b357c[_0x2927a2(0x604)+'t']=_0x426311[_0x2927a2(0x21f)](state[_0x2927a2(0x475)+_0x2927a2(0x4a6)],_0x426311[_0x2927a2(0x54b)](_0x435a6e[_0x2927a2(0x41e)+_0x2927a2(0x2db)],-0x321*-0xc+0x1a49*0x1+-0x3fd4))?_0x426311[_0x2927a2(0x266)]:_0x426311[_0x2927a2(0x64c)];}function selectOption(_0x359015){const _0x381ad9=_0x37261c,_0x583d97={'NnElB':_0x381ad9(0x305),'mmkeJ':function(_0x1eacb0,_0x157a7d){return _0x1eacb0===_0x157a7d;},'vlpzX':_0x381ad9(0x5e7)+'n'},_0xb3b5d7=state[_0x381ad9(0x634)][state[_0x381ad9(0x4f2)+'k']],_0x56ad18=_0xb3b5d7[_0x381ad9(0x289)][state[_0x381ad9(0x475)+_0x381ad9(0x4a6)]];_0x56ad18[_0x381ad9(0x4e9)]=_0x359015,document[_0x381ad9(0x280)+_0x381ad9(0x3da)](_0x583d97[_0x381ad9(0x353)])[_0x381ad9(0x56e)](_0x11c8fe=>{const _0x20bf85=_0x381ad9;_0x11c8fe[_0x20bf85(0x4f4)][_0x20bf85(0x4c3)](_0x583d97[_0x20bf85(0x2cc)]),_0x583d97[_0x20bf85(0x60e)](_0x11c8fe[_0x20bf85(0x604)+'t'],_0x359015)&&_0x11c8fe[_0x20bf85(0x4f4)][_0x20bf85(0x58e)](_0x583d97[_0x20bf85(0x2cc)]);});}function updateCountdown(){const _0x533f60=_0x37261c,_0x357dcf={'BHMjG':_0x533f60(0x3b5)+_0x533f60(0x4af),'XkuMV':function(_0x11e71b,_0x23470b){return _0x11e71b<=_0x23470b;},'nUUEq':function(_0x4dac3d,_0x3fcc02){return _0x4dac3d(_0x3fcc02);},'xQCnj':_0x533f60(0x1cb)+_0x533f60(0x642)+'e!','LgFyc':_0x533f60(0x2df)+_0x533f60(0x492),'gSziN':_0x533f60(0x3bc),'YFfrr':_0x533f60(0x40f)+_0x533f60(0x2c1),'VDaei':_0x533f60(0x2df)+_0x533f60(0x59c)+'r','HvYMo':_0x533f60(0x2df)+_0x533f60(0x60d)+'ng','gWgbg':_0x533f60(0x2df)+_0x533f60(0x5d3)},_0x54e698=document[_0x533f60(0x470)+_0x533f60(0x2a4)](_0x357dcf[_0x533f60(0x602)]);if(_0x357dcf[_0x533f60(0x501)](state[_0x533f60(0x41b)+_0x533f60(0x4e4)],0xbe*-0x22+-0x886+0x21c2*0x1)){_0x357dcf[_0x533f60(0x433)](clearInterval,state[_0x533f60(0x508)+_0x533f60(0x4d5)]),state[_0x533f60(0x508)+_0x533f60(0x4d5)]=null,_0x54e698[_0x533f60(0x604)+'t']=_0x357dcf[_0x533f60(0x45f)],_0x54e698[_0x533f60(0x64f)]=_0x357dcf[_0x533f60(0x5ce)];const _0x13a4e3=document[_0x533f60(0x470)+_0x533f60(0x2a4)](_0x357dcf[_0x533f60(0x246)]);_0x13a4e3[_0x533f60(0x32c)]=![],_0x13a4e3[_0x533f60(0x392)][_0x533f60(0x2d6)+_0x533f60(0x432)]=_0x357dcf[_0x533f60(0x3e9)];}else{_0x54e698[_0x533f60(0x604)+'t']=_0x533f60(0x60f)+_0x533f60(0x4c1)+state[_0x533f60(0x41b)+_0x533f60(0x4e4)]+'s';if(_0x357dcf[_0x533f60(0x501)](state[_0x533f60(0x41b)+_0x533f60(0x4e4)],-0x18f8+-0x2270+0x3b6a))_0x54e698[_0x533f60(0x64f)]=_0x357dcf[_0x533f60(0x2b6)];else _0x357dcf[_0x533f60(0x501)](state[_0x533f60(0x41b)+_0x533f60(0x4e4)],0x146b+-0x1e17+0x9af)?_0x54e698[_0x533f60(0x64f)]=_0x357dcf[_0x533f60(0x5b4)]:_0x54e698[_0x533f60(0x64f)]=_0x357dcf[_0x533f60(0x50a)];state[_0x533f60(0x41b)+_0x533f60(0x4e4)]--;}}function nextQuestion(){const _0x158a4d=_0x37261c,_0x2f3c64={'XaXtJ':function(_0x5ccbb9,_0x31d9d7){return _0x5ccbb9(_0x31d9d7);},'feJNk':function(_0x1b7e4e,_0x3e0e21){return _0x1b7e4e===_0x3e0e21;},'GaKkn':function(_0x478d3a,_0x211b7e){return _0x478d3a>=_0x211b7e;},'xGNpq':function(_0x18df2c){return _0x18df2c();},'xIdMs':function(_0x62e878){return _0x62e878();},'WeZeJ':function(_0x1c0100,_0x5b5c10,_0xe2cd59){return _0x1c0100(_0x5b5c10,_0xe2cd59);},'AiGIK':_0x158a4d(0x5d9)+_0x158a4d(0x411),'hZetx':function(_0x3b5e34){return _0x3b5e34();}};state[_0x158a4d(0x508)+_0x158a4d(0x4d5)]&&(_0x2f3c64[_0x158a4d(0x418)](clearInterval,state[_0x158a4d(0x508)+_0x158a4d(0x4d5)]),state[_0x158a4d(0x508)+_0x158a4d(0x4d5)]=null);const _0x392438=state[_0x158a4d(0x634)][state[_0x158a4d(0x4f2)+'k']],_0x3809d0=_0x392438[_0x158a4d(0x289)][state[_0x158a4d(0x475)+_0x158a4d(0x4a6)]];_0x2f3c64[_0x158a4d(0x27c)](_0x3809d0[_0x158a4d(0x4e9)],_0x3809d0[_0x158a4d(0x5c5)+_0x158a4d(0x33e)])&&state[_0x158a4d(0x4e2)]++;state[_0x158a4d(0x475)+_0x158a4d(0x4a6)]++;if(_0x2f3c64[_0x158a4d(0x586)](state[_0x158a4d(0x475)+_0x158a4d(0x4a6)],_0x392438[_0x158a4d(0x41e)+_0x158a4d(0x2db)])){if(!_0x392438[_0x158a4d(0x357)]){const _0x1a98db=_0x2f3c64[_0x158a4d(0x619)](generatePackEarnings);_0x392438[_0x158a4d(0x482)]=_0x1a98db,state[_0x158a4d(0x461)+_0x158a4d(0x63f)]+=_0x1a98db,_0x392438[_0x158a4d(0x357)]=!![],_0x392438[_0x158a4d(0x50f)]=state[_0x158a4d(0x4e2)],state[_0x158a4d(0x634)][state[_0x158a4d(0x4f2)+'k']]=_0x392438,_0x2f3c64[_0x158a4d(0x619)](saveEarningsProgress),_0x2f3c64[_0x158a4d(0x2d3)](savePackProgress);}_0x2f3c64[_0x158a4d(0x605)](showScreenWithLoading,_0x2f3c64[_0x158a4d(0x4aa)],showPackResults);}else _0x2f3c64[_0x158a4d(0x473)](renderQuestion);}function renderResults(){const _0xbe18a2=_0x37261c,_0x542bbe={'CCwtE':function(_0x56e948,_0x492e0b){return _0x56e948*_0x492e0b;},'AQjNw':function(_0x15ba56,_0x4772b8){return _0x15ba56/_0x4772b8;},'tOveL':_0xbe18a2(0x641)+_0xbe18a2(0x3ce),'YwMwB':_0xbe18a2(0x4c9)+_0xbe18a2(0x1c8),'nGYEv':function(_0x14b0e9,_0x3b8112){return _0x14b0e9(_0x3b8112);}},_0x22f75b=state[_0xbe18a2(0x634)][state[_0xbe18a2(0x4f2)+'k']],_0x121eec=Math[_0xbe18a2(0x3c5)](_0x542bbe[_0xbe18a2(0x262)](_0x542bbe[_0xbe18a2(0x63c)](state[_0xbe18a2(0x4e2)],_0x22f75b[_0xbe18a2(0x41e)+_0xbe18a2(0x2db)]),-0x20d1*-0x1+0x1*0x124a+0x1*-0x32b7));document[_0xbe18a2(0x470)+_0xbe18a2(0x2a4)](_0x542bbe[_0xbe18a2(0x2ac)])[_0xbe18a2(0x604)+'t']=_0x22f75b[_0xbe18a2(0x408)],document[_0xbe18a2(0x470)+_0xbe18a2(0x2a4)](_0x542bbe[_0xbe18a2(0x20b)])[_0xbe18a2(0x5d0)]=_0xbe18a2(0x5db)+_0xbe18a2(0x55a)+state[_0xbe18a2(0x4e2)]+'/'+_0x22f75b[_0xbe18a2(0x41e)+_0xbe18a2(0x2db)]+'\x20('+_0x121eec+(_0xbe18a2(0x347)+_0xbe18a2(0x2e3)+_0xbe18a2(0x338))+_0x542bbe[_0xbe18a2(0x654)](formatEarnings,_0x22f75b[_0xbe18a2(0x482)])+(_0xbe18a2(0x2c4)+_0xbe18a2(0x4ab)+_0xbe18a2(0x21a)+'\x20$')+_0x542bbe[_0xbe18a2(0x654)](formatEarnings,state[_0xbe18a2(0x461)+_0xbe18a2(0x63f)])+_0xbe18a2(0x456);}function renderStats(){const _0x36171e=_0x37261c,_0x3e5330={'hTmux':_0x36171e(0x505),'kKgoS':_0x36171e(0x516)+_0x36171e(0x5d3),'PkDrd':_0x36171e(0x40f)+_0x36171e(0x2c1),'AwzCR':_0x36171e(0x40f)+_0x36171e(0x2ae)+_0x36171e(0x611),'pNBWW':function(_0x140c5c,_0x42295b){return _0x140c5c(_0x42295b);},'peopM':_0x36171e(0x1d9)+_0x36171e(0x52c),'rODXl':_0x36171e(0x1bc)+_0x36171e(0x564)+_0x36171e(0x66b)+_0x36171e(0x539),'ttmIo':_0x36171e(0x615)+_0x36171e(0x63f),'ffEDI':_0x36171e(0x1cc),'qFDwl':_0x36171e(0x663)+_0x36171e(0x312)},_0x1ffd4d=state[_0x36171e(0x634)][_0x36171e(0x40b)](_0x4f7f02=>_0x4f7f02[_0x36171e(0x357)])[_0x36171e(0x568)];document[_0x36171e(0x470)+_0x36171e(0x2a4)](_0x3e5330[_0x36171e(0x1d8)])[_0x36171e(0x604)+'t']='$'+_0x3e5330[_0x36171e(0x272)](formatEarnings,state[_0x36171e(0x461)+_0x36171e(0x63f)]),document[_0x36171e(0x470)+_0x36171e(0x2a4)](_0x3e5330[_0x36171e(0x48d)])[_0x36171e(0x604)+'t']=_0x36171e(0x4d1)+_0x36171e(0x56b)+_0x1ffd4d+_0x36171e(0x49c)+state[_0x36171e(0x634)][_0x36171e(0x568)]+_0x36171e(0x3ee);const _0x592cc0=document[_0x36171e(0x470)+_0x36171e(0x2a4)](_0x3e5330[_0x36171e(0x542)]);_0x592cc0[_0x36171e(0x5d0)]='',state[_0x36171e(0x634)][_0x36171e(0x56e)](_0x3f0207=>{const _0x12b81e=_0x36171e,_0x31ff7e=document[_0x12b81e(0x659)+_0x12b81e(0x627)](_0x3e5330[_0x12b81e(0x5c6)]);_0x31ff7e[_0x12b81e(0x64f)]=_0x3e5330[_0x12b81e(0x545)],_0x31ff7e[_0x12b81e(0x5d0)]=_0x12b81e(0x315)+_0x12b81e(0x460)+_0x12b81e(0x462)+_0x12b81e(0x1b0)+'>'+_0x3f0207[_0x12b81e(0x1ea)]+(_0x12b81e(0x401)+_0x12b81e(0x647)+_0x12b81e(0x467)+_0x12b81e(0x538)+_0x12b81e(0x300)+_0x12b81e(0x4dc)+_0x12b81e(0x55d)+_0x12b81e(0x28f)+_0x12b81e(0x613)+'\x22>')+_0x3f0207[_0x12b81e(0x408)]+(_0x12b81e(0x401)+_0x12b81e(0x4dc)+_0x12b81e(0x460)+_0x12b81e(0x462)+_0x12b81e(0x2c0)+_0x12b81e(0x592)+_0x12b81e(0x4c7))+(_0x3f0207[_0x12b81e(0x357)]?_0x3e5330[_0x12b81e(0x36c)]:_0x3e5330[_0x12b81e(0x4cd)])+(_0x12b81e(0x25c)+_0x12b81e(0x4dc)+_0x12b81e(0x2bd))+(_0x3f0207[_0x12b81e(0x357)]?_0x12b81e(0x1fa)+'$'+_0x3e5330[_0x12b81e(0x272)](formatEarnings,_0x3f0207[_0x12b81e(0x482)]):_0x3e5330[_0x12b81e(0x3f9)])+(_0x12b81e(0x315)+_0x12b81e(0x577)+_0x12b81e(0x1aa)+_0x12b81e(0x5d8)+_0x12b81e(0x33d)+_0x12b81e(0x667))+(_0x3f0207[_0x12b81e(0x357)]?_0x3e5330[_0x12b81e(0x36e)]:'')+_0x12b81e(0x4c6),_0x592cc0[_0x12b81e(0x439)+'d'](_0x31ff7e);});}function loadAllPacks(){const _0x5121b9=_0x37261c,_0x3d6297={'btFEN':function(_0x1e7470){return _0x1e7470();},'JuQFG':function(_0x3a50b8){return _0x3a50b8();},'yjnTR':function(_0x560653){return _0x560653();},'SZzHy':function(_0x4aacbf){return _0x4aacbf();},'ndgVY':function(_0x4a4048){return _0x4a4048();},'VjzTO':function(_0x5864a4){return _0x5864a4();},'PBuYF':function(_0xfbba68){return _0xfbba68();},'yUqhc':function(_0x46de40){return _0x46de40();},'MWtUu':function(_0x4eb415){return _0x4eb415();},'xsQqW':function(_0x22230c){return _0x22230c();},'wyZxL':function(_0x58a0c5){return _0x58a0c5();},'QiQPv':function(_0x26ea22){return _0x26ea22();},'TbcLk':function(_0x5e95ab){return _0x5e95ab();},'GiUCO':function(_0x56a309){return _0x56a309();},'LKJzf':function(_0x179742){return _0x179742();},'wfivK':function(_0x483b41){return _0x483b41();},'aeRVd':function(_0x24de76){return _0x24de76();},'hbOnY':function(_0x1ca1c5){return _0x1ca1c5();},'enavn':function(_0x3fa979){return _0x3fa979();},'rWSgq':function(_0x24c717){return _0x24c717();},'XgDNZ':function(_0x4b6bc5){return _0x4b6bc5();},'WSbDd':function(_0x59a570){return _0x59a570();},'lwKdq':function(_0x59b6c9){return _0x59b6c9();},'pJUDv':function(_0x3ccfb1){return _0x3ccfb1();},'KsjVW':function(_0x2b87b5){return _0x2b87b5();}};state[_0x5121b9(0x634)]=[_0x3d6297[_0x5121b9(0x477)](loadPack1_DataQuality),_0x3d6297[_0x5121b9(0x323)](loadPack2_ContentSafety),_0x3d6297[_0x5121b9(0x323)](loadPack3_TaskClassification),_0x3d6297[_0x5121b9(0x229)](loadPack4_DataBiasDetection),_0x3d6297[_0x5121b9(0x229)](loadPack5_ToxicityLevels),_0x3d6297[_0x5121b9(0x2fb)](loadPack6_IntentClassification),_0x3d6297[_0x5121b9(0x258)](loadPack7_DomainClassification),_0x3d6297[_0x5121b9(0x2fb)](loadPack8_ResponseQuality),_0x3d6297[_0x5121b9(0x477)](loadPack9_ContextualAppropriate),_0x3d6297[_0x5121b9(0x609)](loadPack10_FactualVerification),_0x3d6297[_0x5121b9(0x323)](loadPack11_SensitivityClassification),_0x3d6297[_0x5121b9(0x20e)](loadPack12_LabelQuality),_0x3d6297[_0x5121b9(0x258)](loadPack13_MultimodalClassification),_0x3d6297[_0x5121b9(0x2fb)](loadPack14_InstructionQuality),_0x3d6297[_0x5121b9(0x323)](loadPack15_ConversationalQuality),_0x3d6297[_0x5121b9(0x477)](loadPack16_ReasoningChainQuality),_0x3d6297[_0x5121b9(0x477)](loadPack17_CodeQualityAssessment),_0x3d6297[_0x5121b9(0x477)](loadPack18_MathematicalContent),_0x3d6297[_0x5121b9(0x2cd)](loadPack19_LanguageVariety),_0x3d6297[_0x5121b9(0x609)](loadPack20_PromptInjectionDetection),_0x3d6297[_0x5121b9(0x20e)](loadPack21_OutputFormatClassification),_0x3d6297[_0x5121b9(0x1d7)](loadPack22_ExplanationQuality),_0x3d6297[_0x5121b9(0x477)](loadPack23_SourceCredibility),_0x3d6297[_0x5121b9(0x3e4)](loadPack24_PersonalizationData),_0x3d6297[_0x5121b9(0x60a)](loadPack25_EthicalContent),_0x3d6297[_0x5121b9(0x20e)](loadPack26_TemporalRelevance),_0x3d6297[_0x5121b9(0x323)](loadPack27_NuanceComplexity),_0x3d6297[_0x5121b9(0x2cd)](loadPack28_CrossLingualQuality),_0x3d6297[_0x5121b9(0x2cd)](loadPack29_RedTeamingContent),_0x3d6297[_0x5121b9(0x323)](loadPack30_DomainAdaptation),_0x3d6297[_0x5121b9(0x24b)](loadPack31_GroundingVerification),_0x3d6297[_0x5121b9(0x3e4)](loadPack32_DialogueCoherence),_0x3d6297[_0x5121b9(0x334)](loadPack33_ControversialTopics),_0x3d6297[_0x5121b9(0x229)](loadPack34_CreativeContent),_0x3d6297[_0x5121b9(0x543)](loadPack35_SpecializedKnowledge),_0x3d6297[_0x5121b9(0x34e)](loadPack36_UserIntentAlignment),_0x3d6297[_0x5121b9(0x334)](loadPack37_DiversityInclusion),_0x3d6297[_0x5121b9(0x444)](loadPack38_ErrorCorrection),_0x3d6297[_0x5121b9(0x2e7)](loadPack39_EdgeCaseHandling),_0x3d6297[_0x5121b9(0x531)](loadPack40_MetaCognition),_0x3d6297[_0x5121b9(0x323)](loadPack41_ComparativeAnalysis),_0x3d6297[_0x5121b9(0x369)](loadPack42_ProblemSolving),_0x3d6297[_0x5121b9(0x2e5)](loadPack43_CausalReasoning),_0x3d6297[_0x5121b9(0x540)](loadPack44_QuantitativeReasoning),_0x3d6297[_0x5121b9(0x2e7)](loadPack45_ArgumentStructure),_0x3d6297[_0x5121b9(0x43c)](loadPack46_InformationDensity),_0x3d6297[_0x5121b9(0x229)](loadPack47_SyntaxCorrectness),_0x3d6297[_0x5121b9(0x21c)](loadPack48_ChainOfThought),_0x3d6297[_0x5121b9(0x388)](loadPack49_ContextUtilization),_0x3d6297[_0x5121b9(0x202)](loadPack50_OutputConsistency)];}function loadPack1_DataQuality(){const _0x4e3fdc=_0x37261c,_0x3d54fe={'QRxNi':_0x4e3fdc(0x639)+_0x4e3fdc(0x474)+_0x4e3fdc(0x450),'azMIx':_0x4e3fdc(0x5e5)+_0x4e3fdc(0x20c)+_0x4e3fdc(0x4ce)+_0x4e3fdc(0x5eb),'wrXxu':_0x4e3fdc(0x4e8)+_0x4e3fdc(0x4bc)+'y','KvsJX':_0x4e3fdc(0x5e5)+_0x4e3fdc(0x1eb)+_0x4e3fdc(0x57a)+_0x4e3fdc(0x5da)+_0x4e3fdc(0x24f)+_0x4e3fdc(0x221)+_0x4e3fdc(0x553)+_0x4e3fdc(0x35a),'BwzEa':_0x4e3fdc(0x406)+_0x4e3fdc(0x4b5),'aNIHA':_0x4e3fdc(0x1b4)+_0x4e3fdc(0x4db),'dllDi':_0x4e3fdc(0x245)+'ta','flMas':_0x4e3fdc(0x4fb),'vxoRq':_0x4e3fdc(0x341)+_0x4e3fdc(0x437)+_0x4e3fdc(0x282),'ojmEn':_0x4e3fdc(0x5e5)+_0x4e3fdc(0x1d5)+_0x4e3fdc(0x41a)+_0x4e3fdc(0x57b)+_0x4e3fdc(0x372)+_0x4e3fdc(0x1dd)+_0x4e3fdc(0x4ad),'SuxJo':_0x4e3fdc(0x3b0),'BaIJX':_0x4e3fdc(0x1f9)+_0x4e3fdc(0x635),'QVJoW':_0x4e3fdc(0x573)+_0x4e3fdc(0x1ad),'SVHvE':_0x4e3fdc(0x51b),'eHmEK':_0x4e3fdc(0x511)+_0x4e3fdc(0x282),'RwCPG':_0x4e3fdc(0x5e5)+_0x4e3fdc(0x522)+_0x4e3fdc(0x4f5)+_0x4e3fdc(0x415)+_0x4e3fdc(0x4a3)+_0x4e3fdc(0x579),'LioKW':_0x4e3fdc(0x5ec)+_0x4e3fdc(0x286),'WyRbv':_0x4e3fdc(0x448)+_0x4e3fdc(0x2e1),'uKJRi':_0x4e3fdc(0x5d7)+_0x4e3fdc(0x5f2),'nIbSr':_0x4e3fdc(0x4e0)+'ce','sXdiL':_0x4e3fdc(0x329)+_0x4e3fdc(0x5dc),'hOKoX':_0x4e3fdc(0x5e5)+_0x4e3fdc(0x665)+_0x4e3fdc(0x1a8)+_0x4e3fdc(0x558)+_0x4e3fdc(0x5a1)+'\x27','cPQvM':_0x4e3fdc(0x52e),'hhxqz':_0x4e3fdc(0x242),'dSaBu':_0x4e3fdc(0x3f0),'kIMbY':_0x4e3fdc(0x494)+_0x4e3fdc(0x599),'wCWxI':_0x4e3fdc(0x3b1)+_0x4e3fdc(0x282),'WFlOb':_0x4e3fdc(0x5e5)+_0x4e3fdc(0x5f9)+_0x4e3fdc(0x237)+_0x4e3fdc(0x64a)+_0x4e3fdc(0x637)+_0x4e3fdc(0x2f1)+_0x4e3fdc(0x3cc)+'n\x27','fbucL':_0x4e3fdc(0x528),'jTBIM':_0x4e3fdc(0x454),'wsUJu':_0x4e3fdc(0x213),'kYuRD':_0x4e3fdc(0x43b),'PFhlv':_0x4e3fdc(0x4fa)+_0x4e3fdc(0x489),'kSJSb':_0x4e3fdc(0x5e5)+_0x4e3fdc(0x382)+_0x4e3fdc(0x1e7)+_0x4e3fdc(0x2c9)+_0x4e3fdc(0x56f)+_0x4e3fdc(0x561),'qDkfQ':_0x4e3fdc(0x625),'TLqNT':_0x4e3fdc(0x61b),'qyxct':_0x4e3fdc(0x230),'nCeOa':_0x4e3fdc(0x2c2)};return{'id':0x1,'name':_0x3d54fe[_0x4e3fdc(0x4e3)],'description':_0x3d54fe[_0x4e3fdc(0x33a)],'icon':'✓','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':[{'title':_0x3d54fe[_0x4e3fdc(0x5b8)],'text':_0x3d54fe[_0x4e3fdc(0x614)],'options':[_0x3d54fe[_0x4e3fdc(0x218)],_0x3d54fe[_0x4e3fdc(0x30c)],_0x3d54fe[_0x4e3fdc(0x3a3)],_0x3d54fe[_0x4e3fdc(0x46e)]],'correctAnswer':_0x3d54fe[_0x4e3fdc(0x218)]},{'title':_0x3d54fe[_0x4e3fdc(0x377)],'text':_0x3d54fe[_0x4e3fdc(0x5b7)],'options':[_0x3d54fe[_0x4e3fdc(0x22c)],_0x3d54fe[_0x4e3fdc(0x1e2)],_0x3d54fe[_0x4e3fdc(0x3bd)],_0x3d54fe[_0x4e3fdc(0x43e)]],'correctAnswer':_0x3d54fe[_0x4e3fdc(0x22c)]},{'title':_0x3d54fe[_0x4e3fdc(0x2a3)],'text':_0x3d54fe[_0x4e3fdc(0x3b4)],'options':[_0x3d54fe[_0x4e3fdc(0x525)],_0x3d54fe[_0x4e3fdc(0x33c)],_0x3d54fe[_0x4e3fdc(0x389)],_0x3d54fe[_0x4e3fdc(0x363)]],'correctAnswer':_0x3d54fe[_0x4e3fdc(0x525)]},{'title':_0x3d54fe[_0x4e3fdc(0x38b)],'text':_0x3d54fe[_0x4e3fdc(0x5fd)],'options':[_0x3d54fe[_0x4e3fdc(0x238)],_0x3d54fe[_0x4e3fdc(0x3bf)],_0x3d54fe[_0x4e3fdc(0x37a)],_0x3d54fe[_0x4e3fdc(0x3e2)]],'correctAnswer':_0x3d54fe[_0x4e3fdc(0x238)]},{'title':_0x3d54fe[_0x4e3fdc(0x2d1)],'text':_0x3d54fe[_0x4e3fdc(0x3d5)],'options':[_0x3d54fe[_0x4e3fdc(0x61a)],_0x3d54fe[_0x4e3fdc(0x296)],_0x3d54fe[_0x4e3fdc(0x5f3)],_0x3d54fe[_0x4e3fdc(0x4f9)]],'correctAnswer':_0x3d54fe[_0x4e3fdc(0x61a)]},{'title':_0x3d54fe[_0x4e3fdc(0x23b)],'text':_0x3d54fe[_0x4e3fdc(0x261)],'options':[_0x3d54fe[_0x4e3fdc(0x54c)],_0x3d54fe[_0x4e3fdc(0x34d)],_0x3d54fe[_0x4e3fdc(0x523)],_0x3d54fe[_0x4e3fdc(0x2b7)]],'correctAnswer':_0x3d54fe[_0x4e3fdc(0x54c)]}]};}function loadPack2_ContentSafety(){const _0x41af1f=_0x37261c,_0x4c6761={'Zinfl':_0x41af1f(0x414)+_0x41af1f(0x583)+_0x41af1f(0x449),'dbabR':_0x41af1f(0x5e5)+_0x41af1f(0x2da)+_0x41af1f(0x37e)+_0x41af1f(0x59d),'gXmqA':_0x41af1f(0x31b),'IfYDU':_0x41af1f(0x2dc)+_0x41af1f(0x436),'HPxvV':_0x41af1f(0x5e5)+_0x41af1f(0x1f5)+_0x41af1f(0x3ed)+_0x41af1f(0x373)+_0x41af1f(0x4eb)+_0x41af1f(0x2f3),'SBQYN':_0x41af1f(0x50d)+_0x41af1f(0x343),'AfsLs':_0x41af1f(0x2fc)+'nt','MRVwN':_0x41af1f(0x317)+'l','oPdCA':_0x41af1f(0x349)+_0x41af1f(0x30a),'omuCw':_0x41af1f(0x336)+_0x41af1f(0x5c7),'JASmR':_0x41af1f(0x5e5)+_0x41af1f(0x65f)+_0x41af1f(0x2de)+_0x41af1f(0x31e)+_0x41af1f(0x5a4)+_0x41af1f(0x3fa)+_0x41af1f(0x30f),'BEtoG':_0x41af1f(0x336)+'h','WGckc':_0x41af1f(0x4c4)+'h','jkrGO':_0x41af1f(0x4fc),'gqsjz':_0x41af1f(0x50b),'UUbQi':_0x41af1f(0x340)+_0x41af1f(0x3ea)+_0x41af1f(0x603),'nJDpH':_0x41af1f(0x5e5)+_0x41af1f(0x358)+_0x41af1f(0x524)+_0x41af1f(0x5c3)+_0x41af1f(0x27e),'CWhfR':_0x41af1f(0x559)+_0x41af1f(0x5af)+'on','qmaac':_0x41af1f(0x5be)+_0x41af1f(0x23e),'mziyy':_0x41af1f(0x1d0)+_0x41af1f(0x3b6)+_0x41af1f(0x1ed),'ZPvRh':_0x41af1f(0x5e5)+_0x41af1f(0x2be)+_0x41af1f(0x4cc)+_0x41af1f(0x1ae)+_0x41af1f(0x532)+_0x41af1f(0x3fc),'xmdAv':_0x41af1f(0x4d8)+_0x41af1f(0x308),'iGpEM':_0x41af1f(0x422)+_0x41af1f(0x360),'cGhqr':_0x41af1f(0x458)+_0x41af1f(0x4db),'GSqqq':_0x41af1f(0x655)+'nt','hWWbG':_0x41af1f(0x1d6)+_0x41af1f(0x474)+'y','wbjRT':_0x41af1f(0x5e5)+_0x41af1f(0x4dd)+_0x41af1f(0x481)+_0x41af1f(0x43a)+_0x41af1f(0x5b9),'GjHhe':_0x41af1f(0x27a)+_0x41af1f(0x4da),'ZVFyq':_0x41af1f(0x612)+_0x41af1f(0x225),'TxXvm':_0x41af1f(0x416)+_0x41af1f(0x627),'akXuN':_0x41af1f(0x5e3),'XrPnB':_0x41af1f(0x645)+_0x41af1f(0x282),'zIoxi':_0x41af1f(0x5e5)+_0x41af1f(0x57d)+_0x41af1f(0x52b)+_0x41af1f(0x2d7)+_0x41af1f(0x3aa),'ZUgSv':_0x41af1f(0x645)+_0x41af1f(0x4f8),'pusVf':_0x41af1f(0x5a5)+_0x41af1f(0x3e7),'bRMmj':_0x41af1f(0x291)+_0x41af1f(0x396),'ZEnvY':_0x41af1f(0x38c)+_0x41af1f(0x1b2)+_0x41af1f(0x1af),'mUeFo':_0x41af1f(0x5e5)+_0x41af1f(0x3eb)+_0x41af1f(0x472)+_0x41af1f(0x342)+_0x41af1f(0x65a)+_0x41af1f(0x248)+_0x41af1f(0x4a4)+_0x41af1f(0x1e3),'PMcuY':_0x41af1f(0x5bb)+_0x41af1f(0x2ab),'kKZCV':_0x41af1f(0x5a6),'PXHbI':_0x41af1f(0x421),'OBmmp':_0x41af1f(0x61f)};return{'id':0x2,'name':_0x4c6761[_0x41af1f(0x657)],'description':_0x4c6761[_0x41af1f(0x383)],'icon':_0x4c6761[_0x41af1f(0x301)],'completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x7,'questions':[{'title':_0x4c6761[_0x41af1f(0x509)],'text':_0x4c6761[_0x41af1f(0x591)],'options':[_0x4c6761[_0x41af1f(0x1c6)],_0x4c6761[_0x41af1f(0x385)],_0x4c6761[_0x41af1f(0x52d)],_0x4c6761[_0x41af1f(0x2fd)]],'correctAnswer':_0x4c6761[_0x41af1f(0x1c6)]},{'title':_0x4c6761[_0x41af1f(0x1ec)],'text':_0x4c6761[_0x41af1f(0x45e)],'options':[_0x4c6761[_0x41af1f(0x37c)],_0x4c6761[_0x41af1f(0x3ff)],_0x4c6761[_0x41af1f(0x649)],_0x4c6761[_0x41af1f(0x304)]],'correctAnswer':_0x4c6761[_0x41af1f(0x37c)]},{'title':_0x4c6761[_0x41af1f(0x4e5)],'text':_0x4c6761[_0x41af1f(0x55b)],'options':[_0x4c6761[_0x41af1f(0x452)],_0x4c6761[_0x41af1f(0x41c)],_0x4c6761[_0x41af1f(0x52d)],_0x4c6761[_0x41af1f(0x2fd)]],'correctAnswer':_0x4c6761[_0x41af1f(0x452)]},{'title':_0x4c6761[_0x41af1f(0x63e)],'text':_0x4c6761[_0x41af1f(0x596)],'options':[_0x4c6761[_0x41af1f(0x595)],_0x4c6761[_0x41af1f(0x53d)],_0x4c6761[_0x41af1f(0x4bb)],_0x4c6761[_0x41af1f(0x63a)]],'correctAnswer':_0x4c6761[_0x41af1f(0x595)]},{'title':_0x4c6761[_0x41af1f(0x294)],'text':_0x4c6761[_0x41af1f(0x1f1)],'options':[_0x4c6761[_0x41af1f(0x209)],_0x4c6761[_0x41af1f(0x26e)],_0x4c6761[_0x41af1f(0x4b2)],_0x4c6761[_0x41af1f(0x38e)]],'correctAnswer':_0x4c6761[_0x41af1f(0x209)]},{'title':_0x4c6761[_0x41af1f(0x51a)],'text':_0x4c6761[_0x41af1f(0x256)],'options':[_0x4c6761[_0x41af1f(0x5e6)],_0x4c6761[_0x41af1f(0x585)],_0x4c6761[_0x41af1f(0x44d)],_0x4c6761[_0x41af1f(0x304)]],'correctAnswer':_0x4c6761[_0x41af1f(0x5e6)]},{'title':_0x4c6761[_0x41af1f(0x2e2)],'text':_0x4c6761[_0x41af1f(0x4b4)],'options':[_0x4c6761[_0x41af1f(0x447)],_0x4c6761[_0x41af1f(0x628)],_0x4c6761[_0x41af1f(0x2f2)],_0x4c6761[_0x41af1f(0x362)]],'correctAnswer':_0x4c6761[_0x41af1f(0x447)]}]};}function loadPack3_TaskClassification(){const _0x285aca=_0x37261c,_0x21bac5={'Wdxmv':_0x285aca(0x4d9)+_0x285aca(0x3b3)+_0x285aca(0x37f),'uRQGm':_0x285aca(0x5e5)+_0x285aca(0x53c)+_0x285aca(0x463),'Unzik':_0x285aca(0x30e)+_0x285aca(0x1ed),'FhiSo':_0x285aca(0x5e5)+_0x285aca(0x38a)+_0x285aca(0x20f)+_0x285aca(0x32b)+_0x285aca(0x352)+_0x285aca(0x49b),'QZoqM':_0x285aca(0x2d2)+_0x285aca(0x375),'oCTeQ':_0x285aca(0x445)+_0x285aca(0x308),'OYQBe':_0x285aca(0x331)+'n','vMXre':_0x285aca(0x3ab),'zxhcQ':_0x285aca(0x445)+_0x285aca(0x243)+_0x285aca(0x436),'CMWjt':_0x285aca(0x5e5)+_0x285aca(0x47a)+_0x285aca(0x316)+_0x285aca(0x2ca)+_0x285aca(0x3c2),'ZjUAV':_0x285aca(0x546),'shUAG':_0x285aca(0x251)+_0x285aca(0x61c)+_0x285aca(0x49e),'VmHjL':_0x285aca(0x5e5)+_0x285aca(0x4bf)+_0x285aca(0x1c1)+_0x285aca(0x3de)+_0x285aca(0x4e1)+_0x285aca(0x2bb)+_0x285aca(0x3d4),'FCEkU':_0x285aca(0x251)+_0x285aca(0x59e),'BQeNc':_0x285aca(0x479)+_0x285aca(0x59e),'asyHm':_0x285aca(0x490)+_0x285aca(0x37f),'gJEkV':_0x285aca(0x407)+_0x285aca(0x31d)+_0x285aca(0x282),'YTnQe':_0x285aca(0x5e5)+_0x285aca(0x2e4)+_0x285aca(0x3fe)+_0x285aca(0x5a0)+'e\x27','OiHty':_0x285aca(0x407)+_0x285aca(0x37f),'yqcfM':_0x285aca(0x331)+_0x285aca(0x59f)+_0x285aca(0x1af),'KXVXs':_0x285aca(0x5e5)+_0x285aca(0x60c)+_0x285aca(0x58b),'XAzlV':_0x285aca(0x581),'HZizR':_0x285aca(0x4f0)+_0x285aca(0x436),'YIhHn':_0x285aca(0x5e5)+_0x285aca(0x574)+_0x285aca(0x287)+_0x285aca(0x469)+_0x285aca(0x44c)+'gs','zVWdr':_0x285aca(0x21e)+_0x285aca(0x499)+_0x285aca(0x37f),'FYnRi':_0x285aca(0x1e6),'mUxPZ':_0x285aca(0x457)+_0x285aca(0x435)+_0x285aca(0x603),'XZEML':_0x285aca(0x5e5)+_0x285aca(0x5cc)+_0x285aca(0x387)+_0x285aca(0x21d)+_0x285aca(0x56c)+_0x285aca(0x1c2)+_0x285aca(0x453)+_0x285aca(0x440),'JJJzc':_0x285aca(0x652),'riohA':_0x285aca(0x4c0)+_0x285aca(0x419)+_0x285aca(0x282),'EhpgT':_0x285aca(0x5e5)+_0x285aca(0x442)+_0x285aca(0x5b5)+_0x285aca(0x235)+_0x285aca(0x24a)+_0x285aca(0x2a2)+_0x285aca(0x328),'tzaSv':_0x285aca(0x4c0)+_0x285aca(0x4b6)};return{'id':0x3,'name':_0x21bac5[_0x285aca(0x3be)],'description':_0x21bac5[_0x285aca(0x25f)],'icon':'📋','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x8,'questions':[{'title':_0x21bac5[_0x285aca(0x3e5)],'text':_0x21bac5[_0x285aca(0x35e)],'options':[_0x21bac5[_0x285aca(0x65e)],_0x21bac5[_0x285aca(0x4a0)],_0x21bac5[_0x285aca(0x2b8)],_0x21bac5[_0x285aca(0x519)]],'correctAnswer':_0x21bac5[_0x285aca(0x65e)]},{'title':_0x21bac5[_0x285aca(0x4bd)],'text':_0x21bac5[_0x285aca(0x5cf)],'options':[_0x21bac5[_0x285aca(0x4a0)],_0x21bac5[_0x285aca(0x65e)],_0x21bac5[_0x285aca(0x2b8)],_0x21bac5[_0x285aca(0x495)]],'correctAnswer':_0x21bac5[_0x285aca(0x4a0)]},{'title':_0x21bac5[_0x285aca(0x1ac)],'text':_0x21bac5[_0x285aca(0x215)],'options':[_0x21bac5[_0x285aca(0x1bb)],_0x21bac5[_0x285aca(0x22d)],_0x21bac5[_0x285aca(0x2b8)],_0x21bac5[_0x285aca(0x4f3)]],'correctAnswer':_0x21bac5[_0x285aca(0x1bb)]},{'title':_0x21bac5[_0x285aca(0x640)],'text':_0x21bac5[_0x285aca(0x3db)],'options':[_0x21bac5[_0x285aca(0x44b)],_0x21bac5[_0x285aca(0x519)],_0x21bac5[_0x285aca(0x4a0)],_0x21bac5[_0x285aca(0x495)]],'correctAnswer':_0x21bac5[_0x285aca(0x44b)]},{'title':_0x21bac5[_0x285aca(0x631)],'text':_0x21bac5[_0x285aca(0x476)],'options':[_0x21bac5[_0x285aca(0x2b8)],_0x21bac5[_0x285aca(0x519)],_0x21bac5[_0x285aca(0x4f3)],_0x21bac5[_0x285aca(0x5ef)]],'correctAnswer':_0x21bac5[_0x285aca(0x2b8)]},{'title':_0x21bac5[_0x285aca(0x2b2)],'text':_0x21bac5[_0x285aca(0x223)],'options':[_0x21bac5[_0x285aca(0x5ed)],_0x21bac5[_0x285aca(0x44b)],_0x21bac5[_0x285aca(0x495)],_0x21bac5[_0x285aca(0x29d)]],'correctAnswer':_0x21bac5[_0x285aca(0x5ed)]},{'title':_0x21bac5[_0x285aca(0x56d)],'text':_0x21bac5[_0x285aca(0x638)],'options':[_0x21bac5[_0x285aca(0x361)],_0x21bac5[_0x285aca(0x44b)],_0x21bac5[_0x285aca(0x519)],'QA'],'correctAnswer':_0x21bac5[_0x285aca(0x361)]},{'title':_0x21bac5[_0x285aca(0x3c9)],'text':_0x21bac5[_0x285aca(0x565)],'options':[_0x21bac5[_0x285aca(0x21b)],_0x21bac5[_0x285aca(0x4a0)],_0x21bac5[_0x285aca(0x2b8)],_0x21bac5[_0x285aca(0x495)]],'correctAnswer':_0x21bac5[_0x285aca(0x21b)]}]};}function generateSimpleQuestions(_0x2f2989,_0x137d27,_0x4251f5=-0x7*-0x211+0x2155+-0x2fc6){const _0xe6af9e=_0x37261c,_0x58cdf2={'NicCk':function(_0x5e8422,_0xd7ed96){return _0x5e8422<=_0xd7ed96;}},_0x56749d=[];for(let _0x402f5f=-0x5c0+0x15d5+-0x1014;_0x58cdf2[_0xe6af9e(0x1fe)](_0x402f5f,_0x4251f5);_0x402f5f++){_0x56749d[_0xe6af9e(0x563)]({'title':_0x137d27+_0xe6af9e(0x1b3)+_0x402f5f,'text':_0xe6af9e(0x5bd)+_0xe6af9e(0x330)+_0xe6af9e(0x643)+'\x20'+_0x402f5f+_0xe6af9e(0x29c)+_0x137d27,'options':[_0xe6af9e(0x356),_0xe6af9e(0x29a),_0xe6af9e(0x5b6),_0xe6af9e(0x630)],'correctAnswer':_0xe6af9e(0x356)});}return _0x56749d;}function loadPack4_DataBiasDetection(){const _0x437c3d=_0x37261c,_0x20650b={'bhpWz':_0x437c3d(0x260)+_0x437c3d(0x3b3)+_0x437c3d(0x37f),'lbLXD':_0x437c3d(0x5e5)+_0x437c3d(0x578)+_0x437c3d(0x394),'kMszz':function(_0x47a5e0,_0x4f9e9a,_0x580fb1,_0xea6be){return _0x47a5e0(_0x4f9e9a,_0x580fb1,_0xea6be);},'UfCIZ':_0x437c3d(0x35c)+_0x437c3d(0x37f)};return{'id':0x4,'name':_0x20650b[_0x437c3d(0x39f)],'description':_0x20650b[_0x437c3d(0x64b)],'icon':'⚖️','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x20650b[_0x437c3d(0x5f5)](generateSimpleQuestions,-0x1*-0x92b+0x11f5*0x2+-0x2d11*0x1,_0x20650b[_0x437c3d(0x30d)],0x7b5*-0x3+-0x207c+0x37a1)};}function loadPack5_ToxicityLevels(){const _0x5a90dd=_0x37261c,_0x25a51d={'HvRpG':_0x5a90dd(0x48f)+_0x5a90dd(0x529)+_0x5a90dd(0x214),'PxLtY':_0x5a90dd(0x5e5)+_0x5a90dd(0x2da)+_0x5a90dd(0x45a)+_0x5a90dd(0x500),'AGidD':function(_0x196c27,_0x5902df,_0x1f9896,_0x565976){return _0x196c27(_0x5902df,_0x1f9896,_0x565976);},'LmbaX':_0x5a90dd(0x48f)+_0x5a90dd(0x517)};return{'id':0x5,'name':_0x25a51d[_0x5a90dd(0x48b)],'description':_0x25a51d[_0x5a90dd(0x26a)],'icon':'⚠️','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x25a51d[_0x5a90dd(0x3ba)](generateSimpleQuestions,-0x1de2+0x1a31+0x3b6,_0x25a51d[_0x5a90dd(0x45d)],-0x1f87+0x19d8+0x1e7*0x3)};}function loadPack6_IntentClassification(){const _0x16b357=_0x37261c,_0x3393b7={'fcEhh':_0x16b357(0x64e)+_0x16b357(0x46d)+_0x16b357(0x288),'CIgcG':_0x16b357(0x5e5)+_0x16b357(0x339)+_0x16b357(0x514)+_0x16b357(0x627),'xJsSY':function(_0x35460a,_0x2acb4a,_0x2a28e1,_0x3a8e1e){return _0x35460a(_0x2acb4a,_0x2a28e1,_0x3a8e1e);},'yhCTo':_0x16b357(0x3ae)+_0x16b357(0x368)+'n'};return{'id':0x6,'name':_0x3393b7[_0x16b357(0x355)],'description':_0x3393b7[_0x16b357(0x5ab)],'icon':'🎯','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x7,'questions':_0x3393b7[_0x16b357(0x3e0)](generateSimpleQuestions,-0x847+0x26b*0x2+0x377,_0x3393b7[_0x16b357(0x503)],0x25*0x109+-0x1246+0x280*-0x8)};}function loadPack7_DomainClassification(){const _0xd06dcc=_0x37261c,_0x16bc7e={'wzZJW':_0xd06dcc(0x4ca)+_0xd06dcc(0x330)+'n','RTWGS':_0xd06dcc(0x5e5)+_0xd06dcc(0x2da)+_0xd06dcc(0x4a9)+_0xd06dcc(0x39d),'XzWOu':function(_0x15b710,_0x47fd74,_0x4ea9ae,_0x3e0cfa){return _0x15b710(_0x47fd74,_0x4ea9ae,_0x3e0cfa);},'uwCgi':_0xd06dcc(0x5bf)+_0xd06dcc(0x368)+'n'};return{'id':0x7,'name':_0x16bc7e[_0xd06dcc(0x5a7)],'description':_0x16bc7e[_0xd06dcc(0x386)],'icon':'📚','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x16bc7e[_0xd06dcc(0x4ee)](generateSimpleQuestions,0x1a4b+-0x15e4+-0x460,_0x16bc7e[_0xd06dcc(0x3fd)],-0x16*0x175+-0xa*-0x31c+0xfc)};}function _0x5801(_0x1022f3,_0x1de741){_0x1022f3=_0x1022f3-(-0x1f4a+-0xac*-0x22+0x5*0x205);const _0x58714d=_0x2eaa();let _0x651a0a=_0x58714d[_0x1022f3];return _0x651a0a;}function loadPack8_ResponseQuality(){const _0x3848dc=_0x37261c,_0x19a04f={'YUYaZ':_0x3848dc(0x3df)+_0x3848dc(0x326)+_0x3848dc(0x330)+'n','xKAMH':_0x3848dc(0x5e5)+_0x3848dc(0x227)+_0x3848dc(0x27b)+_0x3848dc(0x250),'Gllva':function(_0x44d4ba,_0x41bc40,_0x12c9e8,_0x294e6c){return _0x44d4ba(_0x41bc40,_0x12c9e8,_0x294e6c);},'ulPtN':_0x3848dc(0x3df)+_0x3848dc(0x36a)};return{'id':0x8,'name':_0x19a04f[_0x3848dc(0x438)],'description':_0x19a04f[_0x3848dc(0x393)],'icon':'⭐','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x19a04f[_0x3848dc(0x644)](generateSimpleQuestions,0x24ef+-0x151c+-0x1*0xfcb,_0x19a04f[_0x3848dc(0x2e9)],-0x15*0x19b+0x4*-0x67f+0x3bb9)};}function loadPack9_ContextualAppropriate(){const _0x29347e=_0x37261c,_0x151b7a={'pkvUE':_0x29347e(0x3b2)+_0x29347e(0x2c7)+_0x29347e(0x404),'erheV':_0x29347e(0x5e5)+_0x29347e(0x2da)+_0x29347e(0x314)+_0x29347e(0x5d4)+'y','bJsam':function(_0x523721,_0x329c8f,_0x4a8e43,_0x106827){return _0x523721(_0x329c8f,_0x4a8e43,_0x106827);}};return{'id':0x9,'name':_0x151b7a[_0x29347e(0x608)],'description':_0x151b7a[_0x29347e(0x429)],'icon':'🎭','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x151b7a[_0x29347e(0x397)](generateSimpleQuestions,0x178a+-0x1664+-0x11d,_0x151b7a[_0x29347e(0x608)],-0x1245+0x5*0x32b+-0x274*-0x1)};}function loadPack10_FactualVerification(){const _0x441c5f=_0x37261c,_0x1d8a08={'WTNyx':_0x441c5f(0x1c3)+_0x441c5f(0x507)+_0x441c5f(0x330)+'n','odhuk':_0x441c5f(0x5e5)+_0x441c5f(0x3ad)+_0x441c5f(0x54f)+_0x441c5f(0x240),'SZrbq':function(_0x528a6f,_0x2a7f89,_0x53a25b,_0x4b09b4){return _0x528a6f(_0x2a7f89,_0x53a25b,_0x4b09b4);},'zQYMj':_0x441c5f(0x582)+_0x441c5f(0x518)};return{'id':0xa,'name':_0x1d8a08[_0x441c5f(0x350)],'description':_0x1d8a08[_0x441c5f(0x5cd)],'icon':'✓','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x1d8a08[_0x441c5f(0x5b2)](generateSimpleQuestions,0x21f3+0x7ca*0x1+-0x29b3,_0x1d8a08[_0x441c5f(0x259)],-0x217*0xd+-0x1cd4+-0x1*-0x3805)};}function loadPack11_SensitivityClassification(){const _0x3106e4=_0x37261c,_0x137c40={'qusav':_0x3106e4(0x1f7)+_0x3106e4(0x2b3)+_0x3106e4(0x3f7)+'on','rNruu':_0x3106e4(0x5e5)+_0x3106e4(0x2da)+_0x3106e4(0x62d)+_0x3106e4(0x286),'BdpVj':function(_0x27e8d4,_0x310b2b,_0x3b3d50,_0x5ac994){return _0x27e8d4(_0x310b2b,_0x3b3d50,_0x5ac994);},'yIOdB':_0x3106e4(0x1f7)+_0x3106e4(0x3d3)+_0x3106e4(0x1b8)};return{'id':0xb,'name':_0x137c40[_0x3106e4(0x1b5)],'description':_0x137c40[_0x3106e4(0x2d9)],'icon':'🔒','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x137c40[_0x3106e4(0x4ef)](generateSimpleQuestions,-0xe82+0xae4+0x3a9*0x1,_0x137c40[_0x3106e4(0x54a)],0x19d7+-0x1f2f+0x55e)};}function loadPack12_LabelQuality(){const _0x451c4a=_0x37261c,_0x42ee79={'GZqGE':_0x451c4a(0x541)+_0x451c4a(0x4d7)+_0x451c4a(0x4b8),'SXpey':_0x451c4a(0x5e5)+_0x451c4a(0x56a)+_0x451c4a(0x5f4)+_0x451c4a(0x286),'nxjRA':_0x451c4a(0x632),'vdTvi':function(_0x3385a8,_0x212733,_0x4a80e2,_0x5c610e){return _0x3385a8(_0x212733,_0x4a80e2,_0x5c610e);},'rWxPO':_0x451c4a(0x541)+_0x451c4a(0x286)};return{'id':0xc,'name':_0x42ee79[_0x451c4a(0x537)],'description':_0x42ee79[_0x451c4a(0x5f1)],'icon':_0x42ee79[_0x451c4a(0x4a1)],'completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x42ee79[_0x451c4a(0x395)](generateSimpleQuestions,-0x2c5*-0x1+0x1720+-0x19d9,_0x42ee79[_0x451c4a(0x668)],0x2*-0xdd+0xe3*0xd+-0x1*0x9c7)};}function loadPack13_MultimodalClassification(){const _0x4a4993=_0x37261c,_0x2f2374={'lWjxf':_0x4a4993(0x567)+_0x4a4993(0x3bb)+_0x4a4993(0x5ac)+_0x4a4993(0x308),'IJjgq':_0x4a4993(0x5e5)+_0x4a4993(0x4d6)+_0x4a4993(0x249)+'es','AvcGf':function(_0x248148,_0x3a00f2,_0x1e0d7e,_0x318ac8){return _0x248148(_0x3a00f2,_0x1e0d7e,_0x318ac8);},'aDeei':_0x4a4993(0x567)+_0x4a4993(0x409)+_0x4a4993(0x59e)};return{'id':0xd,'name':_0x2f2374[_0x4a4993(0x576)],'description':_0x2f2374[_0x4a4993(0x4de)],'icon':'🎨','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x2f2374[_0x4a4993(0x201)](generateSimpleQuestions,0xfe4*0x1+-0x42c+-0xbab,_0x2f2374[_0x4a4993(0x59b)],0x2ef+0x1b17+-0x1e00)};}function loadPack14_InstructionQuality(){const _0x1aa439=_0x37261c,_0x12bc09={'JtJuB':_0x1aa439(0x530)+_0x1aa439(0x660)+_0x1aa439(0x330)+'n','gXQAF':_0x1aa439(0x5e5)+_0x1aa439(0x446)+_0x1aa439(0x4fd)+_0x1aa439(0x4ed),'WPmhf':function(_0x2e7af2,_0x170c73,_0x4ec7df,_0x1c4a8a){return _0x2e7af2(_0x170c73,_0x4ec7df,_0x1c4a8a);},'Ybrvg':_0x1aa439(0x530)+_0x1aa439(0x5fb)};return{'id':0xe,'name':_0x12bc09[_0x1aa439(0x2bf)],'description':_0x12bc09[_0x1aa439(0x3c8)],'icon':'📝','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x12bc09[_0x1aa439(0x65b)](generateSimpleQuestions,0x2292+-0xc71+-0x1613,_0x12bc09[_0x1aa439(0x656)],0x113d+-0x1a2d+0x8f6)};}function loadPack15_ConversationalQuality(){const _0x26802b=_0x37261c,_0x197687={'xpQxs':_0x26802b(0x5ff)+_0x26802b(0x2aa)+_0x26802b(0x2d4)+_0x26802b(0x59e),'iyeKc':_0x26802b(0x5e5)+_0x26802b(0x29b)+_0x26802b(0x32f),'LjoLg':function(_0x533a11,_0x526d90,_0x4610ed,_0x1fc931){return _0x533a11(_0x526d90,_0x4610ed,_0x1fc931);},'HjqdB':_0x26802b(0x5ff)+_0x26802b(0x384)+'ty'};return{'id':0xf,'name':_0x197687[_0x26802b(0x275)],'description':_0x197687[_0x26802b(0x322)],'icon':'💬','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x197687[_0x26802b(0x534)](generateSimpleQuestions,0x336*-0x7+0x2*0xf88+0x1*-0x887,_0x197687[_0x26802b(0x4cf)],-0x482+0x33e*-0x4+0x20*0x8c)};}function loadPack16_ReasoningChainQuality(){const _0x165b56=_0x37261c,_0x1569a3={'yHsUK':_0x165b56(0x457)+_0x165b56(0x5de)+_0x165b56(0x214),'kyOkT':_0x165b56(0x5e5)+_0x165b56(0x22b)+_0x165b56(0x43f),'JoCRQ':function(_0x207a54,_0x29f278,_0x7476b4,_0x2ff071){return _0x207a54(_0x29f278,_0x7476b4,_0x2ff071);},'YAOTg':_0x165b56(0x457)+_0x165b56(0x5c8)+_0x165b56(0x286)};return{'id':0x10,'name':_0x1569a3[_0x165b56(0x2e6)],'description':_0x1569a3[_0x165b56(0x551)],'icon':'🧠','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x1569a3[_0x165b56(0x42a)](generateSimpleQuestions,0x2104+0x11*-0x34+0x1d8*-0x10,_0x1569a3[_0x165b56(0x345)],0x4*0x5a7+-0x1409*0x1+-0x1*0x28d)};}function loadPack17_CodeQualityAssessment(){const _0x20376e=_0x37261c,_0x355714={'jYGOF':_0x20376e(0x265)+_0x20376e(0x474)+_0x20376e(0x450),'TkRqe':_0x20376e(0x5e5)+_0x20376e(0x398)+_0x20376e(0x3a8)+_0x20376e(0x5ba),'rWoqh':function(_0x29bf11,_0x1914da,_0x347175,_0x5dd2ce){return _0x29bf11(_0x1914da,_0x347175,_0x5dd2ce);},'zZiaQ':_0x20376e(0x265)+'ty'};return{'id':0x11,'name':_0x355714[_0x20376e(0x5fa)],'description':_0x355714[_0x20376e(0x3ac)],'icon':'💻','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x355714[_0x20376e(0x51f)](generateSimpleQuestions,-0x3*0x239+0x141a+-0x3b*0x3a,_0x355714[_0x20376e(0x1c4)],0x2348+0x12c3+-0x3605)};}function loadPack18_MathematicalContent(){const _0x1b3d81=_0x37261c,_0x2e313f={'iwjKa':_0x1b3d81(0x5ee)+_0x1b3d81(0x4ff)+_0x1b3d81(0x2d4)+_0x1b3d81(0x59e),'LXccH':_0x1b3d81(0x5e5)+_0x1b3d81(0x29f)+_0x1b3d81(0x506)+_0x1b3d81(0x5ba),'ofxMI':function(_0xe758e8,_0x5d0326,_0x4a7847,_0x29afdb){return _0xe758e8(_0x5d0326,_0x4a7847,_0x29afdb);},'xNZhM':_0x1b3d81(0x5ee)+_0x1b3d81(0x4ff)};return{'id':0x12,'name':_0x2e313f[_0x1b3d81(0x34b)],'description':_0x2e313f[_0x1b3d81(0x493)],'icon':'🔢','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x2e313f[_0x1b3d81(0x5ea)](generateSimpleQuestions,0x8c2+-0x11a2+-0x1ca*-0x5,_0x2e313f[_0x1b3d81(0x535)],-0x172d+-0xbb5*0x2+0x2e9d)};}function loadPack19_LanguageVariety(){const _0x2a2c0f=_0x37261c,_0x74f609={'xgQrg':_0x2a2c0f(0x53e)+_0x2a2c0f(0x27d)+_0x2a2c0f(0x330)+'n','rGrYs':_0x2a2c0f(0x5e5)+_0x2a2c0f(0x594)+_0x2a2c0f(0x51c)+'y','BlgyB':function(_0x378ba6,_0x514921,_0x56d56f,_0x3e5e5a){return _0x378ba6(_0x514921,_0x56d56f,_0x3e5e5a);},'yjycc':_0x2a2c0f(0x53e)+_0x2a2c0f(0x664)};return{'id':0x13,'name':_0x74f609[_0x2a2c0f(0x65c)],'description':_0x74f609[_0x2a2c0f(0x3d0)],'icon':'🌐','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x74f609[_0x2a2c0f(0x309)](generateSimpleQuestions,0x824+-0x2389*0x1+0x1b78,_0x74f609[_0x2a2c0f(0x4ea)],0x1*-0xdb7+-0x2*-0x27b+0x7*0x141)};}function loadPack20_PromptInjectionDetection(){const _0x4b7dcc=_0x37261c,_0x3c290a={'SIlJV':_0x4b7dcc(0x24d)+_0x4b7dcc(0x3cf)+_0x4b7dcc(0x3b3)+_0x4b7dcc(0x37f),'KDUje':_0x4b7dcc(0x5e5)+_0x4b7dcc(0x44e)+_0x4b7dcc(0x2cf)+'s','iozid':_0x4b7dcc(0x31b),'bezrd':function(_0x595f32,_0x1fb5e9,_0x1b0bbf,_0x4aea19){return _0x595f32(_0x1fb5e9,_0x1b0bbf,_0x4aea19);},'ACkbT':_0x4b7dcc(0x24d)+_0x4b7dcc(0x52f)};return{'id':0x14,'name':_0x3c290a[_0x4b7dcc(0x504)],'description':_0x3c290a[_0x4b7dcc(0x65d)],'icon':_0x3c290a[_0x4b7dcc(0x1cd)],'completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x3c290a[_0x4b7dcc(0x22f)](generateSimpleQuestions,0x1d9a+-0x63*0x39+0x17f*-0x5,_0x3c290a[_0x4b7dcc(0x5d1)],-0x240c+0x1*-0x12db+-0x36ed*-0x1)};}function loadPack21_OutputFormatClassification(){const _0x1e7d18=_0x37261c,_0x415105={'EPIeC':_0x1e7d18(0x502)+_0x1e7d18(0x662)+_0x1e7d18(0x4b8),'wbpys':_0x1e7d18(0x5e5)+_0x1e7d18(0x2cb)+_0x1e7d18(0x4a7)+_0x1e7d18(0x5b0),'QhHVa':function(_0x3ac30a,_0x327bed,_0x33aacf,_0x3e579c){return _0x3ac30a(_0x327bed,_0x33aacf,_0x3e579c);},'QnmZq':_0x1e7d18(0x502)+_0x1e7d18(0x491)};return{'id':0x15,'name':_0x415105[_0x1e7d18(0x400)],'description':_0x415105[_0x1e7d18(0x1ee)],'icon':'📋','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x415105[_0x1e7d18(0x54d)](generateSimpleQuestions,-0x425+-0x25d4+0x2a0e*0x1,_0x415105[_0x1e7d18(0x624)],-0x99*0x2f+0x633*-0x2+0x2883*0x1)};}function loadPack22_ExplanationQuality(){const _0x4a2674=_0x37261c,_0x359aca={'DLQLu':_0x4a2674(0x297)+_0x4a2674(0x660)+_0x4a2674(0x330)+'n','UVFJW':_0x4a2674(0x5e5)+_0x4a2674(0x3f5)+_0x4a2674(0x50e)+_0x4a2674(0x1e4),'cVBuS':function(_0x330780,_0x239bb9,_0x38fbd3,_0x5e25dc){return _0x330780(_0x239bb9,_0x38fbd3,_0x5e25dc);},'YliSd':_0x4a2674(0x297)+_0x4a2674(0x5fb)};return{'id':0x16,'name':_0x359aca[_0x4a2674(0x5df)],'description':_0x359aca[_0x4a2674(0x459)],'icon':'💡','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x359aca[_0x4a2674(0x42b)](generateSimpleQuestions,0x1eec+-0x1*0x1525+0x33b*-0x3,_0x359aca[_0x4a2674(0x496)],0x1*0x1e5+-0x407*-0x1+-0x5e6*0x1)};}function loadPack23_SourceCredibility(){const _0x2822cf=_0x37261c,_0x2a3c1={'wdUIT':_0x2822cf(0x273)+_0x2822cf(0x204)+_0x2822cf(0x288),'VyIaC':_0x2822cf(0x5e5)+_0x2822cf(0x402)+_0x2822cf(0x268)+_0x2822cf(0x286),'EwCFD':function(_0x232162,_0x1cd9f3,_0x11347c,_0x4e80b8){return _0x232162(_0x1cd9f3,_0x11347c,_0x4e80b8);},'ejldg':_0x2822cf(0x44f)+_0x2822cf(0x255)};return{'id':0x17,'name':_0x2a3c1[_0x2822cf(0x584)],'description':_0x2a3c1[_0x2822cf(0x37b)],'icon':'📰','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x2a3c1[_0x2822cf(0x390)](generateSimpleQuestions,0x1049+-0x1523+-0xb*-0x73,_0x2a3c1[_0x2822cf(0x44a)],0xda*-0x21+-0x19cd*0x1+0x5*0xac9)};}function loadPack24_PersonalizationData(){const _0x1cd4e3=_0x37261c,_0x44423a={'UbRaW':_0x1cd4e3(0x208)+_0x1cd4e3(0x31f)+_0x1cd4e3(0x2d4)+_0x1cd4e3(0x59e),'EnCvc':_0x1cd4e3(0x5e5)+_0x1cd4e3(0x3f6)+_0x1cd4e3(0x587)+'a','kWjNN':function(_0x58be82,_0x221650,_0x54fcca,_0x54d490){return _0x58be82(_0x221650,_0x54fcca,_0x54d490);},'Ehclm':_0x1cd4e3(0x208)+_0x1cd4e3(0x3c6)};return{'id':0x18,'name':_0x44423a[_0x1cd4e3(0x27f)],'description':_0x44423a[_0x1cd4e3(0x1ca)],'icon':'👤','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x44423a[_0x1cd4e3(0x22e)](generateSimpleQuestions,0x6*-0x52b+-0x787+0x26a1,_0x44423a[_0x1cd4e3(0x4be)],-0x4c2+0x1322+-0xe5a)};}function loadPack25_EthicalContent(){const _0x2fbd39=_0x37261c,_0x529b59={'QCFAJ':_0x2fbd39(0x4c2)+_0x2fbd39(0x2f9)+_0x2fbd39(0x4b8),'AyCZb':_0x2fbd39(0x5e5)+_0x2fbd39(0x5fe)+_0x2fbd39(0x57c)+_0x2fbd39(0x2a9),'tnmjo':function(_0x29134f,_0x1a2ae3,_0x377cac,_0x4b10fa){return _0x29134f(_0x1a2ae3,_0x377cac,_0x4b10fa);},'sESeO':_0x2fbd39(0x4fe)+_0x2fbd39(0x396)};return{'id':0x19,'name':_0x529b59[_0x2fbd39(0x57f)],'description':_0x529b59[_0x2fbd39(0x593)],'icon':'⚖️','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x529b59[_0x2fbd39(0x552)](generateSimpleQuestions,-0x1e61+0x80e+-0xcd*-0x1c,_0x529b59[_0x2fbd39(0x45c)],-0x1*0x727+-0x2003+0x4*0x9cc)};}function loadPack26_TemporalRelevance(){const _0x2d1326=_0x37261c,_0x222cec={'pqTdI':_0x2d1326(0x267)+_0x2d1326(0x49f)+_0x2d1326(0x5ac)+_0x2d1326(0x308),'ynKaE':_0x2d1326(0x5e5)+_0x2d1326(0x2da)+_0x2d1326(0x5f0)+_0x2d1326(0x354),'MkeCQ':function(_0x3c503d,_0x42176c,_0x497963,_0x5d3ba5){return _0x3c503d(_0x42176c,_0x497963,_0x5d3ba5);},'DsSGc':_0x2d1326(0x267)+_0x2d1326(0x2eb)};return{'id':0x1a,'name':_0x222cec[_0x2d1326(0x66a)],'description':_0x222cec[_0x2d1326(0x4e7)],'icon':'⏰','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x222cec[_0x2d1326(0x34c)](generateSimpleQuestions,0x1*-0x1087+-0x159d+0x263e,_0x222cec[_0x2d1326(0x413)],-0x1*0x9ab+0x15*-0x137+0x2334)};}function loadPack27_NuanceComplexity(){const _0x42c99c=_0x37261c,_0xd67a51={'vFwok':_0x42c99c(0x51d)+_0x42c99c(0x589)+_0x42c99c(0x450),'FRbKb':_0x42c99c(0x5e5)+_0x42c99c(0x28b)+_0x42c99c(0x53b)+_0x42c99c(0x3a7),'hRWiC':function(_0x305384,_0x5cde3d,_0x3a8c3e,_0x399ce9){return _0x305384(_0x5cde3d,_0x3a8c3e,_0x399ce9);},'qyGKT':_0x42c99c(0x337)+_0x42c99c(0x562)};return{'id':0x1b,'name':_0xd67a51[_0x42c99c(0x346)],'description':_0xd67a51[_0x42c99c(0x2d0)],'icon':'🎭','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xd67a51[_0x42c99c(0x5d5)](generateSimpleQuestions,0xf61+0x3*-0x11+-0xf13,_0xd67a51[_0x42c99c(0x295)],-0xfb0+0x1*-0x96d+0x1ad*0xf)};}function loadPack28_CrossLingualQuality(){const _0xc4ae1e=_0x37261c,_0x50e7ee={'JkYsh':_0xc4ae1e(0x331)+_0xc4ae1e(0x3f3)+_0xc4ae1e(0x3b3)+_0xc4ae1e(0x37f),'dkXaU':_0xc4ae1e(0x5e5)+_0xc4ae1e(0x54e)+_0xc4ae1e(0x244),'ouijU':function(_0x452634,_0xcb6d1c,_0x4b526d,_0x278f32){return _0x452634(_0xcb6d1c,_0x4b526d,_0x278f32);},'CJnTJ':_0xc4ae1e(0x283)+_0xc4ae1e(0x483)+'y'};return{'id':0x1c,'name':_0x50e7ee[_0xc4ae1e(0x348)],'description':_0x50e7ee[_0xc4ae1e(0x2ba)],'icon':'🌍','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x50e7ee[_0xc4ae1e(0x42c)](generateSimpleQuestions,-0x760*-0x2+-0x2347+0x14a3,_0x50e7ee[_0xc4ae1e(0x464)],0x188a+0x2427+-0x3cab*0x1)};}function loadPack29_RedTeamingContent(){const _0x1e849f=_0x37261c,_0xf32ec0={'NGzgF':_0x1e849f(0x620)+_0x1e849f(0x58a)+_0x1e849f(0x330)+'n','jCSdi':_0x1e849f(0x5e5)+_0x1e849f(0x44e)+_0x1e849f(0x263)+_0x1e849f(0x53f),'ilzxw':function(_0x2c8fa2,_0x573dbf,_0x336034,_0x161d44){return _0x2c8fa2(_0x573dbf,_0x336034,_0x161d44);},'jEOXD':_0x1e849f(0x34f)+_0x1e849f(0x2b5)};return{'id':0x1d,'name':_0xf32ec0[_0x1e849f(0x269)],'description':_0xf32ec0[_0x1e849f(0x550)],'icon':'🔴','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xf32ec0[_0x1e849f(0x1db)](generateSimpleQuestions,-0x287*0x3+-0x139*-0x11+-0x3*0x45d,_0xf32ec0[_0x1e849f(0x35f)],-0x22*-0x9d+0xc*-0x32d+-0x13c*-0xe)};}function loadPack30_DomainAdaptation(){const _0x51e68d=_0x37261c,_0xa653cb={'GrmLT':_0x51e68d(0x5bc)+_0x51e68d(0x1de)+_0x51e68d(0x2bc)+_0x51e68d(0x288),'EOFdS':_0x51e68d(0x5e5)+_0x51e68d(0x4b1)+_0x51e68d(0x5a9)+_0x51e68d(0x36f),'UQddh':function(_0x5e1f96,_0x5519a3,_0x423241,_0x148a7f){return _0x5e1f96(_0x5519a3,_0x423241,_0x148a7f);},'bFjGS':_0x51e68d(0x5e1)+_0x51e68d(0x510)};return{'id':0x1e,'name':_0xa653cb[_0x51e68d(0x1f4)],'description':_0xa653cb[_0x51e68d(0x367)],'icon':'🎯','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xa653cb[_0x51e68d(0x278)](generateSimpleQuestions,-0xcbd+-0x1*0x1823+0x127f*0x2,_0xa653cb[_0x51e68d(0x427)],-0x1351+0x1*-0x11c+-0x1*-0x1473)};}function loadPack31_GroundingVerification(){const _0x3d8d2e=_0x37261c,_0xa9d121={'WRvdr':_0x3d8d2e(0x306)+_0x3d8d2e(0x1b7)+_0x3d8d2e(0x5ac)+_0x3d8d2e(0x308),'rwILn':_0x3d8d2e(0x5e5)+_0x3d8d2e(0x3ad)+_0x3d8d2e(0x32d),'CcojO':function(_0x388f7c,_0x1d114f,_0x43161a,_0x4081ff){return _0x388f7c(_0x1d114f,_0x43161a,_0x4081ff);},'QHkQR':_0x3d8d2e(0x23a)+_0x3d8d2e(0x617)+'on'};return{'id':0x1f,'name':_0xa9d121[_0x3d8d2e(0x205)],'description':_0xa9d121[_0x3d8d2e(0x658)],'icon':'🔗','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xa9d121[_0x3d8d2e(0x2ef)](generateSimpleQuestions,-0x2074+0x2c*-0x42+-0x1*-0x2beb,_0xa9d121[_0x3d8d2e(0x606)],0x1eb3*0x1+0x74d*0x3+-0x3494)};}function loadPack32_DialogueCoherence(){const _0x51a64f=_0x37261c,_0x4ee8b8={'aJGiN':_0x51a64f(0x2a5)+_0x51a64f(0x52a)+_0x51a64f(0x5ac)+_0x51a64f(0x308),'KLoYo':_0x51a64f(0x5e5)+_0x51a64f(0x313)+_0x51a64f(0x284)+_0x51a64f(0x484),'XrDxV':function(_0x37ea4f,_0x54bdae,_0x4c973a,_0x928301){return _0x37ea4f(_0x54bdae,_0x4c973a,_0x928301);},'ClLYK':_0x51a64f(0x2a5)+_0x51a64f(0x2af)};return{'id':0x20,'name':_0x4ee8b8[_0x51a64f(0x5dd)],'description':_0x4ee8b8[_0x51a64f(0x26d)],'icon':'💬','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x4ee8b8[_0x51a64f(0x207)](generateSimpleQuestions,-0x1*0x1425+0x18c7+-0x482,_0x4ee8b8[_0x51a64f(0x549)],-0x267b+-0x2291+0x4912)};}function loadPack33_ControversialTopics(){const _0x29d9b7=_0x37261c,_0x431c3d={'siCYh':_0x29d9b7(0x1e1)+_0x29d9b7(0x2b1)+_0x29d9b7(0x46d)+_0x29d9b7(0x288),'sWvwQ':_0x29d9b7(0x5e5)+_0x29d9b7(0x3e8)+_0x29d9b7(0x39a)+_0x29d9b7(0x1d4),'WNhbp':function(_0x403f4b,_0x3e0881,_0x2cdc68,_0x3f7dfe){return _0x403f4b(_0x3e0881,_0x2cdc68,_0x3f7dfe);},'eWwRK':_0x29d9b7(0x1e1)+_0x29d9b7(0x4cb)};return{'id':0x21,'name':_0x431c3d[_0x29d9b7(0x293)],'description':_0x431c3d[_0x29d9b7(0x42d)],'icon':'⚠️','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x431c3d[_0x29d9b7(0x533)](generateSimpleQuestions,-0x63e+-0x1*-0x23a5+0x1d46*-0x1,_0x431c3d[_0x29d9b7(0x3a9)],0x1648+0x13*0x106+0x13a*-0x22)};}function loadPack34_CreativeContent(){const _0x38ba0e=_0x37261c,_0x3a3809={'KgxIv':_0x38ba0e(0x42e)+_0x38ba0e(0x62a)+_0x38ba0e(0x330)+'n','pooLt':_0x38ba0e(0x5e5)+_0x38ba0e(0x290)+_0x38ba0e(0x5cb)+_0x38ba0e(0x5ba),'tfcpS':function(_0x4764ce,_0x2c4fd1,_0x48d510,_0x51be04){return _0x4764ce(_0x2c4fd1,_0x48d510,_0x51be04);},'Vmsoa':_0x38ba0e(0x42e)+_0x38ba0e(0x428)};return{'id':0x22,'name':_0x3a3809[_0x38ba0e(0x319)],'description':_0x3a3809[_0x38ba0e(0x2c3)],'icon':'🎨','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x3a3809[_0x38ba0e(0x1d3)](generateSimpleQuestions,-0xa63*0x2+-0xe*-0x31+0x1*0x123a,_0x3a3809[_0x38ba0e(0x206)],0x1997+-0xb20+-0xe71)};}function loadPack35_SpecializedKnowledge(){const _0x5c457d=_0x37261c,_0x45f62c={'tYrHT':_0x5c457d(0x5f6)+_0x5c457d(0x557)+_0x5c457d(0x277),'uKPrs':_0x5c457d(0x5e5)+_0x5c457d(0x1ab)+_0x5c457d(0x2ec)+_0x5c457d(0x376),'PjkOg':function(_0x345a24,_0x20b4d6,_0x2c8b3e,_0x2dcd76){return _0x345a24(_0x20b4d6,_0x2c8b3e,_0x2dcd76);},'sEial':_0x5c457d(0x380)+_0x5c457d(0x3f8)+'e'};return{'id':0x23,'name':_0x45f62c[_0x5c457d(0x276)],'description':_0x45f62c[_0x5c457d(0x285)],'icon':'🔬','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x45f62c[_0x5c457d(0x520)](generateSimpleQuestions,0x2246+0x24e6+0x1*-0x4709,_0x45f62c[_0x5c457d(0x40d)],-0x18f+-0x16da+0x2b7*0x9)};}function loadPack36_UserIntentAlignment(){const _0x221946=_0x37261c,_0x3df493={'GRuHW':_0x221946(0x31a)+_0x221946(0x4c5)+_0x221946(0x277),'qxiJT':_0x221946(0x5e5)+_0x221946(0x1fc)+_0x221946(0x4ac)+_0x221946(0x58c),'YeoNh':function(_0x372744,_0x1f5a47,_0x1cea95,_0x5cd85d){return _0x372744(_0x1f5a47,_0x1cea95,_0x5cd85d);},'IQtrQ':_0x221946(0x39b)+_0x221946(0x58c)};return{'id':0x24,'name':_0x3df493[_0x221946(0x57e)],'description':_0x3df493[_0x221946(0x2c5)],'icon':'🎯','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x3df493[_0x221946(0x257)](generateSimpleQuestions,-0x4*0x39b+0x2662+-0x1*0x17d2,_0x3df493[_0x221946(0x47c)],-0x2131+0x897*-0x4+0x4393*0x1)};}function loadPack37_DiversityInclusion(){const _0x541cf2=_0x37261c,_0x51cdf6={'MqOAq':_0x541cf2(0x46f)+_0x541cf2(0x3ea)+_0x541cf2(0x214),'ZISGe':_0x541cf2(0x5e5)+_0x541cf2(0x3cd)+_0x541cf2(0x381)+_0x541cf2(0x220),'VQFph':function(_0x5b7f90,_0xdc3ce0,_0xe21a82,_0x427a8a){return _0x5b7f90(_0xdc3ce0,_0xe21a82,_0x427a8a);},'pokBK':_0x541cf2(0x511)+_0x541cf2(0x25e)};return{'id':0x25,'name':_0x51cdf6[_0x541cf2(0x29e)],'description':_0x51cdf6[_0x541cf2(0x303)],'icon':'🌈','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x51cdf6[_0x541cf2(0x332)](generateSimpleQuestions,-0x8*-0x76+0x1919+0x4e*-0x5e,_0x51cdf6[_0x541cf2(0x302)],0x1e99+-0x95e*-0x3+-0x3*0x138f)};}function loadPack38_ErrorCorrection(){const _0x3640b3=_0x37261c,_0x51f91e={'Bucdt':_0x3640b3(0x512)+_0x3640b3(0x5ae)+_0x3640b3(0x277),'RHBxX':_0x3640b3(0x5e5)+_0x3640b3(0x3ca)+_0x3640b3(0x1e8)+_0x3640b3(0x36d),'pFtxk':function(_0x262e6a,_0x1c407e,_0x14bafd,_0x2a2a31){return _0x262e6a(_0x1c407e,_0x14bafd,_0x2a2a31);},'SIySF':_0x3640b3(0x279)+_0x3640b3(0x3c0)};return{'id':0x26,'name':_0x51f91e[_0x3640b3(0x252)],'description':_0x51f91e[_0x3640b3(0x513)],'icon':'🔧','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x51f91e[_0x3640b3(0x233)](generateSimpleQuestions,0x1bd6+-0x850+-0x1360,_0x51f91e[_0x3640b3(0x359)],0x1*0x2221+0x16a*-0x12+0x5*-0x1bb)};}function loadPack39_EdgeCaseHandling(){const _0x248e95=_0x37261c,_0x48c4bc={'IlJeF':_0x248e95(0x46a)+_0x248e95(0x5de)+_0x248e95(0x214),'Uqcul':_0x248e95(0x5e5)+_0x248e95(0x544)+_0x248e95(0x434)+'ng','JtkDV':function(_0x1d5eab,_0x508626,_0x44fd5f,_0x5f4ce8){return _0x1d5eab(_0x508626,_0x44fd5f,_0x5f4ce8);},'KRWZR':_0x248e95(0x46a)+_0x248e95(0x378)};return{'id':0x27,'name':_0x48c4bc[_0x248e95(0x2a7)],'description':_0x48c4bc[_0x248e95(0x47f)],'icon':'🎪','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x48c4bc[_0x248e95(0x424)](generateSimpleQuestions,-0x23bd+-0xed*0x1+0x24d1,_0x48c4bc[_0x248e95(0x4d0)],-0x2289+-0x1f2e+-0x1*-0x41bd)};}function _0x2eaa(){const _0x530159=['\x20factual\x20a','jCSdi','kyOkT','tnmjo','mid-senten','ekLfR','\x20quantitat','Xxwhb','Depth\x20Cate','\x20NOW!!!\x20$$','Medical\x20Mi','ccuracy:\x20','nJDpH','tion(\x27','\x20\x20\x20\x20<div\x20c','sistency','aJpaK','SlPcN','set','plexity','push','=\x22pack-sta','EhpgT','introInfo','Multimodal','length','ated\x20Durat','\x20annotatio','ed\x0a','ns\x20are\x20bir','mUxPZ','forEach','es\x20in\x20data','Chain\x20of\x20T','bPiGy','incomplete','Ambiguous\x20',':\x20\x27Apple\x20I','MfocZ','lWjxf','\x20\x20\x20\x20\x20\x20\x20</d','\x20data\x20by\x20b','e\x20topic','le:\x20\x27The\x20c','ible!\x27\x20lab','oncerns\x20in',':\x20\x27Detaile','GRuHW','QCFAJ','DOMContent','Conversion','Factual\x20Ve','egory\x20Clas','wdUIT','pusVf','GaKkn','erence\x20dat','progressTe','el\x20Categor','enario\x20Cat','→\x20\x27Hola\x27','gnment','setItem','add','gBtza','ons\x20to\x20ear','HPxvV','s\x22\x20style=\x22','AyCZb','\x20linguisti','xmdAv','ZPvRh','pack-butto','YvxJR','Text','tilization','aDeei','card\x20dange','evel','ation','n\x20Task\x20Cat','→\x20\x27negativ','$\x20FREE\x20$$$','itFkN','FWmJG','argeting\x20p','Mental\x20Hea','Unsafe','wzZJW','nVCWG','ecific\x20dat','random','CIgcG','ategorizat','\x20completed','\x20Type\x20Cate','sinformati','t\x20type','\x20context\x20u','SZrbq','UHtQi','HvYMo','tory\x20about','Category\x20C','ojmEn','wrXxu','inors','ality','Safe\x20-\x20Edu','Domain\x20Spe','Sample\x20cat','Health\x20Adv','Domain\x20Cla','icon\x22>','Numerical\x20','659577CVhClK','ures\x20all\x20d','soning','correctAns','hTmux','h\x20Category','Chain\x20Qual','stener','bhbye','writing\x20qu',':\x20\x27If\x20all\x20','odhuk','LgFyc','CMWjt','innerHTML','ACkbT','mhols','card','suitabilit','hRWiC','\x20Data\x20Cate','Balanced\x20D','\x20\x20\x20\x20\x20\x20</di','resultsScr','at\x20sat\x20on\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20A','l\x20Category','aJGiN','Type\x20Categ','DLQLu','options','Domain\x20Ada','creen','Mature','pack_progr','Categorize','ZUgSv','.option-bt','ooHUO','packList','ofxMI','rics','Low\x20Divers','zVWdr','Mathematic','XAzlV','y\x20time-sen','SXpey','ataset','wsUJu','ns\x20by\x20qual','kMszz','Expertise\x20','\x20\x20\x20\x20\x20\x20\x20\x20\x20','OTXDD',':\x20\x27Quantum','jYGOF','n\x20Quality','Output\x20Con','hOKoX','\x20ethical\x20c','Conversati','FGAyt','SWMPs','BHMjG','ory','textConten','WeZeJ','QHkQR','tive\x20patte','pkvUE','VjzTO','wyZxL','qiSak',':\x20\x27Hello\x27\x20','card\x20warni','mmkeJ','⏱️\x20Next\x20dat','1.85-$2.75','ondary)','Age-Restri','-stat-name','KvsJX','statsEarni','Context\x20Ut','Verificati','ncy','xGNpq','fbucL','Unique','ation\x20Cate','2523059GGsonx','join','Sensitive','Testing\x20Sc','\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20','xgOsv','lgulw','QnmZq','Duplicate','n\x20Density\x20','ent','kKZCV','HwkaF','ontent\x20Cat','NtCwG','qAVlT','y\x20sensitiv','Self-Aware','Syntax\x20Cor','Category\x20D','yqcfM','🏷️','kLgrA','packs','Labeled','82758yRRiky','ynthesis\x20i','XZEML','Data\x20Quali','GSqqq','\x20\x20\x20\x20\x20<div\x20','AQjNw','Context\x20Us','mziyy','ngs','gJEkV','resultPack','\x20categoriz','n\x20question','Gllva','Self-Harm\x20','aJiIt','\x20\x20\x20\x20\x20\x20\x20\x20\x20<','gdbLo','jkrGO','\x20of\x20photos','lbLXD','eIzdI','n\x20quality','User\x20Inten','className','kSXhs','pPropagati','Reasoning','rGOBa','nGYEv','User\x20Conte','Ybrvg','Zinfl','rwILn','createElem','light\x20to\x20e','WPmhf','xgQrg','KDUje','QZoqM',':\x20Text\x20wit','n\x20Type\x20Cat','Causal\x20Rel','mat\x20Catego','packStatsL','ariety',':\x20\x27Click\x20h','data_categ','\x20\x20\x20\x20\x20','rWxPO','zRsGe','pqTdI','t-badge\x22>D','ness\x20Categ','Consistenc','ere!!!\x20BUY','floor','iv>\x0a\x20\x20\x20\x20\x20\x20','\x20domain\x20ex','shUAG','Label','d\x20bank\x20det','egory','stat-icon\x22','descriptio','tional\x20Cat','\x20Example\x20','Complete\x20D','qusav','d\x20•\x20Earned','rounding\x20C','cation','2skNlhJ','LrGkg','FCEkU','<div\x20class','NWqdf','SrDaw','</button>\x0a','homeScreen','list\x27\x20→\x20\x27d','ds...\x27\x20→\x20L','Factual\x20Ac','zZiaQ','Comparison','SBQYN','boqqK','ils','r>\x0a\x20\x20\x20\x20\x20\x20\x20','EnCvc','✓\x20Ready\x20to','statsText','iozid','on\x20class=\x22','rgument\x20qu','Privacy\x20Vi','XQCOZ','introTitle','tfcpS','dling',':\x20Text\x20\x27Th','Child\x20Safe','MWtUu','ttmIo','Not\x20comple','lfOeS','ilzxw','questionSc','ositive\x20se','cializatio','13354600jHdTeB','ive\x20reason','Controvers','BaIJX','yll\x27','rity','uUdrR','Parsing','mple\x20repea','rection\x20pa','mskjR','icon','\x20this\x20samp','omuCw','tegory','wbpys','rlay','Fakgv','wbjRT','IRXGp','\x20\x20\x20⏱️\x20Estim','GrmLT',':\x20\x27Instruc','hidden','Sensitivit','replace','Correctly\x20','✓\x20Earned:\x20','rrectness\x20','\x20response-','iKwPT','NicCk','\x20logical\x20a','\x20min<br>\x0a\x20','AvcGf','KsjVW','gories\x20Com','e\x20Categori','WRvdr','Vmsoa','XrDxV','Personaliz','GjHhe','TlerS','YwMwB','\x20data\x20by\x20q','\x20class=\x22op','PBuYF','Capital\x20of','getItem','untEL','Set\x20→','Technical','orization','VmHjL','raining\x20→','stion-text','BwzEa','AQUln','\x20Earnings:','tzaSv','lwKdq','and\x20pengui','Named\x20Enti','FxQIo','sion','\x20cuts\x20off\x20','nsistency','YIhHn','e\x22>','cted','status\x20','\x20responses','=\x22pack-che','yjnTR','Causal\x20Rea','\x20reasoning','SuxJo','BQeNc','kWjNN','bezrd','Variant','kBQVx','atTPR','pFtxk','rectness','\x20robot\x20pai','iVutI','\x20mechanics','cPQvM','pleted','Grounding\x20','PFhlv','230uGHenl','olving\x20app','ice','bvQde','ccuracy','r-border)','Low\x20Noise','ion\x20Task\x20C','on\x20quality','Partial\x20Da','gSziN','name\x22>','nergy\x20usin','l\x20data\x20typ','nter\x27\x20→\x20Cr','QiQPv','FxCsB','Adversaria','ect\x20reason','the\x27\x20[text','y\x20level','Code\x20Gener','Bucdt','CccGq','tjWRb','dibility','zIoxi','YeoNh','ndgVY','zQYMj','ationship\x20','ype\x20Catego','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20','Auttk','Inclusion','uRQGm','Bias\x20Type\x20','kSJSb','CCwtE','al\x20testing','Review\x20→','Code\x20Quali','kUZCA','Temporal\x20R','y\x20credibil','NGzgF','PxLtY','\x20Completio','aAUeQ','KLoYo','ZVFyq','uGjXL','ed:\x20$','age\x20Catego','pNBWW','Source\x20Typ','packID','xpQxs','tYrHT','gorization','UQddh','Error\x20Corr','CSAM\x20-\x20Cri','\x20by\x20qualit','feJNk','ariety\x20Cat','iseases\x27','UbRaW','querySelec','n>\x0a\x20\x20\x20\x20\x20\x20\x20','Category','Cross-Ling','ion\x20cohere','uKPrs','ity','nc.\x20in\x20Cal','zation','questions','wQFrp','\x20by\x20comple','stringify','qJtWJ','\x20compariso','lass=\x22pack','\x20creative\x20','Support\x20Co','glZgX','siCYh','hWWbG','qyGKT','jTBIM','Explanatio','RjUhl','UONPf','Category\x20B','\x20dialogue\x20','\x20for\x20','FYnRi','MqOAq','\x20math\x20prob','TFaRZ','=\x22selectOp','eative\x20nar','eHmEK','ById','Dialogue\x20C','ion:\x20','IlJeF','kPTcP','\x20data','on\x20Pattern','cational','tOveL','UmGcs','r-text-sec','oherence','Problem\x20So','ial\x20Conten','HZizR','y\x20Level\x20Ca','Start\x20→','g\x20Content','VDaei','nCeOa','OYQBe','hnifF','dkXaU','eturn\x20sort','n\x20Categori','\x20\x20\x20',':\x20Full\x20nam','JtJuB','stat-statu','r-success)','Original','pooLt','<br>\x0a\x20\x20\x20\x20\x20','qxiJT','dSLQR','\x20Appropria','loadingOve','ted\x2050\x20tim','entence\x20su','\x20by\x20struct','NnElB','yUqhc','hTism','al\x20attempt','FRbKb','wCWxI','Question\x20A','xIdMs','\x20Categoriz','stion-titl','background','for\x20self-h','IGHyb','rNruu','\x20content\x20b','ions','Violence\x20C','introIcon','h\x20derogato','countdown-','osmoq','sity','ZEnvY','\x20\x20\x20\x20\x20💰\x20Ear',':\x20\x27Terribl','rWSgq','yHsUK','aeRVd','OmIRm','ulPtN','\x20\x20\x20\x20\x20<butt','elevance','pertise\x20le','homeEarnin','\x20/\x20','CcojO','Grammar\x20Co','n\x20medieval','PXHbI','evices\x27','iYksK','fMuMj','arnings\x20on','TPwvs','zYrst','sue\x20Catego','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<','SZzHy','Safe\x20Conte','oPdCA','bmGmD','ve\x20Reasoni','-info\x22>\x0a\x20\x20','gXmqA','pokBK','ZISGe','gqsjz','selected','Evidence\x20G','n\x20Density','ion','BlgyB','nal','progressFi','aNIHA','UfCIZ','QA\x20Task\x20Ca','roups','parse','qGlzC','ist','\x20conversat','y\x20context\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20','icle\x20→\x203-s','Educationa','toFixed','KgxIv','Intent\x20Mat','🛡️','\x22question-','tion\x20Task\x20','ry\x20slurs\x20t','ation\x20Type','prdsV','\x22event.sto','iyeKc','JuQFG','text','title','uality\x20Cat','\x20\x20\x20\x20\x20\x20\x20📊\x20D','rative','Noise\x20Leve','y\x20Categori','\x20France?\x27\x20','disabled','\x20grounding','cuMcy','patterns','egorizatio','Translatio','VQFph','info\x22>\x0a\x20\x20\x20','TbcLk','Next\x20Data\x20','Hate\x20Speec','Nuance\x20Com','ned:\x20$','\x20queries\x20b','azMIx','\x20metacogni','WyRbv','v>\x0a\x20\x20\x20\x20\x20\x20\x20','wer','\x20Complete\x20','Misinforma','Annotation','nverts\x20sun','iolence','kayZW','YAOTg','vFwok','%)<br>\x0a\x20\x20\x20','JkYsh','Informatio','tructure\x20C','iwjKa','MkeCQ','TLqNT','LKJzf','Red\x20Teamin','WTNyx','LjIaL','Output:\x20\x27P','vlpzX','sitivity','fcEhh','Category\x20A','completed',':\x20\x27Drinkin','SIySF','ce]','1045104LCIXxo','Bias\x20Detec','Complete\x20T','FhiSo','jEOXD','ormation','JJJzc','OBmmp','nIbSr','find','TkJkG','BZIzf','EOFdS','ssificatio','enavn','uality','class=\x22que','PkDrd','tterns','rODXl','a\x20needs','JqMDu','HeDiF','eled\x20as\x20\x27p','building\x20e','ggNIQ','nswering','vel','vxoRq','Handling','ChmxT','dSaBu','VyIaC','BEtoG','WPaHo','y\x20safety\x20l','tion','Specialize','\x20and\x20inclu',':\x20Same\x20exa','dbabR','onal\x20Quali','AfsLs','RTWGS','birds\x20fly\x20','pJUDv','uKJRi',':\x20Input:\x20\x27','sXdiL','Safe\x20Educa','<br><br>\x0a\x20','akXuN','map','EwCFD','🏗️','style','xKAMH','ias\x20type','vdTvi','ntent','bJsam','\x20code\x20exam','\x22\x20onclick=','\x20topic\x20han','Intent\x20Ali','fficiency','domain','n:\x20$1.85-$','bhpWz','RMqNd','width','\x20\x20\x20\x20\x20\x20\x20\x20','dllDi','bjTUt','Rjrbl','PiixV','ing','ples\x20by\x20qu','eWwRK','arm\x27','Generation','TkRqe','\x20claims\x20by','Intent\x20Cla','4CtmreG','Mislabeled','Coherence\x20','Contextual','Categoriza','RwCPG','countdownC','olation\x20Ca','\x27)\x22>','vADKe','reen','AGidD','\x20Content\x20C','nextBtn','QVJoW','Wdxmv','hhxqz','ection','qYXHH','mmary','isArray','Argument\x20S','round','ation\x20Data','PeqUm','gXQAF','riohA','\x20error\x20cor','enDgf','\x20blockchai','\x20diversity','Name','l\x20Pattern\x20','rGrYs','KTiKU','\x20\x20\x20<button','y\x20Classifi','ed(lst)\x27','WFlOb','NCnIc','tion-btn\x20','hVrSz','\x20output\x20co','torAll','YTnQe','desc\x22>','on();\x20sele','ef\x20sort_li','Response\x20Q','xJsSY','rns','kIMbY','tructure','xsQqW','Unzik','✓\x20Complete','lth','\x20sensitive','YFfrr','tion\x20Categ',':\x20\x27Photosy','\x20quality','tions\x20for\x20','\x20Modules','YjVuf','Clean\x20Data','\x20transpare','Screen','n\x20Quality\x20','statsScree','\x20explanati','\x20user\x20pref','tegorizati','d\x20Knowledg','peopM','rotected\x20g','uFcsl','al\x20person','uwCgi','e\x20movie!\x27\x20','WGckc','EPIeC','</div>\x0a\x20\x20\x20','\x20sources\x20b',')\x22>\x0a\x20\x20\x20\x20\x20\x20','teness','2.75<br><b','Incomplete','Classifica','name','\x20Classific','\x20•\x20Earn:\x20$','filter','ess','sEial','hought','var(--colo','all\x20questi','een','Meta-Cogni','DsSGc','Safety\x20Cat','one\x20news\x20s','Adult\x20Cont','HDjrB','XaXtJ','eneration\x20','is\x20is\x20terr','countdownS','qmaac','aodJw','totalQuest','Chain\x20Cate','oKtmp','Restricted','Public\x20Inf','\x20syntactic','JtkDV','xVzTa','\x20\x20\x20\x20\x20\x20\x20💰\x20E','bFjGS','ontent','erheV','JoCRQ','cVBuS','ouijU','sWvwQ','Creative\x20C','active','Data\x20Set\x20','Solution\x20T','Color','nUUEq','ase\x20handli','Task\x20Categ','ategory','\x20Accuracy\x20','YUYaZ','appendChil','nvolving\x20m','Scientific','WSbDd','ZCYGa','SVHvE','\x20patterns','lysis','YVMXo',':\x20\x27Write\x20s','qNBQb','wfivK','Summarizat','\x20instructi','PMcuY','High\x20Diver','sification','ejldg','OiHty','\x20Entity\x20ta','bRMmj','\x20adversari','Source\x20Cre','ization','5877900GoEhUe','CWhfR','ogical\x20ana','Coherent','pack-card','\x0a\x20\x20\x20\x20','Reasoning\x20','Personal\x20D','UVFJW','y\x20toxicity','UlMIF','sESeO','LmbaX','JASmR','xQCnj','\x20\x20\x20<div\x20cl','totalEarni','ass=\x22pack-','ask\x20type','CJnTJ','QKzBq','Txoux','div\x20class=','XgNla','ifornia\x27\x20→','Edge\x20Case\x20','Comparativ','s:\x20','t\x20Categori','flMas','Representa','getElement','HJvXQ','nthesis\x20co','hZetx','ty\x20Categor','currentQue','KXVXs','btFEN','ynsXU','Text\x20Gener',':\x20Long\x20art','gGBcS','IQtrQ','Loaded','badge\x22>','Uqcul','e\x20Analysis','\x20content\x20i','earnings','ual\x20Qualit','nce','home','ilization','roaches','SJOtB','n\x20Category','lving','HvRpG','n!\x0a\x20\x20\x20\x20','ffEDI','\x20\x20\x20</butto','Toxicity\x20L','Transforma','mat','card\x20ready','LXccH','Formatted\x20','ZjUAV','YliSd','orization_','fKPqP','ty\x20Recogni','\x20\x20\x20onclick','aris\x27','\x20of\x20',':\x20$','gory','elevance\x20C','oCTeQ','nxjRA','jaxgA','ource,\x20sam','g\x20chloroph','HzNoM','stion','ured\x20forma','BwKEd','y\x20subject\x20','AiGIK','\x20\x20\x20💎\x20Total','intent\x20ali','ntiment\x27','sfbft','ard','.screen','\x20domain-sp','TxXvm','\x20Data\x20Sets','mUeFo','\x20Data','eneration','MsVlL','rization','\x20cause-eff','Quantitati','cGhqr','ss\x20Categor','zxhcQ','Ehclm',':\x20\x27Sort\x20a\x20','Creative\x20G','a\x20set\x20in:\x20','Ethical\x20Is','remove','Safe\x20Speec','ching\x20Cate','\x0a\x20\x20\x20\x20\x20\x20\x20\x20','color:\x20','ctPack(','resultDeta','Domain\x20Cat','ial\x20Topics','e,\x20SSN,\x20an','AwzCR','uality\x20met','HjqdB','KRWZR','Total\x20Earn','ck\x22>✓</div','onclick','349341IJMtwj','nterval','\x20multimoda','ity\x20Catego','PII\x20Violat','Task\x20Type\x20','tical','ata','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',':\x20Explicit','IJjgq','lqJVP','Multi-Sour','st(lst):\x20r','packScore','QRxNi','econds','UUbQi','OUJVX','ynKaE','Completene','userAnswer','yjycc','xplosive\x20d','ZHmoF','e\x20pairs','XzWOu','BdpVj','NER\x20Task\x20C','yOPJJ','currentPac','asyHm','classList','ples\x20from\x20','wmRiT','addEventLi','Content','kYuRD','Duplicatio','Fragment','Opinion','on-respons','Ethical\x20Co','al\x20Content','\x20severity','XkuMV','Output\x20For','yhCTo','SIlJV','div','lems\x20by\x20qu','curacy\x20Cat','countdownI','IfYDU','gWgbg','Discussion','ata\x20Sample','Unsafe\x20-\x20V','ons\x20by\x20cla','score','ptation','Diversity\x20','Correction','RHBxX','y\x20user\x20int','currentScr','pack-stat-','evels','rification','vMXre','XrPnB','Unlabeled','c\x20diversit','Nuance\x20Lev','\x20content\x20e','rWoqh','PjkOg','packIntroS',':\x201000\x20sam','qyxct','g\x20bleach\x20c','LioKW','\x20problem-s','saJza','Incoherent','evel\x20Categ','oherence\x20C','d\x20methods\x20','ted','MRVwN','High\x20Noise','l\x20Patterns','Instructio','hbOnY','ails\x20of\x20re','WNhbp','LjoLg','xNZhM','homeProgre','GZqGE','\x22pack-stat','ONE</div>','jhUQr','xity\x20handl','\x20data\x20by\x20t','iGpEM','Language\x20V','\x20types','XgDNZ','Label\x20Qual','qFDwl','GiUCO','\x20unusual\x20c','kKgoS','Extraction','XFWAe','questionCa','ClLYK','yIOdB','euBNO','qDkfQ','QhHVa','\x20translati'];_0x2eaa=function(){return _0x530159;};return _0x2eaa();}function loadPack40_MetaCognition(){const _0x20c573=_0x37261c,_0xf481b9={'fKPqP':_0x20c573(0x62e)+_0x20c573(0x66c)+_0x20c573(0x214),'kSXhs':_0x20c573(0x5e5)+_0x20c573(0x33b)+_0x20c573(0x607)+_0x20c573(0x3e1),'Rjrbl':function(_0x3ad21d,_0xce7689,_0x4805a3,_0x102e15){return _0x3ad21d(_0xce7689,_0x4805a3,_0x102e15);},'ZCYGa':_0x20c573(0x412)+_0x20c573(0x37f)};return{'id':0x28,'name':_0xf481b9[_0x20c573(0x498)],'description':_0xf481b9[_0x20c573(0x650)],'icon':'🤔','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xf481b9[_0x20c573(0x3a5)](generateSimpleQuestions,0x162+-0x5ac+0x472,_0xf481b9[_0x20c573(0x43d)],-0x5*0x672+-0x1f0b+0x3f4b)};}function loadPack41_ComparativeAnalysis(){const _0x3f6c21=_0x37261c,_0xfb44bd={'BZIzf':_0x3f6c21(0x1c5)+_0x3f6c21(0x5ae)+_0x3f6c21(0x277),'FGAyt':_0x3f6c21(0x5e5)+_0x3f6c21(0x28e)+_0x3f6c21(0x64d),'qJtWJ':function(_0x3013a2,_0x58b8da,_0x1bb9f9,_0x3c99d4){return _0x3013a2(_0x58b8da,_0x1bb9f9,_0x3c99d4);},'xVzTa':_0x3f6c21(0x46b)+_0x3f6c21(0x480)};return{'id':0x29,'name':_0xfb44bd[_0x3f6c21(0x366)],'description':_0xfb44bd[_0x3f6c21(0x600)],'icon':'⚖️','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xfb44bd[_0x3f6c21(0x28d)](generateSimpleQuestions,0x7fd*-0x1+0xd43+0xb*-0x77,_0xfb44bd[_0x3f6c21(0x425)],0x11f5+-0xad3+0x7*-0x104)};}function loadPack42_ProblemSolving(){const _0x70041f=_0x37261c,_0xd3160c={'TlerS':_0x70041f(0x431)+_0x70041f(0x25b)+_0x70041f(0x4b8),'HDjrB':_0x70041f(0x5e5)+_0x70041f(0x526)+_0x70041f(0x23d)+_0x70041f(0x487),'cuMcy':function(_0x13c9cf,_0x109d4a,_0x4d23bc,_0x53d2b0){return _0x13c9cf(_0x109d4a,_0x4d23bc,_0x53d2b0);},'uFcsl':_0x70041f(0x2b0)+_0x70041f(0x48a)};return{'id':0x2a,'name':_0xd3160c[_0x70041f(0x20a)],'description':_0xd3160c[_0x70041f(0x417)],'icon':'🧩','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xd3160c[_0x70041f(0x32e)](generateSimpleQuestions,0x110+0xe34+-0xf1a,_0xd3160c[_0x70041f(0x3fb)],0x13b5+-0x1*0x10e7+0x59*-0x8)};}function loadPack43_CausalReasoning(){const _0x488497=_0x37261c,_0x5b84ad={'NtCwG':_0x488497(0x661)+_0x488497(0x25a)+_0x488497(0x3b3)+_0x488497(0x37f),'yOPJJ':_0x488497(0x5e5)+_0x488497(0x4b9)+_0x488497(0x24e)+_0x488497(0x3a7),'uUdrR':function(_0xc90226,_0x72f64e,_0x35c510,_0x58f79d){return _0xc90226(_0x72f64e,_0x35c510,_0x58f79d);},'gBtza':_0x488497(0x22a)+_0x488497(0x5c4)};return{'id':0x2b,'name':_0x5b84ad[_0x488497(0x62b)],'description':_0x5b84ad[_0x488497(0x4f1)],'icon':'🔗','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x5b84ad[_0x488497(0x1e5)](generateSimpleQuestions,-0x77*-0x31+0x2e6+0x28d*-0xa,_0x5b84ad[_0x488497(0x58f)],0x1420+-0xa40+-0x1*0x9da)};}function loadPack44_QuantitativeReasoning(){const _0x1ef765=_0x37261c,_0x106e0f={'ZHmoF':_0x1ef765(0x5c1)+_0x1ef765(0x457)+_0x1ef765(0x3b3)+_0x1ef765(0x37f),'RjUhl':_0x1ef765(0x5e5)+_0x1ef765(0x555)+_0x1ef765(0x1e0)+_0x1ef765(0x3a7),'WPaHo':function(_0x2ef270,_0x43bbc6,_0x4a3624,_0x277812){return _0x2ef270(_0x43bbc6,_0x4a3624,_0x277812);},'nVCWG':_0x1ef765(0x4ba)+_0x1ef765(0x2ff)+'ng'};return{'id':0x2c,'name':_0x106e0f[_0x1ef765(0x4ec)],'description':_0x106e0f[_0x1ef765(0x298)],'icon':'📊','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x106e0f[_0x1ef765(0x37d)](generateSimpleQuestions,0x19ea+-0xb84+-0xe3a,_0x106e0f[_0x1ef765(0x5a8)],-0x14cb+-0x1*0x892+0x1*0x1d63)};}function loadPack45_ArgumentStructure(){const _0x23a116=_0x37261c,_0x11423f={'glZgX':_0x23a116(0x3c4)+_0x23a116(0x34a)+_0x23a116(0x5ac)+_0x23a116(0x308),'kPTcP':_0x23a116(0x5e5)+_0x23a116(0x1ff)+_0x23a116(0x1cf)+_0x23a116(0x5ba),'SrDaw':_0x23a116(0x391),'kBQVx':function(_0x2c4118,_0x33dd42,_0x140498,_0xa76ea3){return _0x2c4118(_0x33dd42,_0x140498,_0xa76ea3);},'TkJkG':_0x23a116(0x3c4)+_0x23a116(0x3e3)};return{'id':0x2d,'name':_0x11423f[_0x23a116(0x292)],'description':_0x11423f[_0x23a116(0x2a8)],'icon':_0x11423f[_0x23a116(0x1be)],'completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x11423f[_0x23a116(0x231)](generateSimpleQuestions,-0x111*0x23+0x1*0x1c1+0x23bf,_0x11423f[_0x23a116(0x365)],0x14ad+0x1810+-0x2cb7*0x1)};}function loadPack46_InformationDensity(){const _0x3025af=_0x37261c,_0x2ff07c={'hVrSz':_0x3025af(0x349)+_0x3025af(0x626)+_0x3025af(0x3b3)+_0x3025af(0x37f),'KTiKU':_0x3025af(0x5e5)+_0x3025af(0x51e)+_0x3025af(0x39c),'xgOsv':function(_0x2cab87,_0x5dfa2f,_0xa70230,_0x414f3f){return _0x2cab87(_0x5dfa2f,_0xa70230,_0x414f3f);},'dSLQR':_0x3025af(0x349)+_0x3025af(0x307)};return{'id':0x2e,'name':_0x2ff07c[_0x3025af(0x3d8)],'description':_0x2ff07c[_0x3025af(0x3d1)],'icon':'📦','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x2ff07c[_0x3025af(0x622)](generateSimpleQuestions,0x2207+0x19a3+0x3b7c*-0x1,_0x2ff07c[_0x3025af(0x2c6)],-0x1d82+-0x691+0x2419)};}function loadPack47_SyntaxCorrectness(){const _0x1ae599=_0x37261c,_0xf0be2d={'NWqdf':_0x1ae599(0x2f0)+_0x1ae599(0x1fb)+_0x1ae599(0x3b3)+_0x1ae599(0x37f),'aodJw':_0x1ae599(0x5e5)+_0x1ae599(0x423)+_0x1ae599(0x3ec),'fMuMj':function(_0x52cf50,_0x48449d,_0x45af30,_0x48a490){return _0x52cf50(_0x48449d,_0x45af30,_0x48a490);},'OUJVX':_0x1ae599(0x62f)+_0x1ae599(0x234)};return{'id':0x2f,'name':_0xf0be2d[_0x1ae599(0x1bd)],'description':_0xf0be2d[_0x1ae599(0x41d)],'icon':'✏️','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xf0be2d[_0x1ae599(0x2f5)](generateSimpleQuestions,0x731+0x1*0xe6b+0x1*-0x156d,_0xf0be2d[_0x1ae599(0x4e6)],0x3d*0x4e+0x267b+0x390b*-0x1)};}function loadPack48_ChainOfThought(){const _0x487fc8=_0x37261c,_0xa4033b={'aJiIt':_0x487fc8(0x457)+_0x487fc8(0x41f)+_0x487fc8(0x277),'XFWAe':_0x487fc8(0x5e5)+_0x487fc8(0x22b)+_0x487fc8(0x3f1)+_0x487fc8(0x618),'bjTUt':function(_0x3825c1,_0x544462,_0x135f59,_0x36f464){return _0x3825c1(_0x544462,_0x135f59,_0x36f464);},'saJza':_0x487fc8(0x570)+_0x487fc8(0x40e)};return{'id':0x30,'name':_0xa4033b[_0x487fc8(0x646)],'description':_0xa4033b[_0x487fc8(0x547)],'icon':'🔗','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xa4033b[_0x487fc8(0x3a4)](generateSimpleQuestions,0x160e+0x163d*-0x1+0x13*0x5,_0xa4033b[_0x487fc8(0x527)],-0xcd8+0x22d3+-0x15f5)};}function loadPack49_ContextUtilization(){const _0x59c7ac=_0x37261c,_0xab096d={'HwkaF':_0x59c7ac(0x63d)+_0x59c7ac(0x271)+_0x59c7ac(0x4b8),'UONPf':_0x59c7ac(0x5e5)+_0x59c7ac(0x5b1)+_0x59c7ac(0x59a),'AQUln':function(_0x1c5482,_0x11bebb,_0x397dc2,_0x1102aa){return _0x1c5482(_0x11bebb,_0x397dc2,_0x1102aa);},'TFaRZ':_0x59c7ac(0x616)+_0x59c7ac(0x486)};return{'id':0x31,'name':_0xab096d[_0x59c7ac(0x629)],'description':_0xab096d[_0x59c7ac(0x299)],'icon':'📖','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0xab096d[_0x59c7ac(0x219)](generateSimpleQuestions,-0xe*0x9c+0xa36+0x17d*-0x1,_0xab096d[_0x59c7ac(0x2a0)],-0x1*0xec5+-0x1b6c+0x2a37)};}function loadPack50_OutputConsistency(){const _0x1f63c1=_0x37261c,_0x5bbab5={'qiSak':_0x1f63c1(0x1a7)+_0x1f63c1(0x32a)+_0x1f63c1(0x288),'qGlzC':_0x1f63c1(0x5e5)+_0x1f63c1(0x3d9)+_0x1f63c1(0x222),'YjVuf':function(_0xb412ed,_0x15b511,_0x34f8c4,_0x23559d){return _0xb412ed(_0x15b511,_0x34f8c4,_0x23559d);},'bvQde':_0x1f63c1(0x5fc)+_0x1f63c1(0x55e)};return{'id':0x32,'name':_0x5bbab5[_0x1f63c1(0x60b)],'description':_0x5bbab5[_0x1f63c1(0x311)],'icon':'🔄','completed':![],'score':0x0,'earnings':0x0,'totalQuestions':0x6,'questions':_0x5bbab5[_0x1f63c1(0x3ef)](generateSimpleQuestions,-0x2dd*0x2+0x101*-0x1+0x6ed,_0x5bbab5[_0x1f63c1(0x23f)],0x24ac+0x1c95+-0x413b)};}
+// Data Categorization AI Training App - JavaScript
+
+// Application State
+const state = {
+    currentScreen: 'home',
+    currentPack: 0,
+    currentQuestion: 0,
+    packScore: 0,
+    totalEarnings: 0,
+    packs: [],
+    countdownSeconds: 5,
+    countdownInterval: null
+};
+
+// Initialize app on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadAllPacks();
+    loadEarningsProgress();
+    loadPackProgress();
+    renderHome();
+});
+
+// ================ EARNINGS AND PROGRESS MANAGEMENT ================
+
+function loadEarningsProgress() {
+    const raw = localStorage.getItem('earnings');
+    if (raw !== null && raw !== '') {
+        try {
+            const parsed = JSON.parse(raw);
+            const amount = Array.isArray(parsed) ? parseFloat(parsed[0]) : parseFloat(parsed);
+            if (!isNaN(amount) && amount > 0) state.totalEarnings = amount;
+        } catch(e) {
+            const amount = parseFloat(raw);
+            if (!isNaN(amount) && amount > 0) state.totalEarnings = amount;
+        }
+    }
+}
+
+function saveEarningsProgress() {
+    localStorage.setItem('earnings', JSON.stringify([state.totalEarnings]));
+}
+
+function loadPackProgress() {
+    const saved = localStorage.getItem('data_categorization_pack_progress');
+    if (saved) {
+        const progress = JSON.parse(saved);
+        progress.forEach(item => {
+            updatePackStatus(item.packID, item.completed, item.earnings);
+        });
+    }
+}
+
+function savePackProgress() {
+    const progress = [];
+    state.packs.forEach(pack => {
+        if (pack.completed) {
+            progress.push({
+                packID: pack.id,
+                completed: pack.completed,
+                earnings: pack.earnings
+            });
+        }
+    });
+    localStorage.setItem('data_categorization_pack_progress', JSON.stringify(progress));
+}
+
+function updatePackStatus(packID, completed, earnings) {
+    const pack = state.packs.find(p => p.id === packID);
+    if (pack) {
+        pack.completed = completed;
+        pack.earnings = earnings;
+    }
+}
+
+function generatePackEarnings() {
+    // Random between $1.85 and $2.75 (185-275 cents)
+    return (Math.floor(Math.random() * (275 - 185 + 1)) + 185) / 100;
+}
+
+function formatEarnings(amount) {
+    return amount.toFixed(2);
+}
+
+// ================ LOADING AND UI FUNCTIONS ================
+
+function showLoading() {
+    document.getElementById('loadingOverlay').classList.remove('hidden');
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').classList.add('hidden');
+}
+
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
+    state.currentScreen = screenId.replace('Screen', '');
+}
+
+function showScreenWithLoading(screenId, callback) {
+    showLoading();
+    setTimeout(() => {
+        hideLoading();
+        showScreen(screenId);
+        if (callback) callback();
+    }, 2000);
+}
+
+// ================ NAVIGATION FUNCTIONS ================
+
+function showHome() {
+    if (state.countdownInterval) {
+        clearInterval(state.countdownInterval);
+        state.countdownInterval = null;
+    }
+    showScreenWithLoading('homeScreen', renderHome);
+}
+
+function showPackIntro() {
+    renderPackIntro();
+    showScreen('packIntroScreen');
+}
+
+function startQuestions() {
+    state.currentQuestion = 0;
+    state.packScore = 0;
+    const pack = state.packs[state.currentPack];
+    pack.questions.forEach(q => q.userAnswer = '');
+    showScreenWithLoading('questionScreen', renderQuestion);
+}
+
+function showPackResults() {
+    renderResults();
+    showScreen('resultsScreen');
+}
+
+function showOverallStats() {
+    renderStats();
+    showScreenWithLoading('statsScreen');
+}
+
+function continueNext() {
+    if (state.currentPack < state.packs.length - 1) {
+        state.currentPack++;
+        showScreenWithLoading('packIntroScreen', showPackIntro);
+    } else {
+        showHome();
+    }
+}
+
+function retakePack() {
+    showScreenWithLoading('packIntroScreen', showPackIntro);
+}
+
+// ================ RENDER FUNCTIONS ================
+
+function renderHome() {
+    const completedCount = state.packs.filter(p => p.completed).length;
+    document.getElementById('homeProgress').textContent = 
+        `${completedCount} / ${state.packs.length} Data Categories Completed`;
+    document.getElementById('homeEarnings').textContent = 
+        `Total Earned: $${formatEarnings(state.totalEarnings)}`;
+    
+    const packList = document.getElementById('packList');
+    packList.innerHTML = '';
+    
+    state.packs.forEach((pack, index) => {
+        const card = document.createElement('div');
+        card.className = 'pack-card' + (pack.completed ? ' completed' : '');
+        card.onclick = () => selectPack(index);
+        
+        card.innerHTML = `
+            <div class="pack-icon">${pack.icon}</div>
+            ${pack.completed ? '<div class="pack-check">✓</div>' : ''}
+            <div class="pack-info">
+                <div class="pack-name">${pack.name}</div>
+                <div class="pack-desc">${pack.description}</div>
+                <div class="pack-status ${pack.completed ? 'completed' : 'incomplete'}">
+                    ${pack.completed 
+                        ? `✓ Completed • Earned: $${formatEarnings(pack.earnings)}`
+                        : `${pack.totalQuestions} Data Sets • Earn: $1.85-$2.75`}
+                </div>
+            </div>
+            <button class="pack-button ${pack.completed ? 'completed' : ''}" onclick="event.stopPropagation(); selectPack(${index})">
+                ${pack.completed ? 'Review →' : 'Start →'}
+            </button>
+        `;
+        
+        packList.appendChild(card);
+    });
+}
+
+function selectPack(index) {
+    state.currentPack = index;
+    showScreenWithLoading('packIntroScreen', showPackIntro);
+}
+
+function renderPackIntro() {
+    const pack = state.packs[state.currentPack];
+    document.getElementById('introIcon').textContent = pack.icon;
+    document.getElementById('introTitle').textContent = pack.name;
+    document.getElementById('introInfo').innerHTML = `
+        ${pack.description}<br><br>
+        📊 Data Samples: ${pack.totalQuestions}<br>
+        ⏱️ Estimated Duration: ${pack.totalQuestions * 1} min<br>
+        💰 Earnings on Completion: $1.85-$2.75<br><br>
+        Complete all questions to earn!
+    `;
+}
+
+function renderQuestion() {
+    const pack = state.packs[state.currentPack];
+    const question = pack.questions[state.currentQuestion];
+    
+    // Update progress bar
+    const progress = (state.currentQuestion / pack.totalQuestions) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+    document.getElementById('progressText').textContent = 
+        `Data Set ${state.currentQuestion + 1} of ${pack.totalQuestions}`;
+    
+    // Reset and start countdown
+    state.countdownSeconds = 5;
+    updateCountdown();
+    if (state.countdownInterval) clearInterval(state.countdownInterval);
+    state.countdownInterval = setInterval(updateCountdown, 1000);
+    
+    // Render question
+    const card = document.getElementById('questionCard');
+    card.innerHTML = `
+        <div class="question-badge">${state.currentQuestion + 1}</div>
+        <div class="question-title">${question.title}</div>
+        <div class="question-text">${question.text}</div>
+        ${question.options.map(opt => `
+            <button class="option-btn ${question.userAnswer === opt ? 'selected' : ''}" 
+                    onclick="selectOption('${opt.replace(/'/g, "\\'")}')">${opt}</button>
+        `).join('')}
+    `;
+    
+    // Update next button
+    const nextBtn = document.getElementById('nextBtn');
+    nextBtn.disabled = true;
+    nextBtn.style.backgroundColor = 'var(--color-border)';
+    nextBtn.textContent = state.currentQuestion >= pack.totalQuestions - 1 
+        ? 'Complete Training →' 
+        : 'Next Data Set →';
+}
+
+function selectOption(option) {
+    const pack = state.packs[state.currentPack];
+    const question = pack.questions[state.currentQuestion];
+    question.userAnswer = option;
+    
+    // Update UI
+    document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.remove('selected');
+        if (btn.textContent === option) {
+            btn.classList.add('selected');
+        }
+    });
+}
+
+function updateCountdown() {
+    const countdownCard = document.getElementById('countdownCard');
+    
+    if (state.countdownSeconds <= 0) {
+        clearInterval(state.countdownInterval);
+        state.countdownInterval = null;
+        countdownCard.textContent = '✓ Ready to categorize!';
+        countdownCard.className = 'countdown-card ready';
+        
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.disabled = false;
+        nextBtn.style.backgroundColor = 'var(--color-success)';
+    } else {
+        countdownCard.textContent = `⏱️ Next data set in: ${state.countdownSeconds}s`;
+        
+        if (state.countdownSeconds <= 2) {
+            countdownCard.className = 'countdown-card danger';
+        } else if (state.countdownSeconds <= 3) {
+            countdownCard.className = 'countdown-card warning';
+        } else {
+            countdownCard.className = 'countdown-card';
+        }
+        
+        state.countdownSeconds--;
+    }
+}
+
+function nextQuestion() {
+    if (state.countdownInterval) {
+        clearInterval(state.countdownInterval);
+        state.countdownInterval = null;
+    }
+    
+    const pack = state.packs[state.currentPack];
+    const question = pack.questions[state.currentQuestion];
+    
+    // Check answer
+    if (question.userAnswer === question.correctAnswer) {
+        state.packScore++;
+    }
+    
+    state.currentQuestion++;
+    
+    // Check if pack completed
+    if (state.currentQuestion >= pack.totalQuestions) {
+        // Award earnings if not completed before
+        if (!pack.completed) {
+            const earnings = generatePackEarnings();
+            pack.earnings = earnings;
+            state.totalEarnings += earnings;
+            pack.completed = true;
+            pack.score = state.packScore;
+            state.packs[state.currentPack] = pack;
+            
+            saveEarningsProgress();
+            savePackProgress();
+        }
+        
+        showScreenWithLoading('resultsScreen', showPackResults);
+    } else {
+        renderQuestion();
+    }
+}
+
+function renderResults() {
+    const pack = state.packs[state.currentPack];
+    const percentage = Math.round((state.packScore / pack.totalQuestions) * 100);
+    
+    document.getElementById('resultPackName').textContent = pack.name;
+    document.getElementById('resultDetails').innerHTML = `
+        Accuracy: ${state.packScore}/${pack.totalQuestions} (${percentage}%)<br>
+        💰 Earned: $${formatEarnings(pack.earnings)}<br>
+        💎 Total Earnings: $${formatEarnings(state.totalEarnings)}
+    `;
+}
+
+function renderStats() {
+    const completedCount = state.packs.filter(p => p.completed).length;
+    
+    document.getElementById('statsEarnings').textContent = `$${formatEarnings(state.totalEarnings)}`;
+    document.getElementById('statsText').textContent = 
+        `Total Earned\n${completedCount} of ${state.packs.length} Modules`;
+    
+    const list = document.getElementById('packStatsList');
+    list.innerHTML = '';
+    
+    state.packs.forEach(pack => {
+        const card = document.createElement('div');
+        card.className = 'pack-stat-card';
+        
+        card.innerHTML = `
+            <div class="pack-stat-icon">${pack.icon}</div>
+            <div class="pack-stat-info">
+                <div class="pack-stat-name">${pack.name}</div>
+                <div class="pack-stat-status" style="color: ${pack.completed ? 'var(--color-success)' : 'var(--color-text-secondary)'}">
+                    ${pack.completed 
+                        ? `✓ Earned: $${formatEarnings(pack.earnings)}`
+                        : 'Not completed'}
+                </div>
+            </div>
+            ${pack.completed ? '<div class="pack-stat-badge">DONE</div>' : ''}
+        `;
+        
+        list.appendChild(card);
+    });
+}
+
+// ================ PACK LOADING ================
+
+function loadAllPacks() {
+    state.packs = [
+        loadPack1_DataQuality(),
+        loadPack2_ContentSafety(),
+        loadPack3_TaskClassification(),
+        loadPack4_DataBiasDetection(),
+        loadPack5_ToxicityLevels(),
+        loadPack6_IntentClassification(),
+        loadPack7_DomainClassification(),
+        loadPack8_ResponseQuality(),
+        loadPack9_ContextualAppropriate(),
+        loadPack10_FactualVerification(),
+        loadPack11_SensitivityClassification(),
+        loadPack12_LabelQuality(),
+        loadPack13_MultimodalClassification(),
+        loadPack14_InstructionQuality(),
+        loadPack15_ConversationalQuality(),
+        loadPack16_ReasoningChainQuality(),
+        loadPack17_CodeQualityAssessment(),
+        loadPack18_MathematicalContent(),
+        loadPack19_LanguageVariety(),
+        loadPack20_PromptInjectionDetection(),
+        loadPack21_OutputFormatClassification(),
+        loadPack22_ExplanationQuality(),
+        loadPack23_SourceCredibility(),
+        loadPack24_PersonalizationData(),
+        loadPack25_EthicalContent(),
+        loadPack26_TemporalRelevance(),
+        loadPack27_NuanceComplexity(),
+        loadPack28_CrossLingualQuality(),
+        loadPack29_RedTeamingContent(),
+        loadPack30_DomainAdaptation(),
+        loadPack31_GroundingVerification(),
+        loadPack32_DialogueCoherence(),
+        loadPack33_ControversialTopics(),
+        loadPack34_CreativeContent(),
+        loadPack35_SpecializedKnowledge(),
+        loadPack36_UserIntentAlignment(),
+        loadPack37_DiversityInclusion(),
+        loadPack38_ErrorCorrection(),
+        loadPack39_EdgeCaseHandling(),
+        loadPack40_MetaCognition(),
+        loadPack41_ComparativeAnalysis(),
+        loadPack42_ProblemSolving(),
+        loadPack43_CausalReasoning(),
+        loadPack44_QuantitativeReasoning(),
+        loadPack45_ArgumentStructure(),
+        loadPack46_InformationDensity(),
+        loadPack47_SyntaxCorrectness(),
+        loadPack48_ChainOfThought(),
+        loadPack49_ContextUtilization(),
+        loadPack50_OutputConsistency()
+    ];
+}
+
+// Pack 1: Data Quality Categorization
+function loadPack1_DataQuality() {
+    return {
+        id: 1,
+        name: "Data Quality Categorization",
+        description: "Categorize data by quality metrics",
+        icon: "✓",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: [
+            {
+                title: "Completeness Category",
+                text: "Categorize this sample: 'The cat sat on the' [text cuts off mid-sentence]",
+                options: ["Incomplete Data", "Complete Data", "Partial Data", "Fragment"],
+                correctAnswer: "Incomplete Data"
+            },
+            {
+                title: "Annotation Accuracy Category",
+                text: "Categorize: Text 'This is terrible!' labeled as 'positive sentiment'",
+                options: ["Mislabeled", "Correctly Labeled", "Ambiguous Label", "Unlabeled"],
+                correctAnswer: "Mislabeled"
+            },
+            {
+                title: "Diversity Category",
+                text: "Categorize: 1000 samples from one news source, same topic",
+                options: ["Low Diversity", "High Diversity", "Balanced Dataset", "Multi-Source"],
+                correctAnswer: "Low Diversity"
+            },
+            {
+                title: "Noise Level Category",
+                text: "Categorize: 'Click here!!! BUY NOW!!! $$$ FREE $$$'",
+                options: ["High Noise", "Low Noise", "Clean Data", "Formatted Text"],
+                correctAnswer: "High Noise"
+            },
+            {
+                title: "Coherence Category",
+                text: "Categorize: 'Quantum mechanics of photosynthesis in medieval blockchain'",
+                options: ["Incoherent", "Coherent", "Technical", "Scientific"],
+                correctAnswer: "Incoherent"
+            },
+            {
+                title: "Duplication Category",
+                text: "Categorize: Same example repeated 50 times in dataset",
+                options: ["Duplicate", "Unique", "Variant", "Original"],
+                correctAnswer: "Duplicate"
+            }
+        ]
+    };
+}
+
+// Pack 2: Safety Category Classification
+function loadPack2_ContentSafety() {
+    return {
+        id: 2,
+        name: "Safety Category Classification",
+        description: "Categorize content by safety level",
+        icon: "🛡️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 7,
+        questions: [
+            {
+                title: "Violence Category",
+                text: "Categorize: 'Instructions for building explosive devices'",
+                options: ["Unsafe - Violence", "Safe Content", "Educational", "Informational"],
+                correctAnswer: "Unsafe - Violence"
+            },
+            {
+                title: "Hate Speech Category",
+                text: "Categorize: Text with derogatory slurs targeting protected groups",
+                options: ["Hate Speech", "Safe Speech", "Opinion", "Discussion"],
+                correctAnswer: "Hate Speech"
+            },
+            {
+                title: "Misinformation Category",
+                text: "Categorize: 'Drinking bleach cures all diseases'",
+                options: ["Medical Misinformation", "Health Advice", "Educational", "Informational"],
+                correctAnswer: "Medical Misinformation"
+            },
+            {
+                title: "Privacy Violation Category",
+                text: "Categorize: Full name, SSN, and bank details of real person",
+                options: ["PII Violation", "Public Information", "Personal Data", "User Content"],
+                correctAnswer: "PII Violation"
+            },
+            {
+                title: "Child Safety Category",
+                text: "Categorize: Explicit content involving minors",
+                options: ["CSAM - Critical", "Age-Restricted", "Adult Content", "Mature"],
+                correctAnswer: "CSAM - Critical"
+            },
+            {
+                title: "Self-Harm Category",
+                text: "Categorize: 'Detailed methods for self-harm'",
+                options: ["Self-Harm Content", "Mental Health", "Support Content", "Discussion"],
+                correctAnswer: "Self-Harm Content"
+            },
+            {
+                title: "Safe Educational Category",
+                text: "Categorize: 'Photosynthesis converts sunlight to energy using chlorophyll'",
+                options: ["Safe - Educational", "Unsafe", "Restricted", "Sensitive"],
+                correctAnswer: "Safe - Educational"
+            }
+        ]
+    };
+}
+
+// Pack 3: Task Type Categorization
+function loadPack3_TaskClassification() {
+    return {
+        id: 3,
+        name: "Task Type Categorization",
+        description: "Categorize data by task type",
+        icon: "📋",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 8,
+        questions: [
+            {
+                title: "QA Task Category",
+                text: "Categorize: Input: 'Capital of France?' Output: 'Paris'",
+                options: ["Question Answering", "Summarization", "Translation", "Generation"],
+                correctAnswer: "Question Answering"
+            },
+            {
+                title: "Summarization Task Category",
+                text: "Categorize: Long article → 3-sentence summary",
+                options: ["Summarization", "Question Answering", "Translation", "Extraction"],
+                correctAnswer: "Summarization"
+            },
+            {
+                title: "Code Generation Category",
+                text: "Categorize: 'Sort a list' → 'def sort_list(lst): return sorted(lst)'",
+                options: ["Code Generation", "Text Generation", "Translation", "Transformation"],
+                correctAnswer: "Code Generation"
+            },
+            {
+                title: "Classification Task Category",
+                text: "Categorize: 'Terrible movie!' → 'negative'",
+                options: ["Classification", "Generation", "Summarization", "Extraction"],
+                correctAnswer: "Classification"
+            },
+            {
+                title: "Translation Task Category",
+                text: "Categorize: 'Hello' → 'Hola'",
+                options: ["Translation", "Generation", "Transformation", "Conversion"],
+                correctAnswer: "Translation"
+            },
+            {
+                title: "NER Task Category",
+                text: "Categorize: 'Apple Inc. in California' → Entity tags",
+                options: ["Named Entity Recognition", "Classification", "Extraction", "Parsing"],
+                correctAnswer: "Named Entity Recognition"
+            },
+            {
+                title: "Reasoning Task Category",
+                text: "Categorize: 'If all birds fly and penguins are birds...' → Logical analysis",
+                options: ["Reasoning", "Classification", "Generation", "QA"],
+                correctAnswer: "Reasoning"
+            },
+            {
+                title: "Creative Generation Category",
+                text: "Categorize: 'Write story about robot painter' → Creative narrative",
+                options: ["Creative Generation", "Summarization", "Translation", "Extraction"],
+                correctAnswer: "Creative Generation"
+            }
+        ]
+    };
+}
+
+// Packs 4-50: Using simplified questions
+function generateSimpleQuestions(packId, theme, count = 6) {
+    const questions = [];
+    for (let i = 1; i <= count; i++) {
+        questions.push({
+            title: `${theme} Example ${i}`,
+            text: `Sample categorization question ${i} for ${theme}`,
+            options: [`Category A`, `Category B`, `Category C`, `Category D`],
+            correctAnswer: `Category A`
+        });
+    }
+    return questions;
+}
+
+function loadPack4_DataBiasDetection() {
+    return {
+        id: 4,
+        name: "Bias Type Categorization",
+        description: "Categorize data by bias type",
+        icon: "⚖️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(4, "Bias Detection", 6)
+    };
+}
+
+function loadPack5_ToxicityLevels() {
+    return {
+        id: 5,
+        name: "Toxicity Level Categorization",
+        description: "Categorize content by toxicity severity",
+        icon: "⚠️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(5, "Toxicity Levels", 6)
+    };
+}
+
+function loadPack6_IntentClassification() {
+    return {
+        id: 6,
+        name: "User Intent Categorization",
+        description: "Categorize queries by user intent",
+        icon: "🎯",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 7,
+        questions: generateSimpleQuestions(6, "Intent Classification", 7)
+    };
+}
+
+function loadPack7_DomainClassification() {
+    return {
+        id: 7,
+        name: "Domain Categorization",
+        description: "Categorize content by subject domain",
+        icon: "📚",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(7, "Domain Classification", 6)
+    };
+}
+
+function loadPack8_ResponseQuality() {
+    return {
+        id: 8,
+        name: "Response Quality Categorization",
+        description: "Categorize responses by quality level",
+        icon: "⭐",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(8, "Response Quality", 6)
+    };
+}
+
+function loadPack9_ContextualAppropriate() {
+    return {
+        id: 9,
+        name: "Contextual Appropriateness",
+        description: "Categorize content by context suitability",
+        icon: "🎭",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(9, "Contextual Appropriateness", 6)
+    };
+}
+
+function loadPack10_FactualVerification() {
+    return {
+        id: 10,
+        name: "Factual Accuracy Categorization",
+        description: "Categorize claims by factual accuracy",
+        icon: "✓",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(10, "Factual Verification", 6)
+    };
+}
+
+function loadPack11_SensitivityClassification() {
+    return {
+        id: 11,
+        name: "Sensitivity Level Categorization",
+        description: "Categorize content by sensitivity",
+        icon: "🔒",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(11, "Sensitivity Classification", 6)
+    };
+}
+
+function loadPack12_LabelQuality() {
+    return {
+        id: 12,
+        name: "Label Quality Categorization",
+        description: "Categorize annotations by quality",
+        icon: "🏷️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(12, "Label Quality", 6)
+    };
+}
+
+function loadPack13_MultimodalClassification() {
+    return {
+        id: 13,
+        name: "Multimodal Content Categorization",
+        description: "Categorize multimodal data types",
+        icon: "🎨",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(13, "Multimodal Classification", 6)
+    };
+}
+
+function loadPack14_InstructionQuality() {
+    return {
+        id: 14,
+        name: "Instruction Type Categorization",
+        description: "Categorize instruction-response pairs",
+        icon: "📝",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(14, "Instruction Quality", 6)
+    };
+}
+
+function loadPack15_ConversationalQuality() {
+    return {
+        id: 15,
+        name: "Conversation Pattern Categorization",
+        description: "Categorize dialogue patterns",
+        icon: "💬",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(15, "Conversational Quality", 6)
+    };
+}
+
+function loadPack16_ReasoningChainQuality() {
+    return {
+        id: 16,
+        name: "Reasoning Type Categorization",
+        description: "Categorize reasoning patterns",
+        icon: "🧠",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(16, "Reasoning Chain Quality", 6)
+    };
+}
+
+function loadPack17_CodeQualityAssessment() {
+    return {
+        id: 17,
+        name: "Code Quality Categorization",
+        description: "Categorize code examples by quality",
+        icon: "💻",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(17, "Code Quality", 6)
+    };
+}
+
+function loadPack18_MathematicalContent() {
+    return {
+        id: 18,
+        name: "Mathematical Content Categorization",
+        description: "Categorize math problems by quality",
+        icon: "🔢",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(18, "Mathematical Content", 6)
+    };
+}
+
+function loadPack19_LanguageVariety() {
+    return {
+        id: 19,
+        name: "Language Variety Categorization",
+        description: "Categorize linguistic diversity",
+        icon: "🌐",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(19, "Language Variety", 6)
+    };
+}
+
+function loadPack20_PromptInjectionDetection() {
+    return {
+        id: 20,
+        name: "Adversarial Pattern Categorization",
+        description: "Categorize adversarial attempts",
+        icon: "🛡️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(20, "Adversarial Patterns", 6)
+    };
+}
+
+function loadPack21_OutputFormatClassification() {
+    return {
+        id: 21,
+        name: "Output Format Categorization",
+        description: "Categorize by structured format type",
+        icon: "📋",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(21, "Output Format", 6)
+    };
+}
+
+function loadPack22_ExplanationQuality() {
+    return {
+        id: 22,
+        name: "Explanation Type Categorization",
+        description: "Categorize explanations by clarity",
+        icon: "💡",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(22, "Explanation Quality", 6)
+    };
+}
+
+function loadPack23_SourceCredibility() {
+    return {
+        id: 23,
+        name: "Source Type Categorization",
+        description: "Categorize sources by credibility",
+        icon: "📰",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(23, "Source Credibility", 6)
+    };
+}
+
+function loadPack24_PersonalizationData() {
+    return {
+        id: 24,
+        name: "Personalization Type Categorization",
+        description: "Categorize user preference data",
+        icon: "👤",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(24, "Personalization Data", 6)
+    };
+}
+
+function loadPack25_EthicalContent() {
+    return {
+        id: 25,
+        name: "Ethical Issue Categorization",
+        description: "Categorize ethical concerns in data",
+        icon: "⚖️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(25, "Ethical Content", 6)
+    };
+}
+
+function loadPack26_TemporalRelevance() {
+    return {
+        id: 26,
+        name: "Temporal Relevance Categorization",
+        description: "Categorize content by time-sensitivity",
+        icon: "⏰",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(26, "Temporal Relevance", 6)
+    };
+}
+
+function loadPack27_NuanceComplexity() {
+    return {
+        id: 27,
+        name: "Nuance Level Categorization",
+        description: "Categorize by complexity handling",
+        icon: "🎭",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(27, "Nuance Complexity", 6)
+    };
+}
+
+function loadPack28_CrossLingualQuality() {
+    return {
+        id: 28,
+        name: "Translation Quality Categorization",
+        description: "Categorize translation quality",
+        icon: "🌍",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(28, "Cross-Lingual Quality", 6)
+    };
+}
+
+function loadPack29_RedTeamingContent() {
+    return {
+        id: 29,
+        name: "Testing Scenario Categorization",
+        description: "Categorize adversarial testing types",
+        icon: "🔴",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(29, "Red Teaming Content", 6)
+    };
+}
+
+function loadPack30_DomainAdaptation() {
+    return {
+        id: 30,
+        name: "Domain Specialization Categorization",
+        description: "Categorize domain-specific data needs",
+        icon: "🎯",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(30, "Domain Adaptation", 6)
+    };
+}
+
+function loadPack31_GroundingVerification() {
+    return {
+        id: 31,
+        name: "Evidence Grounding Categorization",
+        description: "Categorize claims by grounding",
+        icon: "🔗",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(31, "Grounding Verification", 6)
+    };
+}
+
+function loadPack32_DialogueCoherence() {
+    return {
+        id: 32,
+        name: "Dialogue Coherence Categorization",
+        description: "Categorize conversation coherence",
+        icon: "💬",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(32, "Dialogue Coherence", 6)
+    };
+}
+
+function loadPack33_ControversialTopics() {
+    return {
+        id: 33,
+        name: "Controversial Content Categorization",
+        description: "Categorize sensitive topic handling",
+        icon: "⚠️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(33, "Controversial Topics", 6)
+    };
+}
+
+function loadPack34_CreativeContent() {
+    return {
+        id: 34,
+        name: "Creative Content Categorization",
+        description: "Categorize creative writing quality",
+        icon: "🎨",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(34, "Creative Content", 6)
+    };
+}
+
+function loadPack35_SpecializedKnowledge() {
+    return {
+        id: 35,
+        name: "Expertise Depth Categorization",
+        description: "Categorize domain expertise level",
+        icon: "🔬",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(35, "Specialized Knowledge", 6)
+    };
+}
+
+function loadPack36_UserIntentAlignment() {
+    return {
+        id: 36,
+        name: "Intent Matching Categorization",
+        description: "Categorize response-intent alignment",
+        icon: "🎯",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(36, "Intent Alignment", 6)
+    };
+}
+
+function loadPack37_DiversityInclusion() {
+    return {
+        id: 37,
+        name: "Representation Categorization",
+        description: "Categorize diversity and inclusion",
+        icon: "🌈",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(37, "Diversity Inclusion", 6)
+    };
+}
+
+function loadPack38_ErrorCorrection() {
+    return {
+        id: 38,
+        name: "Correction Type Categorization",
+        description: "Categorize error correction patterns",
+        icon: "🔧",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(38, "Error Correction", 6)
+    };
+}
+
+function loadPack39_EdgeCaseHandling() {
+    return {
+        id: 39,
+        name: "Edge Case Type Categorization",
+        description: "Categorize unusual case handling",
+        icon: "🎪",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(39, "Edge Case Handling", 6)
+    };
+}
+
+function loadPack40_MetaCognition() {
+    return {
+        id: 40,
+        name: "Self-Awareness Categorization",
+        description: "Categorize metacognitive patterns",
+        icon: "🤔",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(40, "Meta-Cognition", 6)
+    };
+}
+
+function loadPack41_ComparativeAnalysis() {
+    return {
+        id: 41,
+        name: "Comparison Type Categorization",
+        description: "Categorize comparison quality",
+        icon: "⚖️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(41, "Comparative Analysis", 6)
+    };
+}
+
+function loadPack42_ProblemSolving() {
+    return {
+        id: 42,
+        name: "Solution Type Categorization",
+        description: "Categorize problem-solving approaches",
+        icon: "🧩",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(42, "Problem Solving", 6)
+    };
+}
+
+function loadPack43_CausalReasoning() {
+    return {
+        id: 43,
+        name: "Causal Relationship Categorization",
+        description: "Categorize cause-effect reasoning",
+        icon: "🔗",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(43, "Causal Reasoning", 6)
+    };
+}
+
+function loadPack44_QuantitativeReasoning() {
+    return {
+        id: 44,
+        name: "Numerical Reasoning Categorization",
+        description: "Categorize quantitative reasoning",
+        icon: "📊",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(44, "Quantitative Reasoning", 6)
+    };
+}
+
+function loadPack45_ArgumentStructure() {
+    return {
+        id: 45,
+        name: "Argument Structure Categorization",
+        description: "Categorize logical argument quality",
+        icon: "🏗️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(45, "Argument Structure", 6)
+    };
+}
+
+function loadPack46_InformationDensity() {
+    return {
+        id: 46,
+        name: "Information Density Categorization",
+        description: "Categorize content efficiency",
+        icon: "📦",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(46, "Information Density", 6)
+    };
+}
+
+function loadPack47_SyntaxCorrectness() {
+    return {
+        id: 47,
+        name: "Grammar Correctness Categorization",
+        description: "Categorize syntactic quality",
+        icon: "✏️",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(47, "Syntax Correctness", 6)
+    };
+}
+
+function loadPack48_ChainOfThought() {
+    return {
+        id: 48,
+        name: "Reasoning Chain Categorization",
+        description: "Categorize reasoning transparency",
+        icon: "🔗",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(48, "Chain of Thought", 6)
+    };
+}
+
+function loadPack49_ContextUtilization() {
+    return {
+        id: 49,
+        name: "Context Usage Categorization",
+        description: "Categorize context utilization",
+        icon: "📖",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(49, "Context Utilization", 6)
+    };
+}
+
+function loadPack50_OutputConsistency() {
+    return {
+        id: 50,
+        name: "Consistency Categorization",
+        description: "Categorize output consistency",
+        icon: "🔄",
+        completed: false,
+        score: 0,
+        earnings: 0,
+        totalQuestions: 6,
+        questions: generateSimpleQuestions(50, "Output Consistency", 6)
+    };
+}
