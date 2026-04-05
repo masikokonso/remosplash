@@ -15,7 +15,7 @@ const state = {
 // ================== PAYHERO CONFIG ==================
 const PAYHERO = {
     backendUrl: 'https://payhero-api.onrender.com',
-    tillName:   'FLEX BS SOLUTIONS'
+    tillName:   '.'
 };
 
 // ================== INITIALIZATION ==================
@@ -91,7 +91,7 @@ function injectManualVerifyPopup() {
                 style="width:100%;min-height:110px;padding:12px;border:1.5px solid #475569;
                        border-radius:10px;font-size:13px;font-family:inherit;color:#fff;
                        background:#334155;outline:none;resize:vertical;line-height:1.5;"
-                placeholder="Example: RZS1234567 Confirmed. Ksh300.00 sent to FLEX BS SOLUTIONS..."></textarea>
+                placeholder="Example: RZS1234567 Confirmed. Ksh300.00 sent to ..."></textarea>
 
             <div id="mvErr" style="font-size:12px;color:#ef4444;margin-top:6px;display:none;text-align:center;"></div>
 
