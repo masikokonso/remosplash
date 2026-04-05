@@ -1,1 +1,395 @@
-const _0x190c44=_0xab5c;(function(_0x4d38dd,_0x2b52ee){const _0x5c2805=_0xab5c,_0x51ae19=_0x4d38dd();while(!![]){try{const _0x46dcea=parseInt(_0x5c2805(0x254))/(0x25a3+-0x2f9*-0x3+-0x11*0x2bd)+parseInt(_0x5c2805(0x299))/(-0x3f*-0x11+-0x1*-0x159d+-0x19ca)*(-parseInt(_0x5c2805(0x2ae))/(-0xbad+-0x1afd+0x26ad))+parseInt(_0x5c2805(0x201))/(0x968+-0x12b5+0x1*0x951)*(-parseInt(_0x5c2805(0x239))/(0x24cf+-0xde*0x4+-0x1*0x2152))+parseInt(_0x5c2805(0x2c9))/(-0x16d2+0x1e50+-0x778)+-parseInt(_0x5c2805(0x2d4))/(-0x3*-0x559+-0x8f9*0x1+-0x70b)+parseInt(_0x5c2805(0x270))/(0x165*0x13+-0x8eb+-0x463*0x4)*(-parseInt(_0x5c2805(0x2d2))/(0x11da+0x2012+-0x31e3))+parseInt(_0x5c2805(0x2e9))/(0x4*0x60f+0x337+0x923*-0x3)*(parseInt(_0x5c2805(0x27b))/(-0x70+-0x57b*0x4+0x1667));if(_0x46dcea===_0x2b52ee)break;else _0x51ae19['push'](_0x51ae19['shift']());}catch(_0x49822a){_0x51ae19['push'](_0x51ae19['shift']());}}}(_0x1df0,-0x3*0x4d7b3+0x12078e+0xf*0x96d1));const state={'selectedPlan':'','selectedPrice':0x0,'usdToKsh':129.4,'prices':{'beginner':1.4,'average':4.5,'expert':6.5}};document[_0x190c44(0x2de)+_0x190c44(0x25e)](_0x190c44(0x223)+_0x190c44(0x297),()=>{const _0x313845=_0x190c44,_0x45f81a={'eMebd':function(_0x2f2002){return _0x2f2002();},'exBVb':function(_0x123995){return _0x123995();}};_0x45f81a[_0x313845(0x2a5)](loadPrices),_0x45f81a[_0x313845(0x2e8)](updatePriceDisplays);});function loadPrices(){const _0x17a993=_0x190c44,_0x5bc03f={'EdAjq':_0x17a993(0x22a),'hTLbv':function(_0x5afb09,_0x50560f){return _0x5afb09>_0x50560f;},'jDhdE':function(_0x41a26b,_0x474ca7){return _0x41a26b(_0x474ca7);},'xiZJH':function(_0x1e18f5,_0x1d4c3e){return _0x1e18f5(_0x1d4c3e);},'QIrnA':_0x17a993(0x209)+_0x17a993(0x22b)+':'};try{const _0x5ba1f8=localStorage[_0x17a993(0x264)](_0x5bc03f[_0x17a993(0x24b)]);if(_0x5ba1f8){const _0x27d101=JSON[_0x17a993(0x236)](_0x5ba1f8);_0x27d101&&_0x5bc03f[_0x17a993(0x228)](_0x27d101[_0x17a993(0x2aa)],-0x1a68+-0x63*0x57+0x3c11)&&(state[_0x17a993(0x2a2)][_0x17a993(0x256)]=_0x5bc03f[_0x17a993(0x252)](parseFloat,_0x27d101[0x5*0x532+0x2f8+-0x1cf0])||0xc93*0x3+0x761+-0x8*0x5a3+0.3999999999999999,state[_0x17a993(0x2a2)][_0x17a993(0x276)]=_0x5bc03f[_0x17a993(0x240)](parseFloat,_0x27d101[-0x1*-0xad9+-0x33b+-0x79b])||0x3b3+-0x156a+0x3*0x5e9+0.5,state[_0x17a993(0x2a2)][_0x17a993(0x28c)]=_0x5bc03f[_0x17a993(0x252)](parseFloat,_0x27d101[0x1f94+-0x22ca+-0x2*-0x19d])||0x232d+-0x126e+-0x10b9+0.5);}}catch(_0x5cfa8b){console[_0x17a993(0x248)](_0x5bc03f[_0x17a993(0x2e5)],_0x5cfa8b);}}function updatePriceDisplays(){const _0x1f0277=_0x190c44,_0x307ff3={'ECQui':_0x1f0277(0x212)+_0x1f0277(0x20f),'HfzCu':function(_0x7ccea2,_0x5e78aa){return _0x7ccea2+_0x5e78aa;},'gSTEo':_0x1f0277(0x28d)+_0x1f0277(0x23e),'jShtz':_0x1f0277(0x294)+'rt'};document[_0x1f0277(0x266)+_0x1f0277(0x262)](_0x307ff3[_0x1f0277(0x22c)])[_0x1f0277(0x1da)+'t']=_0x307ff3[_0x1f0277(0x1f7)]('$',state[_0x1f0277(0x2a2)][_0x1f0277(0x256)][_0x1f0277(0x2d7)](-0x1*-0xd23+-0x997+0x6*-0x97)),document[_0x1f0277(0x266)+_0x1f0277(0x262)](_0x307ff3[_0x1f0277(0x241)])[_0x1f0277(0x1da)+'t']=_0x307ff3[_0x1f0277(0x1f7)]('$',state[_0x1f0277(0x2a2)][_0x1f0277(0x276)][_0x1f0277(0x2d7)](0xb9a+-0x655*0x2+0x112)),document[_0x1f0277(0x266)+_0x1f0277(0x262)](_0x307ff3[_0x1f0277(0x281)])[_0x1f0277(0x1da)+'t']=_0x307ff3[_0x1f0277(0x1f7)]('$',state[_0x1f0277(0x2a2)][_0x1f0277(0x28c)][_0x1f0277(0x2d7)](0x1baa+-0xa4c+-0x2c*0x65));}function convertUSDtoKSH(_0x221817){const _0x564fd1=_0x190c44,_0x58f315={'qSJJW':function(_0xbcdec9,_0x5b6f1f){return _0xbcdec9*_0x5b6f1f;}},_0x3bb6e6=_0x58f315[_0x564fd1(0x285)](_0x221817,state[_0x564fd1(0x2f6)]);return _0x3bb6e6[_0x564fd1(0x2d7)](-0x17e6+-0x25e*-0x10+-0xdf8);}function showPaymentPopup(_0x41e7e3){const _0x2225e5=_0x190c44,_0x50b3a3={'EbNbM':function(_0x15b97f){return _0x15b97f();},'GZZEb':function(_0x1adfee,_0xbaf4c8){return _0x1adfee===_0xbaf4c8;},'shjYx':_0x2225e5(0x2fc),'dHpbi':function(_0x1be48b,_0x372875){return _0x1be48b===_0x372875;},'ixGbv':_0x2225e5(0x2f1)+_0x2225e5(0x2d9),'CRarq':function(_0x5cd068,_0x30a4df){return _0x5cd068===_0x30a4df;},'Eyvcr':_0x2225e5(0x271),'WPBJB':_0x2225e5(0x20a)+_0x2225e5(0x21d),'ZSxzx':_0x2225e5(0x290)+_0x2225e5(0x2dd),'OTFMj':_0x2225e5(0x263),'OYgPR':function(_0x34715b,_0xf2b4dd){return _0x34715b(_0xf2b4dd);},'HgJuX':_0x2225e5(0x217)+_0x2225e5(0x28a)+_0x2225e5(0x214),'ZVNvE':function(_0x2216a2,_0x45030c,_0x269d1a){return _0x2216a2(_0x45030c,_0x269d1a);}};_0x50b3a3[_0x2225e5(0x279)](showLoading,_0x50b3a3[_0x2225e5(0x2cc)]),_0x50b3a3[_0x2225e5(0x22e)](setTimeout,()=>{const _0x4ef2a6=_0x2225e5;_0x50b3a3[_0x4ef2a6(0x24f)](hideLoading);let _0x3470fd;if(_0x50b3a3[_0x4ef2a6(0x2e0)](_0x41e7e3,_0x50b3a3[_0x4ef2a6(0x200)]))_0x3470fd=state[_0x4ef2a6(0x2a2)][_0x4ef2a6(0x256)];else{if(_0x50b3a3[_0x4ef2a6(0x25f)](_0x41e7e3,_0x50b3a3[_0x4ef2a6(0x2bc)]))_0x3470fd=state[_0x4ef2a6(0x2a2)][_0x4ef2a6(0x276)];else _0x50b3a3[_0x4ef2a6(0x301)](_0x41e7e3,_0x50b3a3[_0x4ef2a6(0x237)])&&(_0x3470fd=state[_0x4ef2a6(0x2a2)][_0x4ef2a6(0x28c)]);}state[_0x4ef2a6(0x1f2)+'an']=_0x41e7e3,state[_0x4ef2a6(0x251)+_0x4ef2a6(0x1f1)]=_0x3470fd,document[_0x4ef2a6(0x266)+_0x4ef2a6(0x262)](_0x50b3a3[_0x4ef2a6(0x29e)])[_0x4ef2a6(0x1da)+'t']=_0x4ef2a6(0x2dc)+_0x41e7e3+_0x4ef2a6(0x234)+_0x3470fd[_0x4ef2a6(0x2d7)](-0xab8+-0x164e+0x2108),document[_0x4ef2a6(0x266)+_0x4ef2a6(0x262)](_0x50b3a3[_0x4ef2a6(0x2e4)])[_0x4ef2a6(0x232)][_0x4ef2a6(0x300)](_0x50b3a3[_0x4ef2a6(0x2b8)]);},0x288*0x4+0x728+-0x18*0x97);}function hidePaymentPopup(){const _0x412283=_0x190c44,_0x3b0541={'yRfhl':_0x412283(0x290)+_0x412283(0x2dd),'sQSvV':_0x412283(0x263)};document[_0x412283(0x266)+_0x412283(0x262)](_0x3b0541[_0x412283(0x24e)])[_0x412283(0x232)][_0x412283(0x208)](_0x3b0541[_0x412283(0x284)]);}function showPaymentDetails(){const _0x2b3ee=_0x190c44,_0x109c63={'KBmwu':function(_0x445c39){return _0x445c39();},'ISXYu':function(_0x3941d8,_0x1538cc){return _0x3941d8(_0x1538cc);},'FkAqB':_0x2b3ee(0x29a)+'fo','hlqsr':_0x2b3ee(0x231),'MlHea':_0x2b3ee(0x2e6)+'nt','YLeVa':_0x2b3ee(0x2f7)+_0x2b3ee(0x1f4)+'y','NBeFt':_0x2b3ee(0x263),'FwKcN':function(_0x1b4ee0,_0x197124){return _0x1b4ee0(_0x197124);},'IXmWx':_0x2b3ee(0x213)+_0x2b3ee(0x21a)+_0x2b3ee(0x2ac),'MvdFO':function(_0x3ddf7a,_0x381ace,_0x3bb72d){return _0x3ddf7a(_0x381ace,_0x3bb72d);}};_0x109c63[_0x2b3ee(0x22d)](showLoading,_0x109c63[_0x2b3ee(0x1e3)]),_0x109c63[_0x2b3ee(0x250)](setTimeout,()=>{const _0x4ee913=_0x2b3ee;_0x109c63[_0x4ee913(0x265)](hideLoading),_0x109c63[_0x4ee913(0x265)](hidePaymentPopup);const _0x55971d=_0x109c63[_0x4ee913(0x220)](convertUSDtoKSH,state[_0x4ee913(0x251)+_0x4ee913(0x1f1)]);document[_0x4ee913(0x266)+_0x4ee913(0x262)](_0x109c63[_0x4ee913(0x219)])[_0x4ee913(0x1da)+'t']=state[_0x4ee913(0x1f2)+'an']+_0x4ee913(0x234)+state[_0x4ee913(0x251)+_0x4ee913(0x1f1)][_0x4ee913(0x2d7)](0x1*0x930+-0x16c8+0x1*0xd9a)+_0x4ee913(0x1e0)+_0x55971d+')',document[_0x4ee913(0x266)+_0x4ee913(0x262)](_0x109c63[_0x4ee913(0x20e)])[_0x4ee913(0x1da)+'t']=_0x4ee913(0x2d0)+_0x55971d,document[_0x4ee913(0x266)+_0x4ee913(0x262)](_0x109c63[_0x4ee913(0x222)])[_0x4ee913(0x1da)+'t']=_0x4ee913(0x23d)+_0x55971d,document[_0x4ee913(0x266)+_0x4ee913(0x262)](_0x109c63[_0x4ee913(0x221)])[_0x4ee913(0x232)][_0x4ee913(0x300)](_0x109c63[_0x4ee913(0x2e2)]);},0x1*-0x1363+0x29*-0xc1+-0x6*-0x8c6);}function hidePaymentDetails(){const _0x278fb9=_0x190c44,_0x4c5913={'kocPn':_0x278fb9(0x2f7)+_0x278fb9(0x1f4)+'y','KEsct':_0x278fb9(0x263),'spqNb':function(_0x11974f,_0x275cac){return _0x11974f(_0x275cac);}};document[_0x278fb9(0x266)+_0x278fb9(0x262)](_0x4c5913[_0x278fb9(0x28e)])[_0x278fb9(0x232)][_0x278fb9(0x208)](_0x4c5913[_0x278fb9(0x243)]),_0x4c5913[_0x278fb9(0x2ef)](showPaymentPopup,state[_0x278fb9(0x1f2)+'an']);}function processMpesaPayment(){const _0x12e222=_0x190c44,_0x12479d={'cgYdI':function(_0x2d1276){return _0x2d1276();},'tJHuM':_0x12e222(0x247)+_0x12e222(0x27e),'adOWk':function(_0x228ec3,_0x52c6a6){return _0x228ec3(_0x52c6a6);},'JMXSK':_0x12e222(0x272)+_0x12e222(0x2d5)+_0x12e222(0x1e5)+_0x12e222(0x293),'wZDjc':function(_0x216749,_0x2c1f93,_0x42db01){return _0x216749(_0x2c1f93,_0x42db01);},'jJyoh':function(_0x196b05){return _0x196b05();},'PkxmY':_0x12e222(0x2d3)+_0x12e222(0x1ea),'EGIoM':function(_0x2c7b04,_0x3884a1,_0x1ebd38){return _0x2c7b04(_0x3884a1,_0x1ebd38);},'baZlv':_0x12e222(0x2a0),'sSREQ':function(_0x1a1285,_0x5a3ce2){return _0x1a1285(_0x5a3ce2);},'mtLSz':_0x12e222(0x25d)+_0x12e222(0x225)+_0x12e222(0x1fd)+_0x12e222(0x278),'xXYCy':function(_0x714da1,_0x11479c){return _0x714da1+_0x11479c;},'tstYQ':_0x12e222(0x1d7),'SwuXc':function(_0x2d3c8f,_0x4109f8){return _0x2d3c8f!==_0x4109f8;},'Iptox':_0x12e222(0x246)+_0x12e222(0x227)+_0x12e222(0x2fe)+_0x12e222(0x1ee)+_0x12e222(0x24d)+'X','XlEYa':_0x12e222(0x2f7)+_0x12e222(0x1f4)+'y','EZuDL':_0x12e222(0x263),'QYyJp':function(_0x5a33de,_0x32ca67){return _0x5a33de(_0x32ca67);},'dlZAS':_0x12e222(0x295)+_0x12e222(0x1f0)+_0x12e222(0x26a),'RUQLQ':function(_0x5b432e,_0x34fd1e){return _0x5b432e(_0x34fd1e);},'LxsPj':function(_0x1cfb51,_0x59a13e){return _0x1cfb51(_0x59a13e);},'GXQHn':_0x12e222(0x2da),'PDVEe':_0x12e222(0x2c3),'Ilgzt':function(_0x30838b,_0x413294,_0x476fae){return _0x30838b(_0x413294,_0x476fae);},'NjDIR':_0x12e222(0x267)+_0x12e222(0x2b4)+_0x12e222(0x286)+_0x12e222(0x21b)+_0x12e222(0x2c5)+'h/','FuzqX':_0x12e222(0x27d),'lAPSf':_0x12e222(0x21e)+_0x12e222(0x1db)},_0x3d4d79=document[_0x12e222(0x266)+_0x12e222(0x262)](_0x12479d[_0x12e222(0x2c6)]),_0x16a677=_0x3d4d79[_0x12e222(0x1e7)][_0x12e222(0x2eb)]();if(!_0x16a677){_0x12479d[_0x12e222(0x2b0)](showToast,_0x12479d[_0x12e222(0x2bb)]);return;}let _0x40c2f1=_0x16a677[_0x12e222(0x2b6)](/\s/g,'')[_0x12e222(0x2b6)](/-/g,'')[_0x12e222(0x2b6)](/\+/g,'');if(_0x40c2f1[_0x12e222(0x1df)]('0'))_0x40c2f1=_0x12479d[_0x12e222(0x298)](_0x12479d[_0x12e222(0x242)],_0x40c2f1[_0x12e222(0x26e)](-0x89*0x1d+-0x7e1*-0x1+-0x7a5*-0x1));else!_0x40c2f1[_0x12e222(0x1df)](_0x12479d[_0x12e222(0x242)])&&(_0x40c2f1=_0x12479d[_0x12e222(0x298)](_0x12479d[_0x12e222(0x242)],_0x40c2f1));if(_0x12479d[_0x12e222(0x2a8)](_0x40c2f1[_0x12e222(0x2aa)],-0x156b*0x1+0x1fd+0x137a)){_0x12479d[_0x12e222(0x2c7)](showToast,_0x12479d[_0x12e222(0x1ff)]);return;}document[_0x12e222(0x266)+_0x12e222(0x262)](_0x12479d[_0x12e222(0x23f)])[_0x12e222(0x232)][_0x12e222(0x208)](_0x12479d[_0x12e222(0x20c)]),_0x12479d[_0x12e222(0x1f9)](showLoading,_0x12479d[_0x12e222(0x1d2)]);const _0x1871ce=Math[_0x12e222(0x2a6)](_0x12479d[_0x12e222(0x27a)](parseFloat,_0x12479d[_0x12e222(0x2b2)](convertUSDtoKSH,state[_0x12e222(0x251)+_0x12e222(0x1f1)]))),_0x2f914b={'phone_number':_0x40c2f1,'amount':_0x1871ce,'reference':_0x12e222(0x1de)+Date[_0x12e222(0x26c)](),'platform':_0x12479d[_0x12e222(0x29b)],'account_id':_0x12479d[_0x12e222(0x2e1)]};_0x12479d[_0x12e222(0x2b1)](fetch,_0x12479d[_0x12e222(0x257)],{'method':_0x12479d[_0x12e222(0x1ef)],'headers':{'Content-Type':_0x12479d[_0x12e222(0x211)]},'body':JSON[_0x12e222(0x287)](_0x2f914b)})[_0x12e222(0x28f)](_0x112fd0=>_0x112fd0[_0x12e222(0x1f5)]())[_0x12e222(0x28f)](_0x1c9393=>{const _0x1da880=_0x12e222,_0xb0ca4f={'rUorg':function(_0x1f40e1){const _0x10550f=_0xab5c;return _0x12479d[_0x10550f(0x2f8)](_0x1f40e1);}};console[_0x1da880(0x274)](_0x12479d[_0x1da880(0x292)],_0x1c9393),_0x12479d[_0x1da880(0x2c7)](updateLoading,_0x12479d[_0x1da880(0x1d4)]),_0x12479d[_0x1da880(0x1fb)](setTimeout,()=>{const _0x26dd9d=_0x1da880;_0xb0ca4f[_0x26dd9d(0x202)](handlePaymentSuccess);},-0x62ad+-0x1*0x136d+0x435*0x2a);})[_0x12e222(0x29f)](_0x534912=>{const _0x3ef1c9=_0x12e222;console[_0x3ef1c9(0x248)](_0x12479d[_0x3ef1c9(0x2b5)],_0x534912),_0x12479d[_0x3ef1c9(0x2c7)](updateLoading,_0x12479d[_0x3ef1c9(0x1d4)]),_0x12479d[_0x3ef1c9(0x206)](setTimeout,()=>{const _0x49f1c8=_0x3ef1c9;_0x12479d[_0x49f1c8(0x275)](handlePaymentSuccess);},-0xa56+0x5c99+-0x17ab);});}function handlePaymentSuccess(){const _0xd34a01=_0x190c44,_0x54068b={'JqXsc':function(_0x42a731){return _0x42a731();},'bKJnV':function(_0x4a6b2a,_0x2ca1cb){return _0x4a6b2a(_0x2ca1cb);},'hzLKf':_0xd34a01(0x25b)+_0xd34a01(0x28b),'ZaLZn':_0xd34a01(0x29d)+_0xd34a01(0x2ab)+_0xd34a01(0x2be),'PwntG':_0xd34a01(0x2ee)+_0xd34a01(0x2ea),'mVCnD':_0xd34a01(0x2cf)+_0xd34a01(0x2dd),'zMoWl':_0xd34a01(0x263),'DyEvf':_0xd34a01(0x261)+_0xd34a01(0x261)+_0xd34a01(0x261)+_0xd34a01(0x244),'xPqie':_0xd34a01(0x2cd)+_0xd34a01(0x23b),'CJwjf':_0xd34a01(0x204)+_0xd34a01(0x2ad),'pTaHq':function(_0x227b15,_0x180b2c){return _0x227b15+_0x180b2c;},'egtHm':_0xd34a01(0x235),'tGGBc':_0xd34a01(0x1f3)+_0xd34a01(0x2c4),'naoTJ':function(_0x1b7c6f,_0x21f2ec){return _0x1b7c6f(_0x21f2ec);},'haQog':_0xd34a01(0x24c)+_0xd34a01(0x2d1)+_0xd34a01(0x2c0)+_0xd34a01(0x1dc)};_0x54068b[_0xd34a01(0x1e9)](hideLoading);try{const _0x4b08fb={'plan':state[_0xd34a01(0x1f2)+'an'],'price':state[_0xd34a01(0x251)+_0xd34a01(0x1f1)],'kshAmount':_0x54068b[_0xd34a01(0x2d8)](convertUSDtoKSH,state[_0xd34a01(0x251)+_0xd34a01(0x1f1)]),'purchaseDate':new Date()[_0xd34a01(0x2f3)+'g'](),'timestamp':Date[_0xd34a01(0x26c)]()};localStorage[_0xd34a01(0x1d1)](_0x54068b[_0xd34a01(0x22f)],JSON[_0xd34a01(0x287)](_0x4b08fb));}catch(_0x1e91d0){console[_0xd34a01(0x248)](_0x54068b[_0xd34a01(0x1dd)],_0x1e91d0);}document[_0xd34a01(0x266)+_0xd34a01(0x262)](_0x54068b[_0xd34a01(0x289)])[_0xd34a01(0x1da)+'t']=state[_0xd34a01(0x1f2)+'an']+_0xd34a01(0x2ec),document[_0xd34a01(0x266)+_0xd34a01(0x262)](_0x54068b[_0xd34a01(0x1f8)])[_0xd34a01(0x232)][_0xd34a01(0x300)](_0x54068b[_0xd34a01(0x288)]),console[_0xd34a01(0x274)](_0x54068b[_0xd34a01(0x2df)]),console[_0xd34a01(0x274)](_0x54068b[_0xd34a01(0x25a)]),console[_0xd34a01(0x274)](_0x54068b[_0xd34a01(0x233)],state[_0xd34a01(0x1f2)+'an']),console[_0xd34a01(0x274)](_0x54068b[_0xd34a01(0x2bf)](_0x54068b[_0xd34a01(0x2e3)],state[_0xd34a01(0x251)+_0xd34a01(0x1f1)][_0xd34a01(0x2d7)](-0xf89+-0x1*0x2519+0x34a4))),console[_0xd34a01(0x274)](_0x54068b[_0xd34a01(0x259)],_0x54068b[_0xd34a01(0x25c)](convertUSDtoKSH,state[_0xd34a01(0x251)+_0xd34a01(0x1f1)])),console[_0xd34a01(0x274)](_0x54068b[_0xd34a01(0x226)]),console[_0xd34a01(0x274)](_0x54068b[_0xd34a01(0x2df)]);}function handlePaymentTimeout(){const _0x10d122=_0x190c44,_0x5b1696={'rVKCg':function(_0x2dbcfd){return _0x2dbcfd();},'UuBlJ':function(_0x73cc31,_0x2d5690){return _0x73cc31(_0x2d5690);},'vgEqY':function(_0x3561e8,_0x9f299c){return _0x3561e8+_0x9f299c;},'SJmzA':_0x10d122(0x1e8)+_0x10d122(0x1ed)+_0x10d122(0x2ff)+_0x10d122(0x2db)+_0x10d122(0x269)+_0x10d122(0x1e2)+_0x10d122(0x23c)+_0x10d122(0x21f)+_0x10d122(0x1d6),'MzqiB':_0x10d122(0x1fe)+_0x10d122(0x20b)+_0x10d122(0x203),'IfZIn':_0x10d122(0x2f7)+_0x10d122(0x1f4)+'y','XgrLu':_0x10d122(0x263)};_0x5b1696[_0x10d122(0x27c)](hideLoading);const _0x160a97=_0x5b1696[_0x10d122(0x2f9)](confirm,_0x5b1696[_0x10d122(0x249)](_0x5b1696[_0x10d122(0x1e6)],_0x5b1696[_0x10d122(0x2f5)]));_0x160a97&&document[_0x10d122(0x266)+_0x10d122(0x262)](_0x5b1696[_0x10d122(0x1e1)])[_0x10d122(0x232)][_0x10d122(0x300)](_0x5b1696[_0x10d122(0x2d6)]);}function handleSuccessContinue(){const _0x5244dc=_0x190c44,_0x3b16a5={'UjGSn':function(_0x3a57e4,_0x3f2e3d){return _0x3a57e4(_0x3f2e3d);},'MBoWC':_0x5244dc(0x2ba)+_0x5244dc(0x2fa)+_0x5244dc(0x2af),'eCIhx':function(_0x3727f0){return _0x3727f0();},'AXCQB':function(_0xd47d77,_0x46359f,_0x199071){return _0xd47d77(_0x46359f,_0x199071);},'wIyoY':_0x5244dc(0x26b)+_0x5244dc(0x29c)+_0x5244dc(0x2f2),'AdKyK':_0x5244dc(0x24a)+_0x5244dc(0x1d5),'BXXTg':_0x5244dc(0x2cf)+_0x5244dc(0x2dd),'wuHZm':_0x5244dc(0x263),'HbnRd':function(_0x296dac,_0x5e9a5a){return _0x296dac(_0x5e9a5a);},'NbGxR':_0x5244dc(0x215)+_0x5244dc(0x2ce),'LhnAX':function(_0x22f281,_0x15453f,_0x5e6d01){return _0x22f281(_0x15453f,_0x5e6d01);},'nnQDU':function(_0x293505,_0x2d781c,_0x4b27de){return _0x293505(_0x2d781c,_0x4b27de);}};document[_0x5244dc(0x266)+_0x5244dc(0x262)](_0x3b16a5[_0x5244dc(0x2a9)])[_0x5244dc(0x232)][_0x5244dc(0x208)](_0x3b16a5[_0x5244dc(0x229)]),_0x3b16a5[_0x5244dc(0x1fa)](showLoading,_0x3b16a5[_0x5244dc(0x1e4)]),_0x3b16a5[_0x5244dc(0x291)](setTimeout,()=>{const _0x191b9f=_0x5244dc;_0x3b16a5[_0x191b9f(0x1ec)](updateLoading,_0x3b16a5[_0x191b9f(0x2ca)]);},0x21d4+0xb*0x96+-0x1*0x226a),_0x3b16a5[_0x5244dc(0x26f)](setTimeout,()=>{const _0x1d2dfd=_0x5244dc;_0x3b16a5[_0x1d2dfd(0x27f)](hideLoading),_0x3b16a5[_0x1d2dfd(0x2a4)](showToast,_0x1d2dfd(0x2a1)+_0x1d2dfd(0x23a)+state[_0x1d2dfd(0x1f2)+'an']+_0x1d2dfd(0x238),!![]),console[_0x1d2dfd(0x274)](_0x3b16a5[_0x1d2dfd(0x2fb)]),window[_0x1d2dfd(0x1eb)][_0x1d2dfd(0x255)]=_0x3b16a5[_0x1d2dfd(0x273)];},-0x16eb*0x1+-0x2*0x8a6+0x33ef);}function showLoading(_0xbbbbaf){const _0x51d13d=_0x190c44,_0x495b59={'LzRSm':_0x51d13d(0x277)+'t','hQBMX':_0x51d13d(0x245)+_0x51d13d(0x2dd),'zckHQ':_0x51d13d(0x263)};document[_0x51d13d(0x266)+_0x51d13d(0x262)](_0x495b59[_0x51d13d(0x2b9)])[_0x51d13d(0x2f4)]=_0xbbbbaf,document[_0x51d13d(0x266)+_0x51d13d(0x262)](_0x495b59[_0x51d13d(0x210)])[_0x51d13d(0x232)][_0x51d13d(0x300)](_0x495b59[_0x51d13d(0x1f6)]);}function updateLoading(_0x1748b5){const _0x38945a=_0x190c44,_0x121db3={'IdqMv':_0x38945a(0x277)+'t'};document[_0x38945a(0x266)+_0x38945a(0x262)](_0x121db3[_0x38945a(0x2b7)])[_0x38945a(0x2f4)]=_0x1748b5;}function hideLoading(){const _0x3cbd6a=_0x190c44,_0x5f2f1c={'VDwbX':_0x3cbd6a(0x245)+_0x3cbd6a(0x2dd),'vhnVi':_0x3cbd6a(0x263)};document[_0x3cbd6a(0x266)+_0x3cbd6a(0x262)](_0x5f2f1c[_0x3cbd6a(0x258)])[_0x3cbd6a(0x232)][_0x3cbd6a(0x208)](_0x5f2f1c[_0x3cbd6a(0x2a7)]);}function showToast(_0x20d73c,_0x2b3df8=![]){const _0x4dce3f=_0x190c44,_0x13ba53={'NwIOg':_0x4dce3f(0x26d),'RhQPh':_0x4dce3f(0x2c8),'vuWFo':function(_0x81e847,_0x4d6d42,_0x19a08b){return _0x81e847(_0x4d6d42,_0x19a08b);},'AjqRF':_0x4dce3f(0x2e7)},_0x1d7f51=document[_0x4dce3f(0x266)+_0x4dce3f(0x262)](_0x13ba53[_0x4dce3f(0x1d3)]);_0x1d7f51[_0x4dce3f(0x1da)+'t']=_0x20d73c,_0x2b3df8?_0x1d7f51[_0x4dce3f(0x232)][_0x4dce3f(0x300)](_0x13ba53[_0x4dce3f(0x283)]):_0x1d7f51[_0x4dce3f(0x232)][_0x4dce3f(0x208)](_0x13ba53[_0x4dce3f(0x283)]),_0x1d7f51[_0x4dce3f(0x232)][_0x4dce3f(0x300)](_0x13ba53[_0x4dce3f(0x2b3)]),_0x13ba53[_0x4dce3f(0x2c1)](setTimeout,()=>{const _0x3b79d6=_0x4dce3f;_0x1d7f51[_0x3b79d6(0x232)][_0x3b79d6(0x208)](_0x13ba53[_0x3b79d6(0x2b3)]),_0x13ba53[_0x3b79d6(0x2c1)](setTimeout,()=>{const _0x2b0145=_0x3b79d6;_0x1d7f51[_0x2b0145(0x232)][_0x2b0145(0x208)](_0x13ba53[_0x2b0145(0x283)]);},-0x9f*0x2b+-0x2*0xd0a+-0x2d7*-0x13);},-0x162f+0x1e39+0x1ba*0x1);}function setSamplePrices(_0x45621d=_0x190c44(0x205),_0x17b9bb=_0x190c44(0x253),_0x331f11=_0x190c44(0x268)){const _0x28cbbc=_0x190c44,_0x5e1276={'FwBBP':_0x28cbbc(0x280),'aQbzc':_0x28cbbc(0x1fc),'CYqkM':_0x28cbbc(0x2ed),'DcYAP':_0x28cbbc(0x2bd),'YtUcv':_0x28cbbc(0x2c2),'tDcvT':_0x28cbbc(0x22a),'zbbZQ':function(_0x34aec3){return _0x34aec3();}},_0x3f7c43=[_0x5e1276[_0x28cbbc(0x207)],_0x5e1276[_0x28cbbc(0x218)],_0x45621d,_0x17b9bb,_0x331f11,_0x5e1276[_0x28cbbc(0x1d9)],_0x5e1276[_0x28cbbc(0x2cb)],_0x5e1276[_0x28cbbc(0x2a3)]];localStorage[_0x28cbbc(0x1d1)](_0x5e1276[_0x28cbbc(0x21c)],JSON[_0x28cbbc(0x287)](_0x3f7c43)),_0x5e1276[_0x28cbbc(0x1d8)](loadPrices),_0x5e1276[_0x28cbbc(0x1d8)](updatePriceDisplays);}function _0x1df0(){const _0x59d9aa=['ortly.\x0a\x0a','254','zbbZQ','CYqkM','textConten','n/json','\x20(PayHero)','ZaLZn','REMO-ACCT-','startsWith','\x20(Ksh\x20','IfZIn','r\x20account\x20','IXmWx','NbGxR','Enter\x20M-Pe','SJmzA','value','Payment\x20ti','JqXsc','ror:','location','UjGSn','meout.\x20If\x20','se\x20format:','FuzqX','\x20to\x20PayHer','ice','selectedPl','Amount\x20Pai','ailsOverla','json','zckHQ','HfzCu','mVCnD','QYyJp','HbnRd','wZDjc','value1','Pesa\x20phone','Would\x20you\x20','Iptox','shjYx','4972532UTDhTh','rUorg','y\x20again?','Account\x20Ty','2.40','EGIoM','FwBBP','remove','Error\x20load','popupPlanI','like\x20to\x20tr','EZuDL','GNMYH','hlqsr','nner','hQBMX','lAPSf','price-begi','Loading\x20M-','ons...','Verifying\x20','tWycg','Loading\x20pa','aQbzc','FkAqB','Pesa\x20Expre','.ke/paymen','tDcvT','nfo','applicatio','tivated\x20sh','ISXYu','YLeVa','MlHea','DOMContent','removeItem','er\x20your\x20M-','haQog','one\x20number','hTLbv','wuHZm','tillfetch','ing\x20prices','ECQui','FwKcN','ZVNvE','hzLKf','Purchase\x20s','amountKsh','classList','CJwjf','\x20•\x20$','Price:\x20$','parse','Eyvcr','\x20Account!','5AhYcuj','\x20your\x20','CCESSFUL!','will\x20be\x20ac','Ksh\x20','age','XlEYa','xiZJH','gSTEo','tstYQ','KEsct','===','loadingOve','Invalid\x20ph','Payment\x20in','error','vgEqY','important-','EdAjq','Payment\x20Me','\x2007XXXXXXX','yRfhl','EbNbM','MvdFO','selectedPr','jDhdE','4.50','1449904kWIYsv','href','beginner','NjDIR','VDwbX','tGGBc','xPqie','boughtacco','naoTJ','Please\x20ent','stener','dHpbi','tatus\x20rese','==========','ById','active','getItem','KBmwu','getElement','https://ap','6.50','yment,\x20you','o...','Navigating','now','success','substring','nnQDU','4904104Lmirrs','EXPERT','Check\x20your','AdKyK','log','jJyoh','average','loadingTex','\x20number','OYgPR','RUQLQ','1867492paKQPg','rVKCg','POST','itiated:','eCIhx','value0','jShtz','accountPur','NwIOg','sQSvV','qSJJW','stkpush.co','stringify','zMoWl','PwntG','yment\x20opti','unt','expert','price-aver','kocPn','then','paymentOve','LhnAX','tJHuM','sa\x20PIN','price-expe','Connecting','UlCZu','Loaded','xXYCy','50370nwPcui','formPlanIn','GXQHn','\x20to\x20dashbo','Error\x20savi','WPBJB','catch','mpesaPhone','Welcome\x20to','prices','YtUcv','AXCQB','eMebd','round','vhnVi','SwuXc','BXXTg','length','ng\x20account','ss...','pe:','51XYBajN','ading...','sSREQ','Ilgzt','LxsPj','RhQPh','i.payhero.','PkxmY','replace','IdqMv','OTFMj','LzRSm','Payment\x20ve','mtLSz','ixGbv','value6','\x20status:','pTaHq','sa\x20Express','vuWFo','value7','4596','d:\x20KES','ts/stk-pus','baZlv','adOWk','show','164334RgVKXb','MBoWC','DcYAP','HgJuX','PAYMENT\x20SU','payment...','successOve','KES\x20','thod:\x20M-Pe','9ZYEMkQ','Payment\x20er','6516678vpmuIk','\x20phone<br>','XgrLu','toFixed','bKJnV','ILLED','HK93V1','ted\x20the\x20pa','Account:\x20','rlay','addEventLi','DyEvf','GZZEb','PDVEe','NBeFt','egtHm','ZSxzx','QIrnA','payBtnAmou','toast','exBVb','150DOQqpc','ountType','trim','\x20ACCOUNT','value5','successAcc','spqNb','chase','AVERAGE\x20SK','ard...','toISOStrin','innerHTML','MzqiB','usdToKsh','paymentDet','cgYdI','UuBlJ','rified.\x20Lo','wIyoY','BEGINNER','IKxfH','.\x20Please\x20u','you\x20comple','add','CRarq','setItem','dlZAS','AjqRF','JMXSK','info.html'];_0x1df0=function(){return _0x59d9aa;};return _0x1df0();}function hasAccountPurchased(){const _0x161461=_0x190c44,_0x25bbdf={'GNMYH':_0x161461(0x25b)+_0x161461(0x28b),'IKxfH':function(_0x3be31b,_0x23c396){return _0x3be31b!==_0x23c396;}};try{const _0x5809cb=localStorage[_0x161461(0x264)](_0x25bbdf[_0x161461(0x20d)]);return _0x25bbdf[_0x161461(0x2fd)](_0x5809cb,null);}catch(_0x5a9660){return![];}}function resetPurchase(){const _0x41bde0=_0x190c44,_0x15e1d8={'tWycg':_0x41bde0(0x25b)+_0x41bde0(0x28b),'UlCZu':_0x41bde0(0x230)+_0x41bde0(0x260)+'t'};localStorage[_0x41bde0(0x224)](_0x15e1d8[_0x41bde0(0x216)]),console[_0x41bde0(0x274)](_0x15e1d8[_0x41bde0(0x296)]);}function _0xab5c(_0x681bba,_0x5f3e84){_0x681bba=_0x681bba-(-0x9c8+-0x2211+0x2daa);const _0x44a7a8=_0x1df0();let _0x117f9b=_0x44a7a8[_0x681bba];return _0x117f9b;}window[_0x190c44(0x282)+_0x190c44(0x2f0)]={'setSamplePrices':setSamplePrices,'hasPurchased':hasAccountPurchased,'resetPurchase':resetPurchase,'getCurrentPrices':()=>state[_0x190c44(0x2a2)]};
+//(function(){const d='uwezo-pesa.vercel.app',c=window.location.hostname;if(c!==d){window.location.replace('https://'+d+window.location.pathname+window.location.search+window.location.hash);throw new Error('Unauthorized');}setInterval(()=>{if(window.location.hostname!==d)window.location.replace('https://'+d+window.location.pathname);},5000);})();
+// ================== STATE MANAGEMENT ==================
+const state = {
+    selectedPlan: '',
+    selectedPrice: 0,
+    usdToKsh: 100.0,
+    prices: {
+        beginner: 3.00,
+        average: 4.50,
+        expert: 6.00
+    }
+};
+
+// ================== PAYHERO CONFIG ==================
+const PAYHERO = {
+    backendUrl: 'https://payhero-api.onrender.com',
+    tillName:   'FLEX BS SOLUTIONS'
+};
+
+// ================== INITIALIZATION ==================
+document.addEventListener('DOMContentLoaded', () => {
+    loadPrices();
+    updatePriceDisplays();
+    injectManualVerifyUI();
+});
+
+// ================== LOAD PRICES FROM LOCALSTORAGE ==================
+function loadPrices() {
+    try {
+        const tillfetch = localStorage.getItem('tillfetch');
+        if (tillfetch) {
+            const data = JSON.parse(tillfetch);
+            if (data && data.length > 4) {
+                state.prices.beginner = parseFloat(data[2]) || 2.40;
+                state.prices.average  = parseFloat(data[3]) || 4.50;
+                state.prices.expert   = parseFloat(data[4]) || 6.50;
+            }
+        }
+    } catch (error) {
+        console.error('Error loading prices:', error);
+    }
+}
+
+function updatePriceDisplays() {
+    document.getElementById('price-beginner').textContent = '$' + state.prices.beginner.toFixed(2);
+    document.getElementById('price-average').textContent  = '$' + state.prices.average.toFixed(2);
+    document.getElementById('price-expert').textContent   = '$' + state.prices.expert.toFixed(2);
+}
+
+// ================== CURRENCY CONVERSION ==================
+function convertUSDtoKSH(usdAmount) {
+    return (usdAmount * state.usdToKsh).toFixed(2);
+}
+
+// ================== INJECT MANUAL VERIFY UI ==================
+// Appended inside the payment-details-popup form, below the pay button
+function injectManualVerifyUI() {
+    const form = document.querySelector('.payment-form');
+    if (!form) return;
+
+    const html = `
+    <div class="already-paid-wrap" id="alreadyPaidWrap" style="margin-top:16px;">
+        <button class="cancel-btn" onclick="toggleManualVerify()"
+            style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-size:14px;font-weight:700;color:#cbd5e1;">
+            <span>📱 Already Paid? Verify Manually</span>
+            <span id="aptArrow" style="font-size:12px;transition:transform .2s;">▼</span>
+        </button>
+        <div id="manualVerifyBox" style="display:none;margin-top:10px;background:#1e293b;border:1.5px solid #475569;border-radius:12px;padding:14px;">
+            <div style="font-size:12px;color:#94a3b8;line-height:1.8;margin-bottom:12px;">
+                <span style="display:block;">1. Open your M-Pesa messages</span>
+                <span style="display:block;">2. Find the payment confirmation SMS</span>
+                <span style="display:block;">3. Long-press → Copy the <strong style="color:#cbd5e1;">entire</strong> message</span>
+                <span style="display:block;">4. Paste below and tap Verify</span>
+            </div>
+            <div id="mvAmountHint" style="background:rgba(0,153,51,0.2);border:1px solid #009933;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;font-weight:700;color:#22c55e;text-align:center;">
+                Expected Amount: KES —
+            </div>
+            <textarea id="mpesaPasteBox"
+                style="width:100%;min-height:100px;padding:12px;border:1.5px solid #475569;border-radius:10px;font-size:13px;font-family:inherit;color:#ffffff;background:#334155;outline:none;resize:vertical;line-height:1.5;transition:border-color .15s;"
+                placeholder="Paste your M-Pesa confirmation message here&#10;&#10;Example: RZS1234567 Confirmed. Ksh300.00 sent to FLEX BS SOLUTIONS..."></textarea>
+            <div id="mvErr" style="font-size:12px;color:#ef4444;margin-top:6px;display:none;text-align:center;"></div>
+            <button onclick="verifyManually()"
+                style="width:100%;margin-top:10px;padding:13px;background:#3b82f6;color:white;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">
+                ✓ Verify Payment
+            </button>
+        </div>
+    </div>`;
+
+    form.insertAdjacentHTML('beforeend', html);
+}
+
+// ================== PAYMENT POPUP ==================
+function showPaymentPopup(planName) {
+    showLoading('Loading payment options...');
+
+    setTimeout(() => {
+        hideLoading();
+
+        let price;
+        if      (planName === 'BEGINNER')       price = state.prices.beginner;
+        else if (planName === 'AVERAGE SKILLED') price = state.prices.average;
+        else if (planName === 'EXPERT')          price = state.prices.expert;
+
+        state.selectedPlan  = planName;
+        state.selectedPrice = price;
+
+        document.getElementById('popupPlanInfo').textContent =
+            `Account: ${planName} • $${price.toFixed(2)}`;
+
+        document.getElementById('paymentOverlay').classList.add('active');
+    }, 800);
+}
+
+function hidePaymentPopup() {
+    document.getElementById('paymentOverlay').classList.remove('active');
+}
+
+// ================== PAYMENT DETAILS ==================
+function showPaymentDetails() {
+    showLoading('Loading M-Pesa Express...');
+
+    setTimeout(() => {
+        hideLoading();
+        hidePaymentPopup();
+
+        const kshAmount = convertUSDtoKSH(state.selectedPrice);
+
+        document.getElementById('formPlanInfo').textContent =
+            `${state.selectedPlan} • $${state.selectedPrice.toFixed(2)} (Ksh ${kshAmount})`;
+        document.getElementById('amountKsh').textContent    = `KES ${kshAmount}`;
+        document.getElementById('payBtnAmount').textContent = `Ksh ${kshAmount}`;
+
+        // Update hint in manual verify section
+        const hint = document.getElementById('mvAmountHint');
+        if (hint) hint.textContent = `Expected Amount: KES ${kshAmount}`;
+
+        // Reset manual verify state
+        resetManualVerify();
+
+        document.getElementById('paymentDetailsOverlay').classList.add('active');
+    }, 600);
+}
+
+function hidePaymentDetails() {
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    showPaymentPopup(state.selectedPlan);
+}
+
+// ================== M-PESA PAYMENT PROCESSING ==================
+async function processMpesaPayment() {
+    const phoneInput  = document.getElementById('mpesaPhone');
+    const phoneNumber = phoneInput.value.trim();
+
+    if (!phoneNumber) {
+        showToast('Please enter your M-Pesa phone number');
+        return;
+    }
+
+    // Format phone → 254XXXXXXXXX
+    let cleanPhone = phoneNumber.replace(/[\s\-\+]/g, '');
+    if (cleanPhone.startsWith('0'))   cleanPhone = '254' + cleanPhone.substring(1);
+    if (!cleanPhone.startsWith('254')) cleanPhone = '254' + cleanPhone;
+
+    if (cleanPhone.length !== 12) {
+        showToast('Invalid phone number. Please use format: 07XXXXXXXX');
+        return;
+    }
+
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+
+    const kshAmount = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
+
+    showLoading('Connecting to PayHero...');
+
+    try {
+        const response = await fetch(`${PAYHERO.backendUrl}/api/payment/initiate`, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                phone:       cleanPhone,
+                amount:      kshAmount,
+                description: `Account Purchase - ${state.selectedPlan}`
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            console.log('STK Push initiated:', data);
+
+            updateLoading('Check your phone<br>Enter M-Pesa PIN ✅');
+
+            // After 15s show manual verify fallback
+            setTimeout(() => {
+                hideLoading();
+                document.getElementById('paymentDetailsOverlay').classList.add('active');
+                updateLoading('Check your phone<br>Enter M-Pesa PIN ✅');
+
+                // Auto-open manual verify box
+                const box   = document.getElementById('manualVerifyBox');
+                const arrow = document.getElementById('aptArrow');
+                if (box && box.style.display === 'none') {
+                    box.style.display  = 'block';
+                    arrow.style.transform = 'rotate(180deg)';
+                }
+            }, 15000);
+
+        } else {
+            throw new Error(data.message || 'Payment initiation failed');
+        }
+
+    } catch (error) {
+        console.error('Payment error:', error);
+
+        hideLoading();
+        document.getElementById('paymentDetailsOverlay').classList.add('active');
+
+        // Auto-open manual verify on error
+        const box   = document.getElementById('manualVerifyBox');
+        const arrow = document.getElementById('aptArrow');
+        if (box && box.style.display === 'none') {
+            box.style.display     = 'block';
+            arrow.style.transform = 'rotate(180deg)';
+        }
+
+        showToast('Could not reach server. Use "Already Paid?" if you completed payment.');
+    }
+}
+
+// ================== MANUAL VERIFICATION ==================
+function toggleManualVerify() {
+    const box   = document.getElementById('manualVerifyBox');
+    const arrow = document.getElementById('aptArrow');
+    const open  = box.style.display !== 'none';
+    box.style.display     = open ? 'none' : 'block';
+    arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+function resetManualVerify() {
+    const box   = document.getElementById('manualVerifyBox');
+    const arrow = document.getElementById('aptArrow');
+    const paste = document.getElementById('mpesaPasteBox');
+    const err   = document.getElementById('mvErr');
+    if (box)   box.style.display     = 'none';
+    if (arrow) arrow.style.transform = 'rotate(0deg)';
+    if (paste) paste.value           = '';
+    if (err)   err.style.display     = 'none';
+}
+
+function verifyManually() {
+    const message  = document.getElementById('mpesaPasteBox').value.trim();
+    const errEl    = document.getElementById('mvErr');
+    errEl.style.display = 'none';
+
+    if (!message) {
+        showMvErr('Please paste your M-Pesa confirmation message first.');
+        return;
+    }
+
+    const msgLower   = message.toLowerCase();
+    const tillLower  = PAYHERO.tillName.toLowerCase();
+    const kshAmount  = Math.round(parseFloat(convertUSDtoKSH(state.selectedPrice)));
+    const amountStr  = String(kshAmount);
+
+    // Check 1: till name
+    if (!msgLower.includes(tillLower)) {
+        showMvErr('This message is not for our till. Please use the correct M-Pesa SMS.');
+        return;
+    }
+
+    // Check 2: amount in multiple formats
+    const amountFound =
+        msgLower.includes('ksh' + amountStr + '.00')  ||
+        msgLower.includes('ksh ' + amountStr + '.00') ||
+        msgLower.includes(amountStr + '.00')           ||
+        msgLower.includes('ksh' + amountStr)           ||
+        msgLower.includes('ksh ' + amountStr);
+
+    if (!amountFound) {
+        showMvErr(`Payment amount does not match. Expected: KES ${amountStr}`);
+        return;
+    }
+
+    // Check 3: confirmation keywords
+    if (!msgLower.includes('confirmed') && !msgLower.includes('sent')) {
+        showMvErr("This doesn't look like a valid M-Pesa confirmation message.");
+        return;
+    }
+
+    // All checks passed
+    console.log('MANUAL VERIFICATION OK — Till:', PAYHERO.tillName, '| Amount: KES', amountStr);
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    handlePaymentSuccess();
+}
+
+function showMvErr(msg) {
+    const el = document.getElementById('mvErr');
+    el.textContent     = msg;
+    el.style.display   = 'block';
+}
+
+// ================== PAYMENT SUCCESS ==================
+function handlePaymentSuccess() {
+    hideLoading();
+
+    try {
+        const accountData = {
+            plan:         state.selectedPlan,
+            price:        state.selectedPrice,
+            kshAmount:    convertUSDtoKSH(state.selectedPrice),
+            purchaseDate: new Date().toISOString(),
+            timestamp:    Date.now()
+        };
+        localStorage.setItem('boughtaccount', JSON.stringify(accountData));
+    } catch (error) {
+        console.error('Error saving account status:', error);
+    }
+
+    document.getElementById('successAccountType').textContent = `${state.selectedPlan} ACCOUNT`;
+    document.getElementById('successOverlay').classList.add('active');
+
+    console.log('=================================');
+    console.log('PAYMENT VERIFIED & SUCCESSFUL!');
+    console.log('Account Type:', state.selectedPlan);
+    console.log('Price: $' + state.selectedPrice.toFixed(2));
+    console.log('Amount Paid: KES', convertUSDtoKSH(state.selectedPrice));
+    console.log('Payment Method: M-Pesa (PayHero)');
+    console.log('=================================');
+}
+
+// ================== SUCCESS CONTINUE ==================
+function handleSuccessContinue() {
+    document.getElementById('successOverlay').classList.remove('active');
+
+    showLoading('Verifying payment...');
+
+    setTimeout(() => updateLoading('Payment verified. Loading...'), 1500);
+
+    setTimeout(() => {
+        hideLoading();
+        showToast(`Welcome to your ${state.selectedPlan} Account!`, true);
+        window.location.href = 'important-info.html';
+    }, 3000);
+}
+
+// ================== LOADING OVERLAY ==================
+function showLoading(message) {
+    document.getElementById('loadingText').innerHTML = message;
+    document.getElementById('loadingOverlay').classList.add('active');
+}
+
+function updateLoading(message) {
+    document.getElementById('loadingText').innerHTML = message;
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+// ================== TOAST NOTIFICATIONS ==================
+function showToast(message, isSuccess = false) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    isSuccess ? toast.classList.add('success') : toast.classList.remove('success');
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.classList.remove('success'), 300);
+    }, 2500);
+}
+
+// ================== UTILITY FUNCTIONS ==================
+function setSamplePrices(beginner = '2.40', average = '4.50', expert = '6.50') {
+    const sampleData = ['value0','value1', beginner, average, expert, 'value5','value6','value7'];
+    localStorage.setItem('tillfetch', JSON.stringify(sampleData));
+    loadPrices();
+    updatePriceDisplays();
+}
+
+function hasAccountPurchased() {
+    try { return localStorage.getItem('boughtaccount') !== null; }
+    catch (e) { return false; }
+}
+
+function resetPurchase() {
+    localStorage.removeItem('boughtaccount');
+    console.log('Purchase status reset');
+}
+
+window.accountPurchase = {
+    setSamplePrices,
+    hasPurchased:    hasAccountPurchased,
+    resetPurchase,
+    getCurrentPrices: () => state.prices
+};
