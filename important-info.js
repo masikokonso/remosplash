@@ -2,7 +2,7 @@
 const state = {
     currentPage: 0,
     totalPages: 6,
-    minimumWithdraw: '5.00' // Default value
+    minimumWithdraw: '150.00' // Default value
 };
 
 // ================== INITIALIZATION ==================
