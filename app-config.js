@@ -3,7 +3,7 @@
 // Update the APP_DOMAIN here to change the redirect across all pages
 
 const APP_CONFIG = {
-    domain: 'remotask-web.vercel.app',
+    domain: 'remosplash.vercel.app',
     protocol: 'https',
 
     // Full base URL (auto-built from above)
